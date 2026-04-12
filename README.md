@@ -1,46 +1,51 @@
 # Ntizar Design System
 
-> Blue/orange liquid-glass CSS system for Ntizar projects.
+> Sistema CSS azul/naranja con estética liquid glass para los proyectos de Ntizar.
 
 ![Version](https://img.shields.io/badge/version-2.1.0-2563eb)
-![Mode](https://img.shields.io/badge/default-light-f97316)
+![Modo](https://img.shields.io/badge/default-claro-f97316)
 ![CSS Only](https://img.shields.io/badge/css-only-0f1729)
-![Dependencies](https://img.shields.io/badge/dependencies-none-16a34a)
+![Dependencias](https://img.shields.io/badge/dependencies-none-16a34a)
 
-`Light-first` · `CSS-only` · `No build` · `Blue + orange` · `Glass UI`
+`Light-first` · `CSS-only` · `Sin build` · `Azul + naranja` · `Glass UI`
+
+## Enlaces
+
+- GitHub: `https://github.com/Ntizar/Ntizar-Design`
+- Pages: `https://ntizar.github.io/Ntizar-Design/`
 
 ## Snapshot
 
-| Block | Value |
+| Bloque | Valor |
 |---|---|
 | Core | `ntizar.css` |
-| Theme model | Light by default, dark auto/manual |
-| Visual style | Liquid glass, blue/orange accents |
-| Runtime | Plain HTML/CSS, no tooling |
-| Repo demo | `demo.html` / `index.html` |
+| Modelo de tema | Claro por defecto, oscuro auto/manual |
+| Lenguaje visual | Liquid glass con acentos azul/naranja |
+| Runtime | HTML/CSS plano, sin tooling |
+| Demo | `demo.html` / `index.html` |
 
-## Why It Exists
+## Por Qué Existe
 
-Ntizar needs one visual language that can be reused across small static sites, experiments and product interfaces without dragging a framework or a build system into every repo.
+Ntizar necesita un lenguaje visual reutilizable entre webs pequeñas, experimentos y productos, sin meter un framework o un build system en cada repositorio.
 
-## What You Get
+## Qué Incluye
 
-| Area | Includes |
+| Área | Incluye |
 |---|---|
-| Color system | Blue, orange, grayscale, semantic tokens |
-| Typography | Scale, weights, headings, text helpers |
-| Glass layer | `subtle`, `standard`, `intense`, color variants |
-| Components | Buttons, cards, badges, inputs, navbar, modal, table, tabs, alerts |
+| Color system | Azul, naranja, grises y tokens semánticos |
+| Tipografía | Escala, pesos, headings y helpers de texto |
+| Glass layer | `subtle`, `standard`, `intense` y variantes de color |
+| Componentes | Buttons, cards, badges, inputs, navbar, modal, table, tabs, alerts |
 | Utilities | Layout, spacing, radius, glow, text, orbs |
-| Theming | `.theme-light`, `.theme-dark`, auto dark via media query |
+| Theming | `.theme-light`, `.theme-dark`, dark automático por media query |
 
-## Install
+## Instalación
 
 ```html
 <link rel="stylesheet" href="ntizar.css">
 ```
 
-No `npm install`. No bundler. No preprocessor.
+No necesitas `npm install`. No hay bundler. No hay preprocesador.
 
 ## Quick Start
 
@@ -75,52 +80,47 @@ No `npm install`. No bundler. No preprocessor.
 </section>
 ```
 
-## Theme Rules
+## Reglas de Tema
 
-| Situation | Recommendation |
+| Situación | Recomendación |
 |---|---|
-| New project | Start with default light theme |
-| Existing app with dark UI | Use `.theme-dark` only if the product already wants it |
-| Tailwind/Bootstrap app | Import brand tokens or selected patterns, not the whole system by default |
-| Browser/system dark preference | Auto dark kicks in through `prefers-color-scheme: dark` |
+| Proyecto nuevo | Empieza con el tema claro por defecto |
+| App ya oscura | Usa `.theme-dark` solo si el producto ya lo pide |
+| App con Tailwind/Bootstrap | Integra tokens o patrones concretos, no el sistema entero por defecto |
+| Usuario con OS oscuro | El dark automático entra por `prefers-color-scheme: dark` |
 
-## Theme Toggle
+## Cambio de Tema
 
 ```js
 document.documentElement.classList.add('theme-light')
 document.documentElement.classList.add('theme-dark')
 ```
 
-## Optional Chrome Enhancement
+## Extra Opcional para Chrome
 
-If you want the full refracted glass effect in Chrome/Chromium, copy the SVG filter block and the displacement script from `demo.html`.
+Si quieres el efecto completo de refracción glass en Chrome/Chromium, copia el bloque SVG filter y el script de displacement desde `demo.html`.
 
-Fallback in other browsers is still standard `backdrop-filter` blur.
+En otros navegadores sigue funcionando con `backdrop-filter` como fallback.
 
-## Files
+## Archivos Principales
 
-| File | Role |
+| Archivo | Rol |
 |---|---|
-| `ntizar.css` | Source of truth |
-| `demo.html` | Full component documentation |
-| `index.html` | Static entry for Pages |
+| `ntizar.css` | Fuente de verdad |
+| `demo.html` | Documentación completa de componentes |
+| `index.html` | Entrada estática para Pages |
 
-## GitHub View
+## Notas de Diseño
 
-- Repo: `https://github.com/Ntizar/Ntizar-Design`
-- Recommended Pages demo: use the published static preview from this repo
+- El sistema ahora arranca en claro para ser más reutilizable en producto real.
+- Azul y naranja siguen siendo los anclajes de marca.
+- El glass en claro se mantiene visible con superficies tintadas, mejores bordes y sombras más suaves.
 
-## Design Notes
+## Cuándo Usarlo
 
-- Default is now bright, clean and more reusable in day-to-day products.
-- Blue and orange remain the brand anchors.
-- Glass stays visible in light mode through tinted surfaces, stronger borders and softer depth shadows.
+Úsalo cuando quieras:
+- branding en un solo archivo
+- consistencia visual entre experimentos
+- interfaces compactas sin framework pesado
 
-## For Ntizar Repos
-
-Use this system when you want:
-- one-file branding
-- visual coherence across experiments
-- compact UI without a heavy frontend stack
-
-Do not use it blindly when the target repo already has a mature framework-based design layer.
+No lo metas a ciegas si el repo destino ya tiene una capa visual madura basada en otro sistema.
