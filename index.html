@@ -425,6 +425,7 @@
     <div class="toc-dot" data-section="animations" title="Animaciones"></div>
     <div class="toc-dot" data-section="layout" title="Layout"></div>
     <div class="toc-dot" data-section="theming" title="Theming"></div>
+    <div class="toc-dot" data-section="v3-aurora" title="v3 Aurora"></div>
   </nav>
 
 
@@ -1927,22 +1928,22 @@
       <div class="section-label">18. Theming</div>
       <h2 class="section-title">Light & Dark Mode</h2>
       <p class="section-desc">
-        Dark mode por defecto. Light mode se activa automáticamente con <code class="code-tag">prefers-color-scheme: light</code>,
+        Light mode por defecto. Dark mode se activa automáticamente con <code class="code-tag">prefers-color-scheme: dark</code>,
         o manualmente con las clases <code class="code-tag">.theme-light</code> / <code class="code-tag">.theme-dark</code> en el <code class="code-tag">&lt;html&gt;</code>.
       </p>
 
       <div class="ai-hint">
         <strong>🤖 Para IAs:</strong><br>
-        • El CSS es dark-first. Si no haces nada, es dark.<br>
-        • Si el OS del usuario está en light mode, <code class="code-tag">@media prefers-color-scheme: light</code> aplica automáticamente.<br>
+        • El CSS es light-first. Si no haces nada, es claro.<br>
+        • Si el OS del usuario está en dark mode, <code class="code-tag">@media prefers-color-scheme: dark</code> aplica automáticamente.<br>
         • Para forzar tema con JS: <code class="code-tag">document.documentElement.classList.add('theme-light')</code><br>
-        • Todas las variables se sobreescriben en light. No necesitas cambiar clases de componentes.
+        • Todas las variables se sobreescriben en dark. No necesitas cambiar clases de componentes.
       </div>
 
       <div class="code-block" style="max-width:640px;">
         <span class="code-lang">JS</span>
         <pre><code>// Toggle de tema
-let dark = true;
+let dark = false;
 function toggleTheme() {
   dark = !dark;
   document.documentElement.classList.toggle('theme-light', !dark);
@@ -2074,6 +2075,182 @@ THEMING:
     </section>
 
 
+    <!-- V3 AURORA SHOWCASE -->
+    <section id="v3-aurora" class="section">
+      <h2 class="section-title">
+        <span class="section-num">13</span>
+        v3 Aurora — nuevos componentes
+      </h2>
+      <p class="section-desc">Todo lo que llega con v3: tokens <code class="code-tag">on-*</code> para contraste garantizado, tipografia fluid, 5 niveles de elevation, 11 componentes nuevos y backgrounds disruptivos. Aditivo puro sobre v2.</p>
+
+      <!-- Tipografia fluid -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Tipografia fluid</h3></div>
+        <div class="card-body">
+          <p class="text-display" style="margin:0 0 .5rem">Aurora</p>
+          <p class="text-fluid-3xl" style="margin:0 0 .25rem">text-fluid-3xl</p>
+          <p class="text-fluid-xl" style="margin:0 0 .25rem">text-fluid-xl</p>
+          <p class="text-fluid-base" style="margin:0">text-fluid-base — escala con el viewport via clamp().</p>
+        </div>
+      </div>
+
+      <!-- Switches + Segmented -->
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Switch</h3></div>
+          <div class="card-body flex flex-col gap-3">
+            <label class="switch"><input type="checkbox" checked><span class="switch-track"></span><span>Notificaciones</span></label>
+            <label class="switch switch-orange"><input type="checkbox" checked><span class="switch-track"></span><span>Modo creativo</span></label>
+            <label class="switch switch-lg"><input type="checkbox"><span class="switch-track"></span><span>Large</span></label>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Segmented</h3></div>
+          <div class="card-body flex flex-col gap-3">
+            <div class="segmented">
+              <button class="segmented-item active">Day</button>
+              <button class="segmented-item">Week</button>
+              <button class="segmented-item">Month</button>
+            </div>
+            <div class="segmented segmented-brand">
+              <button class="segmented-item active">Azul</button>
+              <button class="segmented-item">Mix</button>
+              <button class="segmented-item">Naranja</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dropdown + Breadcrumb + Pagination -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Dropdown · Breadcrumb · Pagination</h3></div>
+        <div class="card-body flex flex-col gap-6">
+          <nav class="breadcrumb">
+            <a href="#" class="breadcrumb-item">Home</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="#" class="breadcrumb-item">Design</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-item active">Aurora</span>
+          </nav>
+          <div class="dropdown" style="max-width:260px">
+            <div class="dropdown-menu" style="position:static;display:block">
+              <div class="dropdown-label">Cuenta</div>
+              <a href="#" class="dropdown-item">Perfil</a>
+              <a href="#" class="dropdown-item">Ajustes</a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-item-danger">Cerrar sesion</a>
+            </div>
+          </div>
+          <nav class="pagination">
+            <button class="page-item">&lsaquo;</button>
+            <button class="page-item">1</button>
+            <button class="page-item active">2</button>
+            <button class="page-item">3</button>
+            <span class="page-ellipsis">&hellip;</span>
+            <button class="page-item">9</button>
+            <button class="page-item">&rsaquo;</button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Stepper + Accordion -->
+      <div class="grid grid-cols-2 gap-6 mb-8">
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Stepper</h3></div>
+          <div class="card-body">
+            <ol class="stepper">
+              <li class="step step-done"><span class="step-marker">1</span><span class="step-label">Cuenta</span></li>
+              <li class="step step-active"><span class="step-marker">2</span><span class="step-label">Perfil</span></li>
+              <li class="step"><span class="step-marker">3</span><span class="step-label">Listo</span></li>
+            </ol>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3 class="card-title">Accordion</h3></div>
+          <div class="card-body">
+            <details class="accordion" open>
+              <summary class="accordion-summary">Que es Aurora?</summary>
+              <div class="accordion-body">v3 del Ntizar DS: contraste garantizado, fluid type y componentes nuevos.</div>
+            </details>
+            <details class="accordion">
+              <summary class="accordion-summary">Es compatible con v2?</summary>
+              <div class="accordion-body">Si, todo lo de v2 sigue funcionando. v3 es aditivo.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast + kbd + Empty -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Toasts · Kbd · Empty state</h3></div>
+        <div class="card-body flex flex-col gap-4">
+          <div class="toast-container" style="position:static">
+            <div class="toast toast-success"><span class="toast-icon">&check;</span><div class="toast-body"><div class="toast-title">Guardado</div><div class="toast-msg">Cambios aplicados correctamente.</div></div></div>
+            <div class="toast toast-info"><span class="toast-icon">i</span><div class="toast-body"><div class="toast-title">Nuevo</div><div class="toast-msg">v3 Aurora ya disponible.</div></div></div>
+          </div>
+          <p>Atajo: <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">K</kbd> para abrir el buscador.</p>
+          <div class="empty-state">
+            <div class="empty-icon">&empty;</div>
+            <h4 class="empty-title">Sin resultados</h4>
+            <p class="empty-msg">Prueba con otros filtros o limpia la busqueda.</p>
+            <button class="btn btn-primary btn-sm">Limpiar filtros</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code block -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Code block</h3></div>
+        <div class="card-body">
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">css</span>
+              <button class="code-block-copy">Copy</button>
+            </div>
+<pre class="code-block-body"><code>.btn-primary {
+  background: var(--brand-gradient);
+  color: var(--on-brand);
+  box-shadow: var(--elev-2);
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Elevation -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Elevation cinematografica</h3></div>
+        <div class="card-body grid grid-cols-5 gap-4">
+          <div style="padding:1.5rem;background:var(--surface-1);border-radius:var(--radius-lg);box-shadow:var(--elev-1);text-align:center">elev-1</div>
+          <div style="padding:1.5rem;background:var(--surface-1);border-radius:var(--radius-lg);box-shadow:var(--elev-2);text-align:center">elev-2</div>
+          <div style="padding:1.5rem;background:var(--surface-1);border-radius:var(--radius-lg);box-shadow:var(--elev-3);text-align:center">elev-3</div>
+          <div style="padding:1.5rem;background:var(--surface-1);border-radius:var(--radius-lg);box-shadow:var(--elev-4);text-align:center">elev-4</div>
+          <div style="padding:1.5rem;background:var(--surface-1);border-radius:var(--radius-lg);box-shadow:var(--elev-5);text-align:center">elev-5</div>
+        </div>
+      </div>
+
+      <!-- Backgrounds disruptivos -->
+      <div class="card mb-8">
+        <div class="card-header"><h3 class="card-title">Backgrounds disruptivos</h3></div>
+        <div class="card-body grid grid-cols-2 gap-4">
+          <div class="bg-aurora" style="height:160px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;color:var(--on-inverse);font-weight:var(--font-semi)">.bg-aurora</div>
+          <div class="bg-mesh" style="height:160px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;color:var(--on-inverse);font-weight:var(--font-semi)">.bg-mesh</div>
+          <div class="bg-grid" style="height:160px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-weight:var(--font-semi);background-color:var(--surface-1)">.bg-grid</div>
+          <div class="bg-dots" style="height:160px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-weight:var(--font-semi);background-color:var(--surface-1)">.bg-dots</div>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <section class="hero-section bg-aurora" style="border-radius:var(--radius-xl);padding:4rem 2rem;text-align:center;color:var(--on-inverse);margin-bottom:2rem">
+        <h1 class="text-display" style="margin:0 0 .5rem">Aurora</h1>
+        <p class="text-fluid-xl" style="margin:0 0 1.5rem;opacity:.9">Contraste garantizado. Tipografia fluid. Alma disruptiva.</p>
+        <div class="flex gap-3 justify-center">
+          <button class="btn btn-primary">Empezar</button>
+          <button class="btn btn-glass">Docs</button>
+        </div>
+      </section>
+    </section>
+
+
   </div>
 
   <!-- Footer -->
@@ -2082,7 +2259,7 @@ THEMING:
       <div class="flex items-center gap-3">
         <span class="navbar-brand-dot"></span>
         <span style="font-weight:var(--font-semi);color:var(--text-primary);">Ntizar Design System</span>
-        <span class="badge badge-glass no-dot">v2.0.0</span>
+        <span class="badge badge-glass no-dot">v3.0.0 Aurora</span>
       </div>
       <div class="flex gap-4 items-center">
         <a href="https://github.com/ntizar/Ntizar-Design" style="color:var(--text-muted);font-size:var(--text-sm);text-decoration:none;" target="_blank">GitHub</a>
