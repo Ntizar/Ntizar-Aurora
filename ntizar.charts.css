@@ -41,6 +41,8 @@
   }
   .nz :where(.nz-chart) > canvas,
   .nz :where(.nz-chart) > svg {
+    /* override: Chart.js / D3 / Apex setean width/height inline;
+       forzamos fluido para que el chart llene el contenedor. */
     width: 100% !important;
     height: 100% !important;
     display: block;

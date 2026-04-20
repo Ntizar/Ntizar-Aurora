@@ -138,7 +138,7 @@
     border-radius: 50% 50% 50% 0;
     background: var(--nz-pin-color);
     transform: rotate(-45deg);
-    border: 2px solid #fff;
+    border: 2px solid var(--nz-text-on-brand);
     box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3);
     position: relative;
   }
@@ -147,7 +147,7 @@
     position: absolute;
     inset: 25%;
     border-radius: 50%;
-    background: #fff;
+    background: var(--nz-text-on-brand);
   }
   .nz :where(.nz-map__pin--accent) { --nz-pin-color: var(--nz-color-accent); }
   .nz :where(.nz-map__pin--success) { --nz-pin-color: var(--nz-color-success); }

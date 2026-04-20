@@ -260,7 +260,7 @@
     height: 2.5rem;
     border-radius: 50%;
     background: var(--nz-gradient-brand);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     font-weight: 700;
     font-size: var(--nz-text-sm);
     border: 2px solid var(--nz-surface-base);

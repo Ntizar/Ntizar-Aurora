@@ -310,7 +310,7 @@
     right: 1.5rem;
     padding: 0.25rem 0.7rem;
     background: var(--nz-gradient-accent);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     border-radius: var(--nz-radius-pill);
     font-size: var(--nz-text-xs);
     font-weight: 700;
@@ -402,7 +402,7 @@
       radial-gradient(ellipse at top right, color-mix(in srgb, var(--nz-color-accent) 55%, transparent), transparent 60%),
       radial-gradient(ellipse at bottom left, color-mix(in srgb, var(--nz-color-brand) 55%, transparent), transparent 60%),
       var(--nz-color-slate-900);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     padding: var(--nz-space-7);
     display: grid;
     align-content: center;
@@ -476,7 +476,7 @@
     padding: var(--nz-space-6);
     border-radius: var(--nz-radius-xl);
     background: var(--nz-gradient-aurora);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     overflow: hidden;
     isolation: isolate;
     display: grid;

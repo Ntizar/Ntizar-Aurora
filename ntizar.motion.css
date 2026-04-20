@@ -194,6 +194,8 @@
       .nz-anim-aurora-pan, .nz-anim-shimmer,
       .nz-marquee__track, .nz-anim-typing::after
     ) {
+      /* override: respeto absoluto a prefers-reduced-motion;
+         las animaciones decorativas se cancelan sin importar la fuente. */
       animation: none !important;
     }
     .nz :where(.nz-reveal) {

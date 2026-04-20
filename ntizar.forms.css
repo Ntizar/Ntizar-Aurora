@@ -58,6 +58,8 @@
   .nz :where(.nz-input-group) > .nz-input,
   .nz :where(.nz-input-group) > .nz-select {
     flex: 1 1 auto;
+    /* override: el wrapper .nz-input-group asume el chrome (border, ring, radio).
+       El input interno DEBE quedar plano para no duplicar bordes. */
     border: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -180,14 +182,14 @@
     content: "";
     width: 0.6rem;
     height: 0.6rem;
-    background: #fff;
+    background: var(--nz-text-on-brand);
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;
   }
   .nz :where(.nz-radio__input):checked::after {
     content: "";
     width: 0.45rem; height: 0.45rem;
-    background: #fff; border-radius: 50%;
+    background: var(--nz-text-on-brand); border-radius: 50%;
   }
   .nz :where(.nz-check--accent .nz-check__input):checked,
   .nz :where(.nz-radio--accent .nz-radio__input):checked {
@@ -232,7 +234,7 @@
     top: 50%; left: 0.15rem;
     width: 1rem; height: 1rem;
     border-radius: 50%;
-    background: #fff;
+    background: var(--nz-text-on-brand);
     box-shadow: 0 2px 6px rgba(15, 23, 42, 0.25);
     transform: translateY(-50%);
     transition: left var(--nz-duration-base) var(--nz-ease-standard);
@@ -267,7 +269,7 @@
     width: 1.1rem; height: 1.1rem;
     border-radius: 50%;
     background: var(--nz-gradient-brand);
-    border: 2px solid #fff;
+    border: 2px solid var(--nz-text-on-brand);
     box-shadow: var(--nz-shadow-sm);
     cursor: pointer;
   }
@@ -275,7 +277,7 @@
     width: 1.1rem; height: 1.1rem;
     border-radius: 50%;
     background: var(--nz-color-brand);
-    border: 2px solid #fff;
+    border: 2px solid var(--nz-text-on-brand);
     cursor: pointer;
   }
   .nz :where(.nz-range:focus-visible) { box-shadow: var(--nz-ring); }
@@ -394,7 +396,7 @@
   }
   .nz :where(.nz-stepper__step--active) > span:first-child {
     background: var(--nz-color-brand);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     border-color: var(--nz-color-brand);
   }
   .nz :where(.nz-stepper__step--done) {
@@ -404,7 +406,7 @@
   }
   .nz :where(.nz-stepper__step--done) > span:first-child {
     background: var(--nz-color-success);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     border-color: var(--nz-color-success);
   }
 

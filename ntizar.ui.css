@@ -178,7 +178,7 @@
   }
   .nz :where(.nz-segmented__option) > input:checked + span {
     background: var(--nz-gradient-brand);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     box-shadow: var(--nz-shadow-brand);
   }
   .nz :where(.nz-segmented__option) > input:focus-visible + span { box-shadow: var(--nz-ring); }
@@ -207,7 +207,7 @@
   .nz :where(.nz-pagination__item):hover { background: var(--nz-surface-soft); color: var(--nz-text-strong); }
   .nz :where(.nz-pagination__item--active) {
     background: var(--nz-gradient-brand);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     border-color: transparent;
     box-shadow: var(--nz-shadow-brand);
   }
@@ -231,7 +231,7 @@
     transform: translate(-50%, 0.25rem);
     padding: 0.4rem 0.6rem;
     background: var(--nz-color-slate-900);
-    color: #fff;
+    color: var(--nz-text-on-brand);
     font-size: var(--nz-text-xs);
     font-weight: 600;
     line-height: 1.3;
