@@ -32,8 +32,7 @@ Cada pack es independiente. Carga 1 o los 9.
 - [INDEX.md](INDEX.md) → **mapa para agentes**: "necesito X → archivo Y, clases Z"
 - [USAGE.md](USAGE.md) → **guía narrativa** con escenarios completos (landing, dashboard, mapas, 3D, auth, pricing…)
 - [SYSTEM.md](SYSTEM.md) → **constitución del sistema**: cómo extender, versionar y mantener identidad
-- [demo.html](demo.html) → tour del **core**
-- [gallery.html](gallery.html) → showcase con **todo** (charts + map + 3D + forms + UI + patterns + skin switcher)
+- [gallery.html](gallery.html) → showcase único con **todo** (foundations + core + charts + map + 3D + forms + UI + patterns + reglas de uso + reference API)
 
 ## Quick Start (todo activado)
 
@@ -63,7 +62,7 @@ Si el sistema visual existe pero no se explica al principio del repo, para terce
 Por eso en `design-system/`:
 
 - `README.md` explica el contrato de uso
-- `demo.html` enseña el sistema de forma canónica
+- `gallery.html` enseña el sistema de forma canónica
 - la documentación no es un extra, es parte del producto
 
 ### 2. Ntizar.css no entra entero en todos los proyectos
@@ -122,7 +121,7 @@ Aurora v4 rompe con v3 a propósito.
 - La API pública ahora usa prefijo `nz-*`
 - Los tokens ahora usan prefijo `--nz-*`
 - El sistema deja de pelearse con apps ajenas porque la API visual real vive dentro de `.nz`
-- `demo.html` pasa a ser la documentación canónica
+- `gallery.html` pasa a ser la documentación canónica
 - `index.html` ya no duplica la demo
 
 ## Contrato Público
@@ -276,9 +275,9 @@ No necesitas preprocesador.
 - `.nz-card--soft`, `.nz-card--interactive`
 - `.nz-card--glass-soft`, `.nz-card--glass`, `.nz-card--glass-strong`
 - `.nz-card--glass-brand`, `.nz-card--glass-accent`
-- `.nz-field`, `.nz-label` (alias `.nz-field__label`), `.nz-input`, `.nz-select`, `.nz-textarea`, `.nz-help`
+- `.nz-field`, `.nz-label`, `.nz-field__label` (alias de `.nz-label`), `.nz-input`, `.nz-select`, `.nz-textarea`, `.nz-help`
 - `.nz-alert`
-- `.nz-callout`, `.nz-callout--tip`, `.nz-callout--info` (alias de tip), `.nz-callout--warn`, `.nz-callout--danger`
+- `.nz-callout`, `.nz-callout--tip`, `.nz-callout--info` (alias de tip), `.nz-callout--warning`, `.nz-callout--danger`
 - `.nz-codeblock`
 - `.nz-table`
 - `.nz-text-h1`, `.nz-text-h2`, `.nz-text-h3`, `.nz-text-h4`, `.nz-text-sm`, `.nz-text-muted`
@@ -292,6 +291,8 @@ No necesitas preprocesador.
 - `.u-nz-text-gradient-brand`
 - `.u-nz-full-width`
 - `.u-nz-sr-only`
+
+La lista exhaustiva de API pública vive ahora en `gallery.html` bajo las secciones `#api-root`, `#api-objects`, `#api-components` y `#api-utilities`.
 
 ## Cuándo Usarlo
 
@@ -366,18 +367,18 @@ Sobrescribe tokens despues de importar `ntizar.css`. Si quieres aislar una sola 
 }
 ```
 
-## Demo
+## Showcase
 
 La referencia completa de uso vive en:
 
-- `demo.html`
+- `gallery.html`
 
 Ahí se documenta:
 
-- qué hay en el core
+- foundations y theming en runtime
+- qué hay en el core y en cada pack
 - cuándo usar cada objeto o componente
-- cómo tematizar
-- cómo combinar las piezas en una pantalla real
+- reference API pública consolidada
 
 ## Estado Del Proyecto
 

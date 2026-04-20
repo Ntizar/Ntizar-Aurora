@@ -118,7 +118,7 @@ Si necesitas un valor que no existe → primero proponlo como token, no lo escri
 2. Cabecera con la API pública listada (clases y para qué).
 3. Todo dentro de `@layer ntizar.components` (o `ntizar.utilities` si son atómicas).
 4. Sin dependencias entre packs salvo el core. Si dos packs comparten algo → sube al core.
-5. Añádelo al `<head>` de `gallery.html` y `demo.html`.
+5. Añádelo al `<head>` de `gallery.html`.
 6. Añade fila en `INDEX.md`.
 7. Anota la versión en `README.md`.
 
@@ -141,8 +141,7 @@ Si necesitas un valor que no existe → primero proponlo como token, no lo escri
 
 **Antes de mergear core:**
 
-- `demo.html` se ve idéntico (visual diff manual).
-- `gallery.html` se ve idéntico.
+- `gallery.html` sigue viéndose coherente y navegable.
 - `data-nz-skin` 1..N siguen viéndose coherentes.
 - `data-nz-theme="dark"` sigue siendo legible.
 

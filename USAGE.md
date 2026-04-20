@@ -536,4 +536,4 @@ Crea un archivo `tu-marca.css` después de `ntizar.themes.css`:
 1. Mira `gallery.html` — todos los componentes en vivo, con switcher de skin/tema.
 2. Lee `INDEX.md` — mapa rápido para encontrar la clase exacta.
 3. Lee `SYSTEM.md` — reglas para extender sin romper.
-4. Empieza por `demo.html` y copia componentes. Hazlo tuyo.
+4. Empieza por `gallery.html` y copia el bloque más cercano a tu caso. Hazlo tuyo.
