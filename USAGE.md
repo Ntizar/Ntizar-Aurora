@@ -83,7 +83,7 @@ Puedes mezclar varios skins en una misma página anidándolos:
   <section class="nz-hero nz-hero--centered">
     <div class="nz-aurora-bg" aria-hidden="true"></div>
     <div class="nz-hero__inner">
-      <span class="nz-hero__eyebrow">v4.1 Constellation</span>
+      <span class="nz-hero__eyebrow">v4.2 Constellation</span>
       <h1 class="nz-hero__title">El sistema para crear <span class="nz-accent">cualquier cosa</span> con identidad propia.</h1>
       <p class="nz-hero__sub">Charts, mapas, 3D, dashboards, landings. Misma firma. Cero fricción.</p>
       <div class="nz-hero__cta">

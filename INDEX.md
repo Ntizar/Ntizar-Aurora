@@ -57,8 +57,9 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 9 sin colisiones
 
 | Necesito… | Pack | Clases clave |
 |---|---|---|
-| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside`, `.nz-stack`, `.nz-cluster`, `.nz-surface[--glass*]` |
-| **Botones, cards, badges, alerts, callouts, fields, tablas, código** | core | `.nz-btn--primary/--accent/--brand-mix/--glass*/--ghost/--danger`, `.nz-card[--glass*]`, `.nz-badge--*`, `.nz-alert`, `.nz-callout--*`, `.nz-codeblock`, `.nz-table` |
+| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside`, `.nz-stack[--sm/--md/--lg]`, `.nz-cluster`, `.nz-surface[--glass*]` |
+| **Botones, cards, badges, alerts, callouts, fields, tablas, código** | core | `.nz-btn--primary/--accent/--brand-mix/--glass*/--ghost/--danger`, `.nz-card[--glass*]`, `.nz-badge--primary/--accent/--brand/--success/--warning/--danger/--glass*`, `.nz-alert`, `.nz-callout--tip/--info/--warn/--danger`, `.nz-codeblock`, `.nz-table` |
+| **Tipografía utilitaria** (titulares, texto secundario, sutil) | core | `.nz-text-h1/--h2/--h3/--h4`, `.nz-text-sm`, `.nz-text-muted`, `.u-nz-text-strong`, `.u-nz-text-muted` |
 | **Cambiar paleta** (sigue siendo Ntizar) | themes | `data-nz-skin="aurora\|sunset\|midnight\|ocean\|citrus"` |
 | **KPIs y dashboards** | data | `.nz-kpi[--accent/--aurora]`, `.nz-stat-tile`, `.nz-stat-grid--2/3/4`, `.nz-progress[--accent/--aurora]`, `.nz-meter`, `.nz-skeleton[--text/--circle/--block]`, `.nz-avatar[-stack]`, `.nz-timeline`, `.nz-tag--brand/--accent`, `.nz-data-card` |
 | **Gráficos** (Chart.js/Apex/D3/SVG/canvas) | charts | `.nz-chart[--sm/md/lg/xl/glass/bare]`, `.nz-chart__legend`, `.nz-sparkline`, `.nz-donut[--aurora]`, `.nz-trend-arrow--up/--down`. Paleta JS: `--nz-chart-1..8` |
@@ -73,7 +74,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 9 sin colisiones
 | **Reveal on scroll** | motion | `.nz-reveal[--left/--right/--scale]` + IO que añada `.is-visible` |
 | **Hover lift suave** | motion | `.nz-hover-lift` |
 | **Texto degradado / glow / utilidades varias** | core | `.u-nz-text-gradient`, `.u-nz-text-gradient-brand`, `.u-nz-bg-aurora`, `.u-nz-glow[-accent/-aurora]`, `.u-nz-num`, `.u-nz-text-mono`, `.u-nz-text-center/right/left`, `.u-nz-rounded-{sm,md,lg,xl,pill}`, `.u-nz-gap-{1..5}`, `.u-nz-aspect-{square,video,cinema}`, `.u-nz-hide-sm`, `.u-nz-show-sm-only` |
-| **Formulario rico** (switch, otp, range, file, stepper) | forms | `.nz-switch`+`__input/__track/__thumb`, `.nz-check[--accent]`, `.nz-radio[--accent]`, `.nz-range`, `.nz-otp`+`.nz-otp__cell`, `.nz-file`+`.nz-file__drop`, `.nz-stepper`+`.nz-stepper__step--active/--done`, `.nz-input-group`+`.nz-input-group__addon`, `.nz-search[--lg]`, `.nz-form-grid[--2]`+`.nz-field--full` |
+| **Formulario rico** (switch, otp, range, file, stepper) | forms | `.nz-switch`+`__input/__track/__thumb`, `.nz-check[--accent]`, `.nz-radio[--accent]`, `.nz-range`, `.nz-otp`+`.nz-otp__cell`, `.nz-file`+`.nz-file__drop`, `.nz-stepper`+`.nz-stepper__step--active/--done`, `.nz-input-group`+`.nz-input-group__addon`, `.nz-search[--lg]`, `.nz-form-grid[--2]`+`.nz-field--full`. Label: `.nz-label` o alias `.nz-field__label` |
 | **Modal / drawer / dropdown / toast / tooltip** | ui | `<dialog class="nz-modal">`+`.nz-modal__panel`+`.nz-modal__close`, `.nz-drawer[--right]`+`.is-open`, `.nz-dropdown`+`.nz-dropdown__menu[.is-open]`+`.nz-dropdown__item[--danger]`+`.nz-dropdown__sep`, `.nz-toast-stack--top-right/...`+`.nz-toast[--success/--warning/--danger/--accent]`+`.nz-toast__title/__body`, `.nz-tooltip[data-tip]` |
 | **Tabs / accordion / breadcrumbs / segmented / chips / paginación / command-bar** | ui | `.nz-tabs`+`.nz-tabs__list`+`.nz-tab[--active]`+`.nz-tabs__panel`, `.nz-accordion`+`<details class="nz-accordion__item">`, `.nz-breadcrumbs`+`__item[aria-current="page"]`+`__sep`, `.nz-segmented`+`__option`(con `<input type="radio">`), `.nz-chip[--accent/--neutral]`+`.nz-chip__remove`, `.nz-pagination`+`__item[--active/--disabled]`, `.nz-command-bar`+`__field/__group/__heading/__item[.is-active]`, `.nz-spinner[--lg/--accent]`, `.nz-divider--label`, `.nz-tag-input`+`__field` |
 | **App shell / sidebar / nav** | patterns | `.nz-app-shell`+`__sidebar/__header/__main`, `.nz-nav-section`, `.nz-nav-item[.is-active][data-nz-accent]` |
@@ -98,13 +99,14 @@ Familias completas:
 
 - **Color**: `--nz-color-brand[-strong/-soft]`, `--nz-color-accent[-strong/-soft]`, escalas `--nz-color-{blue,orange,violet,cyan,pink,green,red,yellow,slate}-{50..950}`
 - **Surface**: `--nz-surface-{page,base,soft,raised,glass-soft,glass,glass-strong,glass-brand,glass-accent,brand-soft,accent-soft}`
-- **Text**: `--nz-text-{strong,default,muted,inverse}`
+- **Text**: `--nz-text-{strong,default,muted,soft,inverse,on-brand}`
 - **Border**: `--nz-border-{soft,default,strong,brand,accent,glass}`
 - **Shadow**: `--nz-shadow-{sm,md,lg,brand,accent,aurora}`
 - **Spacing**: `--nz-space-{1..8}`
 - **Radius**: `--nz-radius-{sm,md,lg,xl,pill}`
 - **Gradient**: `--nz-gradient-{brand,accent,aurora}`
 - **Motion**: `--nz-duration-{fast,base}`, `--nz-ease-standard`
+- **Type**: `--nz-font-sans`, `--nz-font-display` (alias de sans), `--nz-font-mono`
 - **Charts (themes pack)**: `--nz-chart-1..8`, `--nz-chart-{grid,axis,bg}`
 
 ---
@@ -163,7 +165,7 @@ new Chart(ctx, {
   <canvas class="nz-stage__canvas" id="three"></canvas>
   <div class="nz-stage__hud">
     <span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">Live</span>
-    <h2 style="color:#fff">Aurora 3D</h2>
+    <h2 style="color: var(--nz-text-on-brand)">Aurora 3D</h2>
   </div>
 </section>
 <script type="module">

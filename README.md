@@ -1,8 +1,8 @@
 # Ntizar Design System
 
-> Aurora v4.1 **Constellation**: un core CSS copiable + 9 packs opcionales para construir cualquier app web (dashboards, mapas, escenas 3D, landings, formularios, generative art) manteniendo identidad azul + naranja.
+> Aurora v4.2 **Constellation**: un core CSS copiable + 9 packs opcionales para construir cualquier app web (dashboards, mapas, escenas 3D, landings, formularios, generative art) manteniendo identidad azul + naranja.
 
-![Version](https://img.shields.io/badge/version-4.1.0_Constellation-2563eb)
+![Version](https://img.shields.io/badge/version-4.2.0_Constellation-2563eb)
 ![API](https://img.shields.io/badge/api-namespaced-0f172a)
 ![Modo](https://img.shields.io/badge/theme-light%20%7C%20dark-f97316)
 ![Skins](https://img.shields.io/badge/skins-5-7c3aed)
@@ -269,18 +269,19 @@ No necesitas preprocesador.
 - `.nz-btn--glass`, `.nz-btn--glass-brand`, `.nz-btn--glass-accent`
 - `.nz-btn--secondary`, `.nz-btn--ghost`, `.nz-btn--danger`
 - `.nz-badge`
-- `.nz-badge--neutral`, `.nz-badge--primary`, `.nz-badge--accent`
+- `.nz-badge--neutral`, `.nz-badge--primary`, `.nz-badge--brand` (alias de primary), `.nz-badge--accent`
 - `.nz-badge--glass`, `.nz-badge--glass-brand`, `.nz-badge--glass-accent`
 - `.nz-badge--success`, `.nz-badge--warning`, `.nz-badge--danger`
 - `.nz-card`
 - `.nz-card--soft`, `.nz-card--interactive`
 - `.nz-card--glass-soft`, `.nz-card--glass`, `.nz-card--glass-strong`
 - `.nz-card--glass-brand`, `.nz-card--glass-accent`
-- `.nz-field`, `.nz-label`, `.nz-input`, `.nz-select`, `.nz-textarea`, `.nz-help`
+- `.nz-field`, `.nz-label` (alias `.nz-field__label`), `.nz-input`, `.nz-select`, `.nz-textarea`, `.nz-help`
 - `.nz-alert`
-- `.nz-callout`
+- `.nz-callout`, `.nz-callout--tip`, `.nz-callout--info` (alias de tip), `.nz-callout--warn`, `.nz-callout--danger`
 - `.nz-codeblock`
 - `.nz-table`
+- `.nz-text-h1`, `.nz-text-h2`, `.nz-text-h3`, `.nz-text-h4`, `.nz-text-sm`, `.nz-text-muted`
 
 ### Utilities
 
@@ -384,3 +385,49 @@ Aurora v4 es un reinicio deliberado.
 
 Incluye menos caos que v3, pero vuelve a ser visualmente mas Ntizar.
 Los componentes avanzados volverán solo si siguen esta regla: aportar valor sin romper la sencillez del core.
+
+## Changelog
+
+### v4.2.0 — Constitutional alignment (audit pass)
+
+**Tokens nuevos** (en `@layer ntizar.tokens`, light + dark):
+
+- `--nz-font-display` — alias de `--nz-font-sans`. Usado por patterns para titulares.
+- `--nz-text-soft` — texto secundario más sutil que `--nz-text-muted`.
+- `--nz-text-on-brand` — blanco fijo en light y dark, para texto sobre gradientes brand/accent (que son oscuros en ambos temas). Sustituye los `#fff` literales que vivían en componentes.
+- `--nz-color-red-500` — completa la escala roja referenciada por algunos componentes.
+
+**Componentes nuevos** (en `@layer ntizar.components`):
+
+- `.nz-text-h1`, `.nz-text-h2`, `.nz-text-h3`, `.nz-text-h4` — clases tipográficas utilitarias para titulares fuera de `<h*>`.
+- `.nz-text-sm`, `.nz-text-muted` — apoyo tipográfico breve.
+- `.nz-stack--md` — gap intermedio entre `--sm` y `--lg`.
+
+**Aliases (deprecación suave, sin cambio funcional):**
+
+- `.nz-field__label` → alias de `.nz-label`.
+- `.nz-badge--brand` → alias de `.nz-badge--primary`.
+- `.nz-callout--info` → alias de `.nz-callout--tip`.
+
+**Saneo de hex literales en componentes:**
+
+- 0 hex literales fuera de `@layer ntizar.tokens` y `ntizar.themes.css`.
+- Sustituciones masivas `color: #fff` y `background: #fff` por `var(--nz-text-on-brand)` en `ui`, `forms`, `viz`, `data`, `maps`, `patterns`.
+- `.nz-codeblock` reescrito sobre tokens `slate`/`blue` + `color-mix()`.
+
+**`!important` documentados:**
+
+- Los `!important` que sobreviven en `forms.css` (input-group reset), `charts.css` y `viz.css` (canvas overrides de Three.js / Chart.js) y `motion.css` (`prefers-reduced-motion`) llevan ya comentario `/* override … */`. Cumplen la cláusula 3 de `SYSTEM.md`.
+
+**Constitución (`SYSTEM.md`):**
+
+- Aclarado que la prohibición de hex literales aplica a `@layer ntizar.components` y `ntizar.utilities`. Tokens y skins (`ntizar.themes.css`) sí pueden definir hex.
+- Aclarado que `!important` está prohibido fuera de `@layer ntizar.utilities` salvo overrides de librerías externas comentados.
+
+**Nada que rompa.** Sin renames, sin eliminaciones, sin cambios de identidad visual. Bump `MINOR` según la tabla de la sección 7 de `SYSTEM.md`.
+
+### v4.1.0 — Constellation
+
+- 9 packs opcionales (themes, data, charts, maps, viz, motion, forms, ui, patterns) sobre el core.
+- 5 skins (`aurora`, `sunset`, `midnight`, `ocean`, `citrus`) bajo `data-nz-skin`.
+- API namespaced `nz-*` / `--nz-*`, todo bajo `.nz`.

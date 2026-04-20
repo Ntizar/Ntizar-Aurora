@@ -10,7 +10,7 @@
 1. **Una sola identidad, infinitas formas.** Azules + naranjas son la firma. Cualquier "skin" es una variación dentro de esa familia, nunca una ruptura.
 2. **CSS-only por defecto.** Las librerías (Chart.js, Leaflet, three.js…) son **opcionales**, jamás requisitos.
 3. **Opt-in, no invasivo.** Todo vive bajo `.nz`. No estilamos `body`, `h1`, `button`, etc. globalmente.
-4. **Tokens > valores literales.** Si un color, espacio o radio aparece dos veces, debe ser un token.
+4. **Tokens > valores literales.** Si un color, espacio o radio aparece dos veces, debe ser un token. Los hex literales solo se permiten dentro de `@layer ntizar.tokens` (definición de tokens) y en `ntizar.themes.css` (skins). En `@layer ntizar.components` y `ntizar.utilities`, solo `var(--nz-*)` o `color-mix(...)` sobre tokens.
 5. **Modular en capas.** El core es estable. La funcionalidad nueva entra como **pack** independiente.
 6. **Accesibilidad y motion-respect siempre.** Foco visible, contraste ≥ AA, `prefers-reduced-motion`.
 7. **Si no se puede explicar en una línea, se rediseña.**
@@ -71,8 +71,8 @@ Reglas de pertenencia:
 **Prohibido:**
 
 - Estilar selectores genéricos (`button`, `input`, `h1`) fuera de `ntizar.base`.
-- `!important` (salvo overrides de librerías externas claramente comentados).
-- Hex literales en componentes — usa tokens.
+- `!important` fuera de `@layer ntizar.utilities` (salvo overrides de librerías externas como Leaflet, Chart.js o Three.js, claramente comentados con `/* override <librería>: motivo */`).
+- Hex literales en `@layer ntizar.components` y `@layer ntizar.utilities` — usa `var(--nz-*)` o `color-mix()` sobre tokens. Los hex solo viven en `@layer ntizar.tokens` y en `ntizar.themes.css`.
 - `position: absolute` sin `isolation: isolate` o un padre relativo.
 
 ---
@@ -205,7 +205,7 @@ Cada bump:
 ## 13. Checklist antes de subir un cambio
 
 - [ ] ¿El cambio respeta los principios?
-- [ ] ¿Usa solo tokens (no hex literales en components)?
+- [ ] ¿Usa solo tokens en `@layer ntizar.components` y `@layer ntizar.utilities` (los hex viven solo en `@layer ntizar.tokens` y `ntizar.themes.css`)?
 - [ ] ¿Especificidad baja (`:where()`)?
 - [ ] ¿Funciona en `light` y `dark`?
 - [ ] ¿Funciona en al menos 2 skins?
