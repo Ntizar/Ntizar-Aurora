@@ -1,11 +1,12 @@
 # Ntizar Design System
 
-> Aurora v4.2 **Constellation**: un core CSS copiable + 9 packs opcionales para construir cualquier app web (dashboards, mapas, escenas 3D, landings, formularios, generative art) manteniendo identidad azul + naranja.
+> Aurora v5.0 **Constellation**: un core CSS copiable + 10 packs opcionales para construir cualquier app web (dashboards, mapas, escenas 3D, landings, formularios, generative art) manteniendo identidad azul + naranja. v5 añade **Liquid Glass real**, **OKLCH**, **multi-axis theming** y **forced-colors**.
 
-![Version](https://img.shields.io/badge/version-4.2.0_Constellation-2563eb)
+![Version](https://img.shields.io/badge/version-5.0.0_Disruptive-2563eb)
 ![API](https://img.shields.io/badge/api-namespaced-0f172a)
-![Modo](https://img.shields.io/badge/theme-light%20%7C%20dark-f97316)
-![Skins](https://img.shields.io/badge/skins-5-7c3aed)
+![Modo](https://img.shields.io/badge/theme-light%20%7C%20dark%20%7C%20forced--colors-f97316)
+![Skins](https://img.shields.io/badge/skins-6%20(incl.%20AAA)-7c3aed)
+![Axes](https://img.shields.io/badge/axes-color%20%C2%B7%20theme%20%C2%B7%20skin%20%C2%B7%20shape%20%C2%B7%20density%20%C2%B7%20motion-16a34a)
 ![CSS Only](https://img.shields.io/badge/css-only-16a34a)
 
 `CSS-only` · `Opt-in` · `Namespaced` · `Light-first` · `Liquid glass` · `Modular packs`
@@ -23,9 +24,10 @@ ntizar.motion.css     -> reveal, glow-pulse, aurora-pan, shimmer, marquee, typin
 ntizar.forms.css      -> switch, custom check/radio, range, OTP, file drop, stepper, search
 ntizar.ui.css         -> modal, drawer, tabs, accordion, dropdown, toast, tooltip, command-bar
 ntizar.patterns.css   -> app-shell, hero, pricing, features, faq, footer, auth-shell, empty/error
+ntizar.next.css       -> v5: liquid glass real, OKLCH, multi-axis theming, mesh, forced-colors, skin AAA
 ```
 
-Cada pack es independiente. Carga 1 o los 9.
+Cada pack es independiente. Carga 1 o los 10.
 
 ## Documentación
 
@@ -58,8 +60,14 @@ CI activo en [.github/workflows/design-lint.yml](.github/workflows/design-lint.y
 <link rel="stylesheet" href="ntizar.forms.css">
 <link rel="stylesheet" href="ntizar.ui.css">
 <link rel="stylesheet" href="ntizar.patterns.css">
+<link rel="stylesheet" href="ntizar.next.css">
 
-<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
+<body class="nz"
+      data-nz-theme="light"
+      data-nz-skin="aurora"
+      data-nz-shape="default"
+      data-nz-density="comfortable"
+      data-nz-motion="standard">
   ...
 </body>
 ```
@@ -399,6 +407,34 @@ Incluye menos caos que v3, pero vuelve a ser visualmente mas Ntizar.
 Los componentes avanzados volverán solo si siguen esta regla: aportar valor sin romper la sencillez del core.
 
 ## Changelog
+
+### v5.0.0 — Disruptive layer (`ntizar.next.css`)
+
+Nuevo pack opt-in que añade, sin tocar el core ni romper retrocompatibilidad, las cinco capacidades que faltaban para que Aurora juegue en el campo de los design systems 2026:
+
+**1. Liquid Glass real** — `.nz-card--glass-liquid`, `.nz-surface--glass-liquid`, `.nz-btn--glass-liquid` con tres modificadores de tinte (`--brand`, `--accent`, `--aurora`).
+   - Specular highlight dinámico anclado a `--nz-mx` / `--nz-my` (CSS vars actualizables por JS opcional con un único `pointermove`).
+   - Chromatic edge (borde con dispersión cyan→magenta sutil que simula refracción).
+   - Dual inset shadow (highlight superior + sombra inferior interna = "vidrio con grosor").
+   - Backdrop con `blur + saturate + brightness` estilo visionOS.
+   - Capa conic-gradient que se revela en hover (efecto ondulación).
+
+**2. OKLCH color system** paralelo — `--nz-oklch-brand-50..900`, `--nz-oklch-accent-50..900`, generados desde `--nz-hue-brand` / `--nz-hue-accent` y `--nz-chroma`. Activable globalmente con `data-nz-color-system="oklch"`. Hue-shifts perceptualmente uniformes; mejor dark mode automático.
+
+**3. Multi-axis theming** — tres ejes ortogonales que combinan libremente con skin/theme:
+   - `data-nz-shape="sharp\|rounded\|brutalist"` (cambia radii y, en brutalist, sombras sólidas).
+   - `data-nz-density="compact\|spacious"` (cambia spacing scale completa).
+   - `data-nz-motion="springy\|calm\|none"` (cambia duraciones y easing).
+   - Todo respeta `prefers-reduced-motion: reduce`.
+
+**4. Aurora Mesh** — `.nz-aurora-mesh[--animated\|--glass\|--hero]` y utility `.u-nz-bg-mesh`. Mesh-gradient OKLCH animado de 4 capas, **0 KB de imágenes**.
+
+**5. Accesibilidad como feature**:
+   - **Sexto skin**: `data-nz-skin="contrast"` (WCAG AAA, light + dark, focus ring doble negro+amarillo).
+   - **Forced-colors mode**: overrides completos para Windows High Contrast y sistemas de accesibilidad del SO (`Canvas`, `CanvasText`, `Highlight`, `Mark`).
+   - **Auto-contrast**: `--nz-text-auto` con `light-dark()` y utility `.u-nz-text-auto`.
+
+**Sin breaking changes.** El core (`ntizar.css`) y los 9 packs anteriores quedan intactos. La v5 es 100% aditiva: si no cargas `ntizar.next.css`, no notas nada.
 
 ### v4.3.0 — design.md interop (agent-friendly metadata layer)
 

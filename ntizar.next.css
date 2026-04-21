@@ -1,0 +1,631 @@
+/* ============================================================
+   NTIZAR NEXT PACK — Aurora v5.0 "Disruptive layer"
+   Depende de: ntizar.css
+
+   Este pack añade, sin romper nada, cinco capacidades nuevas:
+
+   1. OKLCH color system (paralelo a las escalas hex existentes)
+      + auto-contrast con color-contrast() (degradación grácil).
+   2. Multi-axis theming: data-nz-shape, data-nz-density, data-nz-motion.
+   3. Liquid Glass real: .nz-{card,surface,btn}--glass-liquid con
+      specular highlight dinámico, chromatic edge y dual inset shadow.
+   4. Aurora Mesh background: .nz-aurora-mesh (mesh-gradient animado,
+      0KB de imágenes).
+   5. Forced-colors mode: overrides para Windows High Contrast y
+      sistemas de accesibilidad.
+
+   + skin extra: data-nz-skin="contrast" (AAA, accesibilidad real).
+
+   Activación:
+     <link rel="stylesheet" href="ntizar.next.css">
+     <body class="nz" data-nz-theme="light"
+                       data-nz-skin="aurora"
+                       data-nz-shape="default"
+                       data-nz-density="comfortable"
+                       data-nz-motion="standard">
+
+   Todo es opt-in: si no usas data-nz-shape, data-nz-density,
+   data-nz-motion, .nz-*--glass-liquid, .nz-aurora-mesh o
+   data-nz-skin="contrast", el pack no añade ningún coste visual.
+   ============================================================ */
+
+@layer ntizar.tokens {
+
+  /* ============================================================
+     1. OKLCH COLOR SYSTEM
+     ============================================================
+     Tokens paralelos a las escalas hex. Permiten:
+       - hue-shifts perceptualmente uniformes (mejor dark mode)
+       - generación derivada via color-mix() + oklch()
+       - fácil personalización via un único --nz-hue-* por familia
+
+     Cómo usarlos: simplemente asigna --nz-color-brand: var(--nz-oklch-brand);
+     o sobrescribe --nz-hue-brand para repigmentar todo el sistema.
+  */
+
+  .nz {
+    /* Hue raíces (deg). Cambia uno y toda la escala se recalcula. */
+    --nz-hue-brand: 245;       /* azul Aurora */
+    --nz-hue-accent: 47;       /* naranja Aurora */
+    --nz-hue-success: 145;     /* verde */
+    --nz-hue-warning: 65;      /* amarillo */
+    --nz-hue-danger: 25;       /* rojo */
+    --nz-hue-info: var(--nz-hue-brand);
+
+    /* Chroma (saturación perceptual). 0 = gris, ~0.3 = vivo. */
+    --nz-chroma: 0.18;
+    --nz-chroma-soft: 0.10;
+    --nz-chroma-strong: 0.22;
+
+    /* Escalas OKLCH — luminosidad fija, hue + chroma variables.
+       Idéntica curva para todas las familias para consistencia. */
+    --nz-oklch-brand-50:  oklch(97% var(--nz-chroma-soft)   var(--nz-hue-brand));
+    --nz-oklch-brand-100: oklch(94% var(--nz-chroma-soft)   var(--nz-hue-brand));
+    --nz-oklch-brand-200: oklch(88% var(--nz-chroma-soft)   var(--nz-hue-brand));
+    --nz-oklch-brand-300: oklch(80% var(--nz-chroma)        var(--nz-hue-brand));
+    --nz-oklch-brand-400: oklch(70% var(--nz-chroma)        var(--nz-hue-brand));
+    --nz-oklch-brand-500: oklch(62% var(--nz-chroma-strong) var(--nz-hue-brand));
+    --nz-oklch-brand-600: oklch(55% var(--nz-chroma-strong) var(--nz-hue-brand));
+    --nz-oklch-brand-700: oklch(48% var(--nz-chroma-strong) var(--nz-hue-brand));
+    --nz-oklch-brand-800: oklch(40% var(--nz-chroma)        var(--nz-hue-brand));
+    --nz-oklch-brand-900: oklch(32% var(--nz-chroma)        var(--nz-hue-brand));
+
+    --nz-oklch-accent-50:  oklch(97% var(--nz-chroma-soft)   var(--nz-hue-accent));
+    --nz-oklch-accent-100: oklch(94% var(--nz-chroma-soft)   var(--nz-hue-accent));
+    --nz-oklch-accent-200: oklch(88% var(--nz-chroma-soft)   var(--nz-hue-accent));
+    --nz-oklch-accent-300: oklch(80% var(--nz-chroma)        var(--nz-hue-accent));
+    --nz-oklch-accent-400: oklch(72% var(--nz-chroma-strong) var(--nz-hue-accent));
+    --nz-oklch-accent-500: oklch(68% var(--nz-chroma-strong) var(--nz-hue-accent));
+    --nz-oklch-accent-600: oklch(60% var(--nz-chroma-strong) var(--nz-hue-accent));
+    --nz-oklch-accent-700: oklch(52% var(--nz-chroma-strong) var(--nz-hue-accent));
+    --nz-oklch-accent-800: oklch(44% var(--nz-chroma)        var(--nz-hue-accent));
+    --nz-oklch-accent-900: oklch(36% var(--nz-chroma)        var(--nz-hue-accent));
+
+    /* Aliases listos para usar (paralelos a --nz-color-brand etc.) */
+    --nz-oklch-brand:        var(--nz-oklch-brand-600);
+    --nz-oklch-brand-strong: var(--nz-oklch-brand-700);
+    --nz-oklch-brand-soft:   var(--nz-oklch-brand-400);
+    --nz-oklch-accent:       var(--nz-oklch-accent-500);
+    --nz-oklch-accent-strong:var(--nz-oklch-accent-700);
+    --nz-oklch-accent-soft:  var(--nz-oklch-accent-300);
+
+    /* Mesh gradient stops (oklch para hue-shifts limpios) */
+    --nz-mesh-1: oklch(70% 0.20 var(--nz-hue-brand));
+    --nz-mesh-2: oklch(72% 0.18 calc(var(--nz-hue-brand) + 50));
+    --nz-mesh-3: oklch(75% 0.20 var(--nz-hue-accent));
+    --nz-mesh-4: oklch(68% 0.16 calc(var(--nz-hue-accent) - 30));
+
+    /* ====== AUTO-CONTRAST ======
+       color-contrast() está en spec pero implementación variable.
+       Estrategia: usar light-dark() (Baseline 2024) cuando aplique,
+       y exponer una utilidad que el dev pueda forzar. */
+    --nz-text-auto: light-dark(#0f172a, #f8fafc);
+  }
+
+  /* Repigmentar Aurora con OKLCH si el usuario lo pide explícitamente */
+  .nz[data-nz-color-system="oklch"] {
+    --nz-color-brand:        var(--nz-oklch-brand);
+    --nz-color-brand-strong: var(--nz-oklch-brand-strong);
+    --nz-color-brand-soft:   var(--nz-oklch-brand-soft);
+    --nz-color-accent:       var(--nz-oklch-accent);
+    --nz-color-accent-strong:var(--nz-oklch-accent-strong);
+    --nz-color-accent-soft:  var(--nz-oklch-accent-soft);
+
+    --nz-gradient-brand:  linear-gradient(135deg, var(--nz-oklch-brand-soft)  0%, var(--nz-oklch-brand)  58%, var(--nz-oklch-brand-strong)  100%);
+    --nz-gradient-accent: linear-gradient(135deg, var(--nz-oklch-accent-soft) 0%, var(--nz-oklch-accent) 56%, var(--nz-oklch-accent-strong) 100%);
+    --nz-gradient-aurora: linear-gradient(135deg,
+      var(--nz-oklch-brand-500) 0%,
+      oklch(65% 0.22 calc(var(--nz-hue-brand) + 50)) 46%,
+      var(--nz-oklch-accent-500) 100%);
+  }
+
+  /* ============================================================
+     2. MULTI-AXIS THEMING
+     ============================================================
+     Tres ejes ortogonales que se combinan libremente con skin/theme.
+
+     - data-nz-shape:    default | sharp | rounded | brutalist
+     - data-nz-density:  comfortable | compact | spacious
+     - data-nz-motion:   standard | springy | calm | none
+  */
+
+  /* SHAPE axis ------------------------------------------------ */
+  .nz[data-nz-shape="sharp"] {
+    --nz-radius-sm: 0.25rem;
+    --nz-radius-md: 0.375rem;
+    --nz-radius-lg: 0.5rem;
+    --nz-radius-xl: 0.75rem;
+  }
+  .nz[data-nz-shape="rounded"] {
+    --nz-radius-sm: 1rem;
+    --nz-radius-md: 1.5rem;
+    --nz-radius-lg: 2rem;
+    --nz-radius-xl: 2.75rem;
+  }
+  .nz[data-nz-shape="brutalist"] {
+    --nz-radius-sm: 0;
+    --nz-radius-md: 0;
+    --nz-radius-lg: 0;
+    --nz-radius-xl: 0;
+    --nz-radius-pill: 0;
+    /* Brutalismo cambia también la sombra: sólida, no difuminada */
+    --nz-shadow-sm: 4px 4px 0 0 var(--nz-text-strong);
+    --nz-shadow-md: 6px 6px 0 0 var(--nz-text-strong);
+    --nz-shadow-lg: 10px 10px 0 0 var(--nz-text-strong);
+    --nz-shadow-brand:  6px 6px 0 0 var(--nz-color-brand);
+    --nz-shadow-accent: 6px 6px 0 0 var(--nz-color-accent);
+    --nz-shadow-aurora: 8px 8px 0 0 var(--nz-color-accent);
+  }
+
+  /* DENSITY axis ---------------------------------------------- */
+  .nz[data-nz-density="compact"] {
+    --nz-space-1: 0.125rem;
+    --nz-space-2: 0.25rem;
+    --nz-space-3: 0.5rem;
+    --nz-space-4: 0.625rem;
+    --nz-space-5: 0.875rem;
+    --nz-space-6: 1.25rem;
+    --nz-space-7: 1.75rem;
+    --nz-space-8: 2.5rem;
+    --nz-text-md: 0.9375rem;
+    --nz-text-lg: 1.0625rem;
+    --nz-text-xl: 1.25rem;
+  }
+  .nz[data-nz-density="spacious"] {
+    --nz-space-1: 0.375rem;
+    --nz-space-2: 0.75rem;
+    --nz-space-3: 1.125rem;
+    --nz-space-4: 1.5rem;
+    --nz-space-5: 2.25rem;
+    --nz-space-6: 3rem;
+    --nz-space-7: 4.5rem;
+    --nz-space-8: 6rem;
+  }
+
+  /* MOTION axis ----------------------------------------------- */
+  .nz[data-nz-motion="springy"] {
+    --nz-duration-fast: 200ms;
+    --nz-duration-base: 320ms;
+    --nz-ease-standard: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .nz[data-nz-motion="calm"] {
+    --nz-duration-fast: 220ms;
+    --nz-duration-base: 380ms;
+    --nz-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nz[data-nz-motion="none"] {
+    --nz-duration-fast: 0ms;
+    --nz-duration-base: 0ms;
+  }
+
+  /* ============================================================
+     3. SKIN EXTRA: CONTRAST (WCAG AAA)
+     ============================================================
+     No es decorativo. Pensado para apps de salud, banca,
+     accesibilidad pública o usuarios con baja visión. */
+  .nz[data-nz-skin="contrast"] {
+    --nz-color-brand: #003ad6;
+    --nz-color-brand-strong: #00207a;
+    --nz-color-brand-soft: #5588ff;
+    --nz-color-accent: #b03a00;
+    --nz-color-accent-strong: #7a2800;
+    --nz-color-accent-soft: #ff8c4a;
+    --nz-text-strong: #000000;
+    --nz-text-default: #000000;
+    --nz-text-muted: #2a2a2a;
+    --nz-text-on-brand: #ffffff;
+    --nz-surface-page: #ffffff;
+    --nz-surface-base: #ffffff;
+    --nz-surface-raised: #ffffff;
+    --nz-surface-soft: #f4f4f4;
+    --nz-border-soft: #000000;
+    --nz-border-default: #000000;
+    --nz-border-strong: #000000;
+    --nz-shadow-sm: 0 0 0 2px #000000;
+    --nz-shadow-md: 0 0 0 3px #000000;
+    --nz-shadow-lg: 0 0 0 4px #000000;
+    --nz-ring: 0 0 0 4px #000000, 0 0 0 6px #ffd000;
+  }
+  .nz[data-nz-skin="contrast"][data-nz-theme="dark"] {
+    --nz-color-brand: #6aa6ff;
+    --nz-color-brand-strong: #a8c8ff;
+    --nz-color-accent: #ff9a4a;
+    --nz-color-accent-strong: #ffc28a;
+    --nz-text-strong: #ffffff;
+    --nz-text-default: #ffffff;
+    --nz-text-muted: #e0e0e0;
+    --nz-text-on-brand: #000000;
+    --nz-surface-page: #000000;
+    --nz-surface-base: #000000;
+    --nz-surface-raised: #0a0a0a;
+    --nz-surface-soft: #1a1a1a;
+    --nz-border-soft: #ffffff;
+    --nz-border-default: #ffffff;
+    --nz-border-strong: #ffffff;
+    --nz-ring: 0 0 0 4px #ffffff, 0 0 0 6px #ffd000;
+  }
+}
+
+@layer ntizar.components {
+
+  /* ============================================================
+     4. LIQUID GLASS REAL — .nz-*--glass-liquid
+     ============================================================
+     Lo que diferencia liquid glass de glass plano:
+
+       (a) Specular highlight DINÁMICO — un radial-gradient anclado
+           a --nz-mx / --nz-my (CSS vars actualizables por JS opcional).
+           Por defecto está centrado-arriba para verse bien sin JS.
+       (b) Chromatic edge — borde de 1px con dispersión sutil
+           cyan→magenta que simula refracción.
+       (c) Dual inset shadow — highlight superior + sombra inferior
+           interna para dar volumen "vidrio con grosor".
+       (d) Backdrop con blur + saturate + brightness para que el
+           color pasante se vea más vivo (efecto Apple visionOS).
+
+     Sin JS funciona y se ve premium. Con JS de un listener
+     pointermove (~5 líneas) cobra vida.
+  */
+
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  ) {
+    --nz-mx: 50%;        /* posición X del specular (0-100%) */
+    --nz-my: 0%;         /* posición Y del specular (0-100%) */
+    --nz-liquid-tint: var(--nz-color-brand);
+
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid transparent;
+    background:
+      /* (b) chromatic edge — capa más profunda */
+      linear-gradient(var(--nz-surface-glass), var(--nz-surface-glass)) padding-box,
+      linear-gradient(135deg,
+        oklch(85% 0.15 200) 0%,
+        oklch(85% 0.08 280) 50%,
+        oklch(85% 0.15 340) 100%) border-box;
+    box-shadow:
+      /* (c) dual inset shadow */
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+      /* sombra exterior con tinte de marca */
+      0 8px 24px -8px color-mix(in oklch, var(--nz-liquid-tint) 30%, transparent),
+      0 24px 48px -16px color-mix(in oklch, var(--nz-liquid-tint) 20%, transparent);
+    color: var(--nz-text-strong);
+  }
+
+  /* (a) Specular highlight — capa pseudo arriba */
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  )::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at var(--nz-mx) var(--nz-my),
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.15) 18%,
+        transparent 42%
+      );
+    mix-blend-mode: screen;
+    transition: background var(--nz-duration-base) var(--nz-ease-standard);
+    z-index: 1;
+  }
+
+  /* Capa de "ondulación" sutil — se revela en hover */
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  )::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    border-radius: inherit;
+    pointer-events: none;
+    background: conic-gradient(
+      from 0deg at var(--nz-mx) var(--nz-my),
+      transparent 0deg,
+      rgba(255, 255, 255, 0.08) 60deg,
+      transparent 120deg,
+      rgba(255, 255, 255, 0.05) 200deg,
+      transparent 280deg,
+      transparent 360deg
+    );
+    opacity: 0;
+    transition: opacity var(--nz-duration-base) var(--nz-ease-standard);
+    z-index: 0;
+  }
+
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  ):hover::after {
+    opacity: 1;
+  }
+
+  /* Backdrop avanzado: blur + saturate + brightness */
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .nz :where(
+      .nz-card--glass-liquid,
+      .nz-surface--glass-liquid,
+      .nz-btn--glass-liquid
+    ) {
+      -webkit-backdrop-filter: blur(20px) saturate(1.6) brightness(1.05);
+              backdrop-filter: blur(20px) saturate(1.6) brightness(1.05);
+    }
+  }
+
+  /* Tinte de marca / accent */
+  .nz :where(.nz-card--glass-liquid-brand,
+             .nz-surface--glass-liquid-brand,
+             .nz-btn--glass-liquid-brand) {
+    --nz-liquid-tint: var(--nz-color-brand);
+  }
+  .nz :where(.nz-card--glass-liquid-accent,
+             .nz-surface--glass-liquid-accent,
+             .nz-btn--glass-liquid-accent) {
+    --nz-liquid-tint: var(--nz-color-accent);
+  }
+  .nz :where(.nz-card--glass-liquid-aurora,
+             .nz-surface--glass-liquid-aurora,
+             .nz-btn--glass-liquid-aurora) {
+    --nz-liquid-tint: oklch(70% 0.22 calc(var(--nz-hue-brand) + 30));
+  }
+
+  /* Dark mode: highlights más sutiles */
+  .nz[data-nz-theme="dark"] :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  ) {
+    background:
+      linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)) padding-box,
+      linear-gradient(135deg,
+        oklch(40% 0.15 200) 0%,
+        oklch(40% 0.10 280) 50%,
+        oklch(40% 0.15 340) 100%) border-box;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.40),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 8px 24px -8px color-mix(in oklch, var(--nz-liquid-tint) 40%, transparent),
+      0 24px 48px -16px color-mix(in oklch, var(--nz-liquid-tint) 28%, transparent);
+  }
+
+  .nz[data-nz-theme="dark"] :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  )::before {
+    background: radial-gradient(
+      circle at var(--nz-mx) var(--nz-my),
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.06) 18%,
+      transparent 42%
+    );
+  }
+
+  /* Defaults razonables para los modificadores liquid */
+  .nz :where(.nz-card--glass-liquid) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nz-space-4);
+    padding: var(--nz-space-5);
+    border-radius: var(--nz-radius-lg);
+  }
+  .nz :where(.nz-surface--glass-liquid) {
+    padding: var(--nz-space-5);
+    border-radius: var(--nz-radius-lg);
+  }
+  .nz :where(.nz-btn--glass-liquid) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nz-space-2);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--nz-radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      transform var(--nz-duration-fast) var(--nz-ease-standard),
+      box-shadow var(--nz-duration-base) var(--nz-ease-standard);
+  }
+  .nz :where(.nz-btn--glass-liquid):hover {
+    transform: translateY(-1px);
+  }
+  .nz :where(.nz-btn--glass-liquid):active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* El contenido debe quedar por encima de las pseudo capas */
+  .nz :where(.nz-card--glass-liquid, .nz-surface--glass-liquid, .nz-btn--glass-liquid) > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============================================================
+     5. AURORA MESH BACKGROUND — .nz-aurora-mesh
+     ============================================================
+     Mesh-gradient animado de coste cero (sin imágenes).
+     Apilado de 4 radial-gradients en colores OKLCH que rotan lento.
+  */
+
+  .nz :where(.nz-aurora-mesh) {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(at 18% 22%, var(--nz-mesh-1) 0%, transparent 48%),
+      radial-gradient(at 82% 18%, var(--nz-mesh-3) 0%, transparent 50%),
+      radial-gradient(at 28% 82%, var(--nz-mesh-2) 0%, transparent 50%),
+      radial-gradient(at 78% 78%, var(--nz-mesh-4) 0%, transparent 48%),
+      var(--nz-surface-page);
+  }
+
+  /* Variante animada — el mesh respira lento */
+  .nz :where(.nz-aurora-mesh--animated)::before {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    z-index: -1;
+    background:
+      radial-gradient(at 18% 22%, var(--nz-mesh-1) 0%, transparent 48%),
+      radial-gradient(at 82% 18%, var(--nz-mesh-3) 0%, transparent 50%),
+      radial-gradient(at 28% 82%, var(--nz-mesh-2) 0%, transparent 50%),
+      radial-gradient(at 78% 78%, var(--nz-mesh-4) 0%, transparent 48%);
+    filter: blur(40px) saturate(1.2);
+    animation: nz-mesh-drift 22s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  /* Variante "glassy": añade una capa de vidrio sobre el mesh */
+  .nz :where(.nz-aurora-mesh--glass)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.30) 100%);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .nz[data-nz-theme="dark"] :where(.nz-aurora-mesh--glass)::after {
+    background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.20) 0%,
+      rgba(0, 0, 0, 0.50) 100%);
+  }
+  .nz :where(.nz-aurora-mesh) > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Variante densa: ideal para hero full-bleed */
+  .nz :where(.nz-aurora-mesh--hero) {
+    min-height: 80vh;
+    padding: var(--nz-space-7) var(--nz-space-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @keyframes nz-mesh-drift {
+    0%   { transform: translate3d(0, 0, 0)        rotate(0deg)   scale(1);    }
+    50%  { transform: translate3d(-3%, 2%, 0)     rotate(8deg)   scale(1.08); }
+    100% { transform: translate3d(2%, -3%, 0)     rotate(-6deg)  scale(1.05); }
+  }
+}
+
+@layer ntizar.utilities {
+  /* Utilidad de auto-contraste: usa light-dark() para elegir
+     texto óptimo según el tema activo. */
+  .u-nz-text-auto { color: var(--nz-text-auto) !important; }
+
+  /* Utilities para activar/forzar mesh sin clases componente */
+  .u-nz-bg-mesh {
+    background:
+      radial-gradient(at 18% 22%, var(--nz-mesh-1) 0%, transparent 48%),
+      radial-gradient(at 82% 18%, var(--nz-mesh-3) 0%, transparent 50%),
+      radial-gradient(at 28% 82%, var(--nz-mesh-2) 0%, transparent 50%),
+      radial-gradient(at 78% 78%, var(--nz-mesh-4) 0%, transparent 48%) !important;
+  }
+}
+
+/* ============================================================
+   6. FORCED-COLORS / WINDOWS HIGH CONTRAST
+   ============================================================
+   Sin esto, los componentes glass + gradientes desaparecen en
+   modos de alto contraste del SO. Aquí mapeamos los componentes
+   clave a system colors. No va dentro de @layer porque queremos
+   que gane el cascade siempre que el modo esté activo. */
+@media (forced-colors: active) {
+  .nz {
+    forced-color-adjust: none;
+  }
+
+  .nz :where(
+    .nz-btn,
+    .nz-card,
+    .nz-surface,
+    .nz-input, .nz-select, .nz-textarea,
+    .nz-alert,
+    .nz-badge,
+    .nz-card--glass, .nz-card--glass-soft, .nz-card--glass-strong,
+    .nz-card--glass-brand, .nz-card--glass-accent,
+    .nz-card--glass-liquid, .nz-surface--glass-liquid,
+    .nz-btn--glass, .nz-btn--glass-brand, .nz-btn--glass-accent,
+    .nz-btn--glass-liquid
+  ) {
+    background: Canvas !important;
+    color: CanvasText !important;
+    border: 1px solid CanvasText !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .nz :where(.nz-btn--primary, .nz-btn--accent, .nz-btn--brand-mix) {
+    background: Highlight !important;
+    color: HighlightText !important;
+    border: 1px solid HighlightText !important;
+  }
+
+  .nz :where(.nz-btn--danger) {
+    background: Mark !important;
+    color: MarkText !important;
+  }
+
+  .nz :where(:focus-visible) {
+    outline: 2px solid Highlight !important;
+    outline-offset: 2px !important;
+  }
+
+  .nz :where(.nz-aurora-mesh, .nz-aurora-mesh--animated) {
+    background: Canvas !important;
+  }
+
+  .nz :where(.nz-aurora-mesh--animated)::before,
+  .nz :where(.nz-aurora-mesh--glass)::after,
+  .nz :where(.nz-card--glass-liquid)::before,
+  .nz :where(.nz-card--glass-liquid)::after {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   7. PREFERS-REDUCED-MOTION respect (refuerzo)
+   ============================================================
+   Si el usuario pide motion reducido, congelamos el mesh y los
+   highlights de liquid glass. */
+@media (prefers-reduced-motion: reduce) {
+  .nz :where(.nz-aurora-mesh--animated)::before {
+    animation: none !important;
+  }
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  )::after {
+    display: none !important;
+  }
+  .nz :where(
+    .nz-card--glass-liquid,
+    .nz-surface--glass-liquid,
+    .nz-btn--glass-liquid
+  )::before {
+    transition: none !important;
+  }
+}

@@ -24,8 +24,15 @@
 <link rel="stylesheet" href="ntizar.forms.css">   <!-- switch, otp, range, file, stepper -->
 <link rel="stylesheet" href="ntizar.ui.css">      <!-- modal, drawer, tabs, dropdown, toast -->
 <link rel="stylesheet" href="ntizar.patterns.css"><!-- app-shell, hero, pricing, faq, footer -->
+<link rel="stylesheet" href="ntizar.next.css">    <!-- v5: liquid glass real, OKLCH, multi-axis, mesh, forced-colors -->
 
-<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
+<body class="nz"
+      data-nz-theme="light"
+      data-nz-skin="aurora"
+      data-nz-shape="default"        <!-- next: sharp | rounded | brutalist -->
+      data-nz-density="comfortable"  <!-- next: compact | spacious -->
+      data-nz-motion="standard"      <!-- next: springy | calm | none -->
+      data-nz-color-system="hex">    <!-- next: oklch -->
 ```
 
 Reglas duras:
@@ -33,6 +40,7 @@ Reglas duras:
 - Todo vive bajo `.nz`. Sin esa clase, **nada** del sistema aplica.
 - Los packs no introducen nuevos roots ni atributos. Solo añaden clases `.nz-*` y `.u-nz-*`.
 - Usa `data-nz-theme` para light/dark y `data-nz-skin` para identidad.
+- Aurora **v5 (`ntizar.next.css`)** añade tres ejes ortogonales adicionales (`shape`, `density`, `motion`), un sistema OKLCH paralelo, liquid glass real y mesh. Todo opt-in.
 
 ---
 
@@ -50,8 +58,9 @@ Reglas duras:
 | `ntizar.forms.css` | forms | Switch, custom check/radio, range, OTP, file drop, stepper, input-group, search field, form-grid | Necesites formularios ricos accesibles |
 | `ntizar.ui.css` | ui | Modal, drawer, tabs, accordion, dropdown menu, toast, tooltip CSS-only, breadcrumbs, segmented, chips, paginación, command-bar, spinner, divider con label, tag-input | Construyas overlays / interacciones |
 | `ntizar.patterns.css` | patterns | App-shell con sidebar, hero (centered/split), feature-grid, pricing, FAQ, footer, auth-shell, empty-state, error-page, cta-banner, logo-cloud, stats-banner | Compongas páginas completas |
+| `ntizar.next.css` | **v5 next** | **Liquid Glass real** (`--glass-liquid` con specular highlight + chromatic edge + dual inset shadow + saturate backdrop), **Aurora Mesh** (`.nz-aurora-mesh[--animated\|--glass\|--hero]`), **OKLCH color system** paralelo (`--nz-oklch-*`, activable con `data-nz-color-system="oklch"`), **multi-axis theming** (`data-nz-shape`, `data-nz-density`, `data-nz-motion`), **skin contrast (WCAG AAA)**, **forced-colors mode** | Quieras la capa disruptiva 2026 sin tocar el core |
 
-Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 9 sin colisiones.
+Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisiones.
 
 ---
 
@@ -63,6 +72,14 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 9 sin colisiones
 | **Botones, cards, badges, alerts, callouts, fields, tablas, código** | core | `.nz-btn--primary/--accent/--brand-mix/--glass*/--ghost/--danger`, `.nz-card[--glass*]`, `.nz-badge--primary/--accent/--brand/--success/--warning/--danger/--glass*`, `.nz-alert`, `.nz-callout--tip/--info/--warn/--danger`, `.nz-codeblock`, `.nz-table` |
 | **Tipografía utilitaria** (titulares, texto secundario, sutil) | core | `.nz-text-h1/--h2/--h3/--h4`, `.nz-text-sm`, `.nz-text-muted`, `.u-nz-text-strong`, `.u-nz-text-muted` |
 | **Cambiar paleta** (sigue siendo Ntizar) | themes | `data-nz-skin="aurora\|sunset\|midnight\|ocean\|citrus"` |
+| **Skin de accesibilidad WCAG AAA** | next | `data-nz-skin="contrast"` |
+| **Cambiar curvatura global** (sharp / rounded / brutalist) | next | `data-nz-shape="sharp\|rounded\|brutalist"` |
+| **Cambiar densidad global** (UI compacta o aireada) | next | `data-nz-density="compact\|spacious"` |
+| **Cambiar carácter del motion** | next | `data-nz-motion="springy\|calm\|none"` |
+| **Activar paleta OKLCH derivada de un hue único** | next | `data-nz-color-system="oklch"` + `--nz-hue-brand`, `--nz-hue-accent` |
+| **Liquid Glass real** (specular highlight, chromatic edge, volumen) | next | `.nz-card--glass-liquid[--brand\|--accent\|--aurora]`, `.nz-surface--glass-liquid`, `.nz-btn--glass-liquid` |
+| **Mesh-gradient animado para hero** (0KB de imágenes) | next | `.nz-aurora-mesh[--animated\|--glass\|--hero]`, utility `.u-nz-bg-mesh` |
+| **Texto auto-contraste con `light-dark()`** | next | `.u-nz-text-auto` o `var(--nz-text-auto)` |
 | **KPIs y dashboards** | data | `.nz-kpi[--accent/--aurora]`, `.nz-stat-tile`, `.nz-stat-grid--2/3/4`, `.nz-progress[--accent/--aurora]`, `.nz-meter`, `.nz-skeleton[--text/--circle/--block]`, `.nz-avatar[-stack]`, `.nz-timeline`, `.nz-tag--brand/--accent`, `.nz-data-card` |
 | **Gráficos** (Chart.js/Apex/D3/SVG/canvas) | charts | `.nz-chart[--sm/md/lg/xl/glass/bare]`, `.nz-chart__legend`, `.nz-sparkline`, `.nz-donut[--aurora]`, `.nz-trend-arrow--up/--down`. Paleta JS: `--nz-chart-1..8` |
 | **Mapas** (Leaflet/Mapbox/MapLibre) | maps | `.nz-map[--sm/md/lg/hero/fullscreen/glass]`, `.nz-map__overlay--top-left/...`, `.nz-map__controls`, `.nz-map__pin[--accent/--success/--danger]`, `.nz-map__pin-pulse`, `.nz-map__legend`, popups override automático |

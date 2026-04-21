@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="ntizar.forms.css">
   <link rel="stylesheet" href="ntizar.ui.css">
   <link rel="stylesheet" href="ntizar.patterns.css">
+  <link rel="stylesheet" href="ntizar.next.css">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -184,7 +185,7 @@
 
     <!-- ============ SIDEBAR ============ -->
     <aside class="gx-side" aria-label="Índice del showcase">
-      <a class="gx-side__brand" href="#top">Ntizar · Constellation<small>v4.2 · showcase</small></a>
+      <a class="gx-side__brand" href="#top">Ntizar · Constellation<small>v5.0 · showcase</small></a>
 
       <div class="gx-side__group">
         <div class="gx-side__heading">Inicio</div>
@@ -223,6 +224,7 @@
         <a class="gx-side__link" href="#pack-forms">forms</a>
         <a class="gx-side__link" href="#pack-ui">ui</a>
         <a class="gx-side__link" href="#pack-patterns">patterns</a>
+        <a class="gx-side__link" href="#pack-next">next <span class="gx-side__tag">v5</span></a>
       </div>
 
       <div class="gx-side__group">
@@ -247,6 +249,36 @@
           <button data-skin="midnight" aria-pressed="false">Midnight</button>
           <button data-skin="ocean"    aria-pressed="false">Ocean</button>
           <button data-skin="citrus"   aria-pressed="false">Citrus</button>
+          <button data-skin="contrast" aria-pressed="false">Contrast · AAA</button>
+        </div>
+
+        <label>Shape <span style="opacity:.6">(v5)</span></label>
+        <div class="gx-skin-switch" role="group" aria-label="Shape">
+          <button data-axis="shape" data-value="default"   aria-pressed="true">Default</button>
+          <button data-axis="shape" data-value="sharp"     aria-pressed="false">Sharp</button>
+          <button data-axis="shape" data-value="rounded"   aria-pressed="false">Rounded</button>
+          <button data-axis="shape" data-value="brutalist" aria-pressed="false">Brutalist</button>
+        </div>
+
+        <label>Density <span style="opacity:.6">(v5)</span></label>
+        <div class="gx-skin-switch" role="group" aria-label="Density">
+          <button data-axis="density" data-value="comfortable" aria-pressed="true">Comfortable</button>
+          <button data-axis="density" data-value="compact"     aria-pressed="false">Compact</button>
+          <button data-axis="density" data-value="spacious"    aria-pressed="false">Spacious</button>
+        </div>
+
+        <label>Motion <span style="opacity:.6">(v5)</span></label>
+        <div class="gx-skin-switch" role="group" aria-label="Motion">
+          <button data-axis="motion" data-value="standard" aria-pressed="true">Standard</button>
+          <button data-axis="motion" data-value="springy"  aria-pressed="false">Springy</button>
+          <button data-axis="motion" data-value="calm"     aria-pressed="false">Calm</button>
+          <button data-axis="motion" data-value="none"     aria-pressed="false">None</button>
+        </div>
+
+        <label>Color system <span style="opacity:.6">(v5)</span></label>
+        <div class="gx-skin-switch" role="group" aria-label="Color system">
+          <button data-axis="color-system" data-value="hex"   aria-pressed="true">Hex</button>
+          <button data-axis="color-system" data-value="oklch" aria-pressed="false">OKLCH</button>
         </div>
       </div>
     </aside>
@@ -1766,6 +1798,165 @@ L.marker([40.4168, -3.7038], {
         </details>
       </section>
 
+      <!-- ========================================================
+           PACK · NEXT  (v5 disruptive layer)
+           ======================================================== -->
+      <section class="gx-showcase gx-section-anchor" id="pack-next" data-pack="next" data-status="new">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Pack · next <span class="nz-badge nz-badge--accent nz-badge--no-dot" style="margin-left:.5rem">v5.0</span></span>
+          <h2 class="gx-showcase__title">Capa disruptiva: Liquid Glass real, OKLCH, multi-axis y mesh</h2>
+          <p class="gx-showcase__sub"><code>ntizar.next.css</code> es opt-in y aditivo. Añade lo que faltaba para que Aurora juegue en el campo de los design systems 2026 sin romper una sola línea del core. Prueba los toggles del sidebar (<strong>Shape · Density · Motion · Color system</strong>) y observa cómo este bloque y todo el showcase reaccionan en tiempo real.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--accent nz-badge--no-dot">ntizar.next.css</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot">opt-in</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot">a11y · forced-colors</span>
+          </div>
+        </div>
+
+        <!-- Aurora Mesh hero -->
+        <div class="gx-showcase__live nz-stack nz-stack--lg">
+          <div class="nz-aurora-mesh nz-aurora-mesh--animated nz-aurora-mesh--glass" style="border-radius: var(--nz-radius-xl); padding: var(--nz-space-7); min-height: 22rem;">
+            <div class="nz-stack nz-stack--md" style="max-width: 32rem;">
+              <span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">.nz-aurora-mesh</span>
+              <h3 class="nz-text-h2" style="color: var(--nz-text-strong); margin: 0;">Mesh-gradient animado, 0 KB de imágenes.</h3>
+              <p class="nz-text-sm" style="color: var(--nz-text-default); margin: 0;">Cuatro <code>radial-gradient</code> en OKLCH apilados sobre <code>--nz-mesh-1..4</code>. Variantes: <code>--animated</code> respira, <code>--glass</code> añade veladura, <code>--hero</code> ocupa 80vh.</p>
+              <div class="nz-cluster">
+                <button class="nz-btn nz-btn--glass-liquid nz-btn--glass-liquid-aurora" type="button" data-liquid>Liquid Glass btn</button>
+                <button class="nz-btn nz-btn--glass-liquid nz-btn--glass-liquid-brand" type="button" data-liquid>Brand tint</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Liquid Glass cards trio -->
+          <div class="nz-grid nz-grid--3">
+            <article class="nz-card--glass-liquid nz-card--glass-liquid-brand" data-liquid>
+              <h4 class="nz-text-h3" style="margin:0;">Specular highlight</h4>
+              <p style="margin:0;color:var(--nz-text-default)">Mueve el cursor por encima. <code>--nz-mx</code>/<code>--nz-my</code> se actualizan y el brillo sigue al puntero.</p>
+              <div><span class="nz-badge nz-badge--primary nz-badge--no-dot">.nz-card--glass-liquid-brand</span></div>
+            </article>
+            <article class="nz-card--glass-liquid nz-card--glass-liquid-accent" data-liquid>
+              <h4 class="nz-text-h3" style="margin:0;">Chromatic edge</h4>
+              <p style="margin:0;color:var(--nz-text-default)">Borde de 1px con dispersión cyan→magenta sutil. Simula refracción de vidrio premium.</p>
+              <div><span class="nz-badge nz-badge--accent nz-badge--no-dot">.nz-card--glass-liquid-accent</span></div>
+            </article>
+            <article class="nz-card--glass-liquid nz-card--glass-liquid-aurora" data-liquid>
+              <h4 class="nz-text-h3" style="margin:0;">Dual inset shadow</h4>
+              <p style="margin:0;color:var(--nz-text-default)">Highlight superior + sombra interior inferior = vidrio con grosor real, no solo translúcido.</p>
+              <div><span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">.nz-card--glass-liquid-aurora</span></div>
+            </article>
+          </div>
+
+          <!-- Multi-axis demo grid -->
+          <div class="nz-grid nz-grid--2" style="gap: var(--nz-space-5);">
+            <div class="nz-card nz-card--glass">
+              <h4 class="nz-text-h3" style="margin:0;">Multi-axis theming</h4>
+              <p style="margin:0;color:var(--nz-text-default)">Cuatro ejes ortogonales que combinan libremente con <code>data-nz-skin</code> y <code>data-nz-theme</code>:</p>
+              <ul style="margin:0; padding-left:1.25rem; color:var(--nz-text-default); font-size:var(--nz-text-sm)">
+                <li><code>data-nz-shape</code> — <code>default</code> · <code>sharp</code> · <code>rounded</code> · <code>brutalist</code></li>
+                <li><code>data-nz-density</code> — <code>comfortable</code> · <code>compact</code> · <code>spacious</code></li>
+                <li><code>data-nz-motion</code> — <code>standard</code> · <code>springy</code> · <code>calm</code> · <code>none</code></li>
+                <li><code>data-nz-color-system</code> — <code>hex</code> · <code>oklch</code></li>
+              </ul>
+              <p class="nz-text-sm" style="margin:0; color:var(--nz-text-muted)">Los toggles del sidebar reasignan el atributo en <code>&lt;body&gt;</code>. Toda la página se reescribe sin recargar.</p>
+            </div>
+
+            <div class="nz-card nz-card--glass">
+              <h4 class="nz-text-h3" style="margin:0;">Accesibilidad como feature</h4>
+              <p style="margin:0;color:var(--nz-text-default)">Tres añadidos clave:</p>
+              <ul style="margin:0; padding-left:1.25rem; color:var(--nz-text-default); font-size:var(--nz-text-sm)">
+                <li><strong>Skin <code>contrast</code></strong> — WCAG AAA, fondos planos, focus dual ring negro+amarillo. Usable de verdad para apps de salud o banca.</li>
+                <li><strong>Forced-colors mode</strong> — overrides para Windows High Contrast. Mapeamos a <code>Canvas</code>, <code>CanvasText</code>, <code>Highlight</code>, <code>Mark</code>.</li>
+                <li><strong>Auto-contrast</strong> — <code>--nz-text-auto</code> con <code>light-dark()</code>. Usa <code>.u-nz-text-auto</code> sobre cualquier surface.</li>
+              </ul>
+              <p class="nz-text-sm" style="margin:0; color:var(--nz-text-muted)">Pulsa <strong>Skin · Contrast · AAA</strong> arriba para ver el modo accesible activo.</p>
+            </div>
+          </div>
+
+          <!-- OKLCH swatches -->
+          <div class="nz-stack nz-stack--sm">
+            <div class="nz-cluster nz-cluster--between">
+              <h4 class="nz-text-h3" style="margin:0;">OKLCH color system</h4>
+              <span class="nz-badge nz-badge--neutral nz-badge--no-dot">data-nz-color-system="oklch"</span>
+            </div>
+            <p style="margin:0;color:var(--nz-text-default)">Escalas perceptualmente uniformes derivadas de <code>--nz-hue-brand</code> (245°) y <code>--nz-hue-accent</code> (47°). Cambia un único hue y toda la escala se recalcula con curva de luminosidad consistente.</p>
+            <div class="nz-grid" style="grid-template-columns: repeat(10, 1fr); gap: 4px;">
+              <div style="background: var(--nz-oklch-brand-50);  height: 3rem; border-radius: 4px;" title="brand-50"></div>
+              <div style="background: var(--nz-oklch-brand-100); height: 3rem; border-radius: 4px;" title="brand-100"></div>
+              <div style="background: var(--nz-oklch-brand-200); height: 3rem; border-radius: 4px;" title="brand-200"></div>
+              <div style="background: var(--nz-oklch-brand-300); height: 3rem; border-radius: 4px;" title="brand-300"></div>
+              <div style="background: var(--nz-oklch-brand-400); height: 3rem; border-radius: 4px;" title="brand-400"></div>
+              <div style="background: var(--nz-oklch-brand-500); height: 3rem; border-radius: 4px;" title="brand-500"></div>
+              <div style="background: var(--nz-oklch-brand-600); height: 3rem; border-radius: 4px;" title="brand-600"></div>
+              <div style="background: var(--nz-oklch-brand-700); height: 3rem; border-radius: 4px;" title="brand-700"></div>
+              <div style="background: var(--nz-oklch-brand-800); height: 3rem; border-radius: 4px;" title="brand-800"></div>
+              <div style="background: var(--nz-oklch-brand-900); height: 3rem; border-radius: 4px;" title="brand-900"></div>
+
+              <div style="background: var(--nz-oklch-accent-50);  height: 3rem; border-radius: 4px;" title="accent-50"></div>
+              <div style="background: var(--nz-oklch-accent-100); height: 3rem; border-radius: 4px;" title="accent-100"></div>
+              <div style="background: var(--nz-oklch-accent-200); height: 3rem; border-radius: 4px;" title="accent-200"></div>
+              <div style="background: var(--nz-oklch-accent-300); height: 3rem; border-radius: 4px;" title="accent-300"></div>
+              <div style="background: var(--nz-oklch-accent-400); height: 3rem; border-radius: 4px;" title="accent-400"></div>
+              <div style="background: var(--nz-oklch-accent-500); height: 3rem; border-radius: 4px;" title="accent-500"></div>
+              <div style="background: var(--nz-oklch-accent-600); height: 3rem; border-radius: 4px;" title="accent-600"></div>
+              <div style="background: var(--nz-oklch-accent-700); height: 3rem; border-radius: 4px;" title="accent-700"></div>
+              <div style="background: var(--nz-oklch-accent-800); height: 3rem; border-radius: 4px;" title="accent-800"></div>
+              <div style="background: var(--nz-oklch-accent-900); height: 3rem; border-radius: 4px;" title="accent-900"></div>
+            </div>
+          </div>
+        </div>
+
+        <details>
+          <summary>API del bloque</summary>
+          <div class="nz-prose">
+            <ul>
+              <li><strong>Liquid Glass:</strong> <code>.nz-card--glass-liquid</code>, <code>.nz-surface--glass-liquid</code>, <code>.nz-btn--glass-liquid</code> + tinte <code>--brand</code>/<code>--accent</code>/<code>--aurora</code>.</li>
+              <li><strong>Aurora Mesh:</strong> <code>.nz-aurora-mesh</code> + modificadores <code>--animated</code>, <code>--glass</code>, <code>--hero</code>. Utility <code>.u-nz-bg-mesh</code>.</li>
+              <li><strong>Multi-axis:</strong> <code>data-nz-shape</code>, <code>data-nz-density</code>, <code>data-nz-motion</code>, <code>data-nz-color-system</code> en el root <code>.nz</code>.</li>
+              <li><strong>Skin AAA:</strong> <code>data-nz-skin="contrast"</code>.</li>
+              <li><strong>Auto-contrast:</strong> <code>--nz-text-auto</code> y <code>.u-nz-text-auto</code> (basado en <code>light-dark()</code>).</li>
+              <li><strong>Tokens nuevos:</strong> <code>--nz-hue-brand</code>, <code>--nz-hue-accent</code>, <code>--nz-chroma</code>, <code>--nz-oklch-brand-50..900</code>, <code>--nz-oklch-accent-50..900</code>, <code>--nz-mesh-1..4</code>, <code>--nz-mx</code>/<code>--nz-my</code>.</li>
+            </ul>
+            <p>Forced-colors mode (<code>@media (forced-colors: active)</code>) y <code>prefers-reduced-motion: reduce</code> están cableados — los efectos se desactivan automáticamente en esos contextos.</p>
+          </div>
+        </details>
+
+        <details data-code>
+          <summary>HTML mínimo del bloque</summary>
+          <div class="gx-snippet">
+            <button class="gx-snippet__copy" type="button">Copiar</button>
+            <pre><code>&lt;link rel="stylesheet" href="ntizar.next.css"&gt;
+
+&lt;body class="nz"
+      data-nz-theme="light"
+      data-nz-skin="aurora"
+      data-nz-shape="default"
+      data-nz-density="comfortable"
+      data-nz-motion="standard"&gt;
+
+  &lt;section class="nz-aurora-mesh nz-aurora-mesh--animated nz-aurora-mesh--glass nz-aurora-mesh--hero"&gt;
+    &lt;h1&gt;Hero con mesh animado&lt;/h1&gt;
+  &lt;/section&gt;
+
+  &lt;article class="nz-card--glass-liquid nz-card--glass-liquid-aurora"&gt;
+    &lt;h2&gt;Liquid Glass real&lt;/h2&gt;
+  &lt;/article&gt;
+
+&lt;/body&gt;
+
+&lt;script&gt;
+// 5 líneas opcionales: specular highlight sigue al cursor
+document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
+  el.addEventListener('pointermove', e =&gt; {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty('--nz-mx', ((e.clientX - r.left) / r.width  * 100) + '%');
+    el.style.setProperty('--nz-my', ((e.clientY - r.top ) / r.height * 100) + '%');
+  });
+});
+&lt;/script&gt;</code></pre>
+          </div>
+        </details>
+      </section>
+
       <section class="gx-showcase gx-section-anchor" id="rules" data-pack="core" data-status="stable">
         <div class="gx-showcase__head">
           <span class="gx-showcase__kicker">Reglas de uso</span>
@@ -1875,7 +2066,11 @@ L.marker([40.4168, -3.7038], {
               <tr><td><code>.nz</code></td><td>Activa la base tipográfica, focus, selection y componentes dentro del wrapper.</td></tr>
               <tr><td><code>data-nz-theme="light"</code></td><td>Fuerza el tema claro.</td></tr>
               <tr><td><code>data-nz-theme="dark"</code></td><td>Fuerza el tema oscuro.</td></tr>
-              <tr><td><code>data-nz-skin="aurora|sunset|midnight|ocean|citrus"</code></td><td>Aplica skin de identidad cuando cargaste <code>ntizar.themes.css</code>.</td></tr>
+              <tr><td><code>data-nz-skin="aurora|sunset|midnight|ocean|citrus|contrast"</code></td><td>Aplica skin de identidad cuando cargaste <code>ntizar.themes.css</code> (los 5 primeros) o <code>ntizar.next.css</code> (<code>contrast</code>, WCAG AAA).</td></tr>
+              <tr><td><code>data-nz-shape="default|sharp|rounded|brutalist"</code></td><td><strong>v5</strong>. Curvatura global. <code>brutalist</code> usa sombras sólidas. Requiere <code>ntizar.next.css</code>.</td></tr>
+              <tr><td><code>data-nz-density="comfortable|compact|spacious"</code></td><td><strong>v5</strong>. Escala de spacing y tamaño de tipo. Requiere <code>ntizar.next.css</code>.</td></tr>
+              <tr><td><code>data-nz-motion="standard|springy|calm|none"</code></td><td><strong>v5</strong>. Personalidad del motion (duración + easing). Requiere <code>ntizar.next.css</code>.</td></tr>
+              <tr><td><code>data-nz-color-system="hex|oklch"</code></td><td><strong>v5</strong>. Activa escalas OKLCH derivadas de <code>--nz-hue-brand</code>/<code>--nz-hue-accent</code>. Requiere <code>ntizar.next.css</code>.</td></tr>
               <tr><td><code>--nz-*</code></td><td>Familia completa de tokens del sistema.</td></tr>
             </tbody>
           </table>
@@ -2185,14 +2380,41 @@ L.marker([40.4168, -3.7038], {
       codeToggle.textContent = shouldOpen ? 'Cerrar código' : 'Abrir código';
     });
 
-    document.querySelectorAll('.gx-skin-switch button').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.gx-skin-switch button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+    // ====== Switch group handler (skin + multi-axis: shape, density, motion, color-system) ======
+    document.querySelectorAll('.gx-skin-switch').forEach(group => {
+      group.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (!button || !group.contains(button)) return;
+
+        // Reset only buttons in THIS group
+        group.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
         button.setAttribute('aria-pressed', 'true');
-        root.dataset.nzSkin = button.dataset.skin;
-        renderFoundations();
-        renderCharts();
-        syncThreeColors();
+
+        if (button.dataset.skin) {
+          root.dataset.nzSkin = button.dataset.skin;
+          renderFoundations();
+          renderCharts();
+          syncThreeColors();
+        } else if (button.dataset.axis) {
+          // multi-axis: data-nz-shape, data-nz-density, data-nz-motion, data-nz-color-system
+          const attr = 'data-nz-' + button.dataset.axis;
+          root.setAttribute(attr, button.dataset.value);
+        }
+      });
+    });
+
+    // ====== Liquid Glass — specular highlight follows pointer ======
+    document.querySelectorAll('[data-liquid]').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        const mx = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
+        const my = ((e.clientY - r.top ) / r.height * 100).toFixed(1) + '%';
+        el.style.setProperty('--nz-mx', mx);
+        el.style.setProperty('--nz-my', my);
+      });
+      el.addEventListener('pointerleave', () => {
+        el.style.setProperty('--nz-mx', '50%');
+        el.style.setProperty('--nz-my', '0%');
       });
     });
 

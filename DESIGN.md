@@ -1,5 +1,5 @@
 ---
-version: 4.2.0
+version: 5.0.0
 name: Ntizar Aurora
 description: >
   Liquid Glass UI con identidad azul + naranja. Sistema de diseño CSS-only,
@@ -248,6 +248,33 @@ skins:
     file: ./skins/DESIGN.citrus.md
     description: Naranja + amarillo brillante.
     activate: 'data-nz-skin="citrus"'
+  contrast:
+    file: ./ntizar.next.css
+    description: WCAG AAA. Skin de accesibilidad real (no decorativo). Activa fondos planos, bordes negros y focus dual ring.
+    activate: 'data-nz-skin="contrast"'
+    requires: ntizar.next.css
+
+# ---------------------------------------------------------------
+# AXES (v5) — ejes ortogonales que combinan con skin y theme.
+# Requieren cargar ntizar.next.css.
+# ---------------------------------------------------------------
+axes:
+  shape:
+    attribute: data-nz-shape
+    values: [default, sharp, rounded, brutalist]
+    description: Curvatura global. Brutalist anula radii y usa sombras sólidas.
+  density:
+    attribute: data-nz-density
+    values: [comfortable, compact, spacious]
+    description: Escala de spacing y tamaño de tipo. Compact ideal para dashboards densos tipo Linear/Bloomberg.
+  motion:
+    attribute: data-nz-motion
+    values: [standard, springy, calm, none]
+    description: Personalidad del motion. Springy con cubic-bezier overshoot. None desactiva todas las transiciones.
+  color-system:
+    attribute: data-nz-color-system
+    values: [hex, oklch]
+    description: oklch usa escalas perceptualmente uniformes derivadas de --nz-hue-brand y --nz-hue-accent.
 
 # ---------------------------------------------------------------
 # PACKS — extensión modular (no parte del spec design.md, prosa abajo)
@@ -263,6 +290,7 @@ packs:
   forms:    { file: ./ntizar.forms.css,    purpose: "Switch, OTP, range, file drop, stepper" }
   ui:       { file: ./ntizar.ui.css,       purpose: "Modal, drawer, tabs, dropdown, toast, tooltip" }
   patterns: { file: ./ntizar.patterns.css, purpose: "App-shell, hero, pricing, faq, footer, auth" }
+  next:     { file: ./ntizar.next.css,     purpose: "v5 disruptive: liquid glass real, OKLCH, multi-axis (shape/density/motion), aurora-mesh, skin contrast (AAA), forced-colors" }
 ---
 
 ## Overview
