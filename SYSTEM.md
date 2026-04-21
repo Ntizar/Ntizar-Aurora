@@ -66,7 +66,11 @@ Reglas de pertenencia:
 | `.u-nz-*` | Utility atómica | `.u-nz-text-accent`, `.u-nz-glow` |
 | `--nz-token` | Variable CSS | `--nz-color-brand`, `--nz-space-4` |
 | `data-nz-theme` | Tema | `light` / `dark` |
-| `data-nz-skin` | Skin | `aurora` / `sunset` / `midnight` / `ocean` / `citrus` |
+| `data-nz-skin` | Skin | `aurora` / `sunset` / `midnight` / `ocean` / `citrus` / `contrast` (AAA, requiere `ntizar.next.css`) |
+| `data-nz-shape` | **v5** · Curvatura | `default` / `sharp` / `rounded` / `brutalist` |
+| `data-nz-density` | **v5** · Spacing scale | `comfortable` / `compact` / `spacious` |
+| `data-nz-motion` | **v5** · Personalidad de motion | `standard` / `springy` / `calm` / `none` |
+| `data-nz-color-system` | **v5** · Espacio de color | `hex` / `oklch` |
 
 **Prohibido:**
 
@@ -236,3 +240,45 @@ Cada bump:
 ---
 
 > **Cualquier cambio que rompa este documento, primero rompe este documento.**
+
+---
+
+## 16. Multi-axis theming (v5+)
+
+Desde v5, la apariencia se controla por **6 ejes ortogonales** sobre el root `.nz`. La regla de oro: **los ejes son independientes**. Cualquier combinación debe seguir siendo legible y coherente.
+
+| Eje | Atributo | Valores | Vive en |
+| --- | --- | --- | --- |
+| Theme | `data-nz-theme` | `light` · `dark` | `ntizar.css` |
+| Skin | `data-nz-skin` | `aurora` · `sunset` · `midnight` · `ocean` · `citrus` | `ntizar.themes.css` |
+| Skin | `data-nz-skin` | `contrast` (AAA) | `ntizar.next.css` |
+| Shape | `data-nz-shape` | `default` · `sharp` · `rounded` · `brutalist` | `ntizar.next.css` |
+| Density | `data-nz-density` | `comfortable` · `compact` · `spacious` | `ntizar.next.css` |
+| Motion | `data-nz-motion` | `standard` · `springy` · `calm` · `none` | `ntizar.next.css` |
+| Color system | `data-nz-color-system` | `hex` · `oklch` | `ntizar.next.css` |
+
+Reglas para componentes nuevos:
+
+- **Nunca asumas un eje.** Lee tokens (`var(--nz-radius-*)`, `var(--nz-space-*)`, `var(--nz-duration-*)`); los ejes los reasignan en runtime.
+- **Motion respeta `prefers-reduced-motion`** sea cual sea el valor de `data-nz-motion`. Si el usuario lo pide, gana siempre.
+- **AAA (`data-nz-skin="contrast"`)** debe seguir siendo legible. Si tu componente usa `backdrop-filter` u opacidades, prevé una rama dentro de `[data-nz-skin="contrast"]` que las desactive.
+- **Forced-colors mode** (`@media (forced-colors: active)`) es no-negociable: mapea a `Canvas`, `CanvasText`, `Highlight`, `Mark`. Ejemplos en `ntizar.next.css` §6.
+
+La capa disruptiva v5 vive **íntegramente** en `ntizar.next.css`. No back-portar a core. Si una feature de `next` se prueba estable y deseable por defecto, se promueve al core en el siguiente `MAJOR`.
+
+---
+
+## 17. Integración con agentes IA
+
+Aurora está diseñado para que un agente (Copilot, Claude Code, Cursor, ChatGPT) genere código correcto sin gastar tokens en CSS. Reglas para mantenerlo así:
+
+1. **`AGENTS.md`** en la raíz es el contrato. Si cambias la API pública, actualiza `AGENTS.md` en el mismo PR.
+2. **`INDEX.md` es el mapa.** Toda clase nueva debe aparecer aquí con su pack. Si una clase no está en `INDEX.md`, los agentes asumirán que no existe (y harán bien).
+3. **CDN público vía jsDelivr** (`https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@<tag>/<archivo>.css`). **Tagger cada release** con `git tag vX.Y.Z` para que los usuarios pineen versión y jsDelivr cachee inmutablemente.
+4. **No esperes que el agente lea los `.css`.** Pesan ~170 KB combinados (~50k tokens). El flujo correcto es:
+   - Agente carga `AGENTS.md` + `INDEX.md` (~20 KB / ~5k tokens) una vez por sesión.
+   - Agente genera HTML con clases del catálogo.
+   - El navegador del usuario carga los CSS desde la CDN.
+5. **Anti-patterns documentados en `AGENTS.md`** (inventar clases, hardcodear valores, escribir CSS paralelo, saltarse `.nz`). Esto reduce alucinación medible.
+6. **`.github/copilot-instructions.md`** es la versión corta para Copilot dentro del repo. Mantén sincronizadas las 5 reglas duras con `AGENTS.md`.
+7. **Limitaciones honestas en el README.** El bloque "Honest limitations" debe seguir diciendo la verdad: cero JS, AAA solo aplica al skin `contrast`, sin tree-shaking. No prometas lo que no entregamos.
