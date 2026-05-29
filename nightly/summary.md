@@ -1,41 +1,58 @@
-# 🌌 Aurora Nightly — Resumen Noche del 29 de mayo de 2026
+# 🌙 Resumen Nocturno Aurora — 29 de mayo de 2026
 
 ## Investigación
-Se exploraron CSS-Tricks, Smashing Magazine, MDN Blog y CSS Almanac. Se identificaron 8 tendencias con oportunidades concretas para Aurora.
+Se exploraron CSS-Tricks, Smashing Magazine, MDN Blog y el CSS Almanac. Se identificaron **8 tendencias principales** con oportunidades concretas de mejora para Aurora:
 
-## Mejoras aplicadas esta noche
-
-### 1. Selector `:has()` — Interactividad sin JS ⭐
-- **Archivos:** `ntizar.css`, `ntizar.forms.css`
-- Tarjetas interactivas se resaltan con borde + sombra brand cuando contienen checkbox/radio marcado
-- Formularios muestran validación visual en tiempo real (verde/rojo) sin JavaScript
-- Soporte: 95%+ tráfico web (Chrome 105+, Firefox 121+, Safari 15.4+)
-
-### 2. Scroll-Driven Animations 📜
-- **Archivo:** `ntizar.motion.css`
-- `.nz-reveal--scroll` — reveal proporcional al scroll sin IntersectionObserver
-- `.nz-anim-scroll-fade` — fade-in proporcional a visibilidad en viewport
-- `.nz-progress-bar__fill--scroll` — barra de progreso que se llena con el scroll
-- Soporte: Chrome 115+, Edge 115+ (fallback graceful en Firefox/Safari)
-
-### 3. Content-Visibility para rendimiento 🚀
-- **Archivo:** `ntizar.data.css`
-- `.nz-stat-grid` y `.nz-kpi` con `content-visibility: auto`
-- El navegador omite renderizado de elementos fuera de viewport
-- Mejora dramática en dashboards con 12+ elementos
-- Soporte: Chrome 85+, Firefox 123+, Safari 17.4+
-
-## Próximas oportunidades pendientes
-- `@scope` — aislamiento de estilos nativo (modales, drawers, dropdowns)
-- `corner-shape` — esquinas biseladas/squircle en `ntizar.next.css`
-- Relative color `oklch(from ...)` — derivación automática de sombras y colores
-
-## Stats de la noche
-- **Commits:** 4
-- **Archivos modificados:** 4 (`ntizar.css`, `ntizar.forms.css`, `ntizar.motion.css`, `ntizar.data.css`)
-- **Líneas añadidas:** ~340
-- **Líneas eliminadas:** 1
-- **Breaking changes:** 0
+`:has()`, `:is()`/`:where()`, scroll-driven animations, `@scope`, relative color syntax, `corner-shape`, tree-counting functions (`sibling-index`), y `content-visibility`/view transitions.
 
 ---
-*Aurora v5.1 "Constellation" — Bucle infinito de perfección*
+
+## Mejoras aplicadas
+
+### 1️⃣ Selector `:has()` — Interactividad sin JS
+**Archivos:** `ntizar.css`, `ntizar.forms.css`
+- `.nz-card--interactive:has(> .nz-check:checked)` — tarjeta se resalta con borde brand
+- `.nz-card--interactive:has(> .nz-radio:checked)` — misma mejora para radio
+- `.nz-input-group:has(> .nz-input:valid)` — borde verde en campos válidos
+- `.nz-input-group:has(> .nz-input:invalid)` — borde rojo en campos inválidos
+**Soporte:** Chrome 105+, Firefox 121+, Safari 15.4+ (~95% tráfico)
+**Comits:** `2529ad3`, `12f9e74`
+
+### 2️⃣ Scroll-driven Animations — Reveal sin IntersectionObserver
+**Archivo:** `ntizar.motion.css`
+- `.nz-reveal--scroll` — reveal proporcional al scroll del viewport (view-timeline)
+- `.nz-anim-scroll-fade` — fade-in proporcional a la visibilidad
+- `.nz-progress-bar__fill--scroll` — barra de progreso que se llena con el scroll
+**Soporte:** Chrome 115+, Edge 115+ (fallback graceful en Firefox/Safari)
+**Commit:** `4160e26`
+
+### 3️⃣ `content-visibility` — Rendimiento de grids
+**Archivos:** `ntizar.data.css`, `ntizar.patterns.css`
+- `.nz-stat-grid { content-visibility: auto; contain-intrinsic-size: 300px; }`
+- `.nz-kpi { contain-intrinsic-size: auto 180px; }`
+- `.nz-feature { contain-intrinsic-size: auto 280px; }`
+- `.nz-pricing-card { contain-intrinsic-size: auto 400px; }`
+**Soporte:** Chrome 85+, Firefox 123+, Safari 17.4+
+**Comits:** `88f9624`, `d85c857`
+
+---
+
+## Estado del sistema
+
+- **Total mejoras esta noche:** 3 (4 commits)
+- **Archivos modificados:** `ntizar.css`, `ntizar.forms.css`, `ntizar.motion.css`, `ntizar.data.css`, `ntizar.patterns.css`
+- **Líneas añadidas:** ~160+
+- **Breaking changes:** 0 (todos los cambios son aditivos)
+
+## Gaps pendientes (próximas noches)
+
+| Prioridad | Tendencia | Pack objetivo | Soporte |
+|-----------|-----------|---------------|---------|
+| 🔴 Alta | `@scope` — aislamiento de estilos | `ntizar.ui.css` | Chrome 116+, Safari 17.2+ |
+| 🟡 Media | Relative color `oklch(from ...)` — derivación automática | `ntizar.next.css` | Chrome 112+, Safari 16.4+ |
+| 🟢 Baja | `corner-shape` — esquinas más allá de border-radius | `ntizar.next.css` | Experimental |
+
+---
+
+*Aurora v5.1 Constellation — Mejora continua nocturna*
+*Próxima investigación: 30 de mayo de 2026, 01:00 UTC*

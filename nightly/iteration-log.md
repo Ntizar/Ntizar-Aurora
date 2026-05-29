@@ -1,8 +1,9 @@
 # Historial de Mejoras Aurora
 
-## [Pendiente] — Primera noche
+## 2026-05-29 — Primera noche — ✅ Completada
 
-- **Estado:** Sistema iniciado
+- **Estado:** Las 3 mejoras se aplicaron con éxito
+- **Mejoras aplicadas:** 3 (ver iteraciones #1, #2, #3 abajo)
 - **Próxima investigación:** 2026-05-30 01:00 UTC
 
 ---
