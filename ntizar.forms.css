@@ -55,6 +55,22 @@
     border-color: var(--nz-color-brand);
     box-shadow: var(--nz-ring);
   }
+
+  /* ---------- :has() — validación visual sin JS ----------
+     Detecta estado de validación HTML5 en inputs hijos.
+     Soporte: Chrome 105+, Firefox 121+, Safari 15.4+ (~95%+ tráfico)
+     Uso: <div class="nz-input-group">
+            <input class="nz-input" required>
+          </div>
+     El grupo cambia a verde si el input es :valid, rojo si :invalid.
+  */
+  .nz :where(.nz-input-group):has(> .nz-input:valid, > .nz-select:valid, > .nz-textarea:valid) {
+    border-color: var(--nz-status-success-border);
+  }
+  .nz :where(.nz-input-group):has(> .nz-input:invalid, > .nz-select:invalid, > .nz-textarea:invalid):has(> .nz-input:not(:placeholder-shown), > .nz-select:valid, > .nz-textarea:invalid) {
+    border-color: var(--nz-status-danger-border);
+  }
+
   .nz :where(.nz-input-group) > .nz-input,
   .nz :where(.nz-input-group) > .nz-select {
     flex: 1 1 auto;
