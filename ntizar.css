@@ -925,6 +925,23 @@
     box-shadow: var(--nz-card-hover-shadow);
   }
 
+  /* ---------- :has() — interactividad sin JS ----------
+     Tarjetas interactivas que detectan estado de hijos.
+     Soporte: Chrome 105+, Firefox 121+, Safari 15.4+ (~95%+ tráfico)
+     Uso: <div class="nz-card nz-card--interactive">
+            <input class="nz-check__input" type="checkbox">
+            ...
+          </div>
+  */
+  .nz :where(.nz-card--interactive):has(> .nz-check__input:checked) {
+    border-color: var(--nz-color-brand);
+    box-shadow: var(--nz-shadow-brand), var(--nz-glass-stroke);
+  }
+  .nz :where(.nz-card--interactive):has(> .nz-radio__input:checked) {
+    border-color: var(--nz-color-brand);
+    box-shadow: var(--nz-shadow-brand), var(--nz-glass-stroke);
+  }
+
   .nz :where(.nz-card__header) {
     display: flex;
     flex-wrap: wrap;

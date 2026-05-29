@@ -15,6 +15,7 @@
      .nz-anim-aurora-pan      -> mueve el gradient brand/aurora
      .nz-anim-shimmer         -> brillo a lo largo (sobre superficies)
      .nz-anim-typing          -> caret tipo terminal
+     .nz-anim-scroll-fade     -> fade proporcional al scroll (view-timeline)
 
      Modificadores de timing:
        .nz-anim--delay-1 ... 6
@@ -23,6 +24,8 @@
 
      .nz-marquee, .nz-marquee__track  -> ticker horizontal
      .nz-reveal                       -> requiere clase .is-visible (vía IntersectionObserver)
+     .nz-reveal--scroll               -> reveal con scroll-driven (CSS puro, Chrome 115+)
+     .nz-progress-bar__fill--scroll   -> barra de progreso con scroll-driven (scroll-timeline)
    ============================================================ */
 
 @layer ntizar.utilities {
@@ -148,7 +151,7 @@
     animation: nz-caret 1s steps(1) infinite;
   }
 
-  /* ---------- REVEAL on scroll ----------
+  /* ---------- REVEAL on scroll (IntersectionObserver) ----------
      Uso:
        <div class="nz-reveal">…</div>
      + JS:
@@ -175,6 +178,82 @@
     transform: none;
   }
 
+  /* ---------- REVEAL con scroll-driven animations (CSS puro) ----------
+     Uso:
+       <div class="nz-reveal nz-reveal--scroll">…</div>
+     No requiere JS ni IntersectionObserver — la animación es proporcional
+     al scroll del viewport. Fallback graceful en navegadores que no soporten
+     `animation-timeline` (Firefox, Safari).
+     Soporte: Chrome 115+, Edge 115+
+  */
+  .nz :where(.nz-reveal--scroll) {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    animation: nz-scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  .nz :where(.nz-reveal--scroll.nz-reveal--left) {
+    transform: translateX(-1.5rem);
+  }
+  .nz :where(.nz-reveal--scroll.nz-reveal--right) {
+    transform: translateX(1.5rem);
+  }
+  .nz :where(.nz-reveal--scroll.nz-reveal--scale) {
+    transform: scale(0.94);
+  }
+
+  @keyframes nz-scroll-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- REVEAL proporcional al scroll (parallax suave) ----------
+     Uso:
+       <div class="nz-anim-scroll-fade">…</div>
+     Opacidad y desplazamiento proporcionales a la visibilidad en viewport.
+  */
+  .nz :where(.nz-anim-scroll-fade) {
+    animation: nz-scroll-fade linear both;
+    animation-timeline: view();
+    animation-range: cover 20% cover 80%;
+  }
+
+  @keyframes nz-scroll-fade {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---------- PROGRESS BAR con scroll-driven ----------
+     Uso:
+       <div class="nz-progress-bar">
+         <div class="nz-progress-bar__fill nz-progress-bar__fill--scroll"></div>
+       </div>
+     La barra se llena según el scroll de la página.
+  */
+  .nz :where(.nz-progress-bar__fill--scroll) {
+    animation: nz-scroll-progress linear both;
+    animation-timeline: scroll();
+    width: 0%;
+  }
+
+  @keyframes nz-scroll-progress {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+
   /* ---------- HOVER LIFT (helper de microinteracción) ---------- */
   .nz :where(.nz-hover-lift) {
     transition:
@@ -192,6 +271,7 @@
       .nz-anim-slide-left, .nz-anim-slide-right,
       .nz-anim-glow-pulse, .nz-anim-float,
       .nz-anim-aurora-pan, .nz-anim-shimmer,
+      .nz-anim-scroll-fade,
       .nz-marquee__track, .nz-anim-typing::after
     ) {
       /* override: respeto absoluto a prefers-reduced-motion;
@@ -201,6 +281,15 @@
     .nz :where(.nz-reveal) {
       opacity: 1 !important;
       transform: none !important;
+    }
+    .nz :where(.nz-reveal--scroll) {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    .nz :where(.nz-progress-bar__fill--scroll) {
+      animation: none !important;
+      width: 100% !important;
     }
   }
 }
