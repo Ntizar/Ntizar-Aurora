@@ -1,203 +1,96 @@
 # Investigación Aurora — 29 de mayo de 2026
 
-## Resumen ejecutivo
-
-Se han explorado CSS-Tricks (artículos más recientes), Smashing Magazine (categoría CSS), MDN Blog, y el CSS Almanac de CSS-Tricks. Se identificaron **8 tendencias principales** con oportunidades concretas de mejora para Aurora.
-
----
-
 ## Tendencias encontradas
 
-### 1. `:has()` — El selector padre universal
-- **Fuente:** CSS-Tricks Almanac, MDN Blog, artículos recientes
-- **Descripción:** El selector `:has()` permite seleccionar un elemento padre en función de sus hijos. Es considerado uno de los selectores más potentes jamás añadidos a CSS. Permite patrones como "resaltar un card cuando su checkbox está checked", "mostrar botón de envío solo si hay texto", "estilizar un contenedor según el estado de sus hijos".
-- **Potencial para Aurora:** 
-  - Cards interactivas sin JS: `.nz-card:has(.nz-check:checked) { border-color: var(--nz-color-brand); }`
-  - Formularios mejorados: `.nz-input-group:has(.nz-field:focus) { --border-color: var(--nz-color-brand); }`
-  - Accordion nativo sin JS: `.nz-accordion__item:has(> .is-open) { background: var(--nz-surface-soft); }`
-  - Botones deshabilitados condicionales: `.nz-btn:has(+ .nz-field__input:placeholder-shown) { opacity: 0.5; }`
-- **Pack objetivo:** `ntizar.css` (core) y `ntizar.ui.css` (componentes interactivos)
-- **Soporte navegador:** Chrome 105+, Firefox 121+, Safari 15.4+ (95%+ del tráfico web)
+### 1. Cross-Document View Transitions
+- **Fuente:** CSS-Tricks (May 18-22, 2026) — "Cross-Document View Transitions: The Gotchas Nobody Mentions" + "Scaling Across Hundreds of Elements"
+- **Descripción:** Las Cross-Document View Transitions (CDVT) ya tienen su forma CSS definitiva: `@view-transition` en CSS (reemplazó al deprecated `<meta name="view-transition">`). Soportan `pagereveal` y `pageswap` events, y `view-transition-class` alongside `view-transition-name`. Timeout de 4s en páginas lentas. `prefers-reduced-motion` ya se implementa correctamente.
+- **Potencial para Aurora:** Aurora podría añadir un pack `.nz-view-transition.css` con utilidades para `@view-transition`, clases `.nz-vt-*` para nombres de transición, y un patrón de reveal entre páginas que funcione con CDVT. También podría añadir `.nz-anim--reduced-motion` como fallback.
+- **Pack objetivo:** `ntizar.motion.css` + nuevo `ntizar.vt.css`
 
-### 2. `:is()` y `:where()` — Selectores de agrupación
-- **Fuente:** CSS-Tricks, MDN
-- **Descripción:** `:is()` y `:where()` permiten agrupar selectores con menor especificidad. `:where()` tiene especificidad cero, lo que facilita overrides.
-- **Potencial para Aurora:** Aurora ya usa `:where()` en varios packs. Se podría estandarizar su uso en todo el core para reducir la especificidad y facilitar personalización.
-- **Pack objetivo:** `ntizar.css` (core)
-- **Nota:** Aurora ya usa `:where()` — oportunidad de auditoría y estandarización
+### 2. CSS Anchor Positioning
+- **Fuente:** CSS-Tricks (May 22, 2026) — "The State of CSS Centering in 2026" + "anchor positioning" tag
+- **Descripción:** Anchor positioning (CSS `position-anchor`, `anchor()`, `anchor-size()`) ya es una realidad. Permite posicionar elementos relativos a otros elementos sin JavaScript. Complementa los dropdowns, popovers y tooltips existentes.
+- **Potencial para Aurora:** Aurora podría añadir utilidades `.nz-anchor-*` para dropdowns/popovers posicionados mediante `anchor()`, reemplazando el posicionamiento absoluto con JS en `.nz-dropdown` y `.nz-tooltip`.
+- **Pack objetivo:** `ntizar.ui.css`
 
-### 3. CSS Scroll-Driven Animations (`scroll-timeline`, `view-timeline`)
-- **Fuente:** MDN Blog "A beginner-friendly guide to view transitions in CSS", CSS-Tricks
-- **Descripción:** Permite vincular animaciones CSS directamente al scroll del usuario, sin JavaScript. `animation-timeline: scroll()` y `animation-timeline: view()` permiten crear efectos de parallax, reveal on scroll, progress bars de lectura, y animaciones proporcionales al scroll.
-- **Potencial para Aurora:**
-  - Mejorar `.nz-reveal` para que funcione 100% CSS sin IntersectionObserver
-  - Crear `.nz-progress-bar--scroll` que se llene según el scroll de la página
-  - Animaciones de fade-in proporcionales al scroll del elemento
-  - `.nz-anim-scroll-reveal` con `animation-timeline: view()`
+### 3. CSS Corner-Shape
+- **Fuente:** CSS-Tricks (May 8, 2026) — "Using CSS corner-shape For Folded Corners"
+- **Descripción:** Nueva propiedad `corner-top-right-shape: bevel|round|triangle` que permite formas de esquina no redondeadas: bisel, triángulo, redondeo. Chrome solo por ahora. Permite crear efectos de esquina doblada, recorte angular, etc. con variables CSS animables.
+- **Potencial para Aurora:** Aurora ya tiene `data-nz-shape="sharp|rounded|brutalist"`. `corner-shape` podría añadir un cuarto valor como `"cut"` (esquina recortada) o `"folded"` (esquina doblada) como variante visual premium en el pack `ntizar.next.css`.
+- **Pack objetivo:** `ntizar.next.css`
+
+### 4. Container Style Queries + Range Syntax
+- **Fuente:** CSS-Tricks "What's !important #11" (May 15, 2026) — Firefox 151 soporta container style queries; la range syntax para container style queries viene con flag
+- **Descripción:** Los container queries ya son mainstream, pero la nueva capacidad de hacer queries sobre el estilo del contenedor (`@container style(...)`) abre posibilidades de diseño adaptativo sin media queries. La range syntax permite `@container style(--my-var > 100)`.
+- **Potencial para Aurora:** Aurora podría usar container queries para que los componentes se adapten al tamaño del contenedor padre en vez del viewport. Ej: `.nz-card--container` que ajusta padding/border según el ancho del container.
+- **Pack objetivo:** `ntizar.next.css` (core de tokens) + `ntizar.core.css`
+
+### 5. Scroll-Driven Animations
+- **Fuente:** CSS-Tricks "What's !important #11" (May 15, 2026) — Josh Comeau expert explanation
+- **Descripción:** Scroll-driven animations (`animation-timeline: scroll()`, `view()`) ya son ampliamente soportadas en Chrome/Edge. Las scroll-triggered animations están en camino. Son el futuro de las animaciones "reveal on scroll" sin JavaScript.
+- **Potencial para Aurora:** Aurora ya tiene `.nz-reveal[--left/--right/--scale]` que requiere IntersectionObserver + JS. Podría añadir una versión CSS-only con `animation-timeline: view()` para los mismos efectos de reveal sin JS.
 - **Pack objetivo:** `ntizar.motion.css`
-- **Soporte navegador:** Chrome 115+, Edge 115+ (Firefox y Safari aún no soportado)
 
-### 4. `@scope` — Aislamiento de estilos CSS nativo
-- **Fuente:** Smashing Magazine "CSS @scope: An Alternative To Naming Conventions And Heavy Abstractions" (feb 2026)
-- **Descripción:** `@scope` permite definir el alcance de los estilos CSS de forma declarativa, sin depender de BEM, CSS Modules o Shadow DOM. Puedes decir "estos estilos solo afectan a los hijos de .mi-componente" sin necesidad de clases BEM.
-- **Potencial para Aurora:** 
-  - Aurora ya usa namespace `.nz` pero los componentes internos (ej. `.nz-modal__panel`) todavía dependen de convención de nombres
-  - `@scope (.nz-modal) to (.nz-modal__panel, .nz-modal__close)` podría encapsular mejor los estilos
-  - Mejora la mantenibilidad a largo plazo
-- **Pack objetivo:** `ntizar.ui.css` (modales, drawers, dropdowns)
-- **Soporte navegador:** Chrome 116+, Safari 17.2+
+### 6. attr() con tipos numéricos + CSS Math
+- **Fuente:** CSS-Tricks (May 2026) — "Computing and Displaying Discounted Prices in CSS"
+- **Descripción:** `attr(data-price number)` permite leer atributos HTML como números y hacer cálculos CSS. Combinado con `counter()`, `mod()`, `round()`, se pueden hacer cálculos numéricos puros en CSS.
+- **Potencial para Aurora:** En el pack de data/KPIs, se podrían mostrar porcentajes, barras de progreso dinámicas o valores calculados directamente desde `data-*` attributes sin JavaScript.
+- **Pack objetivo:** `ntizar.data.css`
 
-### 5. Relative Color Syntax + `color-mix()` + `contrast-color()`
-- **Fuente:** Smashing Magazine "Algorithmic Theming Engines: Building Self-Correcting Color Systems With contrast-color()" (may 2026), MDN "Using relative colors"
-- **Descripción:** La sintaxis de color relativa permite derivar colores a partir de variables CSS de color: `color(--nz-color-brand / 50%)`, `oklch(from var(--nz-color-brand) l c h)`, `color-mix()`. `contrast-color()` (nueva propuesto) ajusta automáticamente el color de texto para cumplir WCAG.
-- **Potencial para Aurora:**
-  - Aurora ya tiene OKLCH en `ntizar.next.css` — se podría añadir `oklch(from ...)` para derivar sombras, bordes y estados hover automáticamente
-  - `.nz-btn--primary:hover { background: oklch(from var(--nz-color-brand) calc(l - 0.1) c h); }`
-  - Sombras auto-derivadas: `--nz-shadow-color: oklch(from var(--nz-color-brand) 0.5 c h / 0.3);`
-  - `color-contrast()` para auto-selección de texto sobre fondos dinámicos
-- **Pack objetivo:** `ntizar.next.css` (color system) y `ntizar.css` (core tokens)
-- **Soporte navegador:** Chrome 112+, Safari 16.4+, Firefox 127+
+### 7. :has() selector + :nth-child() with "of <selector>"
+- **Fuente:** CSS-Tricks "What's !important #11" (May 15, 2026) — Paweł Grzybek
+- **Descripción:** `:has()` ya es ampliamente soportado (Baseline). El nuevo `:nth-child(2 of .intro)` permite seleccionar el segundo elemento que coincida con un selector arbitrario entre hermanos, no solo del mismo tipo.
+- **Potencial para Aurora:** Mejoraría los patrones de pricing (destacar tarjeta featured), feature grids, y el sistema de tabs sin necesidad de JS. Ej: `:has(.is-active) ~ .nz-tab` para estilos de tabs adyacentes.
+- **Pack objetivo:** `ntizar.ui.css` + `ntizar.patterns.css`
 
-### 6. `corner-shape` — Más allá de `border-radius`
-- **Fuente:** Smashing Magazine "Beyond border-radius: What The CSS corner-shape Property Unlocks For Everyday UI" (mar 2026), CSS-Tricks Almanac
-- **Descripción:** La nueva propiedad `corner-shape` permite esquinas biseladas, recortadas, squircle y otras formas que `border-radius` no puede lograr. Se menciona en el CSS Almanac de CSS-Tricks como propiedad CSS estándar.
-- **Potencial para Aurora:**
-  - Añadir `data-nz-shape="beveled"` para esquinas cortadas (estilo brutalista/tech)
-  - `data-nz-shape="squircle"` para esquinas más orgánicas que el border-radius actual
-  - Extensión natural del `data-nz-shape` existente en Aurora v5
-- **Pack objetivo:** `ntizar.next.css` (multi-axis theming)
-- **Soporte navegador:** Experimental (Chrome 129+ behind flag)
+### 8. :open pseudo-class
+- **Fuente:** CSS-Tricks "What's !important #11" (May 15, 2026) — Safari 26.5, ahora Baseline
+- **Descripción:** `:open` pseudo-class para `<details>` y `<dialog>` ya es Baseline en todos los navegadores. Permite estilizar estados abiertos sin JS.
+- **Potencial para Aurora:** Los accordions de Aurora (`<details class="nz-accordion__item">`) podrían usar `:open` para estilos de estado abierto sin JS. Los modals con `<dialog>` también.
+- **Pack objetivo:** `ntizar.ui.css`
 
-### 7. Tree-Counting Functions: `sibling-index()` y `sibling-count()`
-- **Fuente:** Smashing Magazine "Advanced Tree Counting: Mathematical Layouts With sibling-index() And sibling-count()" (may 2026)
-- **Descripción:** Nuevas funciones CSS `sibling-index()` y `sibling-count()` que permiten crear efectos de cascada escalonada sin `:nth-child()` rules ni JS. Funcionan para 5 items o 5,000.
-- **Potencial para Aurora:**
-  - Animaciones staggered automáticas: cada card aparece con delay incremental
-  - `.nz-feature-grid > * { animation-delay: calc(sibling-index() * 0.1s); }`
-  - Sin necesidad de `.nz-anim--delay-1..6` fijos
-  - Gradientes de opacidad/transformación basados en posición relativa
-- **Pack objetivo:** `ntizar.motion.css` y `ntizar.patterns.css`
-- **Soporte navegador:** Experimental (propuesta W3C)
+### 9. @property (CSS Houdini)
+- **Fuente:** ModernCSS.dev — "Providing Type Definitions for CSS with @property"
+- **Descripción:** `@property` permite definir tipos para custom properties (número, color, porcentaje, etc.), dando validación, transiciones suaves entre tipos y fallbacks seguros.
+- **Potencial para Aurora:** Los tokens de Aurora (`--nz-color-brand`, `--nz-space-4`, etc.) podrían declararse con `@property` para garantizar tipos correctos y transiciones automáticas entre valores. Mejora robustez del sistema de tokens.
+- **Pack objetivo:** `ntizar.next.css`
 
-### 8. `content-visibility` y `view-transition` — Rendimiento y transiciones
-- **Fuente:** MDN Blog "Under the hood of MDN's new frontend", MDN "A beginner-friendly guide to view transitions in CSS", CSS-Tricks "Cross-Document View Transitions"
-- **Descripción:** 
-  - `content-visibility: auto` permite al navegador omitir el renderizado de elementos fuera de viewport, mejorando rendimiento drásticamente en páginas con mucho contenido.
-  - View Transitions API permite animaciones suaves entre estados de la página con una sola línea CSS: `view-transition-name: card;`
-- **Potencial para Aurora:**
-  - `.nz-card { content-visibility: auto; contain-intrinsic-size: 300px; }` para grids de cards con scroll infinito
-  - `.nz-anim-view-transition` para transiciones entre estados de componentes
-  - Mejora de rendimiento en dashboards con muchas stat-tiles
-- **Pack objetivo:** `ntizar.data.css` (dashboards) y `ntizar.motion.css`
-- **Soporte navegador:** `content-visibility`: Chrome 85+, Firefox 123+, Safari 17.4+. View transitions: Chrome 100+, Edge 100+, Safari 17.4+
+### 10. Reveal text con letter-spacing
+- **Fuente:** CSS-Tricks — "Revealing Text With CSS letter-spacing"
+- **Descripción:** Efecto de texto que se revela desde letras superpuestas (`letter-spacing: -1ch`) a normales (`letter-spacing: 0ch`), con `color: transparent` → `color: black`. Animatable con CSS transitions.
+- **Potencial para Aurora:** Podría añadirse como `.nz-anim--text-reveal` en el motion pack, útil para hero titles y efectos de entrada premium.
+- **Pack objetivo:** `ntizar.motion.css`
 
----
+### 11. Design Token Systems: OKLCH + Color Mixing
+- **Fuente:** MDN Blog — "Image formats: Color models for humans and devices" + Aurora ya tiene OKLCH en next.css
+- **Descripción:** OKLCH está ganando adopción como color model perceptualmente uniforme. CSS `color-mix()` y `color-contrast()` también son relevantes. Aurora ya tiene `data-nz-color-system="oklch"` activable.
+- **Potencial para Aurora:** Aurora podría aprovechar `color-contrast()` para auto-selección de texto sobre fondos (ya tiene `.u-nz-text-auto`). Podría añadir `color-mix()` para variantes automáticas de colores.
+- **Pack objetivo:** `ntizar.next.css`
+
+### 12. Logical Properties como estándar
+- **Fuente:** ModernCSS.dev — "Contextual Spacing For Intrinsic Web Design"
+- **Descripción:** `margin-inline`, `padding-block`, `inset-inline`, `margin-block` tienen >98% de soporte. El diseño intrínseco (intrinsic web design) usa propiedades lógicas como base.
+- **Potencial para Aurora:** Aurora podría migrar internamente más propiedades a lógicas y documentar el patrón `nz-stack` como ejemplo de diseño intrínseco.
+- **Pack objetivo:** `ntizar.css` (core)
 
 ## Sitios de referencia explorados
 
-### CSS-Tricks (css-tricks.com)
-- **Artículo destacado:** "Revealing Text With CSS letter-spacing" (27 mayo 2026) — técnicas de texto animado
-- **Popular este mes:** Radio State Machine (checkbox hack), `::nth-letter` selector proposal, CSS randomness, date range selection
-- **Almanac:** Confirma `corner-shape` como propiedad CSS estándar
-- **Patrón observado:** Enfoque en CSS puro sin JS, selectores avanzados, accesibilidad
-
-### Smashing Magazine (smashingmagazine.com)
-- **Artículos recientes clave:**
-  - "Algorithmic Theming Engines: Building Self-Correcting Color Systems With contrast-color()" (28 mayo 2026)
-  - "Advanced Tree Counting: Mathematical Layouts With sibling-index() And sibling-count()" (21 mayo 2026)
-  - "Beyond border-radius: What The CSS corner-shape Property Unlocks" (12 marzo 2026)
-  - "Getting Started With The Popover API" — tooltips nativos del navegador
-  - "CSS @scope: An Alternative To Naming Conventions" (5 febrero 2026)
-  - "Unstacking CSS Stacking Contexts" (27 enero 2026)
-  - "Smashing Animations Part 8: Theming Animations Using CSS Relative Colour" (14 enero 2026)
-  - "State, Logic, And Native Power: CSS Wrapped 2025" (9 diciembre 2025)
-  - "Masonry: Things You Won't Need A Library For Anymore" (2 diciembre 2025)
-- **Patrón observado:** Fuerte énfasis en CSS como lenguaje de programación (lógica, estado, color algorítmico)
-
-### MDN Blog (developer.mozilla.org/en-US/blog)
-- **Artículos clave:**
-  - "Under the hood of MDN's new frontend" (8 abril 2026) — arquitectura de frontend moderno
-  - "A beginner-friendly guide to view transitions in CSS" (9 octubre 2025)
-  - "Launching MDN's new front end" (19 agosto 2025)
-- **Patrón observado:** MDN está adoptando View Transitions, CSS Nesting, y arquitectura moderna
-
----
-
-## Análisis de gaps: Aurora vs tendencias 2026
-
-### Lo que Aurora YA tiene bien:
-- ✅ `@layer` (usado en todos los packs)
-- ✅ `:where()` (usado en todos los packs)
-- ✅ OKLCH color system (`ntizar.next.css`)
-- ✅ `color-mix()` (usado en todos los packs)
-- ✅ `light-dark()` (`ntizar.next.css`)
-- ✅ `color-contrast()` (`ntizar.next.css`)
-- ✅ `backdrop-filter` (glassmorphism)
-- ✅ `:focus-visible` (accesibilidad)
-- ✅ Multi-axis theming (shape, density, motion)
-- ✅ Liquid Glass real (specular, chromatic edge)
-
-### Lo que Aurora NO tiene (oportunidades):
-- ❌ `:has()` — selector padre (95%+ soporte navegador)
-- ❌ Scroll-driven animations (`scroll-timeline`, `view-timeline`)
-- ❌ `@scope` — aislamiento de estilos
-- ❌ `content-visibility` — rendimiento en grids
-- ❌ `view-transition` — transiciones entre estados
-- ❌ `corner-shape` — más allá de border-radius
-- ❌ `sibling-index()` / `sibling-count()` — animaciones staggered automáticas
-- ❌ Relative color `oklch(from ...)` — derivación automática de colores
-
----
+- **CSS-Tricks:** 15+ artículos recientes analizados. Tendencia clara: CSS se vuelve más declarativo (view transitions, anchor positioning, scroll-driven, container queries, :has, :open). Menos JS, más CSS puro.
+- **ModernCSS.dev:** Enfoque en "one-line upgrades" — propiedades modernas que reemplazan hacks. Énfasis en accesibilidad y progressive enhancement.
+- **MDN Blog:** View transitions como feature destacada. Cambio de frontend de MDN con nuevas tecnologías.
+- **CSS-Tricks Almanac:** `corner-shape`, `attr()` con tipos, `@property` como features emergentes.
 
 ## Oportunidades de mejora priorizadas
 
-### 1. `:has()` en componentes interactivos (PACK: `ntizar.css` + `ntizar.ui.css`)
-**Impacto: ALTO** — 95%+ soporte navegador, cambio aditivo, mejora UX significativa
-- Cards con checkbox/radio que cambian estilo del contenedor
-- Formularios: validación visual con `:has()` (campo vacío → borde rojo)
-- Accordion nativo sin JS: `details:has(> .is-open)` 
-- Botones: `.nz-btn:has(+ .nz-field__input:valid) { --border-color: green; }`
-- **CSS estimado:** ~150-200 líneas nuevas
-- **Breaking:** Ninguno — puramente aditivo
+1. **Scroll-driven animations para reveal** — Reemplazar IntersectionObserver + JS por `animation-timeline: view()` en `.nz-reveal`. Máximo impacto, mínimo cambio, CSS-only real. (Pack: `ntizar.motion.css`)
 
-### 2. Scroll-driven animations para reveal on scroll (PACK: `ntizar.motion.css`)
-**Impacto: ALTO** — Elimina dependencia de IntersectionObserver para casos simples
-- `.nz-reveal--scroll` con `animation-timeline: view()` 
-- `.nz-progress-bar--scroll` que se llena según scroll
-- `.nz-anim-scroll-fade` proporcional al scroll del viewport
-- **CSS estimado:** ~80-120 líneas nuevas
-- **Breaking:** Ninguno — feature enhancement con fallback a `:where()`
-- **Nota:** Con fallback graceful para Firefox/Safari que aún no lo soportan
+2. **`:open` pseudo-class para accordions y dialogs** — Usar `details:open` y `dialog:open` para eliminar clases `.is-open` de JS en accordions y modals. (Pack: `ntizar.ui.css`)
 
-### 3. `content-visibility` para rendimiento de grids (PACK: `ntizar.data.css` + `ntizar.patterns.css`)
-**Impacto: MEDIO-ALTO** — Mejora rendimiento en dashboards y grids grandes
-- `.nz-card { content-visibility: auto; contain-intrinsic-size: 300px; }`
-- `.nz-stat-grid > * { content-visibility: auto; }`
-- `.nz-feature-grid > * { content-visibility: auto; }`
-- **CSS estimado:** ~30-50 líneas nuevas
-- **Breaking:** Ninguno — mejora de rendimiento transparente
+3. **`@property` para validación de tokens** — Declarar tokens clave con `@property` para tipos seguros y transiciones automáticas. Mejora robustez del sistema de design tokens. (Pack: `ntizar.next.css`)
 
-### 4. Relative color derivación automática (PACK: `ntizar.next.css`)
-**Impacto: MEDIO** — Simplifica customización de skins
-- Sombras auto-derivadas del color brand: `oklch(from var(--nz-color-brand) ...)`
-- Estados hover/active derivados algorítmicamente
-- Bordes con opacidad derivada del color base
-- **CSS estimado:** ~50-80 líneas nuevas
-- **Breaking:** Ninguno — mejora del sistema de color existente
+4. **`.nz-anim--text-reveal`** — Efecto de texto revelado con letter-spacing animado. Hero titles premium. (Pack: `ntizar.motion.css`)
 
-### 5. `@scope` para encapsulación de UI components (PACK: `ntizar.ui.css`)
-**Impacto: MEDIO** — Mejora mantenibilidad a largo plazo
-- `@scope (.nz-modal) to (.nz-modal__panel, .nz-modal__close)`
-- `@scope (.nz-dropdown) to (.nz-dropdown__menu)`
-- **CSS estimado:** ~40-60 líneas nuevas (reestructuración)
-- **Breaking:** Potencialmente — reestructuración de selectores existentes
-- **Nota:** Bajar de prioridad por riesgo de breaking change
+5. **`@view-transition` utilities** — Utilidades CSS para cross-document view transitions. (Pack: `ntizar.motion.css` o nuevo `ntizar.vt.css`)
 
----
-
-## Tendencias secundarias (menos priorizadas)
-
-- **Popover API:** Los tooltips nativos del navegador (`<button popovertarget>`) podrían reemplazar `.nz-tooltip` en algunos casos
-- **Masonry nativo:** `grid-template-rows: masonry` ya no necesita librerías
-- **CSS Nesting:** `@nest` no está en Aurora — pero el nesting nativo CSS (`&` selector) podría simplificar `ntizar.css`
-- **State machines en CSS puro:** El patrón "Radio State Machine" de CSS-Tricks muestra que se pueden construir interfaces completas con solo checkbox/radio + `:has()`
+6. **Container queries para componentes adaptativos** — Cards, KPIs y grids que se adapten al contenedor padre. (Pack: `ntizar.next.css`)

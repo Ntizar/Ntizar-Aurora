@@ -1,78 +1,19 @@
-# Historial de Mejoras Aurora
+# Iteración Aurora — 2026-05-29
 
-## 2026-05-29 — Primera noche — ✅ Completada
+## Historial de mejoras
 
-- **Estado:** Las 3 mejoras se aplicaron con éxito
-- **Mejoras aplicadas:** 3 (ver iteraciones #1, #2, #3 abajo)
-- **Próxima investigación:** 2026-05-30 01:00 UTC
+### Job #1 — Investigación (29/05/2026 01:00 UTC) ✅
+- **Estado:** Completado
+- **Archivo:** `nightly/research-log.md`
+- **Oportunidades identificadas:** 12
+- **Priorizadas:** 6
 
----
+### Job #2 — Mejora CSS #1 (29/05/2026 02:00 UTC)
+- **Estado:** Pendiente
+- **Mejora seleccionada:** Scroll-driven animations para `.nz-reveal`
 
-*Las mejoras se registran aquí con cada iteración nocturna.*
+### Job #3 — Mejora CSS #2 (29/05/2026 03:00 UTC)
+- **Estado:** Pendiente
 
----
-
-## 2026-05-29 — Iteración #2 (Mejora CSS #2)
-
-- **Mejora:** Scroll-driven animations — reveal, fade y progress bar con CSS puro
-- **Archivo:** `ntizar.motion.css`
-- **Motivo:** Eliminar dependencia de IntersectionObserver para casos simples de reveal on scroll. Las CSS Scroll-Driven Animations (`animation-timeline: view()` y `scroll()`) permiten animaciones proporcionales al scroll sin JavaScript.
-- **Nuevas clases:**
-  - `.nz-reveal--scroll` — reveal proporcional al scroll del viewport (view-timeline)
-  - `.nz-anim-scroll-fade` — fade-in proporcional a la visibilidad en viewport
-  - `.nz-progress-bar__fill--scroll` — barra de progreso que se llena con el scroll (scroll-timeline)
-- **Soporte:** Chrome 115+, Edge 115+ (fallback graceful en Firefox/Safari)
-- **Referencia:** MDN Blog "A beginner-friendly guide to view transitions in CSS", CSS-Tricks Almanac
-- **Estado:** ✅ aplicado
-- **Commit:** `4160e26`
-
----
-
-## 2026-05-29 — Iteración #1 (Mejora CSS #1)
-
-- **Mejora:** Selector `:has()` — interactividad sin JS en tarjetas y formularios
-- **Archivos:** `ntizar.css`, `ntizar.forms.css`
-- **Motivo:** El selector `:has()` es considerado uno de los más potentes jamás añadidos a CSS (95%+ soporte navegador). Permite detectar estado de hijos sin JavaScript.
-- **Nuevas reglas CSS:**
-  - `.nz-card--interactive:has(> .nz-check__input:checked)` — tarjeta se resalta con borde y sombra brand cuando contiene checkbox marcado
-  - `.nz-card--interactive:has(> .nz-radio__input:checked)` — misma mejora para radio
-  - `.nz-input-group:has(> .nz-input:valid)` — grupo de input muestra borde verde cuando el campo es válido
-  - `.nz-input-group:has(> .nz-input:invalid)` — grupo de input muestra borde rojo cuando el campo es inválido
-- **Soporte:** Chrome 105+, Firefox 121+, Safari 15.4+ (~95%+ tráfico web)
-- **Referencia:** CSS-Tricks Almanac, MDN Blog — oportunidad #1 de investigación
-- **Estado:** ✅ aplicado
-- **Comits:** `4160e26` (card), `12f9e74` (forms)
-
----
-
-## 2026-05-29 — Iteración #3 (Mejora CSS #3)
-
-- **Mejora:** `content-visibility` para rendimiento de grids KPI
-- **Archivo:** `ntizar.data.css`
-- **Motivo:** Mejorar rendimiento en dashboards con muchos stat-tiles/KPIs. El navegador omite renderizado de elementos fuera de viewport.
-- **Nuevas reglas CSS:**
-  - `.nz-stat-grid { content-visibility: auto; contain-intrinsic-size: 300px; }` — grid de stats
-  - `.nz-kpi { contain-intrinsic-size: auto 180px; }` — KPI individual
-- **Soporte:** Chrome 85+, Firefox 123+, Safari 17.4+
-- **Referencia:** MDN Blog, CSS-Tricks — oportunidad #3 de investigación
-- **Estado:** ✅ aplicado
-- **Commit:** `88f9624`
-
----
-
-## 2026-05-29 — Iteración #4 (Mejora CSS #4)
-
-- **Mejora:** Sombras derivadas algorítmicamente con `oklch(from ...)` — color system dinámico
-- **Archivo:** `ntizar.next.css` (bloque `.nz[data-nz-color-system="oklch"]`)
-- **Motivo:** Cuando el usuario cambia `--nz-hue-brand`, las sombras deberían recalcularse automáticamente. Antes usaban `rgba()` con valores hardcodeados (37, 99, 235). Ahora se derivan de `oklch(from var(--nz-oklch-brand) calc(l - 0.25) calc(c * 0.6) h / 0.35)` que extrae la luminosidad, croma y matiz del color brand y calcula una versión más oscura para la capa de sombra.
-- **Nuevos tokens:**
-  - `--nz-oklch-brand-l` / `--nz-oklch-brand-l-dark` / `--nz-oklch-brand-l-soft` — extracción y derivación de luminosidad
-  - `--nz-shadow-brand-oklch` — sombra brand derivada del color brand
-  - `--nz-shadow-accent-oklch` — sombra accent derivada del color accent
-  - `--nz-shadow-aurora-oklch` — sombra aurora (mezcla brand + accent)
-  - `--nz-shadow-base-oklch` — sombra genérica de base oscura
-  - `--nz-shadow-sm-oklch` / `--nz-shadow-md-oklch` / `--nz-shadow-lg-oklch` — alias para uso en componentes
-- **Soporte:** Chrome 112+, Safari 16.4+, Firefox 127+
-- **Referencia:** Smashing Magazine "Algorithmic Theming Engines: Building Self-Correcting Color Systems With contrast-color()" (may 2026), MDN "Using relative colors" — oportunidad #4 de investigación
-- **Estado:** ✅ aplicado
-- **Commit:** pendiente
+### Job #4 — Mejora CSS #3 + Reaprendizaje (29/05/2026 04:00 UTC)
+- **Estado:** Pendiente
