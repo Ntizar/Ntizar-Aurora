@@ -117,6 +117,50 @@
       var(--nz-oklch-brand-500) 0%,
       oklch(65% 0.22 calc(var(--nz-hue-brand) + 50)) 46%,
       var(--nz-oklch-accent-500) 100%);
+
+    /* ====== SOMBRA DERIVADA ALGORÍTMICAMENTE ======
+       oklch(from ...) extrae luma del color base y deriva
+       la opacidad de la sombra automáticamente. Cuando el
+       usuario cambia --nz-hue-brand, las sombras se
+       recalculan sin tocar código.
+
+       Patrón: oklch(from <color> l c h) → derivamos una
+       luminosidad más baja para la capa oscura de la sombra.
+       La opacidad se calcula como función de la luma: cuanto
+       más claro el color base, más transparente la sombra.
+    */
+    --nz-oklch-brand-l: oklch(from var(--nz-oklch-brand) l c h);
+    --nz-oklch-brand-l-dark: oklch(from var(--nz-oklch-brand) calc(l - 0.15) c h);
+    --nz-oklch-brand-l-soft: oklch(from var(--nz-oklch-brand) calc(l + 0.12) c h);
+
+    /* Sombra brand derivada: capa oscura + tinte del brand */
+    --nz-shadow-brand-oklch:
+      0 14px 34px oklch(from var(--nz-oklch-brand) calc(l - 0.25) calc(c * 0.6) h / 0.35),
+      0 24px 54px oklch(from var(--nz-oklch-brand) calc(l - 0.18) calc(c * 0.8) h / 0.18);
+
+    /* Sombra accent derivada */
+    --nz-shadow-accent-oklch:
+      0 14px 34px oklch(from var(--nz-oklch-accent) calc(l - 0.25) calc(c * 0.6) h / 0.35),
+      0 24px 54px oklch(from var(--nz-oklch-accent) calc(l - 0.18) calc(c * 0.8) h / 0.18);
+
+    /* Sombra aurora derivada: mezcla brand + accent */
+    --nz-shadow-aurora-oklch:
+      0 16px 36px oklch(from var(--nz-oklch-brand) calc(l - 0.22) calc(c * 0.7) h / 0.28),
+      0 26px 54px oklch(from var(--nz-oklch-accent) calc(l - 0.20) calc(c * 0.7) h / 0.20);
+
+    /* Sombra genérica derivada del brand — capa de base oscura */
+    --nz-shadow-base-oklch:
+      0 1px 2px oklch(from var(--nz-oklch-brand) calc(l - 0.60) calc(c * 0.1) h / 0.08),
+      0 8px 24px oklch(from var(--nz-oklch-brand) calc(l - 0.30) calc(c * 0.5) h / 0.10);
+
+    /* Alias para uso directo en componentes */
+    --nz-shadow-sm-oklch: var(--nz-shadow-base-oklch);
+    --nz-shadow-md-oklch:
+      0 12px 32px oklch(from var(--nz-oklch-brand) calc(l - 0.35) calc(c * 0.5) h / 0.12),
+      0 20px 48px oklch(from var(--nz-oklch-brand) calc(l - 0.28) calc(c * 0.6) h / 0.12);
+    --nz-shadow-lg-oklch:
+      0 24px 56px oklch(from var(--nz-oklch-brand) calc(l - 0.40) calc(c * 0.5) h / 0.18),
+      0 28px 80px oklch(from var(--nz-oklch-brand) calc(l - 0.32) calc(c * 0.6) h / 0.14);
   }
 
   /* ============================================================

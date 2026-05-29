@@ -57,3 +57,22 @@
 - **Referencia:** MDN Blog, CSS-Tricks — oportunidad #3 de investigación
 - **Estado:** ✅ aplicado
 - **Commit:** `88f9624`
+
+---
+
+## 2026-05-29 — Iteración #4 (Mejora CSS #4)
+
+- **Mejora:** Sombras derivadas algorítmicamente con `oklch(from ...)` — color system dinámico
+- **Archivo:** `ntizar.next.css` (bloque `.nz[data-nz-color-system="oklch"]`)
+- **Motivo:** Cuando el usuario cambia `--nz-hue-brand`, las sombras deberían recalcularse automáticamente. Antes usaban `rgba()` con valores hardcodeados (37, 99, 235). Ahora se derivan de `oklch(from var(--nz-oklch-brand) calc(l - 0.25) calc(c * 0.6) h / 0.35)` que extrae la luminosidad, croma y matiz del color brand y calcula una versión más oscura para la capa de sombra.
+- **Nuevos tokens:**
+  - `--nz-oklch-brand-l` / `--nz-oklch-brand-l-dark` / `--nz-oklch-brand-l-soft` — extracción y derivación de luminosidad
+  - `--nz-shadow-brand-oklch` — sombra brand derivada del color brand
+  - `--nz-shadow-accent-oklch` — sombra accent derivada del color accent
+  - `--nz-shadow-aurora-oklch` — sombra aurora (mezcla brand + accent)
+  - `--nz-shadow-base-oklch` — sombra genérica de base oscura
+  - `--nz-shadow-sm-oklch` / `--nz-shadow-md-oklch` / `--nz-shadow-lg-oklch` — alias para uso en componentes
+- **Soporte:** Chrome 112+, Safari 16.4+, Firefox 127+
+- **Referencia:** Smashing Magazine "Algorithmic Theming Engines: Building Self-Correcting Color Systems With contrast-color()" (may 2026), MDN "Using relative colors" — oportunidad #4 de investigación
+- **Estado:** ✅ aplicado
+- **Commit:** pendiente
