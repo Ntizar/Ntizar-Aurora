@@ -193,7 +193,13 @@
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
     gap: var(--nz-space-5);
   }
+
+  /* ---------- Rendimiento: content-visibility en feature-grid ----------
+     Omite renderizado de features fuera de viewport. Ideal para landings
+     con grids de 6+ features. Soporte: Chrome 85+, Firefox 123+, Safari 17.4+
+  */
   .nz :where(.nz-feature) {
+    contain-intrinsic-size: auto 280px;
     padding: var(--nz-space-5);
     background: var(--nz-surface-glass);
     border: 1px solid var(--nz-border-soft);
@@ -234,6 +240,13 @@
   }
 
   /* ---------- pricing ---------- */
+  /* ---------- Rendimiento: content-visibility en pricing-card ----------
+     Útil cuando hay 3+ planes de precios en una página.
+  */
+  .nz :where(.nz-pricing-card) {
+    contain-intrinsic-size: auto 400px;
+  }
+
   .nz :where(.nz-pricing-grid) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
