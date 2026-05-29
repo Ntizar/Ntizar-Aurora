@@ -27,6 +27,19 @@
   .nz :where(.nz-stat-grid--3) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .nz :where(.nz-stat-grid--4) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+  /* ---------- Rendimiento: content-visibility en grids de stats ----------
+     Omite renderizado de celdas fuera de viewport. Mejora dramática en
+     dashboards con 12+ stat-tiles. Soporte: Chrome 85+, Firefox 123+, Safari 17.4+
+     Uso: <div class="nz-stat-grid nz-stat-grid--4"> ... </div>
+  */
+  .nz :where(.nz-stat-grid) {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px;
+  }
+  .nz :where(.nz-stat-grid--2, .nz-stat-grid--3, .nz-stat-grid--4) {
+    contain-intrinsic-size: auto 300px;
+  }
+
   @media (max-width: 860px) {
     .nz :where(.nz-stat-grid--2, .nz-stat-grid--3, .nz-stat-grid--4) {
       grid-template-columns: 1fr 1fr;
@@ -72,6 +85,14 @@
     background: linear-gradient(135deg,
       color-mix(in srgb, var(--nz-color-brand) 10%, transparent),
       color-mix(in srgb, var(--nz-color-accent) 10%, transparent) 100%);
+  }
+
+  /* ---------- Rendimiento: content-visibility en KPIs ----------
+     Útil cuando hay muchos KPIs en un dashboard (12+ elementos).
+     El navegador omite el renderizado hasta que el KPI entra en viewport.
+  */
+  .nz :where(.nz-kpi) {
+    contain-intrinsic-size: auto 180px;
   }
 
   .nz :where(.nz-kpi__label) {
