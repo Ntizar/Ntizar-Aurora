@@ -145,8 +145,8 @@
     --nz-shadow-accent: 0 14px 34px rgba(249, 115, 22, 0.22), 0 24px 54px rgba(251, 146, 60, 0.12);
     --nz-shadow-aurora: 0 16px 36px rgba(37, 99, 235, 0.20), 0 26px 54px rgba(249, 115, 22, 0.16);
 
-    --nz-ring: 0 0 0 3px color-mix(in srgb, var(--nz-color-brand) 24%, transparent);
-    --nz-ring-danger: 0 0 0 3px rgba(220, 38, 38, 0.20);
+    --nz-ring: 0 0 0 1px var(--nz-surface-base), 0 0 0 3px color-mix(in srgb, var(--nz-color-brand) 24%, transparent);
+    --nz-ring-danger: 0 0 0 1px var(--nz-surface-base), 0 0 0 3px rgba(220, 38, 38, 0.20);
     --nz-inset-highlight: rgba(255, 255, 255, 0.24);
     --nz-glass-stroke: inset 0 1px 0 rgba(255, 255, 255, 0.46);
     --nz-glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.20) 20%, rgba(255, 255, 255, 0.06) 34%, transparent 62%);
@@ -223,8 +223,8 @@
     --nz-shadow-accent: 0 20px 44px rgba(249, 115, 22, 0.24), 0 12px 28px rgba(194, 65, 12, 0.18);
     --nz-shadow-aurora: 0 18px 42px rgba(37, 99, 235, 0.24), 0 28px 58px rgba(249, 115, 22, 0.18);
 
-    --nz-ring: 0 0 0 3px color-mix(in srgb, var(--nz-color-brand-soft) 28%, transparent);
-    --nz-ring-danger: 0 0 0 3px rgba(248, 113, 113, 0.24);
+    --nz-ring: 0 0 0 1px var(--nz-surface-base), 0 0 0 3px color-mix(in srgb, var(--nz-color-brand-soft) 28%, transparent);
+    --nz-ring-danger: 0 0 0 1px var(--nz-surface-base), 0 0 0 3px rgba(248, 113, 113, 0.24);
     --nz-inset-highlight: rgba(255, 255, 255, 0.08);
     --nz-glass-stroke: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     --nz-glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.03) 34%, transparent 62%);

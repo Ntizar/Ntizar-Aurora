@@ -17,8 +17,14 @@
 - **Commit:** `c54474d`
 - **Referencia:** Investigación scroll-driven animations (tendencia CSS 2026, CSS-Tricks)
 
-### Job #3 — Mejora CSS #2 (30/05/2026 03:00 UTC)
-- **Estado:** Pendiente
+### Job #3 — Mejora CSS #2 (30/05/2026 03:00 UTC) ✅
+- **Estado:** Completado
+- **Mejora:** Drawer nativo con `:open` pseudo-class — soporte `<dialog>` sin JS
+- **Archivo:** `ntizar.ui.css` + `INDEX.md`
+- **Detalles:** Añadir `.nz :where(dialog.nz-drawer):open { transform: translateX(0); }` para que el drawer funcione con `<dialog class="nz-drawer">` nativo. Mantener fallback `.is-open` para div-based. Documentar patrón en INDEX.md.
+- **Motivo:** La pseudo-clase `:open` es Baseline en todos los navegadores (Safari 26.5+). Permite usar `<dialog>` nativo para drawers sin necesidad de JS para toggle de clases. Mismo patrón que `.nz-modal` ya soporta.
+- **Commit:** `241788e`
+- **Referencia:** Investigación `:open` pseudo-class (CSS-Tricks "What's !important #11", May 2026)
 
 ### Job #4 — Mejora CSS #3 + Reaprendizaje (30/05/2026 04:00 UTC)
 - **Estado:** Pendiente
