@@ -415,7 +415,10 @@
   }
   .nz :where(.nz-modal__close):hover { background: var(--nz-surface-base); }
 
-  /* ---------- drawer ---------- */
+  /* ---------- drawer ----------
+     RECOMENDADO: <dialog class="nz-drawer"> nativo con :open
+     Alternativa con div: <div class="nz-drawer is-open">
+  */
   .nz :where(.nz-drawer) {
     position: fixed;
     top: 0; bottom: 0;
@@ -433,7 +436,10 @@
     right: 0; left: auto;
     transform: translateX(100%);
   }
-  .nz :where(.nz-drawer.is-open) { transform: translateX(0); }
+  /* :open pseudo-class — nativo, sin JS */
+  .nz :where(dialog.nz-drawer):open { transform: translateX(0); }
+  /* Fallback para div + .is-open */
+  .nz :where(div.nz-drawer.is-open) { transform: translateX(0); }
   @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .nz :where(.nz-drawer) {
       -webkit-backdrop-filter: var(--nz-backdrop-blur-strong) saturate(1.3);
