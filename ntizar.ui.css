@@ -318,6 +318,16 @@
     border-color: var(--nz-border-default);
     box-shadow: var(--nz-shadow-sm);
   }
+  /* :has() — cuando el details está abierto, el summary cambia a color brand */
+  .nz :where(.nz-accordion__item):has([open]) > summary {
+    color: var(--nz-color-brand);
+  }
+  /* :has() — hover sobre cualquier parte del item resalta toda la fila */
+  .nz :where(.nz-accordion__item):hover {
+    border-color: var(--nz-color-brand);
+    box-shadow: var(--nz-shadow-sm);
+    background: color-mix(in oklch, var(--nz-color-brand) 4%, var(--nz-surface-base));
+  }
   .nz :where(.nz-accordion__item) > summary {
     list-style: none;
     cursor: pointer;
