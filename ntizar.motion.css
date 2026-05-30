@@ -185,34 +185,42 @@
      al scroll del viewport. Fallback graceful en navegadores que no soporten
      `animation-timeline` (Firefox, Safari).
      Soporte: Chrome 115+, Edge 115+
+     Mejora 2026-05-30: usa tokens CSS para offset y duración, consistente
+     con el resto del sistema Aurora.
   */
   .nz :where(.nz-reveal--scroll) {
     opacity: 0;
-    transform: translateY(1.25rem);
+    transform: translateY(var(--nz-reveal-offset, 1.25rem));
     animation: nz-scroll-reveal linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 35%;
   }
   .nz :where(.nz-reveal--scroll.nz-reveal--left) {
-    transform: translateX(-1.5rem);
+    transform: translateX(var(--nz-reveal-offset-inline, -1.5rem));
   }
   .nz :where(.nz-reveal--scroll.nz-reveal--right) {
-    transform: translateX(1.5rem);
+    transform: translateX(var(--nz-reveal-offset-inline, 1.5rem));
   }
   .nz :where(.nz-reveal--scroll.nz-reveal--scale) {
-    transform: scale(0.94);
+    transform: scale(var(--nz-reveal-scale-start, 0.94));
   }
 
   @keyframes nz-scroll-reveal {
     from {
       opacity: 0;
-      transform: translateY(1.25rem);
+      transform: translateY(var(--nz-reveal-offset, 1.25rem));
     }
     to {
       opacity: 1;
       transform: none;
     }
   }
+
+  /* ---------- REVEAL con scroll-driven + dirección personalizada ----------
+     Uso:
+       <div class="nz-reveal nz-reveal--scroll" style="--nz-reveal-offset: 2rem;">…</div>
+     Permite personalizar el offset de entrada sin modificar el CSS.
+  */
 
   /* ---------- REVEAL proporcional al scroll (parallax suave) ----------
      Uso:

@@ -95,7 +95,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 | **Animaciones de entrada** | motion | `.nz-anim-fade-in/--rise/--scale-in/--slide-left/--slide-right` + `.nz-anim--delay-1..6`, `--slow`, `--fast`, `--once` |
 | **Animaciones permanentes** | motion | `.nz-anim-glow-pulse`, `.nz-anim-float`, `.nz-anim-aurora-pan`, `.nz-anim-shimmer` |
 | **Ticker / marquee** | motion | `.nz-marquee` > `.nz-marquee__track` (`--slow/--fast`) |
-| **Reveal on scroll** | motion | `.nz-reveal[--left/--right/--scale]` + IO que añada `.is-visible` |
+| **Reveal on scroll** | motion | `.nz-reveal[--left/--right/--scale]` + IO que añada `.is-visible` · `.nz-reveal--scroll` (CSS puro, sin JS, `animation-timeline: view()`) · tokens: `--nz-reveal-offset`, `--nz-reveal-offset-inline`, `--nz-reveal-scale-start` |
 | **Hover lift suave** | motion | `.nz-hover-lift` |
 | **Texto degradado / glow / utilidades varias** | core | `.u-nz-text-gradient`, `.u-nz-text-gradient-brand`, `.u-nz-bg-aurora`, `.u-nz-glow[-accent/-aurora]`, `.u-nz-num`, `.u-nz-text-mono`, `.u-nz-text-center/right/left`, `.u-nz-rounded-{sm,md,lg,xl,pill}`, `.u-nz-gap-{1..5}`, `.u-nz-aspect-{square,video,cinema}`, `.u-nz-hide-sm`, `.u-nz-show-sm-only` |
 | **Formulario rico** (switch, otp, range, file, stepper) | forms | `.nz-switch`+`__input/__track/__thumb`, `.nz-check[--accent]`, `.nz-radio[--accent]`, `.nz-range`, `.nz-otp`+`.nz-otp__cell`, `.nz-file`+`.nz-file__drop`, `.nz-stepper`+`.nz-stepper__step--active/--done`, `.nz-input-group`+`.nz-input-group__addon`, `.nz-search[--lg]`, `.nz-form-grid[--2]`+`.nz-field--full`. Label: `.nz-label` o alias `.nz-field__label` |
