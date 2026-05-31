@@ -2054,6 +2054,92 @@ L.marker([40.4168, -3.7038], {
       </section>
 
 <!-- ========================================================
+     PACK · PATTERNS — Nav Glass
+     ======================================================== -->
+      <section class="gx-showcase gx-section-anchor" id="pack-patterns-nav-glass" data-pack="patterns" data-status="new">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Patrón · nav glass</span>
+          <h2 class="gx-showcase__title">Navegación glass con backdrop-blur</h2>
+          <p class="gx-showcase__sub"><code>.nz-nav--glass</code> crea una barra de navegación fija con efecto cristal: fondo semitransparente, <code>backdrop-filter: blur()</code>, borde inferior translúcido. Links con hover/active, CTA opcional, responsive en móvil.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot">ntizar.patterns.css</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot">opt-in</span>
+          </div>
+        </div>
+        <div class="gx-showcase__body">
+
+<!-- Nav glass demo — con fondo colorido detrás para ver el efecto glass -->
+<div style="position:relative; border-radius:var(--nz-radius-xl); overflow:hidden; border:1px solid var(--nz-border-soft);">
+  <!-- Fondo colorido detrás del nav -->
+  <div style="position:absolute; inset:0; background: radial-gradient(ellipse at 30% 40%, color-mix(in srgb, var(--nz-color-brand) 45%, transparent), transparent 60%), radial-gradient(ellipse at 70% 70%, color-mix(in srgb, var(--nz-color-accent) 40%, transparent), transparent 55%), var(--nz-surface-page); z-index:0;"></div>
+
+  <!-- Nav glass -->
+  <nav class="nz-nav--glass" style="position:relative; z-index:1;">
+    <a class="nz-nav--glass__brand" href="#">Aurora<span class="nz-accent">.css</span></a>
+    <div class="nz-nav--glass__links">
+      <a class="is-active" href="#">Inicio</a>
+      <a href="#">Docs</a>
+      <a href="#">Componentes</a>
+      <a href="#">Ejemplos</a>
+    </div>
+    <div class="nz-nav--glass__cta">
+      <button class="nz-btn nz-btn--primary nz-btn--sm">Empezar</button>
+    </div>
+  </nav>
+
+  <!-- Contenido de ejemplo -->
+  <div style="position:relative; z-index:0; padding:2rem;">
+    <h3 style="font-family:var(--nz-font-display); font-weight:800; font-size:1.5rem; color:var(--nz-text-strong); margin:0 0 0.5rem;">Contenido detrás del nav glass</h3>
+    <p class="nz-text-muted" style="margin:0 0 1rem;">Desplázate para ver cómo el nav mantiene el efecto glass sobre el contenido colorido.</p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem;">
+      <div class="nz-card" style="background:var(--nz-surface-glass); border:1px solid var(--nz-border-soft); padding:1.25rem; border-radius:var(--nz-radius-lg);">
+        <div style="font-weight:700; color:var(--nz-text-strong); margin-bottom:0.25rem;">Componentes</div>
+        <div class="nz-text-sm nz-text-muted">Botones, cards, badges, campos, alertas y más.</div>
+      </div>
+      <div class="nz-card" style="background:var(--nz-surface-glass); border:1px solid var(--nz-border-soft); padding:1.25rem; border-radius:var(--nz-radius-lg);">
+        <div style="font-weight:700; color:var(--nz-text-strong); margin-bottom:0.25rem;">Patrones</div>
+        <div class="nz-text-sm nz-text-muted">App shell, hero, pricing, FAQ, footer y nav glass.</div>
+      </div>
+      <div class="nz-card" style="background:var(--nz-surface-glass); border:1px solid var(--nz-border-soft); padding:1.25rem; border-radius:var(--nz-radius-lg);">
+        <div style="font-weight:700; color:var(--nz-text-strong); margin-bottom:0.25rem;">Zero JS</div>
+        <div class="nz-text-sm nz-text-muted">Todo CSS. Sin build, sin dependencias, sin npm.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <details>
+          <summary>API del bloque</summary>
+          <div class="nz-prose">
+            <p><code>.nz-nav--glass</code> crea una barra de navegación sticky con efecto glass: <code>backdrop-filter: blur(18px) saturate(1.3)</code>, fondo <code>var(--nz-surface-glass)</code>, borde inferior <code>var(--nz-border-glass)</code>.</p>
+            <p>Componentes hijos: <code>.nz-nav--glass__brand</code> (logo con gradiente accent), <code>.nz-nav--glass__links</code> (links con hover/active), <code>.nz-nav--glass__cta</code> (botón CTA). Responsive: en pantallas ≤700px los links pasan a una segunda fila.</p>
+          </div>
+        </details>
+        <details data-code>
+          <summary>HTML del bloque</summary>
+          <div class="gx-snippet">
+            <button class="gx-snippet__copy" type="button">Copiar</button>
+            <pre><code>&lt;nav class="nz-nav--glass"&gt;
+  &lt;a class="nz-nav--glass__brand" href="#"&gt;
+    MiApp&lt;span class="nz-accent"&gt;.css&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;div class="nz-nav--glass__links"&gt;
+    &lt;a class="is-active" href="#"&gt;Inicio&lt;/a&gt;
+    &lt;a href="#"&gt;Docs&lt;/a&gt;
+    &lt;a href="#"&gt;Componentes&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="nz-nav--glass__cta"&gt;
+    &lt;button class="nz-btn nz-btn--primary nz-btn--sm"&gt;Empezar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </details>
+      </section>
+
+
+
+<!-- ========================================================
            PACK · NEXT  (v5 disruptive layer)
            ======================================================== -->
       <section class="gx-showcase gx-section-anchor" id="pack-next" data-pack="next" data-status="new">

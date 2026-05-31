@@ -8,6 +8,7 @@
 
    API pública:
      .nz-app-shell, .nz-app-shell__sidebar, .nz-app-shell__header, .nz-app-shell__main
+     .nz-nav--glass, .nz-nav--glass__brand, .nz-nav--glass__links, .nz-nav--glass__cta
      .nz-hero, .nz-hero--split, .nz-hero--centered, .nz-hero__eyebrow, .nz-hero__title, .nz-hero__sub, .nz-hero__cta
      .nz-feature-grid, .nz-feature
      .nz-pricing-grid, .nz-pricing-card (--featured)
@@ -19,6 +20,7 @@
      .nz-cta-banner
      .nz-logo-cloud
      .nz-stats-banner
+     .nz-bento-grid, .nz-bento-grid__cell
    ============================================================ */
 
 @layer ntizar.components {
@@ -105,6 +107,89 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  /* ---------- nav glass pattern ---------- */
+  /* Navegación con efecto glass: backdrop-blur, borde inferior translúcido,
+     fondo semitransparente. Ideal para apps con contenido detrás del nav.
+     Compatible con .nz-app-shell y standalone. */
+  .nz :where(.nz-nav--glass) {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--nz-surface-glass);
+    border-bottom: 1px solid var(--nz-border-glass);
+    backdrop-filter: var(--nz-backdrop-blur) saturate(1.3);
+    -webkit-backdrop-filter: var(--nz-backdrop-blur) saturate(1.3);
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__brand {
+    font-family: var(--nz-font-display);
+    font-weight: 800;
+    font-size: var(--nz-text-lg);
+    color: var(--nz-text-strong);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__brand > .nz-accent {
+    background: var(--nz-gradient-accent);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+    flex-wrap: wrap;
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > a,
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > button {
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--nz-radius-sm);
+    color: var(--nz-text-muted);
+    font-weight: 600;
+    font-size: var(--nz-text-sm);
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background var(--nz-duration-fast) var(--nz-ease-standard),
+                color var(--nz-duration-fast) var(--nz-ease-standard);
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > a:hover,
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > button:hover {
+    background: var(--nz-surface-soft);
+    color: var(--nz-text-strong);
+  }
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > a.is-active,
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__links > button.is-active {
+    background: var(--nz-surface-brand-soft);
+    color: var(--nz-status-info-text);
+  }
+  /* Botón CTA en el nav */
+  .nz :where(.nz-nav--glass) > .nz-nav--glass__cta {
+    margin-left: 0.5rem;
+  }
+  /* Responsive: colapsar links en móvil */
+  @media (max-width: 700px) {
+    .nz :where(.nz-nav--glass) {
+      flex-wrap: wrap;
+      padding: 0.5rem 1rem;
+    }
+    .nz :where(.nz-nav--glass) > .nz-nav--glass__links {
+      order: 3;
+      width: 100%;
+      justify-content: flex-start;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--nz-border-soft);
+      margin-left: 0;
+    }
+  }
+
   @media (max-width: 900px) {
     .nz :where(.nz-app-shell) {
       grid-template-columns: 1fr;
