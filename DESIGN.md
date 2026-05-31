@@ -410,6 +410,11 @@ API pública completa documentada en [INDEX.md](INDEX.md) y demostrada en [galle
 - ✅ `.nz-surface--soft` — agrupaciones secundarias.
 - ✅ `.nz-surface--raised` — panel protagonista.
 - ✅ `.nz-surface--glass*` — overlays sobre fondo con contenido (hero, mapas, viz).
+- ✅ **Sistema tonal**: `.nz-surface--{brand,accent,success,danger,warning}-{soft,raised,pressed,glass}` — superficies con identidad de color.
+  - **soft**: tinte muy suave, para highlights y fondos de sección.
+  - **raised**: superficie elevada con borde sutil + sombra del color.
+  - **pressed**: superficie hundida (inset shadow), para estado activo/pressed.
+  - **glass**: superficie con backdrop-blur + borde translúcido del color.
 - ❌ **No anidar `glass-strong` dentro de otra surface glass.** El efecto se cancela y aumenta el coste de `backdrop-filter`.
 - ❌ No usar glass sobre fondo plano blanco — no aporta nada y degrada legibilidad.
 

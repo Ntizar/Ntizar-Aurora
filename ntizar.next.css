@@ -95,6 +95,99 @@
     --nz-mesh-3: oklch(75% 0.20 var(--nz-hue-accent));
     --nz-mesh-4: oklch(68% 0.16 calc(var(--nz-hue-accent) - 30));
 
+    /* ====== OKLCH ESCALAS COMPLETAS ======
+       Escalas success, danger, warning para usar en
+       tokens tonales de superficie y gradientes. */
+    --nz-oklch-success-50:  oklch(97% var(--nz-chroma-soft) var(--nz-hue-success));
+    --nz-oklch-success-100: oklch(94% var(--nz-chroma-soft) var(--nz-hue-success));
+    --nz-oklch-success-200: oklch(88% var(--nz-chroma-soft) var(--nz-hue-success));
+    --nz-oklch-success-300: oklch(80% var(--nz-chroma)       var(--nz-hue-success));
+    --nz-oklch-success-400: oklch(72% var(--nz-chroma)       var(--nz-hue-success));
+    --nz-oklch-success-500: oklch(62% var(--nz-chroma-strong) var(--nz-hue-success));
+    --nz-oklch-success-600: oklch(55% var(--nz-chroma-strong) var(--nz-hue-success));
+    --nz-oklch-success-700: oklch(48% var(--nz-chroma-strong) var(--nz-hue-success));
+    --nz-oklch-success-800: oklch(40% var(--nz-chroma)        var(--nz-hue-success));
+    --nz-oklch-success-900: oklch(32% var(--nz-chroma)        var(--nz-hue-success));
+
+    --nz-oklch-danger-50:  oklch(97% var(--nz-chroma-soft) var(--nz-hue-danger));
+    --nz-oklch-danger-100: oklch(94% var(--nz-chroma-soft) var(--nz-hue-danger));
+    --nz-oklch-danger-200: oklch(88% var(--nz-chroma-soft) var(--nz-hue-danger));
+    --nz-oklch-danger-300: oklch(80% var(--nz-chroma)       var(--nz-hue-danger));
+    --nz-oklch-danger-400: oklch(72% var(--nz-chroma)       var(--nz-hue-danger));
+    --nz-oklch-danger-500: oklch(62% var(--nz-chroma-strong) var(--nz-hue-danger));
+    --nz-oklch-danger-600: oklch(55% var(--nz-chroma-strong) var(--nz-hue-danger));
+    --nz-oklch-danger-700: oklch(48% var(--nz-chroma-strong) var(--nz-hue-danger));
+    --nz-oklch-danger-800: oklch(40% var(--nz-chroma)        var(--nz-hue-danger));
+    --nz-oklch-danger-900: oklch(32% var(--nz-chroma)        var(--nz-hue-danger));
+
+    --nz-oklch-warning-50:  oklch(97% var(--nz-chroma-soft) var(--nz-hue-warning));
+    --nz-oklch-warning-100: oklch(94% var(--nz-chroma-soft) var(--nz-hue-warning));
+    --nz-oklch-warning-200: oklch(88% var(--nz-chroma-soft) var(--nz-hue-warning));
+    --nz-oklch-warning-300: oklch(80% var(--nz-chroma)       var(--nz-hue-warning));
+    --nz-oklch-warning-400: oklch(72% var(--nz-chroma)       var(--nz-hue-warning));
+    --nz-oklch-warning-500: oklch(62% var(--nz-chroma-strong) var(--nz-hue-warning));
+    --nz-oklch-warning-600: oklch(55% var(--nz-chroma-strong) var(--nz-hue-warning));
+    --nz-oklch-warning-700: oklch(48% var(--nz-chroma-strong) var(--nz-hue-warning));
+    --nz-oklch-warning-800: oklch(40% var(--nz-chroma)        var(--nz-hue-warning));
+    --nz-oklch-warning-900: oklch(32% var(--nz-chroma)        var(--nz-hue-warning));
+
+    /* ====== SISTEMA DE TONALIDAD DE SUPERFICIES ======
+       Cada color (brand, accent, success, danger, warning)
+       tiene 4 tonalidades de superficie:
+         -soft:   tinte muy suave, para fondos de sección / highlight
+         -raised: superficie elevada con borde sutil + sombra
+         -pressed: superficie hundida, para estado activo/pressed
+         -glass:  superficie con backdrop-blur + borde translúcido
+
+       Uso:
+         <div class="nz-surface nz-surface--brand-soft">...</div>
+         <div class="nz-surface nz-surface--brand-raised">...</div>
+         <div class="nz-surface nz-surface--brand-pressed">...</div>
+         <div class="nz-surface nz-surface--brand-glass">...</div>
+
+       Los tokens se sobrescriben en dark mode (ver abajo).
+    */
+
+    /* Tokens tonales brand — light */
+    --nz-surface-brand-soft:  color-mix(in oklch, var(--nz-oklch-brand-500) 8%, var(--nz-surface-base));
+    --nz-surface-brand-raised: oklch(97% 0.015 var(--nz-hue-brand));
+    --nz-surface-brand-pressed: oklch(94% 0.025 var(--nz-hue-brand));
+    --nz-surface-brand-glass: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      oklch(from var(--nz-oklch-brand-500) l c h / 0.12) 100%);
+
+    /* Tokens tonales accent — light */
+    --nz-surface-accent-soft:  color-mix(in oklch, var(--nz-oklch-accent-500) 8%, var(--nz-surface-base));
+    --nz-surface-accent-raised: oklch(97% 0.015 var(--nz-hue-accent));
+    --nz-surface-accent-pressed: oklch(94% 0.025 var(--nz-hue-accent));
+    --nz-surface-accent-glass: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      oklch(from var(--nz-oklch-accent-500) l c h / 0.12) 100%);
+
+    /* Tokens tonales success — light */
+    --nz-surface-success-soft:  color-mix(in oklch, var(--nz-oklch-success-500) 8%, var(--nz-surface-base));
+    --nz-surface-success-raised: oklch(97% 0.015 var(--nz-hue-success));
+    --nz-surface-success-pressed: oklch(94% 0.025 var(--nz-hue-success));
+    --nz-surface-success-glass: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      oklch(from var(--nz-oklch-success-500) l c h / 0.12) 100%);
+
+    /* Tokens tonales danger — light */
+    --nz-surface-danger-soft:  color-mix(in oklch, var(--nz-oklch-danger-500) 8%, var(--nz-surface-base));
+    --nz-surface-danger-raised: oklch(97% 0.015 var(--nz-hue-danger));
+    --nz-surface-danger-pressed: oklch(94% 0.025 var(--nz-hue-danger));
+    --nz-surface-danger-glass: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      oklch(from var(--nz-oklch-danger-500) l c h / 0.12) 100%);
+
+    /* Tokens tonales warning — light */
+    --nz-surface-warning-soft:  color-mix(in oklch, var(--nz-oklch-warning-500) 8%, var(--nz-surface-base));
+    --nz-surface-warning-raised: oklch(97% 0.015 var(--nz-hue-warning));
+    --nz-surface-warning-pressed: oklch(94% 0.025 var(--nz-hue-warning));
+    --nz-surface-warning-glass: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.72) 0%,
+      oklch(from var(--nz-oklch-warning-500) l c h / 0.12) 100%);
+
     /* ====== AUTO-CONTRAST ======
        color-contrast() está en spec pero implementación variable.
        Estrategia: usar light-dark() (Baseline 2024) cuando aplique,
@@ -118,7 +211,7 @@
       oklch(65% 0.22 calc(var(--nz-hue-brand) + 50)) 46%,
       var(--nz-oklch-accent-500) 100%);
 
-    /* ====== SOMBRA DERIVADA ALGORÍTMICAMENTE ======
+  /* ====== SOMBRA DERIVADA ALGORÍTMICAMENTE ======
        oklch(from ...) extrae luma del color base y deriva
        la opacidad de la sombra automáticamente. Cuando el
        usuario cambia --nz-hue-brand, las sombras se

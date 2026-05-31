@@ -2298,6 +2298,137 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
         </details>
       </section>
 
+      <section class="gx-showcase gx-section-anchor" id="pack-next-surface-tonal" data-pack="next" data-status="new">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Sistema tonal de superficies</span>
+          <h2 class="gx-showcase__title">Superficies con identidad de color</h2>
+          <p class="gx-showcase__sub">Cada color (brand, accent, success, danger, warning) tiene 4 variantes: soft (tinte suave), raised (elevada con borde), pressed (hundida con inset shadow), glass (backdrop-blur translúcido). Funciona en light y dark.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--primary nz-badge--no-dot">next</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot gx-showcase__status"></span>
+          </div>
+        </div>
+        <div class="gx-showcase__body">
+          <!-- LIGHT MODE DEMO -->
+          <h3 class="gx-showcase__subtitle">Tema light</h3>
+          <div class="nz-stack" style="gap: var(--nz-space-6);">
+            <!-- Brand tonals -->
+            <div>
+              <h4 class="gx-showcase__label" style="color: var(--nz-color-brand); margin-bottom: var(--nz-space-3);">Brand</h4>
+              <div class="nz-stack" style="gap: var(--nz-space-3);">
+                <div class="nz-surface nz-surface--brand-soft" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-soft</strong> — tinte suave para highlights
+                </div>
+                <div class="nz-surface nz-surface--brand-raised" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-raised</strong> — elevada con borde sutil
+                </div>
+                <div class="nz-surface nz-surface--brand-pressed" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-pressed</strong> — hundida (estado activo)
+                </div>
+                <div class="nz-surface nz-surface--brand-glass" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-glass</strong> — backdrop-blur translúcido
+                </div>
+              </div>
+            </div>
+            <!-- Accent tonals -->
+            <div>
+              <h4 class="gx-showcase__label" style="color: var(--nz-color-accent); margin-bottom: var(--nz-space-3);">Accent</h4>
+              <div class="nz-stack" style="gap: var(--nz-space-3);">
+                <div class="nz-surface nz-surface--accent-soft" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-soft</strong> — tinte suave
+                </div>
+                <div class="nz-surface nz-surface--accent-raised" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-raised</strong> — elevada
+                </div>
+                <div class="nz-surface nz-surface--accent-pressed" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-pressed</strong> — hundida
+                </div>
+                <div class="nz-surface nz-surface--accent-glass" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-glass</strong> — glass
+                </div>
+              </div>
+            </div>
+            <!-- Status tonals -->
+            <div>
+              <h4 class="gx-showcase__label" style="margin-bottom: var(--nz-space-3);">Estados</h4>
+              <div class="nz-stack" style="gap: var(--nz-space-3);">
+                <div class="nz-surface nz-surface--success-raised" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--success-raised</strong> — panel de éxito elevado
+                </div>
+                <div class="nz-surface nz-surface--danger-soft" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--danger-soft</strong> — tinte de alerta
+                </div>
+                <div class="nz-surface nz-surface--warning-pressed" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--warning-pressed</strong> — estado de atención
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DARK MODE DEMO -->
+          <h3 class="gx-showcase__subtitle" style="margin-top: var(--nz-space-6);">Tema dark</h3>
+          <div class="nz-stack" style="gap: var(--nz-space-6);" data-nz-theme="dark">
+            <div>
+              <h4 class="gx-showcase__label" style="color: var(--nz-color-brand); margin-bottom: var(--nz-space-3);">Brand</h4>
+              <div class="nz-stack" style="gap: var(--nz-space-3);">
+                <div class="nz-surface nz-surface--brand-soft" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-soft</strong> — tinte suave
+                </div>
+                <div class="nz-surface nz-surface--brand-raised" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-raised</strong> — elevada
+                </div>
+                <div class="nz-surface nz-surface--brand-pressed" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-pressed</strong> — hundida
+                </div>
+                <div class="nz-surface nz-surface--brand-glass" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--brand-glass</strong> — glass
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 class="gx-showcase__label" style="color: var(--nz-color-accent); margin-bottom: var(--nz-space-3);">Accent</h4>
+              <div class="nz-stack" style="gap: var(--nz-space-3);">
+                <div class="nz-surface nz-surface--accent-soft" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-soft</strong>
+                </div>
+                <div class="nz-surface nz-surface--accent-raised" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-raised</strong>
+                </div>
+                <div class="nz-surface nz-surface--accent-pressed" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-pressed</strong>
+                </div>
+                <div class="nz-surface nz-surface--accent-glass" style="padding: var(--nz-space-4); border-radius: var(--nz-radius-md);">
+                  <strong>--accent-glass</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <details>
+          <summary style="cursor: pointer; color: var(--nz-color-brand); font-weight: 600;">Ver código</summary>
+          <div style="margin-top: var(--nz-space-4);">
+            <pre><code class="language-html">&lt;!-- Soft: tinte muy suave --&gt;
+&lt;div class="nz-surface nz-surface--brand-soft"&gt;...&lt;/div&gt;
+
+&lt;!-- Raised: elevada con borde + sombra --&gt;
+&lt;div class="nz-surface nz-surface--brand-raised"&gt;...&lt;/div&gt;
+
+&lt;!-- Pressed: hundida con inset shadow --&gt;
+&lt;div class="nz-surface nz-surface--brand-pressed"&gt;...&lt;/div&gt;
+
+&lt;!-- Glass: backdrop-blur translúcido --&gt;
+&lt;div class="nz-surface nz-surface--brand-glass"&gt;...&lt;/div&gt;
+
+&lt;!-- Variantes: brand, accent, success, danger, warning --&gt;
+&lt;div class="nz-surface nz-surface--success-raised"&gt;...&lt;/div&gt;
+&lt;div class="nz-surface nz-surface--danger-soft"&gt;...&lt;/div&gt;
+&lt;div class="nz-surface nz-surface--warning-pressed"&gt;...&lt;/div&gt;
+&lt;div class="nz-surface nz-surface--warning-glass"&gt;...&lt;/div&gt;</code></pre>
+          </div>
+        </details>
+      </section>
+
+      
       <section class="gx-showcase gx-section-anchor" id="rules" data-pack="core" data-status="stable">
         <div class="gx-showcase__head">
           <span class="gx-showcase__kicker">Reglas de uso</span>

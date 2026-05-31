@@ -73,7 +73,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 
 | Necesito… | Pack | Clases clave |
 |---|---|---|
-|| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside/--subgrid`, `.nz-grid--subgrid--2/--subgrid--3`, `.nz-stack[--sm/--md/--lg]`, `.nz-cluster`, `.nz-surface[--glass*]` |
+|| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside/--subgrid`, `.nz-grid--subgrid--2/--subgrid--3`, `.nz-stack[--sm/--md/--lg]`, `.nz-cluster`, `.nz-surface[--glass*|--brand-soft|--brand-raised|--brand-pressed|--brand-glass|--accent-soft|--accent-raised|--accent-pressed|--accent-glass|--success-soft|--success-raised|--success-pressed|--success-glass|--danger-soft|--danger-raised|--danger-pressed|--danger-glass|--warning-soft|--warning-raised|--warning-pressed|--warning-glass]` |
 | **Botones, cards, badges, alerts, callouts, fields, tablas, código** | core | `.nz-btn--primary/--accent/--brand-mix/--glass*/--ghost/--danger`, `.nz-card[--glass*]`, `.nz-badge--primary/--accent/--brand/--success/--warning/--danger/--glass*`, `.nz-alert`, `.nz-callout--tip/--info/--warn/--danger`, `.nz-codeblock`, `.nz-table` |
 | **Tipografía utilitaria** (titulares, texto secundario, sutil) | core | `.nz-text-h1/--h2/--h3/--h4`, `.nz-text-sm`, `.nz-text-muted`, `.u-nz-text-strong`, `.u-nz-text-muted` |
 | **Cambiar paleta** (sigue siendo Ntizar) | themes | `data-nz-skin="aurora\|sunset\|midnight\|ocean\|citrus"` |
@@ -124,7 +124,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 Familias completas:
 
 - **Color**: `--nz-color-brand[-strong/-soft]`, `--nz-color-accent[-strong/-soft]`, escalas `--nz-color-{blue,orange,violet,cyan,pink,green,red,yellow,slate}-{50..950}`
-- **Surface**: `--nz-surface-{page,base,soft,raised,glass-soft,glass,glass-strong,glass-brand,glass-accent,brand-soft,accent-soft}`
+- **Surface**: `--nz-surface-{page,base,soft,raised,glass-soft,glass,glass-strong,glass-brand,glass-accent,brand-soft,accent-soft}` + **tonal system**: `--nz-surface-{brand,accent,success,danger,warning}-{soft,raised,pressed,glass}`
 - **Text**: `--nz-text-{strong,default,muted,soft,inverse,on-brand}`
 - **Border**: `--nz-border-{soft,default,strong,brand,accent,glass}`
 - **Shadow**: `--nz-shadow-{sm,md,lg,brand,accent,aurora}`
