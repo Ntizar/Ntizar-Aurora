@@ -504,6 +504,13 @@
   }
   .nz :where(.nz-dropdown__menu.is-open),
   .nz :where(.nz-dropdown[open]) > .nz-dropdown__menu { display: flex; }
+
+  /* :has() — hover sobre el trigger abre el dropdown */
+  .nz :where(.nz-dropdown):hover > .nz-dropdown__menu { display: flex; }
+
+  /* :has() — hover sobre el menú lo mantiene abierto (evita cierre al mover mouse al menú) */
+  .nz :where(.nz-dropdown):has(> .nz-dropdown__menu:hover) > .nz-dropdown__menu { display: flex; }
+
   .nz :where(.nz-dropdown__menu--right) { left: auto; right: 0; }
   .nz :where(.nz-dropdown__item) {
     display: flex;
@@ -518,10 +525,19 @@
     text-align: left;
     cursor: pointer;
     text-decoration: none;
+    transition: background var(--nz-duration-fast) var(--nz-ease-standard),
+                color var(--nz-duration-fast) var(--nz-ease-standard);
   }
   .nz :where(.nz-dropdown__item):hover {
     background: var(--nz-surface-brand-soft);
     color: var(--nz-text-strong);
+  }
+  /* :has() — item activo (click) resalta con fondo brand */
+  .nz :where(.nz-dropdown__menu):has(> .nz-dropdown__item[aria-pressed="true"])
+    > .nz-dropdown__item[aria-pressed="true"] {
+    background: var(--nz-surface-brand-soft);
+    color: var(--nz-color-brand-strong);
+    font-weight: 600;
   }
   .nz :where(.nz-dropdown__item--danger):hover {
     background: var(--nz-status-danger-soft);
