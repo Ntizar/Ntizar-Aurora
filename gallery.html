@@ -2557,11 +2557,19 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
 
     themeBtn.addEventListener('click', () => {
       const dark = root.dataset.nzTheme === 'dark';
-      root.dataset.nzTheme = dark ? 'light' : 'dark';
+      const newTheme = dark ? 'light' : 'dark';
       syncThemeLabel();
       renderFoundations();
       renderCharts();
       syncThreeColors();
+      // View transition para cambio suave de tema
+      if (document.startViewTransition) {
+        document.startViewTransition(() => {
+          root.dataset.nzTheme = newTheme;
+        });
+      } else {
+        root.dataset.nzTheme = newTheme;
+      }
     });
 
     codeToggle.addEventListener('click', () => {
@@ -2578,10 +2586,18 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
         group.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
         button.setAttribute('aria-pressed', 'true');
         if (button.dataset.skin) {
-          root.dataset.nzSkin = button.dataset.skin;
+          const newSkin = button.dataset.skin;
           renderFoundations();
           renderCharts();
           syncThreeColors();
+          // View transition para cambio suave de skin
+          if (document.startViewTransition) {
+            document.startViewTransition(() => {
+              root.dataset.nzSkin = newSkin;
+            });
+          } else {
+            root.dataset.nzSkin = newSkin;
+          }
         }
       });
     });

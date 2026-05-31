@@ -650,11 +650,63 @@
 }
 
 /* ============================================================
-   7. PREFERS-REDUCED-MOTION respect (refuerzo)
+   8. VIEW TRANSITIONS — cambio suave de skin/tema
+   ============================================================
+   Cuando el skin o el tema cambian, la View Transitions API
+   anima la transición de colores (~300ms) en lugar de un
+   cambio instantáneo. Degradación grácil: si la API no está
+   disponible (Firefox, Safari antiguo), el cambio ocurre
+   normalmente sin animación.
+
+   Uso: envolver el cambio de atributo en
+   document.startViewTransition(() => { root.dataset.nzSkin = ... })
+  */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Animación de transición de skin/tema */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: nz-theme-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: nz-theme-fade-in;
+}
+
+@keyframes nz-theme-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes nz-theme-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   9. PREFERS-REDUCED-MOTION respect (refuerzo)
    ============================================================
    Si el usuario pide motion reducido, congelamos el mesh y los
-   highlights de liquid glass. */
+   highlights de liquid glass. También desactivamos view transitions. */
 @media (prefers-reduced-motion: reduce) {
+  /* Desactivar view transitions cuando el usuario prefiere
+     menos movimiento — la transición se vuelve instantánea */
+  * {
+    view-transition-name: none !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+
   .nz :where(.nz-aurora-mesh--animated)::before {
     animation: none !important;
   }
