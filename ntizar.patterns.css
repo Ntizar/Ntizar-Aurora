@@ -565,4 +565,90 @@
     color: var(--nz-text-muted);
     font-size: var(--nz-text-sm);
   }
+
+  /* ---------- bento grid ---------- */
+  /* Layout asimétrico inspirado en Apple, Linear, Figma.
+     Grid con áreas nombradas via grid-template-areas.
+     Modificadores: --span-2 (2 cols), --span-3 (3 cols), --span-full (fila completa)
+     Responsive: se convierte en stack en pantallas pequeñas.
+     Compatible con .nz-card--glass dentro de las celdas.
+  */
+  .nz :where(.nz-bento-grid) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(140px, auto);
+    gap: var(--nz-space-4);
+  }
+  .nz :where(.nz-bento-grid__cell) {
+    border-radius: var(--nz-radius-xl);
+    border: 1px solid var(--nz-border-soft);
+    background: var(--nz-surface-glass);
+    padding: var(--nz-space-5);
+    display: grid;
+    gap: var(--nz-space-3);
+    overflow: hidden;
+    transition: transform var(--nz-duration-base) var(--nz-ease-standard),
+                border-color var(--nz-duration-base) var(--nz-ease-standard),
+                box-shadow var(--nz-duration-base) var(--nz-ease-standard);
+  }
+  .nz :where(.nz-bento-grid__cell):hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--nz-color-brand) 25%, var(--nz-border-soft));
+    box-shadow: var(--nz-shadow-md);
+  }
+  /* Modificadores de tamaño */
+  .nz :where(.nz-bento-grid__cell--span-2) {
+    grid-column: span 2;
+  }
+  .nz :where(.nz-bento-grid__cell--span-3) {
+    grid-column: span 3;
+  }
+  .nz :where(.nz-bento-grid__cell--span-full) {
+    grid-column: 1 / -1;
+  }
+  .nz :where(.nz-bento-grid__cell--tall) {
+    grid-row: span 2;
+  }
+  .nz :where(.nz-bento-grid__cell--wide) {
+    grid-column: span 2;
+  }
+  /* Variantes de contenido */
+  .nz :where(.nz-bento-grid__cell) > .nz-text-h2,
+  .nz :where(.nz-bento-grid__cell) > .nz-text-h3,
+  .nz :where(.nz-bento-grid__cell) > .nz-text-h4 {
+    margin: 0;
+  }
+  .nz :where(.nz-bento-grid__cell) > .nz-badge {
+    align-self: start;
+  }
+  /* Cell con gráfico Chart.js embebido */
+  .nz :where(.nz-bento-grid__cell) > .nz-chart {
+    height: 100%;
+    min-height: 160px;
+  }
+  /* Responsive: stack en pantallas pequeñas */
+  @media (max-width: 900px) {
+    .nz :where(.nz-bento-grid) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .nz :where(.nz-bento-grid__cell--span-3),
+    .nz :where(.nz-bento-grid__cell--span-full) {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 600px) {
+    .nz :where(.nz-bento-grid) {
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+    }
+    .nz :where(.nz-bento-grid__cell--span-2),
+    .nz :where(.nz-bento-grid__cell--span-3),
+    .nz :where(.nz-bento-grid__cell--span-full),
+    .nz :where(.nz-bento-grid__cell--wide) {
+      grid-column: span 1;
+    }
+    .nz :where(.nz-bento-grid__cell--tall) {
+      grid-row: span 1;
+    }
+  }
 }

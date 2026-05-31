@@ -62,7 +62,7 @@ Reglas duras:
 | `ntizar.motion.css` | motion | Animaciones reveal/rise/scale/glow/aurora-pan/shimmer, marquee, typing, hover-lift | Quieras dar vida sin escribir keyframes |
 | `ntizar.forms.css` | forms | Switch, custom check/radio, range, OTP, file drop, stepper, input-group, search field, form-grid | Necesites formularios ricos accesibles |
 | `ntizar.ui.css` | ui | Modal, drawer, tabs, accordion, dropdown menu, toast, tooltip CSS-only, breadcrumbs, segmented, chips, paginación, command-bar, spinner, divider con label, tag-input | Construyas overlays / interacciones |
-| `ntizar.patterns.css` | patterns | App-shell con sidebar, hero (centered/split), feature-grid, pricing, FAQ, footer, auth-shell, empty-state, error-page, cta-banner, logo-cloud, stats-banner | Compongas páginas completas |
+| `ntizar.patterns.css` | patterns | App-shell con sidebar, hero (centered/split), feature-grid, pricing, FAQ, footer, auth-shell, empty-state, error-page, cta-banner, logo-cloud, stats-banner, **bento-grid** | Compongas páginas completas |
 | `ntizar.next.css` | **v5 next** | **Liquid Glass real** (`--glass-liquid` con specular highlight + chromatic edge + dual inset shadow + saturate backdrop), **Aurora Mesh** (`.nz-aurora-mesh[--animated\|--glass\|--hero]`), **OKLCH color system** paralelo (`--nz-oklch-*`, activable con `data-nz-color-system="oklch"`), **multi-axis theming** (`data-nz-shape`, `data-nz-density`, `data-nz-motion`), **skin contrast (WCAG AAA)**, **forced-colors mode** | Quieras la capa disruptiva 2026 sin tocar el core |
 
 Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisiones.
@@ -104,6 +104,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 | **App shell / sidebar / nav** | patterns | `.nz-app-shell`+`__sidebar/__header/__main`, `.nz-nav-section`, `.nz-nav-item[.is-active][data-nz-accent]` |
 | **Hero / features / pricing / faq / footer** | patterns | `.nz-hero[--centered/--split]`+`__inner/__eyebrow/__title (.nz-accent)/__sub/__cta/__visual`, `.nz-feature-grid`+`.nz-feature[--accent]`+`__icon/__title/__body`, `.nz-pricing-grid`+`.nz-pricing-card[--featured]`+`__name/__price/__amount/__period/__list/__badge`, `.nz-faq` (usa accordion), `.nz-footer`+`__inner/__cols/__col/__bottom` |
 | **Auth / vacíos / errores / banners** | patterns | `.nz-auth-shell`+`__panel/__art`, `.nz-empty-state`+`__icon/__title`, `.nz-error-page`+`__code/__title/__sub`, `.nz-cta-banner`+`__title/__sub`, `.nz-logo-cloud`, `.nz-stats-banner` |
+| **Bento grid layout** | patterns | `.nz-bento-grid`+`.nz-bento-grid__cell[--span-2/--span-3/--span-full/--wide/--tall]` |
 
 ---
 

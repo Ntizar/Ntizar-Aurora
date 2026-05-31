@@ -1859,7 +1859,112 @@ L.marker([40.4168, -3.7038], {
         </details>
       </section>
 
+      
       <!-- ========================================================
+           BENTO GRID — Demo
+           ======================================================== -->
+      <section class="gx-showcase gx-section-anchor" id="bento-grid" data-pack="patterns" data-status="new">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Patrones · Bento Grid</span>
+          <h2 class="gx-showcase__title">Bento Grid</h2>
+          <p class="gx-showcase__sub">Layout asimétrico inspirado en Apple, Linear y Figma. Celdas de diferentes tamaños que se adaptan al contenido.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--primary">patterns</span>
+            <span class="nz-badge nz-badge--accent">nuevo</span>
+          </div>
+        </div>
+        <div class="gx-showcase__live">
+
+          <!-- Bento Grid Demo -->
+          <div class="nz-bento-grid">
+            <!-- Celda grande izquierda -->
+            <div class="nz-bento-grid__cell nz-bento-grid__cell--span-2 nz-bento-grid__cell--tall">
+              <span class="nz-badge nz-badge--brand nz-badge--no-dot">Principal</span>
+              <h3 class="nz-text-h3">Métricas en tiempo real</h3>
+              <p class="nz-text-muted" style="margin:0">Grid asimétrico con celdas de diferentes tamaños. Esta celda ocupa 2 columnas y 2 filas.</p>
+              <div style="margin-top:auto">
+                <div class="nz-kpi nz-kpi--accent" style="margin-top:1rem">
+                  <div class="nz-kpi__value">2.4M</div>
+                  <div class="nz-kpi__label">Sesiones hoy</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Celda pequeña alta -->
+            <div class="nz-bento-grid__cell nz-bento-grid__cell--tall">
+              <span class="nz-badge nz-badge--neutral nz-badge--no-dot">Rendimiento</span>
+              <h4 class="nz-text-h4" style="margin:0">Uptime</h4>
+              <div class="nz-progress" style="margin-top:0.5rem" role="progressbar" aria-valuenow="99.9" aria-valuemin="0" aria-valuemax="100">
+                <div class="nz-progress__bar" style="width: 99.9%"></div>
+              </div>
+              <div style="margin-top:auto; font-size:1.5rem; font-weight:800; color:var(--nz-color-success); font-family:var(--nz-font-display)">99.9%</div>
+            </div>
+
+            <!-- Celda ancha -->
+            <div class="nz-bento-grid__cell nz-bento-grid__cell--span-2">
+              <span class="nz-badge nz-badge--accent nz-badge--no-dot">Análisis</span>
+              <h4 class="nz-text-h4" style="margin:0">Tráfico por canal</h4>
+              <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; margin-top:0.75rem">
+                <div style="text-align:center">
+                  <div style="font-size:1.25rem; font-weight:700; color:var(--nz-color-brand)">42%</div>
+                  <div class="nz-text-sm" style="color:var(--nz-text-muted)">Orgánico</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:1.25rem; font-weight:700; color:var(--nz-color-accent)">31%</div>
+                  <div class="nz-text-sm" style="color:var(--nz-text-muted)">Social</div>
+                </div>
+                <div style="text-align:center">
+                  <div style="font-size:1.25rem; font-weight:700; color:var(--nz-color-violet)">27%</div>
+                  <div class="nz-text-sm" style="color:var(--nz-text-muted)">Directo</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Celda pequeña -->
+            <div class="nz-bento-grid__cell">
+              <span class="nz-badge nz-badge--success nz-badge--no-dot">Estado</span>
+              <h4 class="nz-text-h4" style="margin:0">API</h4>
+              <div style="margin-top:auto; display:flex; align-items:center; gap:0.5rem">
+                <span style="width:0.6rem;height:0.6rem;border-radius:50%;background:var(--nz-color-success);display:inline-block"></span>
+                <span class="nz-text-sm" style="color:var(--nz-text-strong)">Operativo</span>
+              </div>
+            </div>
+
+            <!-- Celda pequeña -->
+            <div class="nz-bento-grid__cell">
+              <span class="nz-badge nz-badge--primary nz-badge--no-dot">Latencia</span>
+              <h4 class="nz-text-h4" style="margin:0">P95</h4>
+              <div style="margin-top:auto; font-size:1.5rem; font-weight:800; color:var(--nz-color-brand); font-family:var(--nz-font-display)">42ms</div>
+            </div>
+          </div>
+
+        </div>
+        <details>
+          <summary>API del bloque</summary>
+          <div class="nz-prose">
+            <p><code>.nz-bento-grid</code> crea un grid de 4 columnas con filas mínimas de 140px. Las celdas usan modificadores para controlar el tamaño: <code>--span-2</code> (2 cols), <code>--span-3</code> (3 cols), <code>--span-full</code> (fila completa), <code>--tall</code> (2 filas), <code>--wide</code> (2 cols). Responsive: 2 cols a 900px, 1 col a 600px.</p>
+          </div>
+        </details>
+        <details data-code>
+          <summary>HTML del bloque</summary>
+          <div class="gx-snippet">
+            <button class="gx-snippet__copy" type="button">Copiar</button>
+            <pre><code>&lt;div class="nz-bento-grid"&gt;
+  &lt;div class="nz-bento-grid__cell nz-bento-grid__cell--span-2 nz-bento-grid__cell--tall"&gt;
+    &lt;!-- Celda grande 2x2 --&gt;
+  &lt;/div&gt;
+  &lt;div class="nz-bento-grid__cell nz-bento-grid__cell--tall"&gt;
+    &lt;!-- Celda alta 1x2 --&gt;
+  &lt;/div&gt;
+  &lt;div class="nz-bento-grid__cell nz-bento-grid__cell--span-2"&gt;
+    &lt;!-- Celda ancha 2x1 --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </details>
+      </section>
+
+<!-- ========================================================
            PACK · NEXT  (v5 disruptive layer)
            ======================================================== -->
       <section class="gx-showcase gx-section-anchor" id="pack-next" data-pack="next" data-status="new">
