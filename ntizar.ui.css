@@ -300,6 +300,16 @@
     background: var(--nz-gradient-brand);
     border-radius: 2px;
   }
+  /* :has() — tab activo resalta toda la columna vertical (list + panel) */
+  .nz :where(.nz-tabs):has(.nz-tab[aria-selected="true"], .nz-tab.nz-tab--active) {
+    background: color-mix(in oklch, var(--nz-color-brand) 3%, transparent);
+    border-radius: var(--nz-radius-md);
+    padding: 0.25rem;
+  }
+  /* :has() — hover sobre tab → previsualización sutil del panel */
+  .nz :where(.nz-tabs):has(.nz-tab:hover) .nz-tabs__panel {
+    border-top: 2px solid var(--nz-color-brand);
+  }
 
   /* ---------- accordion (basado en <details>/<summary>) ---------- */
   .nz :where(.nz-accordion) {
