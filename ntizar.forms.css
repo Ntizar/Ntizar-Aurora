@@ -426,6 +426,90 @@
     border-color: var(--nz-color-success);
   }
 
+  /* ---------- glass input (coherencia visual Liquid Glass) ----------
+     Variante glass para inputs, selects y textareas.
+     Usa backdrop-blur, fondo semitransparente y borde translúcido.
+     Coherente con .nz-card--glass, .nz-btn--glass, .nz-surface--glass.
+     Uso: <input class="nz-input nz-input--glass" placeholder="Buscar...">
+     Soporte: Chrome 76+, Firefox 103+, Safari 15.4+ (~95%+ tráfico)
+  */
+  .nz :where(.nz-input--glass, .nz-select--glass, .nz-textarea--glass) {
+    background: var(--nz-surface-glass-soft) !important;
+    border: 1px solid var(--nz-border-glass);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  .nz :where(.nz-input--glass, .nz-select--glass, .nz-textarea--glass):hover {
+    background: var(--nz-surface-glass) !important;
+    border-color: color-mix(in srgb, var(--nz-color-brand) 30%, var(--nz-border-default));
+  }
+  .nz :where(.nz-input--glass, .nz-select--glass, .nz-textarea--glass):focus {
+    background: var(--nz-surface-glass) !important;
+    border-color: var(--nz-color-brand);
+    box-shadow:
+      var(--nz-ring),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  .nz :where(.nz-input--glass, .nz-select--glass, .nz-textarea--glass)::placeholder {
+    color: var(--nz-text-muted);
+    opacity: 0.85;
+  }
+  /* Variante glass fuerte */
+  .nz :where(.nz-input--glass-strong, .nz-select--glass-strong, .nz-textarea--glass-strong) {
+    background: var(--nz-surface-glass-strong) !important;
+    border: 1px solid var(--nz-border-glass);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .nz :where(.nz-input--glass-strong, .nz-select--glass-strong, .nz-textarea--glass-strong):hover {
+    background: color-mix(in srgb, var(--nz-surface-glass-strong) 85%, var(--nz-color-brand)) !important;
+  }
+  .nz :where(.nz-input--glass-strong, .nz-select--glass-strong, .nz-textarea--glass-strong):focus {
+    background: color-mix(in srgb, var(--nz-surface-glass-strong) 90%, var(--nz-color-brand)) !important;
+    border-color: var(--nz-color-brand);
+    box-shadow: var(--nz-ring), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  /* Variante glass brand */
+  .nz :where(.nz-input--glass-brand, .nz-select--glass-brand, .nz-textarea--glass-brand) {
+    background: var(--nz-surface-glass-brand) !important;
+    border: 1px solid color-mix(in srgb, var(--nz-color-brand) 20%, transparent);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 2px 8px rgba(96, 165, 250, 0.1);
+  }
+  .nz :where(.nz-input--glass-brand, .nz-select--glass-brand, .nz-textarea--glass-brand):hover {
+    border-color: color-mix(in srgb, var(--nz-color-brand) 40%, transparent);
+  }
+  .nz :where(.nz-input--glass-brand, .nz-select--glass-brand, .nz-textarea--glass-brand):focus {
+    border-color: var(--nz-color-brand);
+    box-shadow: var(--nz-ring), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  /* Variante glass accent */
+  .nz :where(.nz-input--glass-accent, .nz-select--glass-accent, .nz-textarea--glass-accent) {
+    background: var(--nz-surface-glass-accent) !important;
+    border: 1px solid color-mix(in srgb, var(--nz-color-accent) 20%, transparent);
+    backdrop-filter: blur(12px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 2px 8px rgba(251, 146, 60, 0.1);
+  }
+  .nz :where(.nz-input--glass-accent, .nz-select--glass-accent, .nz-textarea--glass-accent):hover {
+    border-color: color-mix(in srgb, var(--nz-color-accent) 40%, transparent);
+  }
+  .nz :where(.nz-input--glass-accent, .nz-select--glass-accent, .nz-textarea--glass-accent):focus {
+    border-color: var(--nz-color-accent);
+    box-shadow: var(--nz-ring), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
   /* ---------- form layout helper ---------- */
   .nz :where(.nz-form-grid) {
     display: grid;
