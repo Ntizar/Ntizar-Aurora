@@ -1276,6 +1276,52 @@
   .nz :where(.nz-table) tbody tr + tr td {
     border-top: 1px solid var(--nz-border-soft);
   }
+
+  /* ---------- v5.2: Glass Tables (.nz-table--glass) ---------- */
+
+  .nz :where(.nz-table--glass) {
+    background: color-mix(in oklch, var(--nz-surface-base) 65%, transparent);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid color-mix(in oklch, var(--nz-color-brand) 15%, transparent);
+    border-radius: var(--nz-radius-xl);
+    box-shadow:
+      var(--nz-shadow-sm),
+      inset 0 1px 0 color-mix(in oklch, white 12%, transparent),
+      inset 0 -1px 0 color-mix(in oklch, black 8%, transparent);
+  }
+
+  .nz :where(.nz-table--glass) th {
+    background: color-mix(in oklch, var(--nz-surface-base) 50%, transparent);
+    backdrop-filter: blur(12px) saturate(1.3);
+    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+    border-bottom: 1px solid color-mix(in oklch, var(--nz-color-brand) 20%, transparent);
+  }
+
+  .nz :where(.nz-table--glass) td {
+    background: color-mix(in oklch, var(--nz-surface-base) 40%, transparent);
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
+    border-bottom: 1px solid color-mix(in oklch, var(--nz-color-brand) 10%, transparent);
+  }
+
+  .nz :where(.nz-table--glass) tbody tr:hover td {
+    background: color-mix(in oklch, var(--nz-color-brand) 8%, var(--nz-surface-base));
+    backdrop-filter: blur(10px) saturate(1.3);
+    -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  }
+
+  .nz :where(.nz-table--glass) tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .nz :where(.nz-table--glass) .nz-table-wrap {
+    border: none;
+    box-shadow:
+      0 4px 24px color-mix(in oklch, var(--nz-color-brand) 8%, transparent),
+      0 1px 3px color-mix(in oklch, black 10%, transparent),
+      inset 0 1px 0 color-mix(in oklch, white 15%, transparent);
+  }
 }
 
 @layer ntizar.utilities {
