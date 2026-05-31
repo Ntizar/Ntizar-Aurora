@@ -73,7 +73,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 
 | Necesito… | Pack | Clases clave |
 |---|---|---|
-| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside`, `.nz-stack[--sm/--md/--lg]`, `.nz-cluster`, `.nz-surface[--glass*]` |
+|| **Layout** de página (container, section, grid, stack, surface) | core | `.nz-container`, `.nz-section`, `.nz-grid--2/--3/--aside/--subgrid`, `.nz-grid--subgrid--2/--subgrid--3`, `.nz-stack[--sm/--md/--lg]`, `.nz-cluster`, `.nz-surface[--glass*]` |
 | **Botones, cards, badges, alerts, callouts, fields, tablas, código** | core | `.nz-btn--primary/--accent/--brand-mix/--glass*/--ghost/--danger`, `.nz-card[--glass*]`, `.nz-badge--primary/--accent/--brand/--success/--warning/--danger/--glass*`, `.nz-alert`, `.nz-callout--tip/--info/--warn/--danger`, `.nz-codeblock`, `.nz-table` |
 | **Tipografía utilitaria** (titulares, texto secundario, sutil) | core | `.nz-text-h1/--h2/--h3/--h4`, `.nz-text-sm`, `.nz-text-muted`, `.u-nz-text-strong`, `.u-nz-text-muted` |
 | **Cambiar paleta** (sigue siendo Ntizar) | themes | `data-nz-skin="aurora\|sunset\|midnight\|ocean\|citrus"` |

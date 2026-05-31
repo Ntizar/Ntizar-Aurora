@@ -423,6 +423,24 @@
     grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
   }
 
+  /* ----- Subgrid — layouts anidados con alineación perfecta ----- */
+  .nz :where(.nz-grid--subgrid) {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+
+  .nz :where(.nz-grid--subgrid) > :where(.nz-grid--subgrid) {
+    grid-template-columns: subgrid;
+    grid-column: span var(--nz-subgrid-span, auto);
+  }
+
+  .nz :where(.nz-grid--subgrid) > :where(.nz-grid--subgrid--2) {
+    grid-column: span 2;
+  }
+
+  .nz :where(.nz-grid--subgrid) > :where(.nz-grid--subgrid--3) {
+    grid-column: span 3;
+  }
+
   .nz :where(.nz-surface) {
     padding: var(--nz-space-5);
     border: 1px solid var(--nz-border-soft);

@@ -367,7 +367,72 @@
 &lt;/body&gt;</code></pre>
           </div>
         </details>
+      
+      <section class="gx-showcase gx-section-anchor" id="core-subgrid" data-pack="core" data-status="beta">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Core · objects</span>
+          <h2 class="gx-showcase__title">Subgrid para layouts anidados</h2>
+          <p class="gx-showcase__sub">Cuando una grid dentro de otra necesita compartir columnas con la grid padre, usa <code>.nz-grid--subgrid</code>. Los items internos se alinean perfectamente con las columnas externas.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--primary nz-badge--no-dot">ntizar.css</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot gx-showcase__status"></span>
+          </div>
+        </div>
+        <div class="gx-showcase__live nz-stack nz-stack--lg">
+          <!-- Grid padre con subgrid anidado -->
+          <div class="nz-grid nz-grid--subgrid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="nz-surface nz-stack nz-stack--sm">
+              <span class="nz-badge nz-badge--neutral nz-badge--no-dot">span 1</span>
+              <p class="nz-text-sm">Celda que ocupa 1 columna del padre</p>
+            </div>
+            <div class="nz-surface nz-stack nz-stack--sm">
+              <span class="nz-badge nz-badge--accent nz-badge--no-dot">span 2</span>
+              <p class="nz-text-sm">Celda que ocupa 2 columnas del padre</p>
+              <div class="nz-grid nz-grid--subgrid nz-grid--subgrid--2" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="nz-surface nz-surface--soft nz-stack">
+                  <span class="nz-text-xs nz-text-muted">hijo A</span>
+                </div>
+                <div class="nz-surface nz-surface--soft nz-stack">
+                  <span class="nz-text-xs nz-text-muted">hijo B</span>
+                </div>
+                <div class="nz-surface nz-surface--soft nz-stack">
+                  <span class="nz-text-xs nz-text-muted">hijo C</span>
+                </div>
+              </div>
+            </div>
+            <div class="nz-surface nz-stack nz-stack--sm">
+              <span class="nz-badge nz-badge--brand nz-badge--no-dot">span 1</span>
+              <p class="nz-text-sm">Celda que ocupa 1 columna del padre</p>
+            </div>
+          </div>
+        </div>
+        <details>
+          <summary>API del bloque</summary>
+          <div class="nz-prose">
+            <p>Claves: <code>.nz-grid--subgrid</code> (grid padre con columnas auto-fit), <code>.nz-grid--subgrid--2</code> (item ocupa 2 columnas), <code>.nz-grid--subgrid--3</code> (item ocupa 3 columnas). Los grids anidados heredan <code>grid-template-columns: subgrid</code> del padre.</p>
+          </div>
+        </details>
+        <details data-code>
+          <summary>HTML del bloque</summary>
+          <div class="gx-snippet">
+            <button class="gx-snippet__copy" type="button">Copiar</button>
+            <pre><code>&lt;div class="nz-grid nz-grid--subgrid" style="grid-template-columns: repeat(3, 1fr);"&gt;
+  &lt;div class="nz-surface"&gt;1 col&lt;/div&gt;
+  &lt;div class="nz-surface nz-grid--subgrid--2"&gt;
+    2 cols + subgrid anidado
+    &lt;div class="nz-grid nz-grid--subgrid" style="grid-template-columns: repeat(3, 1fr);"&gt;
+      &lt;div&gt;hijo A&lt;/div&gt;
+      &lt;div&gt;hijo B&lt;/div&gt;
+      &lt;div&gt;hijo C&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="nz-surface"&gt;1 col&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </details>
       </section>
+
+      <section/section>
 
       <section class="gx-showcase gx-section-anchor" id="tokens-color" data-pack="core" data-status="stable">
         <div class="gx-showcase__head">
