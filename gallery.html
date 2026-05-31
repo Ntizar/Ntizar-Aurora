@@ -729,6 +729,64 @@
 &lt;/article&gt;</code></pre>
           </div>
         </details>
+
+        <!-- Container Queries demo -->
+        <div class="gx-showcase__live nz-stack nz-stack--md" style="margin-top: var(--nz-space-6);">
+          <div class="nz-stack__label" style="font-size: var(--nz-text-sm); font-weight: 700; color: var(--nz-text-muted); text-transform: uppercase; letter-spacing: 0.08em;">Container Queries — redimensiona para ver la adaptación</div>
+          <div style="display: grid; grid-template-columns: 280px 1fr; gap: var(--nz-space-5);">
+            <div style="container-type: inline-size; container-name: card;">
+              <div style="width: 100%;">
+                <article class="nz-card nz-card--interactive nz-reveal">
+                  <div class="nz-card__header">
+                    <div>
+                      <div class="nz-card__title">Compacto</div>
+                      <div class="nz-card__meta">Contenedor estrecho</div>
+                    </div>
+                  </div>
+                  <div class="nz-card__body">Layout vertical compacto cuando el contenedor es menor de 400px. Padding reducido, gap ajustado.</div>
+                  <div class="nz-card__footer">
+                    <button class="nz-btn nz-btn--secondary nz-btn--sm">Ver</button>
+                    <button class="nz-btn nz-btn--ghost nz-btn--sm">Archivar</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div style="container-type: inline-size; container-name: card;">
+              <div style="width: 100%; min-width: 450px;">
+                <article class="nz-card nz-card--interactive nz-reveal">
+                  <div class="nz-card__header">
+                    <div>
+                      <div class="nz-card__title">Mediano</div>
+                      <div class="nz-card__meta">Contenedor medio (400-600px)</div>
+                    </div>
+                  </div>
+                  <div class="nz-card__body">Padding y gap intermedios. Layout vertical estándar con espaciado equilibrado.</div>
+                  <div class="nz-card__footer">
+                    <button class="nz-btn nz-btn--secondary nz-btn--sm">Ver</button>
+                    <button class="nz-btn nz-btn--ghost nz-btn--sm">Archivar</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div style="container-type: inline-size; container-name: card;">
+              <div style="width: 100%; min-width: 650px;">
+                <article class="nz-card nz-card--horizontal nz-reveal">
+                  <div class="nz-card__header">
+                    <div>
+                      <div class="nz-card__title">Horizontal</div>
+                      <div class="nz-card__meta">Contenedor ancho (>600px)</div>
+                    </div>
+                  </div>
+                  <div class="nz-card__body">Layout horizontal con imagen lateral. El primer hijo ocupa 40% del ancho, el resto se expande.</div>
+                  <div class="nz-card__footer">
+                    <button class="nz-btn nz-btn--secondary nz-btn--sm">Ver</button>
+                    <button class="nz-btn nz-btn--ghost nz-btn--sm">Archivar</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="gx-showcase gx-section-anchor" id="core-badges" data-pack="core" data-status="stable">

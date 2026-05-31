@@ -973,6 +973,65 @@
     border-top: 1px solid var(--nz-border-soft);
   }
 
+  /* ---------- Container Queries para `.nz-card` ----------
+     Cuando la card está dentro de un contenedor estrecho (< 400px),
+     se adapta a layout vertical compacto. En contenedores más anchos,
+     permite layout horizontal con imagen lateral.
+     Soporte: Chrome 105+, Firefox 110+, Safari 16+
+     Uso: <div style="container-type: inline-size; container-name: card;">
+            <div class="nz-card">...</div>
+          </div>
+  */
+  .nz :where(.nz-card) {
+    container-type: inline-size;
+    container-name: card;
+  }
+
+  .nz :where(.nz-card) {
+    @container card (max-width: 399px) {
+      .nz :where(.nz-card) {
+        --nz-card-hover-shadow: var(--nz-shadow-sm);
+        padding: var(--nz-space-3);
+        gap: var(--nz-space-3);
+      }
+
+      .nz :where(.nz-card__header) {
+        flex-direction: column;
+        gap: var(--nz-space-2);
+      }
+
+      .nz :where(.nz-card__footer) {
+        flex-direction: column;
+        gap: var(--nz-space-2);
+      }
+    }
+
+    @container card (min-width: 400px) and (max-width: 600px) {
+      .nz :where(.nz-card) {
+        padding: var(--nz-space-4);
+        gap: var(--nz-space-4);
+      }
+    }
+
+    @container card (min-width: 601px) {
+      .nz :where(.nz-card--horizontal) {
+        flex-direction: row;
+        align-items: stretch;
+      }
+
+      .nz :where(.nz-card--horizontal) > :first-child {
+        width: 40%;
+        min-width: 12rem;
+        border-right: 1px solid var(--nz-border-soft);
+        padding-right: var(--nz-space-4);
+      }
+
+      .nz :where(.nz-card--horizontal) > :last-child {
+        flex: 1;
+      }
+    }
+  }
+
   .nz :where(.nz-field) {
     display: grid;
     gap: 0.5rem;
