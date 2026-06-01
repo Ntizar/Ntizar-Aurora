@@ -742,6 +742,71 @@
 &lt;/div&gt;</code></pre>
           </div>
         </details>
+      <section class="gx-showcase gx-section-anchor" id="core-btn-tonal" data-pack="core" data-status="stable">
+        <div class="gx-showcase__head">
+          <span class="gx-showcase__kicker">Core · botones</span>
+          <h2 class="gx-showcase__title">Botones con superficies tonales</h2>
+          <p class="gx-showcase__sub">Variantes que heredan las superficies tonales del sistema: soft (tinte suave), raised (elevada) y pressed (hundida). Cada color tiene sus 3 variantes.</p>
+          <div class="gx-showcase__pack">
+            <span class="nz-badge nz-badge--primary nz-badge--no-dot">botones</span>
+            <span class="nz-badge nz-badge--neutral nz-badge--no-dot gx-showcase__status"></span>
+          </div>
+        </div>
+        <div class="gx-showcase__live nz-stack nz-stack--md">
+          <div>
+            <h3 style="font-size: var(--nz-text-sm); font-weight: 700; color: var(--nz-text-strong); margin-bottom: var(--nz-space-3);">SOFT — tinte suave</h3>
+            <div class="nz-cluster">
+              <button class="nz-btn nz-btn--tonal-brand-soft" type="button">Brand</button>
+              <button class="nz-btn nz-btn--tonal-accent-soft" type="button">Accent</button>
+              <button class="nz-btn nz-btn--tonal-success-soft" type="button">Success</button>
+              <button class="nz-btn nz-btn--tonal-warning-soft" type="button">Warning</button>
+              <button class="nz-btn nz-btn--tonal-danger-soft" type="button">Danger</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: var(--nz-text-sm); font-weight: 700; color: var(--nz-text-strong); margin-bottom: var(--nz-space-3);">RAISED — elevada</h3>
+            <div class="nz-cluster">
+              <button class="nz-btn nz-btn--tonal-brand-raised" type="button">Brand</button>
+              <button class="nz-btn nz-btn--tonal-accent-raised" type="button">Accent</button>
+              <button class="nz-btn nz-btn--tonal-success-raised" type="button">Success</button>
+              <button class="nz-btn nz-btn--tonal-warning-raised" type="button">Warning</button>
+              <button class="nz-btn nz-btn--tonal-danger-raised" type="button">Danger</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size: var(--nz-text-sm); font-weight: 700; color: var(--nz-text-strong); margin-bottom: var(--nz-space-3);">PRESSED — hundida</h3>
+            <div class="nz-cluster">
+              <button class="nz-btn nz-btn--tonal-brand-pressed" type="button">Brand</button>
+              <button class="nz-btn nz-btn--tonal-accent-pressed" type="button">Accent</button>
+              <button class="nz-btn nz-btn--tonal-success-pressed" type="button">Success</button>
+              <button class="nz-btn nz-btn--tonal-warning-pressed" type="button">Warning</button>
+              <button class="nz-btn nz-btn--tonal-danger-pressed" type="button">Danger</button>
+            </div>
+          </div>
+          <div class="nz-callout nz-callout--tip">
+            <span class="nz-callout__title">Regla de uso</span>
+            <div class="nz-callout__body">Usa <code>--tonal-*-soft</code> para acciones secundarias y filtros. <code>--tonal-*-raised</code> para botones de acción visibles pero no primarios. <code>--tonal-*-pressed</code> para estado activo/seleccionado (ej: filtro activo).</div>
+          </div>
+        </div>
+        <details>
+          <summary>API del bloque</summary>
+          <div class="nz-prose">
+            <p>Variantes públicas: <code>.nz-btn--tonal-{color}-{variant}</code> donde <code>color</code> es <code>brand</code>, <code>accent</code>, <code>success</code>, <code>warning</code>, <code>danger</code> y <code>variant</code> es <code>soft</code>, <code>raised</code>, <code>pressed</code>. Ejemplo: <code>.nz-btn--tonal-brand-soft</code>, <code>.nz-btn--tonal-accent-raised</code>, <code>.nz-btn--tonal-danger-pressed</code>.</p>
+          </div>
+        </details>
+        <details data-code>
+          <summary>HTML del bloque</summary>
+          <div class="gx-snippet">
+            <button class="gx-snippet__copy" type="button">Copiar</button>
+            <pre><code>&lt;div class="nz-cluster"&gt;
+  &lt;button class="nz-btn nz-btn--tonal-brand-soft"&gt;Brand soft&lt;/button&gt;
+  &lt;button class="nz-btn nz-btn--tonal-accent-raised"&gt;Accent raised&lt;/button&gt;
+  &lt;button class="nz-btn nz-btn--tonal-danger-pressed"&gt;Danger pressed&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </details>
+      </section>
+
       </section>
 
       <section class="gx-showcase gx-section-anchor" id="core-cards" data-pack="core" data-status="stable">

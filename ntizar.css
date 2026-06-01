@@ -936,6 +936,207 @@
     box-shadow: var(--nz-btn-shadow-hover);
   }
 
+  /* ---------- Tonal Button Modifiers ----------
+     Botones que usan las superficies tonales del sistema.
+     Cada color (brand, accent, success, warning, danger)
+     tiene 3 variantes: soft, raised, pressed.
+     Coherencia visual con el sistema de superficies tonales.
+     Uso: <button class="nz-btn nz-btn--tonal-brand-soft">...</button>
+  */
+
+  /* --- Tonal SOFT: fondo tinte suave, borde sutil, texto fuerte --- */
+  .nz :where(.nz-btn--tonal-brand-soft) {
+    background: var(--nz-surface-brand-soft);
+    border-color: color-mix(in srgb, var(--nz-color-brand) 18%, transparent);
+    color: var(--nz-status-info-text);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-brand-soft):hover {
+    background: color-mix(in srgb, var(--nz-color-brand) 16%, var(--nz-surface-base));
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-accent-soft) {
+    background: var(--nz-surface-accent-soft);
+    border-color: color-mix(in srgb, var(--nz-color-accent) 18%, transparent);
+    color: var(--nz-color-accent-strong);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-accent-soft):hover {
+    background: color-mix(in srgb, var(--nz-color-accent) 16%, var(--nz-surface-base));
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-success-soft) {
+    background: var(--nz-surface-success-soft);
+    border-color: var(--nz-status-success-border);
+    color: var(--nz-status-success-text);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-success-soft):hover {
+    background: color-mix(in srgb, var(--nz-color-success) 14%, var(--nz-surface-base));
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-warning-soft) {
+    background: var(--nz-surface-warning-soft);
+    border-color: var(--nz-status-warning-border);
+    color: var(--nz-status-warning-text);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-warning-soft):hover {
+    background: color-mix(in srgb, var(--nz-color-warning) 14%, var(--nz-surface-base));
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-danger-soft) {
+    background: var(--nz-surface-danger-soft);
+    border-color: var(--nz-status-danger-border);
+    color: var(--nz-status-danger-text);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-danger-soft):hover {
+    background: color-mix(in srgb, var(--nz-color-danger) 14%, var(--nz-surface-base));
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  /* --- Tonal RAISED: superficie elevada con borde + sombra sutil --- */
+  .nz :where(.nz-btn--tonal-brand-raised) {
+    background: var(--nz-surface-brand-raised);
+    border: 1px solid color-mix(in srgb, var(--nz-color-brand) 15%, transparent);
+    color: var(--nz-status-info-text);
+    --nz-btn-shadow: var(--nz-shadow-sm);
+    --nz-btn-shadow-hover: var(--nz-shadow-brand);
+  }
+  .nz :where(.nz-btn--tonal-brand-raised):hover {
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-accent-raised) {
+    background: var(--nz-surface-accent-raised);
+    border: 1px solid color-mix(in srgb, var(--nz-color-accent) 15%, transparent);
+    color: var(--nz-color-accent-strong);
+    --nz-btn-shadow: var(--nz-shadow-sm);
+    --nz-btn-shadow-hover: var(--nz-shadow-accent);
+  }
+  .nz :where(.nz-btn--tonal-accent-raised):hover {
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-success-raised) {
+    background: var(--nz-surface-success-raised);
+    border: 1px solid color-mix(in srgb, var(--nz-color-success) 15%, transparent);
+    color: var(--nz-status-success-text);
+    --nz-btn-shadow: var(--nz-shadow-sm);
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-success-raised):hover {
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-warning-raised) {
+    background: var(--nz-surface-warning-raised);
+    border: 1px solid color-mix(in srgb, var(--nz-color-warning) 15%, transparent);
+    color: var(--nz-status-warning-text);
+    --nz-btn-shadow: var(--nz-shadow-sm);
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-warning-raised):hover {
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-danger-raised) {
+    background: var(--nz-surface-danger-raised);
+    border: 1px solid color-mix(in srgb, var(--nz-color-danger) 15%, transparent);
+    color: var(--nz-status-danger-text);
+    --nz-btn-shadow: var(--nz-shadow-sm);
+    --nz-btn-shadow-hover: var(--nz-shadow-md);
+  }
+  .nz :where(.nz-btn--tonal-danger-raised):hover {
+    box-shadow: var(--nz-btn-shadow-hover);
+  }
+
+  /* --- Tonal PRESSED: superficie hundida para estado activo/seleccionado --- */
+  .nz :where(.nz-btn--tonal-brand-pressed) {
+    background: var(--nz-surface-brand-pressed);
+    border: 1px solid color-mix(in srgb, var(--nz-color-brand) 22%, transparent);
+    color: var(--nz-status-info-text);
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-brand) 18%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-brand) 8%, transparent);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-brand);
+  }
+  .nz :where(.nz-btn--tonal-brand-pressed):hover {
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-brand) 22%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-brand) 10%, transparent),
+                var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-accent-pressed) {
+    background: var(--nz-surface-accent-pressed);
+    border: 1px solid color-mix(in srgb, var(--nz-color-accent) 22%, transparent);
+    color: var(--nz-color-accent-strong);
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-accent) 18%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-accent) 8%, transparent);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-accent);
+  }
+  .nz :where(.nz-btn--tonal-accent-pressed):hover {
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-accent) 22%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-accent) 10%, transparent),
+                var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-success-pressed) {
+    background: var(--nz-surface-success-pressed);
+    border: 1px solid color-mix(in srgb, var(--nz-color-success) 22%, transparent);
+    color: var(--nz-status-success-text);
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-success) 18%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-success) 8%, transparent);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-success-pressed):hover {
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-success) 22%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-success) 10%, transparent),
+                var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-warning-pressed) {
+    background: var(--nz-surface-warning-pressed);
+    border: 1px solid color-mix(in srgb, var(--nz-color-warning) 22%, transparent);
+    color: var(--nz-status-warning-text);
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-warning) 18%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-warning) 8%, transparent);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-sm);
+  }
+  .nz :where(.nz-btn--tonal-warning-pressed):hover {
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-warning) 22%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-warning) 10%, transparent),
+                var(--nz-btn-shadow-hover);
+  }
+
+  .nz :where(.nz-btn--tonal-danger-pressed) {
+    background: var(--nz-surface-danger-pressed);
+    border: 1px solid color-mix(in srgb, var(--nz-color-danger) 22%, transparent);
+    color: var(--nz-status-danger-text);
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-danger) 18%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-danger) 8%, transparent);
+    --nz-btn-shadow: none;
+    --nz-btn-shadow-hover: var(--nz-shadow-md);
+  }
+  .nz :where(.nz-btn--tonal-danger-pressed):hover {
+    box-shadow: inset 0 1px 3px color-mix(in srgb, var(--nz-color-danger) 22%, transparent),
+                inset 0 -1px 2px color-mix(in srgb, var(--nz-color-danger) 10%, transparent),
+                var(--nz-btn-shadow-hover);
+  }
+
   @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .nz :where(.nz-btn--glass, .nz-btn--glass-brand, .nz-btn--glass-accent) {
       -webkit-backdrop-filter: var(--nz-backdrop-blur-soft) saturate(1.18);
