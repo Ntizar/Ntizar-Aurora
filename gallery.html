@@ -1758,6 +1758,22 @@ L.marker([40.4168, -3.7038], {
                 </div>
               </div>
 
+              <!-- CSS-only dropdown: checkbox + :has() -->
+              <div class="nz-dropdown" style="margin-top:0.5rem">
+                <input type="checkbox" class="nz-dropdown__toggle" id="gx-dd-css">
+                <label class="nz-btn nz-btn--secondary" for="gx-dd-css">CSS-only ▾</label>
+                <div class="nz-dropdown__menu">
+                  <button class="nz-dropdown__item">Editar</button>
+                  <button class="nz-dropdown__item">Duplicar</button>
+                  <button class="nz-dropdown__item">Exportar</button>
+                  <div class="nz-dropdown__sep"></div>
+                  <button class="nz-dropdown__item nz-dropdown__item--danger">Eliminar</button>
+                </div>
+              </div>
+              <p class="nz-text-sm" style="color:var(--nz-text-muted);margin-top:0.25rem">
+                <em>Dropdown CSS-only: clic en el botón abre/cierra (checkbox + :has()). Hover también funciona.</em>
+              </p>
+
               <h3 class="nz-text-h4" style="margin-top:1rem">Tooltip · Spinner · Chips</h3>
               <div class="nz-cluster">
                 <span class="nz-tooltip" data-tip="Tooltip CSS-only" tabindex="0">

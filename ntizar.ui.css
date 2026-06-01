@@ -13,8 +13,10 @@
      .nz-tabs, .nz-tabs__list, .nz-tab (--active), .nz-tabs__panel
      .nz-accordion, .nz-accordion__item, summary, body
         - usa <details>/<summary> nativo
-     .nz-dropdown, .nz-dropdown__menu, .nz-dropdown__item
-        - usa [popover] o .is-open
+     .nz-dropdown, .nz-dropdown__toggle, .nz-dropdown__label, .nz-dropdown__menu, .nz-dropdown__item
+        - CSS-only: checkbox hack + :has() (input.nz-dropdown__toggle:checked → menú abierto)
+        - Hover también abre (alternativa)
+        - Compatibilidad JS: .is-open / [open] siguen funcionando
      .nz-toast, .nz-toast-stack (--top-right, --top-center, --bottom-right)
      .nz-tooltip[data-tip] (CSS-only via data-attr)
      .nz-breadcrumbs, .nz-breadcrumbs__item, .nz-breadcrumbs__sep
@@ -467,19 +469,37 @@
     }
   }
 
-  /* ---------- dropdown menu ----------
+  /* ---------- dropdown menu — CSS-only con :has() ----------
      <div class="nz-dropdown">
-       <button class="nz-btn nz-btn--secondary">Acciones ▾</button>
-       <div class="nz-dropdown__menu is-open">
+       <input type="checkbox" class="nz-dropdown__toggle" id="dd-toggle-1">
+       <label class="nz-btn nz-btn--secondary" for="dd-toggle-1">Acciones ▾</label>
+       <div class="nz-dropdown__menu">
          <button class="nz-dropdown__item">Editar</button>
          …
        </div>
      </div>
+
+     CSS-only: checkbox hack + :has() para apertura/cierre sin JS.
+     Hover también funciona como alternativa.
+     Escape no cierra (limitación CSS): usar click fuera o reabrir con hover.
   */
   .nz :where(.nz-dropdown) {
     position: relative;
     display: inline-block;
   }
+  /* Checkbox oculto — estado del dropdown */
+  .nz :where(.nz-dropdown__toggle) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  /* Menú oculto por defecto */
   .nz :where(.nz-dropdown__menu) {
     position: absolute;
     top: calc(100% + 0.4rem);
@@ -502,14 +522,16 @@
       backdrop-filter: var(--nz-backdrop-blur) saturate(1.2);
     }
   }
+  /* :has() — checkbox checked = menú abierto (toggle por click) */
+  .nz :where(.nz-dropdown):has(> .nz-dropdown__toggle:checked)
+    > .nz-dropdown__menu { display: flex; }
+  /* :has() — hover sobre el trigger abre el dropdown (alternativa) */
+  .nz :where(.nz-dropdown):hover > .nz-dropdown__menu { display: flex; }
+  /* :has() — hover sobre el menú lo mantiene abierto */
+  .nz :where(.nz-dropdown):has(> .nz-dropdown__menu:hover) > .nz-dropdown__menu { display: flex; }
+  /* Compatibilidad: .is-open y [open] siguen funcionando para JS */
   .nz :where(.nz-dropdown__menu.is-open),
   .nz :where(.nz-dropdown[open]) > .nz-dropdown__menu { display: flex; }
-
-  /* :has() — hover sobre el trigger abre el dropdown */
-  .nz :where(.nz-dropdown):hover > .nz-dropdown__menu { display: flex; }
-
-  /* :has() — hover sobre el menú lo mantiene abierto (evita cierre al mover mouse al menú) */
-  .nz :where(.nz-dropdown):has(> .nz-dropdown__menu:hover) > .nz-dropdown__menu { display: flex; }
 
   .nz :where(.nz-dropdown__menu--right) { left: auto; right: 0; }
   .nz :where(.nz-dropdown__item) {

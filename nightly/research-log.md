@@ -1,159 +1,166 @@
-# Investigación Aurora — 31 de mayo de 2026
+# Investigación Aurora — 2026-06-01
+
+## Fuentes consultadas
+
+- **CSS-Tricks RSS** (`/feed/`) — 15 artículos recientes (mayo 2026)
+- **Smashing Magazine RSS** (`/feed/`) — 40 artículos recientes (mayo 2026)
+- **Josh Comeau RSS** (`/rss.xml`) — 87 artículos (últimos: CSS vs JS, Scroll-driven, Springs)
+- **MDN Blog RSS** (`/blog/rss.xml`) — 70+ artículos (view transitions, color-mix, container queries)
+- **LogRocket RSS** (`/feed/`) — 12 artículos (UX, design engineering)
+- **Artículos profundos leídos:**
+  - [What's !important #12](https://css-tricks.com/whats-important-12/) — ::checkmark, sibling-index(), anchor positioning, corner-shape
+  - [Cross-Document View Transitions](https://css-tricks.com/cross-document-view-transitions-part-2/) — escalado a cientos de elementos
+  - [Revealing Text With CSS letter-spacing](https://css-tricks.com/revealing-text-with-css-letter-spacing/) — animaciones de texto con letter-spacing
+  - [Using CSS corner-shape For Folded Corners](https://css-tricks.com/using-css-corner-shape-for-folded-corners/) — corner-shape: bevel
+  - [CSS vs. JavaScript](https://www.joshwcomeau.com/animation/css-vs-javascript/) — rendimiento animaciones CSS vs JS
+  - [Scroll-Driven Animations](https://www.joshwcomeau.com/animation/scroll-driven-animations/) — Josh Comeau guía completa
 
 ## Tendencias encontradas
 
 ### 1. ::checkmark pseudo-element
-- **Fuente:** CSS-Tricks "What's !important #12" (29 mayo 2026) — Sunkanmi Fafowora
-- **Descripción:** Nuevo pseudo-elemento `::checkmark` que permite estilizar las marcas de verificación de checkboxes, radios y selects. No solo checkboxes — también targets el indicador de estado checked de radios y selects. Resuelve el problema histórico de no poder estilizar checkmarks en CSS.
-- **Potencial para Aurora:** Aurora podría añadir estilos de checkmark personalizados para los componentes de forms (`ntizar.forms.css`). Ej: `.nz-form__input[type="checkbox"]::checkmark { ... }` con variantes de color, tamaño y forma.
+- **Fuente:** CSS-Tricks — [What's !important #12](https://css-tricks.com/whats-important-12/) (29 mayo 2026)
+- **Descripción:** Nuevo pseudo-element `::checkmark` que estiliza el indicador visual de checkboxes, radios y selects. Resuelve el problema histórico de no poder estilizar los checkmarks nativos del navegador.
+- **Potencial para Aurora:** Aurora tiene `ntizar.forms.css` con estilos para inputs. Podríamos añadir `data-nz-check-style` para personalizar el checkmark nativo sin JS.
 - **Pack objetivo:** `ntizar.forms.css`
+- **Soporte:** Chrome 138+ (recién lanzado)
+- **Estado en Aurora:** ✗ NO IMPLEMENTADO
 
-### 2. sibling-index() y sibling-count() — funciones CSS casi-Baseline
-- **Fuente:** CSS-Tricks "What's !important #12" (29 mayo 2026) — Durgesh Pawar
-- **Descripción:** Dos funciones CSS que devuelven la posición de un elemento entre sus hermanos (`sibling-index()`) y el número total de hermanos (`sibling-count()`). Casi-Baseline ya. Permiten patrones como: "destacar la tarjeta central en un pricing grid", "numeración automática de items", "estilos alternos basados en posición".
-- **Potencial para Aurora:** Mejora los patrones de pricing (destacar tarjeta featured), feature grids, y stat-tiles sin necesidad de JS. Ej: `.nz-stat-tile:nth-child(1 of .nz-stat-grid) { ... }` → reemplazable con `sibling-index()`.
-- **Pack objetivo:** `ntizar.data.css` + `ntizar.patterns.css`
+### 2. corner-shape property
+- **Fuente:** CSS-Tricks — [Using CSS corner-shape For Folded Corners](https://css-tricks.com/using-css-corner-shape-for-folded-corners/) (8 mayo 2026)
+- **Descripción:** Nueva propiedad CSS `corner-shape` (y variantes `corner-top-right-shape`, etc.) que permite crear esquinas biseladas, recortadas, con doble bisel. Reemplaza los hacks de `clip-path` para esquinas. Soporta `bevel`, `round`, `chamfer`, `chamfer-round`.
+- **Potencial para Aurora:** Aurora ya tiene `data-nz-shape` (default, sharp, rounded, brutalist). corner-shape permitiría: `data-nz-shape="cut"` (esquina recortada tipo tarjeta), `data-nz-shape="bevel"` (biselado 3D), `data-nz-shape="folded"` (esquina doblada). Esto encaja perfectamente en `ntizar.next.css`.
+- **Pack objetivo:** `ntizar.next.css` (v5+)
+- **Soporte:** Chrome 138+
+- **Estado en Aurora:** ✗ NO IMPLEMENTADO — **OPORTUNIDAD ALTA**
 
-### 3. border-shape + shape() — formas de borde no redondeadas
-- **Fuente:** CSS-Tricks "What's !important #12" (29 mayo 2026) — Temani Afif
-- **Descripción:** Combinar `border-shape` con la función `shape()` permite crear estilos de borde más allá de `border-radius`: bisel, triángulo, forma personalizada. Más flexible que `clip-path` y animable con CSS. Se pueden cambiar entre formas fácilmente.
-- **Potencial para Aurora:** Aurora ya tiene `data-nz-shape="sharp|rounded|brutalist"`. `border-shape` podría añadir variantes como `"bevel"` o `"folded"` como extensiones del sistema de shapes. Complementa `corner-shape` (investigado el 29/05).
+### 3. sibling-index() y sibling-count()
+- **Fuente:** CSS-Tricks + Smashing Magazine (21 mayo 2026) — Durgesh Pawar
+- **Descripción:** Dos funciones CSS Baseline que devuelven la posición del elemento entre sus hermanos (`sibling-index()`) y el total de hermanos (`sibling-count()`). Permiten animaciones escalonadas, contadores, layouts matemáticos sin JS.
+- **Potencial para Aurora:** Aurora tiene `ntizar.motion.css` con reveal animations. Con `sibling-index()` se podrían hacer animaciones escalonadas automáticas para grids de cards, listas, KPIs — sin necesidad de clases `.nz-reveal--delay-1`, `.nz-reveal--delay-2`, etc.
+- **Pack objetivo:** `ntizar.motion.css` + `ntizar.data.css`
+- **Soporte:** Chrome 138+ (Baseline)
+- **Estado en Aurora:** ✗ NO IMPLEMENTADO — **OPORTUNIDAD MEDIA-ALTA**
+
+### 4. CSS-only animations: rendimiento superior a JS
+- **Fuente:** Josh Comeau — [CSS vs. JavaScript](https://www.joshwcomeau.com/animation/css-vs-javascript/) (26 mayo 2026)
+- **Descripción:** Confirmación de que las animaciones CSS corren en thread separado del navegador, mientras que JS (incluso GSAP/Motion) compite con la aplicación en el main thread. Cuando el main thread se bloquea (React updates, fetch responses), las animaciones CSS siguen fluidas y las de JS se congelan.
+- **Potencial para Aurora:** Refuerzo de la filosofía de Aurora: CSS-only es la decisión correcta. Podríamos documentar esto como "best practice" en la guía. También valida el enfoque de mover más animaciones de JS a CSS.
+- **Pack objetivo:** Documentación / `SYSTEM.md`
+- **Soporte:** Universal (feature del navegador)
+- **Estado en Aurora:** ✓ Filosofía ya implementada (CSS-only)
+
+### 5. Text reveal con letter-spacing
+- **Fuente:** CSS-Tricks — [Revealing Text With CSS letter-spacing](https://css-tricks.com/revealing-text-with-css-letter-spacing/) (27 mayo 2026)
+- **Descripción:** Técnica de animación de texto usando `letter-spacing` negativo + `color: transparent` para ocultar texto, luego transición a `letter-spacing: 0` + color visible para revelarlo. Funciona con checkbox `:checked` para interactividad CSS-only.
+- **Potential para Aurora:** Podría añadirse como utilidad de animación en `ntizar.motion.css`: `.nz-text-reveal` que aplique esta técnica. Compatible con el patrón `:checked +` de Aurora.
+- **Pack objetivo:** `ntizar.motion.css`
+- **Soporte:** Universal (letter-spacing siempre ha existido)
+- **Estado en Aurora:** ✗ NO IMPLEMENTADO
+
+### 6. View Transitions escalando a cientos de elementos
+- **Fuente:** CSS-Tricks — [Cross-Document View Transitions](https://css-tricks.com/cross-document-view-transitions-part-2/) (25 mayo 2026)
+- **Descripción:** Guía avanzada de View Transitions API para escalar a grids de 100+ elementos. La solución futura usa `ident()` + `sibling-index()` para generar nombres automáticos. Mientras tanto, se usan patrones de JS para generar `::view-transition-name` por elemento.
+- **Potencial para Aurora:** Aurora ya tiene `view-transition` implementado. Esta investigación muestra el estado del arte para grids de productos/cards. Podría inspirar un patrón en `ntizar.next.css` para transiciones de cards.
 - **Pack objetivo:** `ntizar.next.css`
+- **Soporte:** Chrome 117+, Edge 117+
+- **Estado en Aurora:** ✓ View transitions básico implementado
 
-### 4. CSS nesting — 88.57% de soporte
-- **Fuente:** caniuse.com (mayo 2026)
-- **Descripción:** CSS Nesting (`&` dentro de selectores) tiene ~88.6% de soporte global. Permite escribir CSS más legible y mantenible, anidando selectores de forma nativa sin preprocesador. Chrome, Edge, Firefox, Safari lo soportan.
-- **Potencial para Aurora:** Aurora podría empezar a usar nesting nativo en nuevos packs o en `ntizar.next.css`. Mejora legibilidad y reduce la necesidad de BEM-like naming. Ej: `.nz-card { &__header { ... } &__body { ... } }`.
-- **Pack objetivo:** `ntizar.next.css` (como patrón de escritura)
+### 7. Container style queries (Baseline 2026)
+- **Fuente:** CSS-Tricks What's Important #12 (29 mayo 2026)
+- **Descripción:** Firefox 151 añade soporte para container style queries. Ahora las container queries están en Baseline del web platform, con soporte en todos los navegadores principales.
+- **Potencial para Aurora:** Aurora ya tiene container queries. Esta noticia confirma que es una tecnología madura y ampliamente soportada. Podría reforzarse el uso de container queries en componentes responsivos de Aurora.
+- **Pack objetivo:** `ntizar.next.css` (ya implementado)
+- **Soporte:** ✓ Baseline (todos los navegadores)
+- **Estado en Aurora:** ✓ Ya implementado
 
-### 5. CSS overflow (scrollbar-gutter) — 93.75% de soporte
-- **Fuente:** caniuse.com (mayo 2026)
-- **Descripción:** `overflow: overlay` y `scrollbar-gutter: stable` permiten reservar espacio para la barra de scroll, evitando layout shifts cuando el contenido cambia de altura. 93.75% de soporte global.
-- **Potencial para Aurora:** Aurora podría añadir `scrollbar-gutter: stable` por defecto en el core para evitar layout shifts. Mejora UX en dashboards y data-heavy pages. También `overflow: overlay` para scrollbars estéticos.
-- **Pack objetivo:** `ntizar.css` (core)
-
-### 6. CSS Anchor Positioning — 82.83% de soporte
-- **Fuente:** CSS-Tricks "The State of CSS Centering in 2026" (22 mayo 2026) — Temani Afif + "What's !important #12"
-- **Descripción:** Anchor positioning (`position-anchor`, `anchor()`, `anchor-size()`) ya tiene 82.83% de soporte. Permite posicionar elementos relativos a otros sin JavaScript. Se menciona que el atributo HTML `anchor` fue eliminado, pero las alternativas con `data-*` y `attr()` funcionan.
-- **Potencial para Aurora:** Aurora podría añadir utilidades `.nz-anchor-*` para dropdowns y tooltips posicionados mediante `anchor()`, reemplazando el posicionamiento absoluto con JS. Durgesh Pawar demostró alternativas con `data-*` y `attr()`.
-- **Pack objetivo:** `ntizar.ui.css`
-
-### 7. CSS text-wrap: balance — tipografía moderna
-- **Fuente:** MDN Blog (mayo 2026) + caniuse.com
-- **Descripción:** `text-wrap: balance` distribuye el espacio entre líneas de forma equilibrada, mejorando la tipografía en títulos y textos cortos. Chrome 131+. Es una de las mejoras tipográficas más significativas de 2026.
-- **Potencial para Aurora:** Aurora podría añadir `.u-nz-text-balance` como utility class para títulos y textos cortos. Mejora visual significativa con una sola línea CSS.
-- **Pack objetivo:** `ntizar.css` (core utilities)
-
-### 8. CSS field-sizing: content — inputs auto-ajustables
-- **Fuente:** MDN Blog + caniuse.com (Chrome 141+)
-- **Descripción:** `field-sizing: content` hace que los `<input type="text">` se ajusten automáticamente al contenido, eliminando la necesidad de JS para inputs auto-expandibles. Chrome 141+.
-- **Potencial para Aurora:** Aurora podría añadir `.nz-field--auto-size` como variante de campo que se ajusta al contenido. Útil para search fields, tags, y inputs de texto corto.
-- **Pack objetivo:** `ntizar.forms.css`
-
-### 9. CSS accent-color — personalización nativa de controles
-- **Fuente:** MDN Blog + caniuse.com (95%+ soporte)
-- **Descripción:** `accent-color` permite cambiar el color de los controles nativos (checkboxes, radios, range, progress) sin CSS hacks. Soporte casi universal.
-- **Potencial para Aurora:** Aurora podría usar `accent-color` en vez de estilos custom complejos para checkboxes, radios y range inputs. Simplifica enormemente el pack de forms.
-- **Pack objetivo:** `ntizar.forms.css`
-
-### 10. CSS mask-layer — enmascaramiento avanzado
-- **Fuente:** MDN Blog + caniuse.com (Chrome 133+, Safari 18+)
-- **Descripción:** `mask-layer` permite múltiples capas de máscara CSS, combinando gradientes, imágenes y patrones para efectos visuales avanzados. Soporte creciente.
-- **Potencial para Aurora:** Aurora podría usar `mask-layer` para efectos de gradientes más sofisticados en `.nz-aurora-bg`, `.nz-orb`, y `.u-nz-bg-aurora`. Mejora la calidad visual del liquid glass y los efectos aurora.
-- **Pack objetivo:** `ntizar.next.css` + `ntizar.viz.css`
-
-### 11. CSS @scope — encapsulamiento nativo
-- **Fuente:** CSS-Tricks + MDN (Chrome 129+, Firefox 136+)
-- **Descripción:** `@scope` permite definir el alcance de los estilos CSS de forma nativa, sin necesidad de Shadow DOM ni BEM. Más flexible que CSS Modules y más seguro que @layer para encapsulamiento.
-- **Potencial para Aurora:** Aurora podría usar `@scope` para encapsular los estilos de cada pack, evitando colisiones con el CSS del usuario. Mejora la robustez del sistema.
-- **Pack objetivo:** `ntizar.next.css` (como patrón de arquitectura)
-
-### 12. CSS ident() + sibling-index() para view transitions
-- **Fuente:** CSS-Tricks "Cross-Document View Transitions: Scaling Across Hundreds of Elements" (25 mayo 2026) — Durgesh Pawar
-- **Descripción:** La función `ident()` concatenada con `sibling-index()` permite generar nombres únicos de view transitions automáticamente: `view-transition-name: ident("card-" sibling-index())`. Esto soluciona el problema de escalar view transitions a cientos de elementos sin JS.
-- **Potencial para Aurora:** Aurora podría añadir un pack de view transitions con utilidades `.nz-vt-*` que usen `ident()` + `sibling-index()` para nombres automáticos. Complementa la investigación del 29/05 sobre CDVT.
-- **Pack objetivo:** `ntizar.motion.css` o nuevo `ntizar.vt.css`
-
-### 13. CSS marker arrays — estilos de lista avanzados
-- **Fuente:** CSS-Tricks + MDN (Chrome 137+, Firefox 138+)
-- **Descripción:** `marker` en `list-style` ahora soporta arrays, permitiendo estilos diferentes para cada item de lista. Ej: `list-style: marker(circle, square, triangle)`.
-- **Potencial para Aurora:** Aurora podría añadir patrones de lista con marcadores variados para FAQs, step-by-step guides, y feature lists. Mejora visual en `ntizar.patterns.css`.
-- **Pack objetivo:** `ntizar.patterns.css`
-
-### 14. CSS text-spacing-trim — control de espaciado tipográfico
-- **Fuente:** MDN Blog + caniuse.com (Chrome 129+, Safari 18+)
-- **Descripción:** `text-spacing-trim` y `text-spacing` permiten control preciso del espaciado de caracteres, especialmente en bordes de texto y saltos de línea. Mejora la tipografía en títulos y textos largos.
-- **Potencial para Aurora:** Aurora podría añadir `.u-nz-text-spacing` como utility para mejor tipografía en títulos y textos cortos.
-- **Pack objetivo:** `ntizar.css` (core utilities)
-
-### 15. CSS writing-mode — tipografía vertical y lateral
-- **Fuente:** MDN Blog + caniuse.com (95%+ soporte)
-- **Descripción:** `writing-mode` permite texto vertical, horizontal-tb, y vertical-rl. Soporte casi universal. Útil para diseños creativos, sidebars, y tipografía asiática.
-- **Potencial para Aurora:** Aurora podría añadir `.nz-writing-vertical` como utility para layouts creativos con texto vertical en sidebars o hero sections.
-- **Pack objetivo:** `ntizar.css` (core utilities)
-
-### 16. CSS light-dark() — tema automático
-- **Fuente:** Aurora ya lo tiene en `ntizar.next.css` ✓
-- **Descripción:** `light-dark()` permite valores CSS que cambian automáticamente según el tema del usuario. Aurora ya implementa `.u-nz-text-auto` usando este patrón.
-- **Estado Aurora:** ✓ Ya implementado en `ntizar.next.css`
+### 8. Scroll-driven animations (Josh Comeau guía completa)
+- **Fuente:** Josh Comeau — [Scroll-Driven Animations](https://www.joshwcomeau.com/animation/scroll-driven-animations/) (28 abril 2026)
+- **Descripción:** Guía exhaustiva de scroll-driven animations con `scroll-timeline` y `view-timeline`. Cubre progress animations, scrub effects, parallax nativo sin JS.
+- **Potencial para Aurora:** Aurora ya tiene scroll-driven animations. Esta guía es referencia para patrones avanzados que podrían añadirse.
+- **Pack objetivo:** `ntizar.motion.css` (ya implementado)
+- **Estado en Aurora:** ✓ Ya implementado
 
 ## Sitios de referencia explorados
 
-- **CSS-Tricks:** 15 artículos analizados del 8 al 29 de mayo 2026. Tendencia clara: CSS se vuelve más declarativo y funcional (sibling-index, ::checkmark, border-shape, anchor positioning, ident()). El resumen semanal "What's !important" es la fuente más actualizada de novedades CSS.
-- **MDN Blog:** Guía de view transitions como feature destacada. Cambio de frontend de MDN con nuevas tecnologías. Artículos sobre color models, image formats, y h1 element styles.
-- **caniuse.com:** Datos de soporte global para múltiples features CSS. ::has() 93.54%, container queries 93.13%, @layer 94.71%, anchor positioning 82.83%, CSS nesting 88.57%.
+### Artículos de referencia clave
+- **CSS-Tricks** — Fuente más rica: 15 artículos en el feed, con contenido profundo sobre ::checkmark, corner-shape, sibling-index, anchor positioning
+- **Josh Comeau** — Referencia de excelencia en animación CSS. Su artículo "CSS vs JS" es lectura obligada para validar la filosofía Aurora
+- **Smashing Magazine** — Menos contenido CSS puro (40 artículos, pero muchos de UX/ROI), pero el artículo de `sibling-index()` es relevante
+- **MDN Blog** — Artículos de referencia: view transitions beginner guide, color-mix(), container queries
 
-## Estado actual de Aurora (análisis de gaps)
+## Análisis de gaps: Aurora vs Estado del arte CSS
 
-### Ya implementado en Aurora ✓
-- `:has()`, `:where()`, `:not()`, `:is()`
-- `@container`, `container-type`
-- `scroll-timeline`, `view-timeline`, `animation-timeline`
-- `color-mix()`, `color-contrast()`
-- `light-dark()`
-- `@layer`
-- `overflow:`, `margin-inline:`, `padding-block:`, `inset:`
-- `content-visibility`, `contain`, `backdrop-filter`
-- `mask-image`, `text-wrap`
-- `scrollbar-width`, `scroll-behavior`
-- `user-select`, `pointer-events`, `cursor`, `appearance`
-- `aspect-ratio`, `grid-template-areas`, `isolation`
-- Utilities: `.u-nz-text-gradient`, `.u-nz-glow`, `.u-nz-bg-aurora`, `.u-nz-bg-mesh`, `.u-nz-text-auto`, `.u-nz-rounded`, `.u-nz-gap`, `.u-nz-aspect`, `.u-nz-hide`, `.u-nz-show`, `.u-nz-num`, `.u-nz-text-mono`
-- `:open` pseudo-class (aplicado el 30/05)
+### Características CSS modernas — Estado en Aurora
 
-### NO implementado — oportunidades identificadas ✗
-- `::checkmark` — pseudo-element para checkmarks personalizados
-- `sibling-index()`, `sibling-count()` — funciones CSS para posicionamiento entre hermanos
-- `border-shape` + `shape()` — formas de borde no redondeadas
-- `position-anchor`, `anchor()` — posicionamiento relativo a otros elementos
-- `@scope` — encapsulamiento nativo de estilos
-- `@property` — Houdini para validación de tokens
-- `ident()` — función para generar identificadores únicos
-- `scrollbar-gutter: stable` — reserva de espacio para scrollbar
-- `text-wrap: balance` — tipografía equilibrada
-- `field-sizing: content` — inputs auto-ajustables
-- `accent-color` — personalización nativa de controles
-- `mask-layer` — enmascaramiento multi-capa
-- `marker` arrays — estilos de lista avanzados
-- `text-spacing-trim` — control de espaciado tipográfico
-- `writing-mode` — tipografía vertical
-- `subgrid` — grids anidados
-- CSS Nesting (`&`) — escritura moderna de CSS
+| Característica | Estado | Prioridad |
+|---|---|---|
+| `::checkmark` pseudo-element | ✗ NO | Alta (forms) |
+| `corner-shape` property | ✗ NO | **MUY ALTA** (next.css, visual impact) |
+| `sibling-index()` / `sibling-count()` | ✗ NO | Media-Alta (motion, layouts) |
+| `@starting-style` | ✗ NO | Media |
+| `overflow: clip` | ✗ NO | Baja |
+| `shape()` function | ✗ NO | Baja |
+| `line-clamp` | ✗ NO | Media |
+| `scrollbar-gutter` | ✗ NO | Baja |
+| `field-sizing` | ✗ NO | Media (forms) |
+| `inset()` image function | ✗ NO | Baja |
+| `border-shape` | ✗ NO | Baja |
+| `overscroll-behavior` | ✗ NO | Baja |
+| View Transitions | ✓ | — |
+| Scroll-driven animations | ✓ | — |
+| `:has()` | ✓ | — |
+| Container queries | ✓ | — |
+| OKLCH color | ✓ | — |
+| `@layer` | ✓ | — |
+| `:open` pseudo-class | ✓ | — |
+| backdrop-filter | ✓ | — |
+| color-mix() | ✓ | — |
+| color-contrast() | ✓ | — |
+| forced-color-adjust | ✓ | — |
+| prefers-reduced-motion | ✓ | — |
+| content-visibility | ✓ | — |
+| text-wrap | ✓ | — |
 
 ## Oportunidades de mejora priorizadas
 
-1. **`::checkmark` pseudo-element** — Estilizar checkmarks de checkboxes/radios nativos. Máximo impacto en el pack de forms, mínimo cambio. Mejora UX de formularios sin JS. (Pack: `ntizar.forms.css`)
+### 1. ✂️ corner-shape — Esquinas recortadas/biseladas (PACK: ntizar.next.css)
+**Impacto:** Alto — Mejora visual inmediata en cards, botones, badges, imágenes
+**Cambio mínimo:** Añadir `data-nz-shape="cut"` y `data-nz-shape="bevel"` como extensiones de `data-nz-shape` existente
+**Técnica:** Usar `corner-*-shape: bevel` con `border-radius` coordinates como variables CSS
+**Soporte:** Chrome 138+ (graceful fallback a border-radius en otros navegadores)
+**Referencia:** [CSS-Tricks: Using CSS corner-shape For Folded Corners](https://css-tricks.com/using-css-corner-shape-for-folded-corners/)
 
-2. **`sibling-index()` / `sibling-count()`** — Funciones CSS para posicionamiento entre hermanos. Mejora los patrones de pricing y stat-tiles. (Pack: `ntizar.data.css` + `ntizar.patterns.css`)
+### 2. ⚡ sibling-index() — Animaciones escalonadas automáticas (PACK: ntizar.motion.css)
+**Impacto:** Medio-Alto — Elimina necesidad de clases de delay manual en grids
+**Cambio mínimo:** Añadir `.nz-stagger > * { animation-delay: calc((sibling-index() - 1) * 0.1s); }`
+**Técnica:** Usar `sibling-index()` en `animation-delay` para stagger automático
+**Soporte:** Chrome 138+ (Baseline)
+**Referencia:** [Smashing Magazine: Advanced Tree Counting](https://smashingmagazine.com/2026/05/mathematical-layouts-sibling-index-sibling-count/)
 
-3. **`scrollbar-gutter: stable` en el core** — Prevenir layout shifts por scrollbars. Mejora UX en dashboards y data-heavy pages. Un cambio aditivo mínimo. (Pack: `ntizar.css` core)
+### 3. 📝 text-reveal — Utilidad de revelado de texto (PACK: ntizar.motion.css)
+**Impacto:** Medio — Efecto visual atractivo para hero sections, headings
+**Cambio mínimo:** Añadir `.nz-text-reveal` con `letter-spacing: -1ch; color: transparent` + transición
+**Técnica:** letter-spacing negativo + color transparent → transición a visible
+**Soporte:** Universal (letter-spacing siempre ha existido)
+**Referencia:** [CSS-Tricks: Revealing Text With CSS letter-spacing](https://css-tricks.com/revealing-text-with-css-letter-spacing/)
 
-4. **`text-wrap: balance` utility** — Mejora tipográfica inmediata para títulos. Una sola línea CSS. (Pack: `ntizar.css` utilities)
+### 4. ☑️ ::checkmark — Estilizado de checkmarks nativos (PACK: ntizar.forms.css)
+**Impacto:** Medio — Mejora visual de formularios en navegadores que lo soporten
+**Cambio mínimo:** Añadir `input[type="checkbox"]::checkmark { ... }` con variables CSS
+**Técnica:** Pseudo-element `::checkmark` con `border-shape` para estilos de check
+**Soporte:** Chrome 138+ (fallback a estilos existentes en otros navegadores)
+**Referencia:** [CSS-Tricks: First look at ::checkmark](https://css-tricks.com/whats-important-12/)
 
-5. **`accent-color` para controles nativos** — Simplificar el pack de forms usando la propiedad nativa en vez de estilos custom complejos. (Pack: `ntizar.forms.css`)
+### 5. 📏 field-sizing — Campos de formulario auto-ajustables (PACK: ntizar.forms.css)
+**Impacto:** Bajo-Medio — Mejora UX de campos textarea/text
+**Cambio mínimo:** Añadir `field-sizing: content` como valor por defecto en inputs de formulario
+**Técnica:** Propiedad CSS `field-sizing: content` para auto-ajustar altura
+**Soporte:** Chrome 131+, Firefox 137+
+**Referencia:** MDN documentation
 
-6. **`@scope` para encapsulamiento de packs** — Mejorar la robustez del sistema evitando colisiones con CSS del usuario. (Pack: `ntizar.next.css`)
+## Notas adicionales
 
-7. **`border-shape` como variante de `data-nz-shape`** — Añadir `"bevel"` como nueva variante visual. (Pack: `ntizar.next.css`)
-
-8. **`field-sizing: content` para inputs** — Inputs auto-ajustables para search fields y tags. (Pack: `ntizar.forms.css`)
+- **CSS vs JS:** Josh Comeau confirma que CSS animations son inherentemente más performantes porque corren en thread separado. Esto valida la filosofía de Aurora como sistema CSS-only.
+- **State of CSS 2026:** Mención en CSS-Tricks — la comunidad siente que CSS avanza demasiado rápido para mantenerse al día. Esto refuerza la necesidad de Aurora como sistema curado.
+- **Container style queries:** Ahora en Baseline (todos los navegadores). Aurora ya las usa, buen momento para reforzar su uso.
+- **Ident() function:** Propuesta de Bramus (Chrome) para generar nombres únicos en CSS. Cuando llegue, simplificará enormemente view transitions a escala.
