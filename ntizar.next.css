@@ -211,6 +211,16 @@
       oklch(65% 0.22 calc(var(--nz-hue-brand) + 50)) 46%,
       var(--nz-oklch-accent-500) 100%);
 
+    /* Gradientes OKLCH para success, danger y warning —
+       coherencia con brand/accent: 3 paradas (soft → base → strong),
+       ángulo 135deg, proporciones similares. */
+    --nz-gradient-success: linear-gradient(135deg,
+      var(--nz-oklch-success-soft)  0%,
+      var(--nz-oklch-success)       58%,
+      var(--nz-oklch-success-strong) 100%);
+    --nz-gradient-danger:  linear-gradient(135deg, var(--nz-oklch-danger-soft)  0%, var(--nz-oklch-danger)  58%, var(--nz-oklch-danger-strong)  100%);
+    --nz-gradient-warning: linear-gradient(135deg, var(--nz-oklch-warning-soft) 0%, var(--nz-oklch-warning) 56%, var(--nz-oklch-warning-strong) 100%);
+
   /* ====== SOMBRA DERIVADA ALGORÍTMICAMENTE ======
        oklch(from ...) extrae luma del color base y deriva
        la opacidad de la sombra automáticamente. Cuando el
@@ -755,6 +765,48 @@
       var(--nz-oklch-brand-500)  var(--nz-gradient-pos),
       oklch(65% 0.22 calc(var(--nz-hue-brand) + 50)) var(--nz-gradient-pos-2),
       var(--nz-oklch-accent-500)  var(--nz-gradient-pos-3)
+    );
+  }
+
+  /* Gradiente success animable */
+  .nz-gradient-animated--success {
+    --nz-gradient-angle: 135deg;
+    --nz-gradient-pos: 0%;
+    --nz-gradient-pos-2: 58%;
+    --nz-gradient-pos-3: 100%;
+    background: linear-gradient(
+      var(--nz-gradient-angle),
+      var(--nz-oklch-success-soft, var(--nz-color-success-soft))  var(--nz-gradient-pos),
+      var(--nz-oklch-success, var(--nz-color-success))            var(--nz-gradient-pos-2),
+      var(--nz-oklch-success-strong, var(--nz-color-success-strong)) var(--nz-gradient-pos-3)
+    );
+  }
+
+  /* Gradiente danger animable */
+  .nz-gradient-animated--danger {
+    --nz-gradient-angle: 135deg;
+    --nz-gradient-pos: 0%;
+    --nz-gradient-pos-2: 58%;
+    --nz-gradient-pos-3: 100%;
+    background: linear-gradient(
+      var(--nz-gradient-angle),
+      var(--nz-oklch-danger-soft, var(--nz-color-danger-soft))  var(--nz-gradient-pos),
+      var(--nz-oklch-danger, var(--nz-color-danger))            var(--nz-gradient-pos-2),
+      var(--nz-oklch-danger-strong, var(--nz-color-danger-strong)) var(--nz-gradient-pos-3)
+    );
+  }
+
+  /* Gradiente warning animable */
+  .nz-gradient-animated--warning {
+    --nz-gradient-angle: 135deg;
+    --nz-gradient-pos: 0%;
+    --nz-gradient-pos-2: 56%;
+    --nz-gradient-pos-3: 100%;
+    background: linear-gradient(
+      var(--nz-gradient-angle),
+      var(--nz-oklch-warning-soft, var(--nz-color-warning-soft))  var(--nz-gradient-pos),
+      var(--nz-oklch-warning, var(--nz-color-warning))            var(--nz-gradient-pos-2),
+      var(--nz-oklch-warning-strong, var(--nz-color-warning-strong)) var(--nz-gradient-pos-3)
     );
   }
 
