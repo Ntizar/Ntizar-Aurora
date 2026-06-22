@@ -1,0 +1,2807 @@
+{
+  "name": "Ntizar Aurora",
+  "version": "5.1.0",
+  "type": "css-only design system",
+  "scope": ".nz (opt-in)",
+  "cdn": "https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/",
+  "architecture": {
+    "layers": [
+      "ntizar.tokens",
+      "ntizar.base",
+      "ntizar.objects",
+      "ntizar.components",
+      "ntizar.utilities"
+    ],
+    "naming": {
+      "component": ".nz-thing",
+      "modifier": ".nz-thing--mod",
+      "part": ".nz-thing__part",
+      "state": ".is-state",
+      "utility": ".u-nz-*",
+      "token": "--nz-*"
+    }
+  },
+  "packs": {
+    "core": {
+      "file": "ntizar.css",
+      "description": "Tokens, base, objects, components, utilities",
+      "mandatory": true
+    },
+    "themes": {
+      "file": "ntizar.themes.css",
+      "description": "5 skins (aurora, sunset, midnight, ocean, citrus)",
+      "mandatory": false
+    },
+    "data": {
+      "file": "ntizar.data.css",
+      "description": "KPIs, progress, skeleton, avatar, timeline, tags",
+      "mandatory": false
+    },
+    "charts": {
+      "file": "ntizar.charts.css",
+      "description": "Chart.js/Apex/D3 containers, legends, sparkline, donut",
+      "mandatory": false
+    },
+    "maps": {
+      "file": "ntizar.maps.css",
+      "description": "Leaflet/Mapbox/MapLibre styling, pins, overlays",
+      "mandatory": false
+    },
+    "viz": {
+      "file": "ntizar.viz.css",
+      "description": "Three.js stages, aurora backgrounds, orbs, glow rings",
+      "mandatory": false
+    },
+    "motion": {
+      "file": "ntizar.motion.css",
+      "description": "Animations: reveal, glow, shimmer, marquee, typing",
+      "mandatory": false
+    },
+    "forms": {
+      "file": "ntizar.forms.css",
+      "description": "Switch, check, radio, range, OTP, file, stepper",
+      "mandatory": false
+    },
+    "ui": {
+      "file": "ntizar.ui.css",
+      "description": "Modal, drawer, tabs, accordion, dropdown, toast, tooltip",
+      "mandatory": false
+    },
+    "patterns": {
+      "file": "ntizar.patterns.css",
+      "description": "App-shell, hero, pricing, FAQ, footer, auth, empty-state",
+      "mandatory": false
+    },
+    "next": {
+      "file": "ntizar.next.css",
+      "description": "Liquid glass, OKLCH, mesh, multi-axis, forced-colors",
+      "mandatory": false
+    }
+  },
+  "components": {
+    "accent": {
+      "base": ".nz-accent",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "accordion": {
+      "base": ".nz-accordion",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "navigation",
+      "primary_pack": "ui"
+    },
+    "alert": {
+      "base": ".nz-alert",
+      "modifiers": [
+        "danger",
+        "success",
+        "warning"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "core",
+        "next"
+      ],
+      "category": "feedback",
+      "primary_pack": "core"
+    },
+    "anim": {
+      "base": ".nz-anim",
+      "modifiers": [
+        "delay-1",
+        "delay-2",
+        "delay-3",
+        "delay-4",
+        "delay-5",
+        "delay-6",
+        "fast",
+        "once",
+        "slow"
+      ],
+      "parts": [],
+      "selector_count": 9,
+      "packs": [
+        "motion"
+      ],
+      "category": "animation",
+      "primary_pack": "motion"
+    },
+    "anim-aurora-pan": {
+      "base": ".nz-anim-aurora-pan",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-fade-in": {
+      "base": ".nz-anim-fade-in",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-float": {
+      "base": ".nz-anim-float",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-glow-pulse": {
+      "base": ".nz-anim-glow-pulse",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-rise": {
+      "base": ".nz-anim-rise",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-scale-in": {
+      "base": ".nz-anim-scale-in",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-scroll-fade": {
+      "base": ".nz-anim-scroll-fade",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-shimmer": {
+      "base": ".nz-anim-shimmer",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-slide-left": {
+      "base": ".nz-anim-slide-left",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-slide-right": {
+      "base": ".nz-anim-slide-right",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "anim-typing": {
+      "base": ".nz-anim-typing",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "app-shell": {
+      "base": ".nz-app-shell",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "pattern",
+      "primary_pack": "patterns"
+    },
+    "aurora-bg": {
+      "base": ".nz-aurora-bg",
+      "modifiers": [
+        "soft",
+        "static"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "aurora-mesh": {
+      "base": ".nz-aurora-mesh",
+      "modifiers": [
+        "animated",
+        "glass",
+        "hero",
+        "houdini"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "next"
+      ],
+      "category": "experimental",
+      "primary_pack": "next"
+    },
+    "auth-shell": {
+      "base": ".nz-auth-shell",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "avatar": {
+      "base": ".nz-avatar",
+      "modifiers": [
+        "accent",
+        "aurora",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "data"
+      ],
+      "category": "data-display",
+      "primary_pack": "data"
+    },
+    "avatar-stack": {
+      "base": ".nz-avatar-stack",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "data"
+      ],
+      "category": "component",
+      "primary_pack": "data"
+    },
+    "axis": {
+      "base": ".nz-axis",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "charts"
+      ],
+      "category": "component",
+      "primary_pack": "charts"
+    },
+    "badge": {
+      "base": ".nz-badge",
+      "modifiers": [
+        "accent",
+        "brand",
+        "danger",
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "neutral",
+        "no-dot",
+        "primary",
+        "success",
+        "warning"
+      ],
+      "parts": [],
+      "selector_count": 14,
+      "packs": [
+        "core",
+        "patterns",
+        "next"
+      ],
+      "category": "feedback",
+      "primary_pack": "core"
+    },
+    "bento-grid": {
+      "base": ".nz-bento-grid",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "breadcrumbs": {
+      "base": ".nz-breadcrumbs",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "navigation",
+      "primary_pack": "ui"
+    },
+    "btn": {
+      "base": ".nz-btn",
+      "modifiers": [
+        "accent",
+        "block",
+        "brand-mix",
+        "danger",
+        "ghost",
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-liquid",
+        "glass-liquid-accent",
+        "glass-liquid-aurora",
+        "glass-liquid-brand",
+        "lg",
+        "primary",
+        "secondary",
+        "sm",
+        "tonal-accent-pressed",
+        "tonal-accent-raised",
+        "tonal-accent-soft",
+        "tonal-brand-pressed",
+        "tonal-brand-raised",
+        "tonal-brand-soft",
+        "tonal-danger-pressed",
+        "tonal-danger-raised",
+        "tonal-danger-soft",
+        "tonal-success-pressed",
+        "tonal-success-raised",
+        "tonal-success-soft",
+        "tonal-warning-pressed",
+        "tonal-warning-raised"
+      ],
+      "parts": [],
+      "selector_count": 41,
+      "packs": [
+        "core",
+        "forms",
+        "next"
+      ],
+      "category": "button",
+      "primary_pack": "core"
+    },
+    "callout": {
+      "base": ".nz-callout",
+      "modifiers": [
+        "danger",
+        "info",
+        "tip",
+        "warning"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "core"
+      ],
+      "category": "feedback",
+      "primary_pack": "core"
+    },
+    "card": {
+      "base": ".nz-card",
+      "modifiers": [
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-liquid",
+        "glass-liquid-accent",
+        "glass-liquid-aurora",
+        "glass-liquid-brand",
+        "glass-soft",
+        "glass-strong",
+        "horizontal",
+        "interactive",
+        "soft"
+      ],
+      "parts": [],
+      "selector_count": 22,
+      "packs": [
+        "core",
+        "patterns",
+        "forms",
+        "next"
+      ],
+      "category": "container",
+      "primary_pack": "core"
+    },
+    "chart": {
+      "base": ".nz-chart",
+      "modifiers": [
+        "bare",
+        "glass",
+        "lg",
+        "md",
+        "sm",
+        "xl"
+      ],
+      "parts": [],
+      "selector_count": 8,
+      "packs": [
+        "patterns",
+        "charts"
+      ],
+      "category": "data-display",
+      "primary_pack": "patterns"
+    },
+    "check": {
+      "base": ".nz-check",
+      "modifiers": [
+        "accent"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "core",
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "chip": {
+      "base": ".nz-chip",
+      "modifiers": [
+        "accent",
+        "neutral"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "ui"
+      ],
+      "category": "feedback",
+      "primary_pack": "ui"
+    },
+    "cluster": {
+      "base": ".nz-cluster",
+      "modifiers": [
+        "between"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "codeblock": {
+      "base": ".nz-codeblock",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "content",
+      "primary_pack": "core"
+    },
+    "command-bar": {
+      "base": ".nz-command-bar",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "component",
+      "primary_pack": "ui"
+    },
+    "container": {
+      "base": ".nz-container",
+      "modifiers": [
+        "narrow",
+        "wide"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "core"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "cta-banner": {
+      "base": ".nz-cta-banner",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "data-card": {
+      "base": ".nz-data-card",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "data"
+      ],
+      "category": "container",
+      "primary_pack": "data"
+    },
+    "divider": {
+      "base": ".nz-divider",
+      "modifiers": [
+        "label"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core",
+        "ui"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "donut": {
+      "base": ".nz-donut",
+      "modifiers": [
+        "aurora"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "charts"
+      ],
+      "category": "data-display",
+      "primary_pack": "charts"
+    },
+    "dot-bg": {
+      "base": ".nz-dot-bg",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "drawer": {
+      "base": ".nz-drawer",
+      "modifiers": [
+        "right"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "ui"
+      ],
+      "category": "overlay",
+      "primary_pack": "ui"
+    },
+    "dropdown": {
+      "base": ".nz-dropdown",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "navigation",
+      "primary_pack": "ui"
+    },
+    "empty-state": {
+      "base": ".nz-empty-state",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "error-page": {
+      "base": ".nz-error-page",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "faq": {
+      "base": ".nz-faq",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "pattern",
+      "primary_pack": "patterns"
+    },
+    "feature": {
+      "base": ".nz-feature",
+      "modifiers": [
+        "accent"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "patterns"
+      ],
+      "category": "pattern",
+      "primary_pack": "patterns"
+    },
+    "feature-grid": {
+      "base": ".nz-feature-grid",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "field": {
+      "base": ".nz-field",
+      "modifiers": [
+        "full"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core",
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "file": {
+      "base": ".nz-file",
+      "modifiers": [
+        "dragging"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "footer": {
+      "base": ".nz-footer",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "pattern",
+      "primary_pack": "patterns"
+    },
+    "form-grid": {
+      "base": ".nz-form-grid",
+      "modifiers": [
+        "2"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "forms"
+      ],
+      "category": "layout",
+      "primary_pack": "forms"
+    },
+    "glow-ring": {
+      "base": ".nz-glow-ring",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "gradient-animated": {
+      "base": ".nz-gradient-animated",
+      "modifiers": [
+        "accent",
+        "aurora",
+        "danger",
+        "success",
+        "warning"
+      ],
+      "parts": [],
+      "selector_count": 6,
+      "packs": [
+        "next"
+      ],
+      "category": "experimental",
+      "primary_pack": "next"
+    },
+    "gradient-drift": {
+      "base": ".nz-gradient-drift",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "next"
+      ],
+      "category": "component",
+      "primary_pack": "next"
+    },
+    "gradient-rotate": {
+      "base": ".nz-gradient-rotate",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "next"
+      ],
+      "category": "component",
+      "primary_pack": "next"
+    },
+    "grid": {
+      "base": ".nz-grid",
+      "modifiers": [
+        "2",
+        "3",
+        "aside",
+        "subgrid"
+      ],
+      "parts": [],
+      "selector_count": 8,
+      "packs": [
+        "core",
+        "charts"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "grid-bg": {
+      "base": ".nz-grid-bg",
+      "modifiers": [
+        "lg",
+        "mask"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "help": {
+      "base": ".nz-help",
+      "modifiers": [
+        "error"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "hero": {
+      "base": ".nz-hero",
+      "modifiers": [
+        "centered",
+        "split"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "patterns"
+      ],
+      "category": "pattern",
+      "primary_pack": "patterns"
+    },
+    "hover-lift": {
+      "base": ".nz-hover-lift",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "input": {
+      "base": ".nz-input",
+      "modifiers": [
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-strong",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 9,
+      "packs": [
+        "core",
+        "forms",
+        "next"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "input-group": {
+      "base": ".nz-input-group",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "kpi": {
+      "base": ".nz-kpi",
+      "modifiers": [
+        "accent",
+        "aurora"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "data"
+      ],
+      "category": "data-display",
+      "primary_pack": "data"
+    },
+    "label": {
+      "base": ".nz-label",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "logo-cloud": {
+      "base": ".nz-logo-cloud",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "map": {
+      "base": ".nz-map",
+      "modifiers": [
+        "fullscreen",
+        "glass",
+        "hero",
+        "lg",
+        "md",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 7,
+      "packs": [
+        "maps"
+      ],
+      "category": "map",
+      "primary_pack": "maps"
+    },
+    "map-tooltip": {
+      "base": ".nz-map-tooltip",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "maps"
+      ],
+      "category": "component",
+      "primary_pack": "maps"
+    },
+    "marquee": {
+      "base": ".nz-marquee",
+      "modifiers": [
+        "fast",
+        "slow"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "motion"
+      ],
+      "category": "animation",
+      "primary_pack": "motion"
+    },
+    "meter": {
+      "base": ".nz-meter",
+      "modifiers": [
+        "accent",
+        "aurora"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "data"
+      ],
+      "category": "data-display",
+      "primary_pack": "data"
+    },
+    "modal": {
+      "base": ".nz-modal",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "overlay",
+      "primary_pack": "ui"
+    },
+    "nav": {
+      "base": ".nz-nav",
+      "modifiers": [
+        "glass"
+      ],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "navigation",
+      "primary_pack": "patterns"
+    },
+    "nav-item": {
+      "base": ".nz-nav-item",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "nav-section": {
+      "base": ".nz-nav-section",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "noise": {
+      "base": ".nz-noise",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "orb": {
+      "base": ".nz-orb",
+      "modifiers": [
+        "accent",
+        "aurora",
+        "brand",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 6,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "otp": {
+      "base": ".nz-otp",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "pagination": {
+      "base": ".nz-pagination",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "navigation",
+      "primary_pack": "ui"
+    },
+    "pricing-card": {
+      "base": ".nz-pricing-card",
+      "modifiers": [
+        "featured"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "pricing-grid": {
+      "base": ".nz-pricing-grid",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "progress": {
+      "base": ".nz-progress",
+      "modifiers": [
+        "accent",
+        "aurora",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "data"
+      ],
+      "category": "feedback",
+      "primary_pack": "data"
+    },
+    "progress-bar": {
+      "base": ".nz-progress-bar",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "motion"
+      ],
+      "category": "component",
+      "primary_pack": "motion"
+    },
+    "prose": {
+      "base": ".nz-prose",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "radio": {
+      "base": ".nz-radio",
+      "modifiers": [
+        "accent"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "core",
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "range": {
+      "base": ".nz-range",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "reveal": {
+      "base": ".nz-reveal",
+      "modifiers": [
+        "left",
+        "right",
+        "scale",
+        "scroll"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "motion"
+      ],
+      "category": "animation",
+      "primary_pack": "motion"
+    },
+    "scanline": {
+      "base": ".nz-scanline",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "search": {
+      "base": ".nz-search",
+      "modifiers": [
+        "lg"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "section": {
+      "base": ".nz-section",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "segmented": {
+      "base": ".nz-segmented",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "input",
+      "primary_pack": "ui"
+    },
+    "select": {
+      "base": ".nz-select",
+      "modifiers": [
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-strong",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 9,
+      "packs": [
+        "core",
+        "forms",
+        "next"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "skeleton": {
+      "base": ".nz-skeleton",
+      "modifiers": [
+        "block",
+        "circle",
+        "text",
+        "title"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "data"
+      ],
+      "category": "feedback",
+      "primary_pack": "data"
+    },
+    "sparkline": {
+      "base": ".nz-sparkline",
+      "modifiers": [
+        "accent",
+        "aurora",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "charts"
+      ],
+      "category": "data-display",
+      "primary_pack": "charts"
+    },
+    "spinner": {
+      "base": ".nz-spinner",
+      "modifiers": [
+        "accent",
+        "lg"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "ui"
+      ],
+      "category": "feedback",
+      "primary_pack": "ui"
+    },
+    "stack": {
+      "base": ".nz-stack",
+      "modifiers": [
+        "lg",
+        "md",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 4,
+      "packs": [
+        "core"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "stage": {
+      "base": ".nz-stage",
+      "modifiers": [
+        "aspect-16x9",
+        "aspect-1x1",
+        "aspect-21x9",
+        "glass-frame",
+        "hero",
+        "md"
+      ],
+      "parts": [],
+      "selector_count": 7,
+      "packs": [
+        "viz"
+      ],
+      "category": "visual",
+      "primary_pack": "viz"
+    },
+    "stat-grid": {
+      "base": ".nz-stat-grid",
+      "modifiers": [
+        "2",
+        "3",
+        "4"
+      ],
+      "parts": [],
+      "selector_count": 4,
+      "packs": [
+        "data"
+      ],
+      "category": "component",
+      "primary_pack": "data"
+    },
+    "stat-tile": {
+      "base": ".nz-stat-tile",
+      "modifiers": [
+        "accent"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "data"
+      ],
+      "category": "data-display",
+      "primary_pack": "data"
+    },
+    "stats-banner": {
+      "base": ".nz-stats-banner",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "patterns"
+    },
+    "stepper": {
+      "base": ".nz-stepper",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "surface": {
+      "base": ".nz-surface",
+      "modifiers": [
+        "accent-glass",
+        "accent-pressed",
+        "accent-raised",
+        "accent-soft",
+        "brand-glass",
+        "brand-pressed",
+        "brand-raised",
+        "brand-soft",
+        "danger-glass",
+        "danger-pressed",
+        "danger-raised",
+        "danger-soft",
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-liquid",
+        "glass-liquid-accent",
+        "glass-liquid-aurora",
+        "glass-liquid-brand",
+        "glass-soft",
+        "glass-strong",
+        "raised",
+        "soft",
+        "success-glass",
+        "success-pressed",
+        "success-raised",
+        "success-soft",
+        "warning-glass",
+        "warning-pressed",
+        "warning-raised"
+      ],
+      "parts": [],
+      "selector_count": 34,
+      "packs": [
+        "core",
+        "forms",
+        "next"
+      ],
+      "category": "layout",
+      "primary_pack": "core"
+    },
+    "switch": {
+      "base": ".nz-switch",
+      "modifiers": [
+        "accent"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "forms"
+      ],
+      "category": "input",
+      "primary_pack": "forms"
+    },
+    "tab": {
+      "base": ".nz-tab",
+      "modifiers": [
+        "active"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "ui"
+      ],
+      "category": "component",
+      "primary_pack": "ui"
+    },
+    "table": {
+      "base": ".nz-table",
+      "modifiers": [
+        "glass"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core"
+      ],
+      "category": "data-display",
+      "primary_pack": "core"
+    },
+    "table-wrap": {
+      "base": ".nz-table-wrap",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "tabs": {
+      "base": ".nz-tabs",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "navigation",
+      "primary_pack": "ui"
+    },
+    "tag": {
+      "base": ".nz-tag",
+      "modifiers": [
+        "accent",
+        "brand"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "data"
+      ],
+      "category": "feedback",
+      "primary_pack": "data"
+    },
+    "tag-input": {
+      "base": ".nz-tag-input",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "ui"
+      ],
+      "category": "input",
+      "primary_pack": "ui"
+    },
+    "text-h1": {
+      "base": ".nz-text-h1",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "text-h2": {
+      "base": ".nz-text-h2",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core",
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "text-h3": {
+      "base": ".nz-text-h3",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core",
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "text-h4": {
+      "base": ".nz-text-h4",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "core",
+        "patterns"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "text-muted": {
+      "base": ".nz-text-muted",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "text-sm": {
+      "base": ".nz-text-sm",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "core"
+      ],
+      "category": "component",
+      "primary_pack": "core"
+    },
+    "textarea": {
+      "base": ".nz-textarea",
+      "modifiers": [
+        "glass",
+        "glass-accent",
+        "glass-brand",
+        "glass-strong",
+        "lg",
+        "sm"
+      ],
+      "parts": [],
+      "selector_count": 9,
+      "packs": [
+        "core",
+        "forms",
+        "next"
+      ],
+      "category": "input",
+      "primary_pack": "core"
+    },
+    "timeline": {
+      "base": ".nz-timeline",
+      "modifiers": [],
+      "parts": [],
+      "selector_count": 1,
+      "packs": [
+        "data"
+      ],
+      "category": "data-display",
+      "primary_pack": "data"
+    },
+    "toast": {
+      "base": ".nz-toast",
+      "modifiers": [
+        "accent",
+        "danger",
+        "success",
+        "warning"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "ui"
+      ],
+      "category": "feedback",
+      "primary_pack": "ui"
+    },
+    "toast-stack": {
+      "base": ".nz-toast-stack",
+      "modifiers": [
+        "bottom-left",
+        "bottom-right",
+        "top-center",
+        "top-right"
+      ],
+      "parts": [],
+      "selector_count": 5,
+      "packs": [
+        "ui"
+      ],
+      "category": "component",
+      "primary_pack": "ui"
+    },
+    "tooltip": {
+      "base": ".nz-tooltip",
+      "modifiers": [
+        "bottom"
+      ],
+      "parts": [],
+      "selector_count": 2,
+      "packs": [
+        "ui"
+      ],
+      "category": "feedback",
+      "primary_pack": "ui"
+    },
+    "trend-arrow": {
+      "base": ".nz-trend-arrow",
+      "modifiers": [
+        "down",
+        "up"
+      ],
+      "parts": [],
+      "selector_count": 3,
+      "packs": [
+        "charts"
+      ],
+      "category": "component",
+      "primary_pack": "charts"
+    }
+  },
+  "by_category": {
+    "component": [
+      {
+        "name": "accent",
+        "base": ".nz-accent",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-aurora-pan",
+        "base": ".nz-anim-aurora-pan",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-fade-in",
+        "base": ".nz-anim-fade-in",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-float",
+        "base": ".nz-anim-float",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-glow-pulse",
+        "base": ".nz-anim-glow-pulse",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-rise",
+        "base": ".nz-anim-rise",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-scale-in",
+        "base": ".nz-anim-scale-in",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-scroll-fade",
+        "base": ".nz-anim-scroll-fade",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-shimmer",
+        "base": ".nz-anim-shimmer",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-slide-left",
+        "base": ".nz-anim-slide-left",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-slide-right",
+        "base": ".nz-anim-slide-right",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "anim-typing",
+        "base": ".nz-anim-typing",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "auth-shell",
+        "base": ".nz-auth-shell",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "avatar-stack",
+        "base": ".nz-avatar-stack",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "axis",
+        "base": ".nz-axis",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "bento-grid",
+        "base": ".nz-bento-grid",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "command-bar",
+        "base": ".nz-command-bar",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "cta-banner",
+        "base": ".nz-cta-banner",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "empty-state",
+        "base": ".nz-empty-state",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "error-page",
+        "base": ".nz-error-page",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "feature-grid",
+        "base": ".nz-feature-grid",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "gradient-drift",
+        "base": ".nz-gradient-drift",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "gradient-rotate",
+        "base": ".nz-gradient-rotate",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "help",
+        "base": ".nz-help",
+        "modifiers": [
+          "error"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "hover-lift",
+        "base": ".nz-hover-lift",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "logo-cloud",
+        "base": ".nz-logo-cloud",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "map-tooltip",
+        "base": ".nz-map-tooltip",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "nav-item",
+        "base": ".nz-nav-item",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "nav-section",
+        "base": ".nz-nav-section",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "pricing-card",
+        "base": ".nz-pricing-card",
+        "modifiers": [
+          "featured"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "pricing-grid",
+        "base": ".nz-pricing-grid",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "progress-bar",
+        "base": ".nz-progress-bar",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "prose",
+        "base": ".nz-prose",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "stat-grid",
+        "base": ".nz-stat-grid",
+        "modifiers": [
+          "2",
+          "3",
+          "4"
+        ],
+        "parts": [],
+        "selector_count": 4
+      },
+      {
+        "name": "stats-banner",
+        "base": ".nz-stats-banner",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "tab",
+        "base": ".nz-tab",
+        "modifiers": [
+          "active"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "table-wrap",
+        "base": ".nz-table-wrap",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "text-h1",
+        "base": ".nz-text-h1",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "text-h2",
+        "base": ".nz-text-h2",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "text-h3",
+        "base": ".nz-text-h3",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "text-h4",
+        "base": ".nz-text-h4",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "text-muted",
+        "base": ".nz-text-muted",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "text-sm",
+        "base": ".nz-text-sm",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "toast-stack",
+        "base": ".nz-toast-stack",
+        "modifiers": [
+          "bottom-left",
+          "bottom-right",
+          "top-center",
+          "top-right"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "trend-arrow",
+        "base": ".nz-trend-arrow",
+        "modifiers": [
+          "down",
+          "up"
+        ],
+        "parts": [],
+        "selector_count": 3
+      }
+    ],
+    "navigation": [
+      {
+        "name": "accordion",
+        "base": ".nz-accordion",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "breadcrumbs",
+        "base": ".nz-breadcrumbs",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "dropdown",
+        "base": ".nz-dropdown",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "nav",
+        "base": ".nz-nav",
+        "modifiers": [
+          "glass"
+        ],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "pagination",
+        "base": ".nz-pagination",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "tabs",
+        "base": ".nz-tabs",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      }
+    ],
+    "feedback": [
+      {
+        "name": "alert",
+        "base": ".nz-alert",
+        "modifiers": [
+          "danger",
+          "success",
+          "warning"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "badge",
+        "base": ".nz-badge",
+        "modifiers": [
+          "accent",
+          "brand",
+          "danger",
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "neutral",
+          "no-dot",
+          "primary",
+          "success"
+        ],
+        "parts": [],
+        "selector_count": 14
+      },
+      {
+        "name": "callout",
+        "base": ".nz-callout",
+        "modifiers": [
+          "danger",
+          "info",
+          "tip",
+          "warning"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "chip",
+        "base": ".nz-chip",
+        "modifiers": [
+          "accent",
+          "neutral"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "progress",
+        "base": ".nz-progress",
+        "modifiers": [
+          "accent",
+          "aurora",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "skeleton",
+        "base": ".nz-skeleton",
+        "modifiers": [
+          "block",
+          "circle",
+          "text",
+          "title"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "spinner",
+        "base": ".nz-spinner",
+        "modifiers": [
+          "accent",
+          "lg"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "tag",
+        "base": ".nz-tag",
+        "modifiers": [
+          "accent",
+          "brand"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "toast",
+        "base": ".nz-toast",
+        "modifiers": [
+          "accent",
+          "danger",
+          "success",
+          "warning"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "tooltip",
+        "base": ".nz-tooltip",
+        "modifiers": [
+          "bottom"
+        ],
+        "parts": [],
+        "selector_count": 2
+      }
+    ],
+    "animation": [
+      {
+        "name": "anim",
+        "base": ".nz-anim",
+        "modifiers": [
+          "delay-1",
+          "delay-2",
+          "delay-3",
+          "delay-4",
+          "delay-5",
+          "delay-6",
+          "fast",
+          "once",
+          "slow"
+        ],
+        "parts": [],
+        "selector_count": 9
+      },
+      {
+        "name": "marquee",
+        "base": ".nz-marquee",
+        "modifiers": [
+          "fast",
+          "slow"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "reveal",
+        "base": ".nz-reveal",
+        "modifiers": [
+          "left",
+          "right",
+          "scale",
+          "scroll"
+        ],
+        "parts": [],
+        "selector_count": 5
+      }
+    ],
+    "pattern": [
+      {
+        "name": "app-shell",
+        "base": ".nz-app-shell",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "faq",
+        "base": ".nz-faq",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "feature",
+        "base": ".nz-feature",
+        "modifiers": [
+          "accent"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "footer",
+        "base": ".nz-footer",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "hero",
+        "base": ".nz-hero",
+        "modifiers": [
+          "centered",
+          "split"
+        ],
+        "parts": [],
+        "selector_count": 3
+      }
+    ],
+    "visual": [
+      {
+        "name": "aurora-bg",
+        "base": ".nz-aurora-bg",
+        "modifiers": [
+          "soft",
+          "static"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "dot-bg",
+        "base": ".nz-dot-bg",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "glow-ring",
+        "base": ".nz-glow-ring",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "grid-bg",
+        "base": ".nz-grid-bg",
+        "modifiers": [
+          "lg",
+          "mask"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "noise",
+        "base": ".nz-noise",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "orb",
+        "base": ".nz-orb",
+        "modifiers": [
+          "accent",
+          "aurora",
+          "brand",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 6
+      },
+      {
+        "name": "scanline",
+        "base": ".nz-scanline",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "stage",
+        "base": ".nz-stage",
+        "modifiers": [
+          "aspect-16x9",
+          "aspect-1x1",
+          "aspect-21x9",
+          "glass-frame",
+          "hero",
+          "md"
+        ],
+        "parts": [],
+        "selector_count": 7
+      }
+    ],
+    "experimental": [
+      {
+        "name": "aurora-mesh",
+        "base": ".nz-aurora-mesh",
+        "modifiers": [
+          "animated",
+          "glass",
+          "hero",
+          "houdini"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "gradient-animated",
+        "base": ".nz-gradient-animated",
+        "modifiers": [
+          "accent",
+          "aurora",
+          "danger",
+          "success",
+          "warning"
+        ],
+        "parts": [],
+        "selector_count": 6
+      }
+    ],
+    "data-display": [
+      {
+        "name": "avatar",
+        "base": ".nz-avatar",
+        "modifiers": [
+          "accent",
+          "aurora",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "chart",
+        "base": ".nz-chart",
+        "modifiers": [
+          "bare",
+          "glass",
+          "lg",
+          "md",
+          "sm",
+          "xl"
+        ],
+        "parts": [],
+        "selector_count": 8
+      },
+      {
+        "name": "donut",
+        "base": ".nz-donut",
+        "modifiers": [
+          "aurora"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "kpi",
+        "base": ".nz-kpi",
+        "modifiers": [
+          "accent",
+          "aurora"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "meter",
+        "base": ".nz-meter",
+        "modifiers": [
+          "accent",
+          "aurora"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "sparkline",
+        "base": ".nz-sparkline",
+        "modifiers": [
+          "accent",
+          "aurora",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 5
+      },
+      {
+        "name": "stat-tile",
+        "base": ".nz-stat-tile",
+        "modifiers": [
+          "accent"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "table",
+        "base": ".nz-table",
+        "modifiers": [
+          "glass"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "timeline",
+        "base": ".nz-timeline",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      }
+    ],
+    "button": [
+      {
+        "name": "btn",
+        "base": ".nz-btn",
+        "modifiers": [
+          "accent",
+          "block",
+          "brand-mix",
+          "danger",
+          "ghost",
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "glass-liquid",
+          "glass-liquid-accent"
+        ],
+        "parts": [],
+        "selector_count": 41
+      }
+    ],
+    "container": [
+      {
+        "name": "card",
+        "base": ".nz-card",
+        "modifiers": [
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "glass-liquid",
+          "glass-liquid-accent",
+          "glass-liquid-aurora",
+          "glass-liquid-brand",
+          "glass-soft",
+          "glass-strong",
+          "horizontal"
+        ],
+        "parts": [],
+        "selector_count": 22
+      },
+      {
+        "name": "data-card",
+        "base": ".nz-data-card",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      }
+    ],
+    "input": [
+      {
+        "name": "check",
+        "base": ".nz-check",
+        "modifiers": [
+          "accent"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "field",
+        "base": ".nz-field",
+        "modifiers": [
+          "full"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "file",
+        "base": ".nz-file",
+        "modifiers": [
+          "dragging"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "input",
+        "base": ".nz-input",
+        "modifiers": [
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "glass-strong",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 9
+      },
+      {
+        "name": "input-group",
+        "base": ".nz-input-group",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "label",
+        "base": ".nz-label",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "otp",
+        "base": ".nz-otp",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "radio",
+        "base": ".nz-radio",
+        "modifiers": [
+          "accent"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "range",
+        "base": ".nz-range",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "search",
+        "base": ".nz-search",
+        "modifiers": [
+          "lg"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "segmented",
+        "base": ".nz-segmented",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "select",
+        "base": ".nz-select",
+        "modifiers": [
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "glass-strong",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 9
+      },
+      {
+        "name": "stepper",
+        "base": ".nz-stepper",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "switch",
+        "base": ".nz-switch",
+        "modifiers": [
+          "accent"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "tag-input",
+        "base": ".nz-tag-input",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "textarea",
+        "base": ".nz-textarea",
+        "modifiers": [
+          "glass",
+          "glass-accent",
+          "glass-brand",
+          "glass-strong",
+          "lg",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 9
+      }
+    ],
+    "layout": [
+      {
+        "name": "cluster",
+        "base": ".nz-cluster",
+        "modifiers": [
+          "between"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "container",
+        "base": ".nz-container",
+        "modifiers": [
+          "narrow",
+          "wide"
+        ],
+        "parts": [],
+        "selector_count": 3
+      },
+      {
+        "name": "divider",
+        "base": ".nz-divider",
+        "modifiers": [
+          "label"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "form-grid",
+        "base": ".nz-form-grid",
+        "modifiers": [
+          "2"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "grid",
+        "base": ".nz-grid",
+        "modifiers": [
+          "2",
+          "3",
+          "aside",
+          "subgrid"
+        ],
+        "parts": [],
+        "selector_count": 8
+      },
+      {
+        "name": "section",
+        "base": ".nz-section",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      },
+      {
+        "name": "stack",
+        "base": ".nz-stack",
+        "modifiers": [
+          "lg",
+          "md",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 4
+      },
+      {
+        "name": "surface",
+        "base": ".nz-surface",
+        "modifiers": [
+          "accent-glass",
+          "accent-pressed",
+          "accent-raised",
+          "accent-soft",
+          "brand-glass",
+          "brand-pressed",
+          "brand-raised",
+          "brand-soft",
+          "danger-glass",
+          "danger-pressed"
+        ],
+        "parts": [],
+        "selector_count": 34
+      }
+    ],
+    "content": [
+      {
+        "name": "codeblock",
+        "base": ".nz-codeblock",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      }
+    ],
+    "overlay": [
+      {
+        "name": "drawer",
+        "base": ".nz-drawer",
+        "modifiers": [
+          "right"
+        ],
+        "parts": [],
+        "selector_count": 2
+      },
+      {
+        "name": "modal",
+        "base": ".nz-modal",
+        "modifiers": [],
+        "parts": [],
+        "selector_count": 1
+      }
+    ],
+    "map": [
+      {
+        "name": "map",
+        "base": ".nz-map",
+        "modifiers": [
+          "fullscreen",
+          "glass",
+          "hero",
+          "lg",
+          "md",
+          "sm"
+        ],
+        "parts": [],
+        "selector_count": 7
+      }
+    ]
+  }
+}

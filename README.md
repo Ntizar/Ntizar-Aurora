@@ -33,9 +33,12 @@ Cada pack es independiente. Carga 1 o los 10.
 
 ## Documentación
 
-- [AGENTS.md](AGENTS.md) → **contrato para IA**: reglas duras, anti-patterns, cómo usar sin gastar tokens
+- [LLM.md](LLM.md) → **Guía de decisión LLM** (~2 KB): "necesito X → packs Y → clases Z". **Empieza aquí si eres un agente IA.**
+- [AGENTS.md](AGENTS.md) → **contrato para IA**: reglas duras, anti-patterns, decision tree, cómo usar sin gastar tokens
 - [INDEX.md](INDEX.md) → **mapa de clases**: "necesito X → pack Y → clases Z"
+- [components.json](components.json) → **spec machine-readable**: 119 componentes con modificadores, categorías, packs
 - [DESIGN.md](DESIGN.md) → **spec machine-readable** (Google design.md): tokens, tipografía, componentes
+- [examples/](examples/) → **5 ejemplos completos**: login, dashboard, landing, UI components, forms
 - [gallery.html](gallery.html) → **showcase** con todo en vivo (foundations + core + packs + reference API)
 
 ### Ecosistema design.md

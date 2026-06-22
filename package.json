@@ -15,12 +15,16 @@
     "ntizar.forms.css",
     "ntizar.ui.css",
     "ntizar.patterns.css",
+    "ntizar.next.css",
+    "components.json",
+    "LLM.md",
     "DESIGN.md",
     "skins/",
     "INDEX.md",
     "SYSTEM.md",
     "USAGE.md",
-    "README.md"
+    "README.md",
+    "examples/"
   ],
   "scripts": {
     "lint:design": "npx --yes @google/design.md lint DESIGN.md && npx --yes @google/design.md lint skins/DESIGN.sunset.md && npx --yes @google/design.md lint skins/DESIGN.midnight.md && npx --yes @google/design.md lint skins/DESIGN.ocean.md && npx --yes @google/design.md lint skins/DESIGN.citrus.md",
@@ -29,7 +33,9 @@
     "build:tailwind:skins": "npx --yes @google/design.md tailwind skins/DESIGN.sunset.md > dist/tailwind.sunset.json && npx --yes @google/design.md tailwind skins/DESIGN.midnight.md > dist/tailwind.midnight.json && npx --yes @google/design.md tailwind skins/DESIGN.ocean.md > dist/tailwind.ocean.json && npx --yes @google/design.md tailwind skins/DESIGN.citrus.md > dist/tailwind.citrus.json",
     "build:dtcg": "npx --yes @google/design.md export --format dtcg DESIGN.md > dist/tokens.json",
     "build": "mkdir -p dist && npm run build:tailwind && npm run build:tailwind:skins && npm run build:dtcg",
-    "validate": "npm run lint:design"
+    "validate": "npm run lint:design && node scripts/validate-llm.js",
+    "validate:llm": "node scripts/validate-llm.js",
+    "stats": "node scripts/component-stats.js"
   },
   "keywords": [
     "design-system",

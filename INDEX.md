@@ -2,9 +2,9 @@
 
 > Mapa rápido para saber **qué archivo cargar** y **qué clase usar** según lo que necesites construir.
 >
-> **Agentes IA:** lee primero [`AGENTS.md`](AGENTS.md). Te dice cómo usar Aurora sin gastar tokens (CDN + reglas duras). Este archivo es tu mapa de clases una vez sepas las reglas.
+> **Agentes IA:** lee primero [`LLM.md`](LLM.md) (~2 KB, decisión rápida) y luego [`AGENTS.md`](AGENTS.md) (reglas detalladas). Este archivo es tu mapa de clases una vez sepas las reglas.
 >
-> ¿Buscas el spec canónico de tokens/componentes para un agente o herramienta de diseño? Lee [DESIGN.md](DESIGN.md) (compatible con `design.md` de Google).
+> ¿Buscas el spec canónico de tokens/componentes para un agente o herramienta de diseño? Lee [`components.json`](components.json) (machine-readable, 119 componentes) o [`DESIGN.md`](DESIGN.md) (Google design.md compatible).
 
 ---
 

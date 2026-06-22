@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms — Aurora</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.forms.css">
+</head>
+<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
+  <div class="nz-container" style="padding: 3rem 1rem;">
+    <h2 class="nz-text-h3" style="margin-bottom: var(--nz-space-5);">Formularios</h2>
+    
+    <form class="nz-form-grid--2">
+      <div class="nz-field">
+        <label class="nz-label" for="name">Nombre</label>
+        <input class="nz-input" id="name" type="text" placeholder="Tu nombre">
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label" for="email">Email</label>
+        <input class="nz-input" id="email" type="email" placeholder="tu@email.com">
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label" for="role">Rol</label>
+        <select class="nz-select" id="role">
+          <option>Seleccionar...</option>
+          <option>Admin</option>
+          <option>Editor</option>
+          <option>Viewer</option>
+        </select>
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label" for="bio">Biografía</label>
+        <textarea class="nz-textarea" id="bio" rows="3" placeholder="Cuéntanos sobre ti..."></textarea>
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label">Notificaciones</label>
+        <label class="nz-switch">
+          <input type="checkbox" checked>
+          <span class="nz-switch__track"></span>
+        </label>
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label">Plan</label>
+        <div class="nz-segmented">
+          <label class="nz-segmented__option">
+            <input type="radio" name="plan" checked> Mensual
+          </label>
+          <label class="nz-segmented__option">
+            <input type="radio" name="plan"> Anual
+          </label>
+        </div>
+      </div>
+      
+      <div class="nz-field">
+        <label class="nz-label">Archivo</label>
+        <div class="nz-file">
+          <div class="nz-file__drop">Arrastra un archivo o haz clic</div>
+        </div>
+      </div>
+      
+      <div class="nz-field" style="grid-column: span 2;">
+        <label class="nz-label">OTP verification</label>
+        <div class="nz-otp">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+          <input class="nz-otp__cell" maxlength="1" type="text">
+        </div>
+      </div>
+      
+      <div class="nz-field" style="grid-column: span 2; margin-top: var(--nz-space-2);">
+        <button class="nz-btn nz-btn--primary">Guardar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Components — Aurora</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.ui.css">
+</head>
+<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
+  <div class="nz-container" style="padding: 3rem 1rem;">
+    <h2 class="nz-text-h3" style="margin-bottom: var(--nz-space-5);">Componentes interactivos</h2>
+    
+    <!-- Tabs -->
+    <div class="nz-tabs" style="margin-bottom: var(--nz-space-6);">
+      <div class="nz-tabs__list">
+        <button class="nz-tab--active" data-tab="0">General</button>
+        <button class="nz-tab" data-tab="1">Avanzado</button>
+        <button class="nz-tab" data-tab="2">API</button>
+      </div>
+      <div class="nz-tabs__panel">Panel 1: Configuración general</div>
+      <div class="nz-tabs__panel" style="display:none;">Panel 2: Opciones avanzadas</div>
+      <div class="nz-tabs__panel" style="display:none;">Panel 3: Documentación API</div>
+    </div>
+    
+    <!-- Dropdown -->
+    <div class="nz-dropdown" style="margin-bottom: var(--nz-space-5);">
+      <button class="nz-btn nz-btn--primary nz-dropdown__toggle">Acciones ▾</button>
+      <div class="nz-dropdown__menu">
+        <a class="nz-dropdown__item" href="#">Editar</a>
+        <a class="nz-dropdown__item" href="#">Duplicar</a>
+        <div class="nz-dropdown__sep"></div>
+        <a class="nz-dropdown__item--danger" href="#">Eliminar</a>
+      </div>
+    </div>
+    
+    <!-- Modal trigger -->
+    <button class="nz-btn nz-btn--accent" id="open-modal">Abrir modal</button>
+    
+    <dialog class="nz-modal" id="my-modal">
+      <div class="nz-modal__panel">
+        <div class="nz-modal__header">
+          <h3 class="nz-text-lg">Confirmar acción</h3>
+          <button class="nz-modal__close" id="close-modal">✕</button>
+        </div>
+        <div class="nz-modal__body">
+          <p>¿Estás seguro de que quieres realizar esta acción? No se puede deshacer.</p>
+        </div>
+        <div class="nz-modal__footer">
+          <button class="nz-btn nz-btn--ghost" id="cancel-modal">Cancelar</button>
+          <button class="nz-btn nz-btn--primary">Confirmar</button>
+        </div>
+      </div>
+    </dialog>
+    
+    <!-- Toast -->
+    <div class="nz-toast" id="toast-example" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
+      <div class="nz-card" style="padding: 1rem;">
+        <p class="u-nz-text-strong">✅ Acción completada</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Minimal JS for interactivity (Aurora is CSS-only)
+    document.getElementById('open-modal').addEventListener('click', () => {
+      document.getElementById('my-modal').showModal();
+    });
+    document.getElementById('close-modal').addEventListener('click', () => {
+      document.getElementById('my-modal').close();
+    });
+    document.getElementById('cancel-modal').addEventListener('click', () => {
+      document.getElementById('my-modal').close();
+    });
+  </script>
+</body>
+</html>

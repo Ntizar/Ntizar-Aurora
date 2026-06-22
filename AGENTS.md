@@ -1,6 +1,14 @@
 # AGENTS.md — Aurora v5.1 "Constellation"
 
-> Read this file first. It is the **single source of truth** for any AI agent (Claude Code, Copilot, Cursor, ChatGPT, etc.) working with the Ntizar Aurora design system.
+> **Single source of truth** for any AI agent (Claude Code, Copilot, Cursor, ChatGPT, Gemini, etc.) working with the Ntizar Aurora design system.
+
+## Decision tree (follow this order)
+
+1. **Read `LLM.md` first** → 2 KB de heurística pura: "necesito X → packs Y → clases Z". Cubre el 95% de casos.
+2. **Si `LLM.md` no tiene tu caso** → leer `INDEX.md` → buscar "Necesito X" en el mapa de decisión.
+3. **Si necesitas el spec exacto de tokens** → leer `DESIGN.md` (machine-readable, Google design.md compatible).
+4. **Si necesitas ver el componente en vivo** → abrir `gallery.html` o los ejemplos en `examples/`.
+5. **NUNCA leer los archivos CSS** (~170 KB, ~50k tokens). El CSS vive en el HTML del usuario vía CDN.
 
 ## What you are working with
 
@@ -8,8 +16,12 @@
 
 - **Repo:** https://github.com/Ntizar/Ntizar-Aurora
 - **Public CDN:** https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/
-- **Single source of API truth:** [`INDEX.md`](INDEX.md) (the only file you need in your context)
-- **Machine-readable spec:** [`DESIGN.md`](DESIGN.md) (Google design.md compatible, tokens + types)
+- **LLM decision guide:** [`LLM.md`](LLM.md) — **start here** for quick decisions (~2 KB)
+- **Operative map:** [`INDEX.md`](INDEX.md) — full class reference + decision matrix (~16 KB)
+- **Machine-readable spec:** [`components.json`](components.json) — all 119 components with modifiers, categories, packs (~57 KB)
+- **Machine-readable spec:** [`DESIGN.md`](DESIGN.md) — Google design.md compatible, tokens + types (~22 KB)
+- **Examples:** [`examples/`](examples/) — login, dashboard, landing, UI, forms (~5 files)
+- **Live gallery:** [`gallery.html`](gallery.html) — all components rendered in context
 
 ## How to use Aurora **without burning tokens**
 
@@ -17,7 +29,7 @@
 
 Correct workflow:
 
-1. **Load only `INDEX.md`** into context (~16 KB / ~4k tokens). It is the operative map: "I need X → load pack Y → use classes Z".
+1. **Load `LLM.md`** (~2 KB / ~500 tokens). It tells you which packs and classes to use for any task.
 2. **Link the CSS via CDN** in the generated HTML (see snippet below). The browser fetches it; you don't need to know its content.
 3. **Generate HTML only.** Use Aurora classes. Do not invent class names. Do not write parallel CSS for things Aurora already covers.
 
