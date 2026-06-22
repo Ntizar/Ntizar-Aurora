@@ -26,6 +26,14 @@
     --nz-color-accent: var(--nz-color-orange-500);
     --nz-color-accent-strong: var(--nz-color-orange-600);
     --nz-color-accent-soft: var(--nz-color-orange-300);
+    /* Fix 2026-06-22: Sin violeta/morado. Solo azul → naranja.
+       El violeta (#8b5cf6 / #7c3aed) venía heredado de ntizar.css
+       y creaba el efecto "morado" que el usuario rechaza.
+       Versión 1: azul puro → naranja directo.
+       Versión 2 (si se quiere punto intermedio suave): usar blue-400 (#60a5fa). */
+    --nz-gradient-aurora: linear-gradient(135deg,
+      var(--nz-color-blue-600) 0%,
+      var(--nz-color-orange-500) 100%);
   }
 
   /* ---------- SUNSET (naranja dominante, azul soporte) ---------- */

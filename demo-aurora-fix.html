@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora — Ejemplo de Diseño Ntizar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Aurora core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
+  <!-- Next (liquid glass) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.next.css">
+  <!-- Data (KPIs, progress, badges) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.data.css">
+  <!-- UI (tabs, buttons, modals) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.ui.css">
+  <!-- Motion -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.motion.css">
+  <style>
+    /* CSS custom mínimo — solo lo específico de esta demo */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .hero-section {
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 768px) {
+      .hero-section { padding: 2.5rem 0 2rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="nz" data-nz-theme="light" data-nz-skin="aurora" data-nz-shape="default" data-nz-density="comfortable" data-nz-motion="standard">
+
+  <!-- Mesh aurora de fondo -->
+  <div class="nz-aurora-mesh nz-aurora-mesh--animated" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></div>
+  <!-- Orbs decorativos -->
+  <div class="nz-orb nz-orb--aurora nz-orb--sm" style="position:fixed;top:8%;left:6%;z-index:0;pointer-events:none;"></div>
+  <div class="nz-orb nz-orb--accent" style="position:fixed;bottom:12%;right:5%;z-index:0;pointer-events:none;"></div>
+
+  <div style="position:relative;z-index:1;">
+    <!-- Nav -->
+    <nav style="padding:1rem 2rem;border-bottom:1px solid var(--nz-border-soft);backdrop-filter:blur(12px);background:rgba(255,255,255,0.75);position:sticky;top:0;z-index:10;">
+      <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-weight:700;font-size:1.25rem;color:var(--nz-color-brand);">
+          <span style="background:var(--nz-gradient-aurora);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Aurora</span>
+        </div>
+        <div style="display:flex;gap:0.75rem;">
+          <button class="nz-btn nz-btn--glass" style="font-size:0.875rem;">Docs</button>
+          <button class="nz-btn nz-btn--glass-liquid-brand" style="font-size:0.875rem;">GitHub</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section">
+      <div style="max-width:800px;margin:0 auto;padding:0 2rem;">
+        <div class="nz-badge nz-badge--glass" style="display:inline-block;margin-bottom:1.5rem;font-size:0.8rem;">
+          v5.1 Constellation
+        </div>
+        <h1 class="nz-text-display-2" style="margin-bottom:1rem;">
+          <span class="nz-gradient-text">Diseño Ntizar</span>
+        </h1>
+        <p class="nz-text-body-xl" style="color:var(--nz-text-muted);max-width:600px;margin:0 auto 2rem;">
+          Sistema de diseño CSS puro con fondo blanco, azules y naranjas, liquid glass real y sin violetas. Sin frameworks, sin build step, sin dependencias.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="nz-btn nz-btn--glass-liquid-brand nz-btn--lg">
+            <span>Empezar</span>
+          </button>
+          <button class="nz-btn nz-btn--glass nz-btn--lg">
+            <span>Ver en GitHub</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPIs -->
+    <section style="max-width:1200px;margin:0 auto;padding:0 2rem;">
+      <div class="kpi-grid">
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift nz-anim-fade-in">
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="font-size:0.8rem;color:var(--nz-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Packs CSS</div>
+            <div class="nz-kpi nz-kpi--accent" style="font-size:2.5rem;font-weight:800;">11</div>
+            <div style="font-size:0.85rem;color:var(--nz-text-muted);">Modulares e idempotentes</div>
+          </div>
+        </div>
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift nz-anim-fade-in" style="animation-delay:0.1s;">
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="font-size:0.8rem;color:var(--nz-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Tamaños</div>
+            <div class="nz-kpi nz-kpi--accent" style="font-size:2.5rem;font-weight:800;">~170KB</div>
+            <div style="font-size:0.85rem;color:var(--nz-text-muted);">Comprimidos en CDN</div>
+          </div>
+        </div>
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift nz-anim-fade-in" style="animation-delay:0.2s;">
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="font-size:0.8rem;color:var(--nz-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Skins</div>
+            <div class="nz-kpi nz-kpi--accent" style="font-size:2.5rem;font-weight:800;">6</div>
+            <div style="font-size:0.85rem;color:var(--nz-text-muted);">Aurora, Sunset, Midnight...</div>
+          </div>
+        </div>
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift nz-anim-fade-in" style="animation-delay:0.3s;">
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="font-size:0.8rem;color:var(--nz-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Dependencias</div>
+            <div class="nz-kpi nz-kpi--accent" style="font-size:2.5rem;font-weight:800;">0</div>
+            <div style="font-size:0.85rem;color:var(--nz-text-muted);">CSS puro, sin JS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Componentes -->
+    <section style="max-width:1200px;margin:0 auto;padding:2rem;">
+      <h2 class="nz-text-h2" style="margin-bottom:0.5rem;">
+        <span class="nz-gradient-text">Componentes</span>
+      </h2>
+      <p style="color:var(--nz-text-muted);margin-bottom:2rem;">Todos los componentes usan tokens <code style="background:var(--nz-surface-soft);padding:2px 8px;border-radius:6px;font-size:0.85rem;">var(--nz-*)</code>, sin hex hardcodeados.</p>
+
+      <div class="card-grid">
+        <!-- Card 1: Botones -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Botones</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+              <button class="nz-btn nz-btn--glass-liquid-brand">Brand</button>
+              <button class="nz-btn nz-btn--glass-liquid-accent">Accent</button>
+              <button class="nz-btn nz-btn--glass">Glass</button>
+              <button class="nz-btn nz-btn--ghost">Ghost</button>
+              <button class="nz-btn nz-btn--primary">Primary</button>
+              <button class="nz-btn nz-btn--accent">Accent</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Badges & Progress -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Badges & Progreso</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+              <span class="nz-badge nz-badge--glass">Default</span>
+              <span class="nz-badge nz-badge--glass-brand">Brand</span>
+              <span class="nz-badge nz-badge--glass-accent">Accent</span>
+              <span class="nz-badge nz-badge--success">Success</span>
+              <span class="nz-badge nz-badge--warning">Warning</span>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);margin-bottom:0.5rem;">Barra default</div>
+              <div class="nz-progress" style="--nz-progress-value:72;">
+                <div class="nz-progress__bar"></div>
+              </div>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);margin-bottom:0.5rem;">Barra brand</div>
+              <div class="nz-progress nz-progress--brand" style="--nz-progress-value:58;">
+                <div class="nz-progress__bar"></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);margin-bottom:0.5rem;">Barra accent</div>
+              <div class="nz-progress nz-progress--accent" style="--nz-progress-value:85;">
+                <div class="nz-progress__bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Tipografía -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Tipografía</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <h1 class="nz-text-display-3" style="margin-bottom:0.75rem;">Display 3</h1>
+            <h2 class="nz-text-h1" style="margin-bottom:0.75rem;">Heading 1</h2>
+            <h3 class="nz-text-h3" style="margin-bottom:0.75rem;">Heading 3</h3>
+            <p class="nz-text-body" style="margin-bottom:0.75rem;">Texto cuerpo con Inter, pesos 300-800.</p>
+            <p class="nz-text-body-sm" style="color:var(--nz-text-muted);margin:0;">Texto pequeño con token <code style="background:var(--nz-surface-soft);padding:1px 6px;border-radius:4px;font-size:0.8rem;">var(--nz-text-muted)</code></p>
+          </div>
+        </div>
+
+        <!-- Card 4: Superficies -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Superficies Glass</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div class="nz-surface nz-surface--glass" style="padding:1rem;margin-bottom:1rem;border-radius:var(--nz-radius-md);">
+              <div style="font-size:0.85rem;font-weight:600;">Glass Normal</div>
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);">Backdrop blur + sombra sutil</div>
+            </div>
+            <div class="nz-surface nz-surface--glass-brand" style="padding:1rem;margin-bottom:1rem;border-radius:var(--nz-radius-md);">
+              <div style="font-size:0.85rem;font-weight:600;color:var(--nz-color-brand);">Glass Brand</div>
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);">Tinte azul sutil</div>
+            </div>
+            <div class="nz-surface nz-surface--glass-accent" style="padding:1rem;border-radius:var(--nz-radius-md);">
+              <div style="font-size:0.85rem;font-weight:600;color:var(--nz-color-accent);">Glass Accent</div>
+              <div style="font-size:0.8rem;color:var(--nz-text-muted);">Tinte naranja sutil</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Tabs -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Tabs</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div class="nz-tabs">
+              <div class="nz-tabs__list">
+                <div class="nz-tab nz-tab--active" data-tab="tab1" onclick="switchTab(this, 'tab1')">General</div>
+                <div class="nz-tab" data-tab="tab2" onclick="switchTab(this, 'tab2')">Datos</div>
+                <div class="nz-tab" data-tab="tab3" onclick="switchTab(this, 'tab3')">Aurora</div>
+              </div>
+              <div class="nz-tabs__panel nz-tabs__panel--active" id="panel-tab1" style="padding-top:1rem;">
+                <p style="font-size:0.9rem;color:var(--nz-text-muted);margin:0;">Panel general con contenido de ejemplo. Todo funciona con clases CSS, sin JS framework.</p>
+              </div>
+              <div class="nz-tabs__panel" id="panel-tab2" style="padding-top:1rem;display:none;">
+                <p style="font-size:0.9rem;color:var(--nz-text-muted);margin:0;">Panel de datos con KPIs, barras de progreso y badges.</p>
+              </div>
+              <div class="nz-tabs__panel" id="panel-tab3" style="padding-top:1rem;display:none;">
+                <p style="font-size:0.9rem;color:var(--nz-text-muted);margin:0;">Panel Aurora: skin, theme, gradientes sin violeta.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Formulario -->
+        <div class="nz-card nz-card--glass-liquid nz-hover-lift">
+          <div class="nz-card__header" style="padding:1.5rem 1.5rem 0;">
+            <h3 class="nz-text-h4" style="margin:0;">Formulario</h3>
+          </div>
+          <div class="nz-card__body" style="padding:1.5rem;">
+            <div class="nz-form-grid" style="display:grid;gap:1rem;">
+              <div class="nz-field">
+                <label class="nz-label" style="font-size:0.85rem;">Nombre</label>
+                <input class="nz-input" type="text" placeholder="Tu nombre" style="width:100%;">
+              </div>
+              <div class="nz-field">
+                <label class="nz-label" style="font-size:0.85rem;">Email</label>
+                <input class="nz-input" type="email" placeholder="tu@email.com" style="width:100%;">
+              </div>
+              <div class="nz-field">
+                <label class="nz-label" style="font-size:0.85rem;">Proyecto</label>
+                <select class="nz-input" style="width:100%;">
+                  <option>Seleccionar...</option>
+                  <option>Aurora</option>
+                  <option>ESIOS</option>
+                  <option>NAP</option>
+                </select>
+              </div>
+              <div class="nz-field" style="display:flex;align-items:center;gap:0.5rem;">
+                <input type="checkbox" class="nz-input nz-input--checkbox" id="demo-check">
+                <label for="demo-check" style="font-size:0.85rem;cursor:pointer;">Aceptar términos</label>
+              </div>
+            </div>
+            <button class="nz-btn nz-btn--glass-liquid-brand" style="width:100%;margin-top:1rem;">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align:center;padding:3rem 2rem;border-top:1px solid var(--nz-border-soft);margin-top:3rem;">
+      <p style="color:var(--nz-text-muted);font-size:0.9rem;margin:0;">
+        Hecho con (L) por David Antizar
+      </p>
+      <p style="color:var(--nz-text-tertiary);font-size:0.8rem;margin-top:0.5rem;">
+        Aurora v5.1 · CSS puro · Sin violetas
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(tabEl, tabId) {
+      // Desactivar todos los tabs
+      tabEl.closest('.nz-tabs__list').querySelectorAll('.nz-tab').forEach(t => {
+        t.classList.remove('nz-tab--active');
+      });
+      // Activar el seleccionado
+      tabEl.classList.add('nz-tab--active');
+      // Ocultar todos los paneles
+      const tabs = tabEl.closest('.nz-tabs');
+      tabs.querySelectorAll('.nz-tabs__panel').forEach(p => {
+        p.classList.remove('nz-tabs__panel--active');
+        p.style.display = 'none';
+      });
+      // Mostrar el panel correspondiente
+      const panel = document.getElementById('panel-' + tabId);
+      if (panel) {
+        panel.classList.add('nz-tabs__panel--active');
+        panel.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
