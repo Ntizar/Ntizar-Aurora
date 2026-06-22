@@ -3,84 +3,519 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forms — Aurora</title>
+  <title>Forms — Aurora v5.1</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.forms.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.patterns.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.next.css">
+  <style>
+    /* ===== Shell ===== */
+    .forms-shell {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: 3rem clamp(1.5rem, 4vw, 3rem);
+    }
+    .forms-shell__head {
+      margin-bottom: 2.5rem;
+    }
+    .forms-shell__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+    .forms-shell__sub {
+      color: var(--nz-text-muted);
+      margin: 0;
+    }
+    /* Form section */
+    .forms-section {
+      margin-bottom: 2.5rem;
+    }
+    .forms-section__title {
+      font-size: var(--nz-text-lg);
+      font-weight: 700;
+      color: var(--nz-text-strong);
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--nz-border-soft);
+    }
+    /* Card wrapper */
+    .forms-card {
+      padding: 2rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-xl);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-sm);
+    }
+    /* Grid */
+    .forms-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    .forms-grid--full {
+      grid-column: span 2;
+    }
+    /* Field */
+    .forms-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .forms-field__label {
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      color: var(--nz-text-strong);
+    }
+    .forms-field__label--required::after {
+      content: " *";
+      color: var(--nz-color-danger);
+    }
+    .forms-field__input {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-base);
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-sans);
+      font-size: var(--nz-text-sm);
+      transition: border-color var(--nz-duration-base) var(--nz-ease-standard),
+                  box-shadow var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .forms-field__input:focus {
+      outline: none;
+      border-color: var(--nz-color-brand);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--nz-color-brand) 20%, transparent);
+    }
+    .forms-field__input::placeholder {
+      color: var(--nz-text-soft);
+    }
+    .forms-field__input--error {
+      border-color: var(--nz-color-danger);
+    }
+    .forms-field__input--error:focus {
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+    }
+    .forms-field__help {
+      font-size: var(--nz-text-xs);
+      color: var(--nz-text-muted);
+    }
+    .forms-field__help--error {
+      color: var(--nz-color-danger);
+      font-weight: 600;
+    }
+    /* Switch */
+    .forms-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .forms-switch__track {
+      width: 2.75rem;
+      height: 1.5rem;
+      border-radius: var(--nz-radius-pill);
+      background: var(--nz-surface-soft);
+      border: 1px solid var(--nz-border-soft);
+      position: relative;
+      cursor: pointer;
+      transition: background var(--nz-duration-base);
+      flex-shrink: 0;
+    }
+    .forms-switch__track::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 50%;
+      background: var(--nz-surface-raised);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      transition: transform var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .forms-switch__input:checked + .forms-switch__track {
+      background: var(--nz-gradient-brand);
+    }
+    .forms-switch__input:checked + .forms-switch__track::after {
+      transform: translateX(1.25rem);
+    }
+    .forms-switch__input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .forms-switch__label {
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      cursor: pointer;
+    }
+    /* Segmented */
+    .forms-segmented {
+      display: inline-flex;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      overflow: hidden;
+      background: var(--nz-surface-base);
+    }
+    .forms-segmented__option {
+      position: relative;
+    }
+    .forms-segmented__option input {
+      position: absolute;
+      opacity: 0;
+    }
+    .forms-segmented__option label {
+      display: block;
+      padding: 0.5rem 1rem;
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      color: var(--nz-text-muted);
+      cursor: pointer;
+      transition: color var(--nz-duration-base), background var(--nz-duration-base);
+      user-select: none;
+    }
+    .forms-segmented__option input:checked + label {
+      background: var(--nz-gradient-brand);
+      color: white;
+    }
+    .forms-segmented__option:not(:last-child) label {
+      border-right: 1px solid var(--nz-border-soft);
+    }
+    /* OTP */
+    .forms-otp {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .forms-otp__cell {
+      width: 2.75rem;
+      height: 3rem;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-base);
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-mono);
+      transition: border-color var(--nz-duration-base), box-shadow var(--nz-duration-base);
+    }
+    .forms-otp__cell:focus {
+      outline: none;
+      border-color: var(--nz-color-brand);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--nz-color-brand) 20%, transparent);
+    }
+    /* File drop */
+    .forms-file-drop {
+      border: 2px dashed var(--nz-border-soft);
+      border-radius: var(--nz-radius-lg);
+      padding: 2rem;
+      text-align: center;
+      background: var(--nz-surface-soft);
+      cursor: pointer;
+      transition: border-color var(--nz-duration-base), background var(--nz-duration-base);
+    }
+    .forms-file-drop:hover {
+      border-color: var(--nz-color-brand);
+      background: var(--nz-surface-brand-soft);
+    }
+    .forms-file-drop__icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .forms-file-drop__text {
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      font-weight: 600;
+    }
+    .forms-file-drop__hint {
+      font-size: var(--nz-text-xs);
+      color: var(--nz-text-muted);
+      margin-top: 0.25rem;
+    }
+    /* Range */
+    .forms-range {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 0.5rem;
+      border-radius: var(--nz-radius-pill);
+      background: var(--nz-surface-soft);
+      outline: none;
+    }
+    .forms-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--nz-gradient-brand);
+      cursor: pointer;
+      box-shadow: var(--nz-shadow-brand);
+    }
+    .forms-range-value {
+      font-size: var(--nz-text-sm);
+      font-weight: 700;
+      color: var(--nz-color-brand);
+      font-family: var(--nz-font-mono);
+    }
+    /* Stepper */
+    .forms-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .forms-stepper__step {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .forms-stepper__number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: var(--nz-text-sm);
+      font-weight: 700;
+      border: 2px solid var(--nz-border-soft);
+      color: var(--nz-text-muted);
+      background: var(--nz-surface-base);
+    }
+    .forms-stepper__step--done .forms-stepper__number {
+      background: var(--nz-color-success);
+      border-color: var(--nz-color-success);
+      color: white;
+    }
+    .forms-stepper__step--active .forms-stepper__number {
+      background: var(--nz-color-brand);
+      border-color: var(--nz-color-brand);
+      color: white;
+    }
+    .forms-stepper__label {
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      color: var(--nz-text-muted);
+    }
+    .forms-stepper__step--done .forms-stepper__label,
+    .forms-stepper__step--active .forms-stepper__label {
+      color: var(--nz-text-strong);
+    }
+    .forms-stepper__line {
+      flex: 1;
+      height: 2px;
+      background: var(--nz-border-soft);
+      min-width: 2rem;
+    }
+    .forms-stepper__line--done {
+      background: var(--nz-color-success);
+    }
+    /* Search */
+    .forms-search {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .forms-search__icon {
+      position: absolute;
+      left: 0.85rem;
+      color: var(--nz-text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    .forms-search__input {
+      width: 100%;
+      padding: 0.6rem 0.85rem 0.6rem 2.5rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-base);
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-sans);
+      font-size: var(--nz-text-sm);
+      transition: border-color var(--nz-duration-base), box-shadow var(--nz-duration-base);
+    }
+    .forms-search__input:focus {
+      outline: none;
+      border-color: var(--nz-color-brand);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--nz-color-brand) 20%, transparent);
+    }
+    /* Submit area */
+    .forms-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--nz-border-soft);
+    }
+    @media (max-width: 600px) {
+      .forms-grid { grid-template-columns: 1fr; }
+      .forms-grid--full { grid-column: span 1; }
+      .forms-card { padding: 1.25rem; }
+    }
+  </style>
 </head>
 <body class="nz" data-nz-theme="light" data-nz-skin="aurora">
-  <div class="nz-container" style="padding: 3rem 1rem;">
-    <h2 class="nz-text-h3" style="margin-bottom: var(--nz-space-5);">Formularios</h2>
-    
-    <form class="nz-form-grid--2">
-      <div class="nz-field">
-        <label class="nz-label" for="name">Nombre</label>
-        <input class="nz-input" id="name" type="text" placeholder="Tu nombre">
+  <div class="forms-shell">
+    <!-- Header -->
+    <div class="forms-shell__head">
+      <h1 class="forms-shell__title">Formularios</h1>
+      <p class="forms-shell__sub">Todos los campos, controles y patrones de formulario con Aurora.</p>
+    </div>
+
+    <!-- Basic fields -->
+    <section class="forms-section">
+      <h2 class="forms-section__title">Campos básicos</h2>
+      <div class="forms-card">
+        <form onsubmit="event.preventDefault()">
+          <div class="forms-grid">
+            <div class="forms-field">
+              <label class="forms-field__label forms-field__label--required" for="name">Nombre</label>
+              <input class="forms-field__input" id="name" type="text" placeholder="Tu nombre completo">
+            </div>
+            <div class="forms-field">
+              <label class="forms-field__label forms-field__label--required" for="email">Email</label>
+              <input class="forms-field__input forms-field__input--error" id="email" type="email" value="invalid-email" placeholder="tu@email.com">
+              <span class="forms-field__help forms-field__help--error">Introduce un email válido</span>
+            </div>
+            <div class="forms-field">
+              <label class="forms-field__label" for="phone">Teléfono</label>
+              <input class="forms-field__input" id="phone" type="tel" placeholder="+34 600 000 000">
+            </div>
+            <div class="forms-field">
+              <label class="forms-field__label" for="website">Web</label>
+              <input class="forms-field__input" id="website" type="url" placeholder="https://miweb.com">
+            </div>
+            <div class="forms-field forms-grid--full">
+              <label class="forms-field__label" for="bio">Biografía</label>
+              <textarea class="forms-field__input" id="bio" rows="3" placeholder="Cuéntanos sobre ti..."></textarea>
+            </div>
+          </div>
+
+          <div class="forms-actions">
+            <button class="nz-btn nz-btn--primary">Guardar cambios</button>
+            <button class="nz-btn nz-btn--ghost">Cancelar</button>
+          </div>
+        </form>
       </div>
-      
-      <div class="nz-field">
-        <label class="nz-label" for="email">Email</label>
-        <input class="nz-input" id="email" type="email" placeholder="tu@email.com">
-      </div>
-      
-      <div class="nz-field">
-        <label class="nz-label" for="role">Rol</label>
-        <select class="nz-select" id="role">
-          <option>Seleccionar...</option>
-          <option>Admin</option>
-          <option>Editor</option>
-          <option>Viewer</option>
-        </select>
-      </div>
-      
-      <div class="nz-field">
-        <label class="nz-label" for="bio">Biografía</label>
-        <textarea class="nz-textarea" id="bio" rows="3" placeholder="Cuéntanos sobre ti..."></textarea>
-      </div>
-      
-      <div class="nz-field">
-        <label class="nz-label">Notificaciones</label>
-        <label class="nz-switch">
-          <input type="checkbox" checked>
-          <span class="nz-switch__track"></span>
-        </label>
-      </div>
-      
-      <div class="nz-field">
-        <label class="nz-label">Plan</label>
-        <div class="nz-segmented">
-          <label class="nz-segmented__option">
-            <input type="radio" name="plan" checked> Mensual
-          </label>
-          <label class="nz-segmented__option">
-            <input type="radio" name="plan"> Anual
-          </label>
+    </section>
+
+    <!-- Select, Switch, Segmented -->
+    <section class="forms-section">
+      <h2 class="forms-section__title">Controles especiales</h2>
+      <div class="forms-card">
+        <div class="forms-grid">
+          <div class="forms-field">
+            <label class="forms-field__label" for="role">Rol</label>
+            <select class="forms-field__input" id="role">
+              <option value="">Seleccionar rol...</option>
+              <option>Admin</option>
+              <option>Editor</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+          <div class="forms-field">
+            <label class="forms-field__label" for="country">País</label>
+            <select class="forms-field__input" id="country">
+              <option>España</option>
+              <option>México</option>
+              <option>Argentina</option>
+              <option>Colombia</option>
+            </select>
+          </div>
+          <div class="forms-field">
+            <label class="forms-field__label">Notificaciones</label>
+            <div class="forms-switch">
+              <input class="forms-switch__input" type="checkbox" id="notif" checked>
+              <label class="forms-switch__track" for="notif"></label>
+              <label class="forms-switch__label" for="notif">Activas</label>
+            </div>
+          </div>
+          <div class="forms-field">
+            <label class="forms-field__label">Plan</label>
+            <div class="forms-segmented">
+              <div class="forms-segmented__option">
+                <input type="radio" name="plan" id="plan-monthly" checked>
+                <label for="plan-monthly">Mensual</label>
+              </div>
+              <div class="forms-segmented__option">
+                <input type="radio" name="plan" id="plan-annual">
+                <label for="plan-annual">Anual <span style="color:var(--nz-color-success);font-size:0.8em;">-20%</span></label>
+              </div>
+            </div>
+          </div>
+          <div class="forms-field">
+            <label class="forms-field__label">Volumen: <span class="forms-range-value" id="range-val">50</span></label>
+            <input class="forms-range" type="range" min="0" max="100" value="50" oninput="document.getElementById('range-val').textContent=this.value">
+          </div>
+          <div class="forms-field">
+            <label class="forms-field__label">Buscar</label>
+            <div class="forms-search">
+              <span class="forms-search__icon">🔍</span>
+              <input class="forms-search__input" type="text" placeholder="Buscar por nombre, email...">
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="nz-field">
-        <label class="nz-label">Archivo</label>
-        <div class="nz-file">
-          <div class="nz-file__drop">Arrastra un archivo o haz clic</div>
+    </section>
+
+    <!-- OTP -->
+    <section class="forms-section">
+      <h2 class="forms-section__title">Verificación OTP</h2>
+      <div class="forms-card">
+        <div class="forms-field">
+          <label class="forms-field__label">Código de 6 dígitos</label>
+          <div class="forms-otp">
+            <input class="forms-otp__cell" maxlength="1" type="text" value="4">
+            <input class="forms-otp__cell" maxlength="1" type="text" value="8">
+            <input class="forms-otp__cell" maxlength="1" type="text" value="2">
+            <input class="forms-otp__cell" maxlength="1" type="text" value="7">
+            <input class="forms-otp__cell" maxlength="1" type="text">
+            <input class="forms-otp__cell" maxlength="1" type="text">
+          </div>
+          <span class="forms-field__help">Hemos enviado un código a tu email</span>
         </div>
       </div>
-      
-      <div class="nz-field" style="grid-column: span 2;">
-        <label class="nz-label">OTP verification</label>
-        <div class="nz-otp">
-          <input class="nz-otp__cell" maxlength="1" type="text">
-          <input class="nz-otp__cell" maxlength="1" type="text">
-          <input class="nz-otp__cell" maxlength="1" type="text">
-          <input class="nz-otp__cell" maxlength="1" type="text">
-          <input class="nz-otp__cell" maxlength="1" type="text">
-          <input class="nz-otp__cell" maxlength="1" type="text">
+    </section>
+
+    <!-- File drop -->
+    <section class="forms-section">
+      <h2 class="forms-section__title">Subida de archivos</h2>
+      <div class="forms-card">
+        <div class="forms-field">
+          <label class="forms-field__label">Avatar del proyecto</label>
+          <div class="forms-file-drop">
+            <div class="forms-file-drop__icon">📁</div>
+            <div class="forms-file-drop__text">Arrastra un archivo o haz clic para seleccionar</div>
+            <div class="forms-file-drop__hint">PNG, JPG o GIF. Máximo 5MB.</div>
+          </div>
         </div>
       </div>
-      
-      <div class="nz-field" style="grid-column: span 2; margin-top: var(--nz-space-2);">
-        <button class="nz-btn nz-btn--primary">Guardar</button>
+    </section>
+
+    <!-- Stepper -->
+    <section class="forms-section">
+      <h2 class="forms-section__title">Wizard / Stepper</h2>
+      <div class="forms-card">
+        <div class="forms-stepper">
+          <div class="forms-stepper__step forms-stepper__step--done">
+            <span class="forms-stepper__number">✓</span>
+            <span class="forms-stepper__label">Cuenta</span>
+          </div>
+          <div class="forms-stepper__line forms-stepper__line--done"></div>
+          <div class="forms-stepper__step forms-stepper__step--active">
+            <span class="forms-stepper__number">2</span>
+            <span class="forms-stepper__label">Perfil</span>
+          </div>
+          <div class="forms-stepper__line"></div>
+          <div class="forms-stepper__step">
+            <span class="forms-stepper__number">3</span>
+            <span class="forms-stepper__label">Configuración</span>
+          </div>
+        </div>
       </div>
-    </form>
+    </section>
   </div>
 </body>
 </html>

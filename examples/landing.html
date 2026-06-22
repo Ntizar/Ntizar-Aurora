@@ -3,96 +3,469 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing — Aurora</title>
+  <title>Landing — Aurora v5.1</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.patterns.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.viz.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.motion.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.next.css">
+  <style>
+    /* ===== Shell ===== */
+    .landing-shell {
+      /* Fondo base claro con gradiente sutil */
+      background: linear-gradient(180deg, #ffffff 0%, var(--nz-surface-page) 100%);
+    }
+    .landing-shell .nz-container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    }
+    /* Nav */
+    .landing-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--nz-border-soft);
+    }
+    .landing-nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .landing-nav__icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-gradient-brand);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: var(--nz-shadow-brand);
+    }
+    .landing-nav__name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--nz-text-strong);
+    }
+    .landing-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .landing-nav__link {
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      color: var(--nz-text-default);
+      text-decoration: none;
+      transition: color var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .landing-nav__link:hover { color: var(--nz-text-strong); }
+    /* Hero */
+    .landing-hero {
+      padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .landing-hero::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 30rem;
+      height: 30rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--nz-surface-glass-brand) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .landing-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 25rem;
+      height: 25rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--nz-surface-glass-accent) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .landing-hero > * { position: relative; z-index: 1; }
+    .landing-hero__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--nz-radius-pill);
+      background: var(--nz-surface-brand-soft);
+      color: var(--nz-color-brand-strong);
+      font-size: var(--nz-text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    .landing-hero__title {
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0 0 1.25rem;
+      max-width: 42rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .landing-hero__sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--nz-text-muted);
+      max-width: 36rem;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .landing-hero__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    /* Features */
+    .landing-features {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .landing-features__head {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .landing-features__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+    .landing-features__grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    .landing-feature-card {
+      padding: 1.75rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-lg);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-sm);
+      transition: box-shadow var(--nz-duration-base) var(--nz-ease-standard),
+                  transform var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .landing-feature-card:hover {
+      box-shadow: var(--nz-shadow-md);
+      transform: translateY(-2px);
+    }
+    .landing-feature-card__icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--nz-radius-md);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .landing-feature-card__title {
+      font-size: var(--nz-text-lg);
+      font-weight: 700;
+      color: var(--nz-text-strong);
+      margin: 0 0 0.5rem;
+    }
+    .landing-feature-card__text {
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    /* Pricing */
+    .landing-pricing {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .landing-pricing__head {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .landing-pricing__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+    .landing-pricing__grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    .landing-price-card {
+      padding: 2rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-xl);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-sm);
+      text-align: center;
+      position: relative;
+    }
+    .landing-price-card--featured {
+      border-color: var(--nz-color-brand);
+      box-shadow: var(--nz-shadow-brand);
+    }
+    .landing-price-card__badge {
+      position: absolute;
+      top: -0.65rem;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.2rem 0.75rem;
+      border-radius: var(--nz-radius-pill);
+      background: var(--nz-gradient-brand);
+      color: white;
+      font-size: var(--nz-text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .landing-price-card__name {
+      font-size: var(--nz-text-lg);
+      font-weight: 700;
+      color: var(--nz-text-strong);
+      margin: 0 0 0.5rem;
+    }
+    .landing-price-card__amount {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-display);
+    }
+    .landing-price-card__period {
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-muted);
+      font-weight: 600;
+    }
+    .landing-price-card__list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    .landing-price-card__list li {
+      padding: 0.4rem 0;
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .landing-price-card__list li::before {
+      content: "✓";
+      color: var(--nz-color-success);
+      font-weight: 700;
+    }
+    /* Logo cloud */
+    .landing-logos {
+      padding: 3rem 0;
+      text-align: center;
+    }
+    .landing-logos__title {
+      font-size: var(--nz-text-xs);
+      font-weight: 700;
+      color: var(--nz-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 0 0 1.5rem;
+    }
+    .landing-logos__grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      opacity: 0.5;
+    }
+    .landing-logos__item {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--nz-text-muted);
+      letter-spacing: 0.05em;
+    }
+    /* Footer */
+    .landing-footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--nz-border-soft);
+      text-align: center;
+    }
+    .landing-footer__text {
+      font-size: var(--nz-text-xs);
+      color: var(--nz-text-muted);
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      .landing-nav__links { display: none; }
+      .landing-hero__cta { flex-direction: column; }
+      .landing-hero__cta .nz-btn { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
-<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
-  <!-- Hero -->
-  <section class="nz-hero nz-hero--centered" style="padding: 6rem 0;">
-    <div class="nz-container">
-      <h1 class="nz-text-h2 nz-anim-fade-in" style="margin-bottom: var(--nz-space-4);">
-        Construye algo increíble
+<body class="nz landing-shell" data-nz-theme="light" data-nz-skin="aurora">
+  <div class="nz-container">
+    <!-- Nav -->
+    <nav class="landing-nav">
+      <a class="landing-nav__brand" href="#">
+        <div class="landing-nav__icon">A</div>
+        <span class="landing-nav__name">Aurora</span>
+      </a>
+      <div class="landing-nav__links">
+        <a class="landing-nav__link" href="#features">Features</a>
+        <a class="landing-nav__link" href="#pricing">Precios</a>
+        <a class="landing-nav__link" href="#">Docs</a>
+        <button class="nz-btn nz-btn--ghost nz-btn--sm">Sign in</button>
+        <button class="nz-btn nz-btn--primary nz-btn--sm">Empezar</button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="landing-hero">
+      <div class="landing-hero__kicker nz-anim-fade-in">
+        <span>✦</span> v5.1 Constellation
+      </div>
+      <h1 class="landing-hero__title nz-anim-rise">
+        Construye algo<br>increíble
       </h1>
-      <p class="u-nz-text-muted" style="font-size: var(--nz-text-lg); max-width: 32rem; margin: 0 auto var(--nz-space-6);">
-        La plataforma que transforma tus ideas en productos digitales en minutos, no en meses.
+      <p class="landing-hero__sub nz-anim-rise nz-anim--delay-2">
+        La plataforma que transforma tus ideas en productos digitales en minutos, no en meses. CSS puro, sin build, sin dependencias.
       </p>
-      <div class="nz-cluster" style="justify-content: center;">
-        <button class="nz-btn nz-btn--primary">Empezar gratis</button>
-        <button class="nz-btn nz-btn--ghost">Ver demo</button>
+      <div class="landing-hero__cta nz-anim-rise nz-anim--delay-3">
+        <button class="nz-btn nz-btn--primary nz-btn--lg">Empezar gratis</button>
+        <button class="nz-btn nz-btn--glass-brand nz-btn--lg">Ver demo</button>
       </div>
-    </div>
-  </section>
-  
-  <!-- Features -->
-  <section class="nz-section">
-    <div class="nz-container">
-      <h2 class="nz-text-h3" style="text-align: center; margin-bottom: var(--nz-space-6);">
-        Todo lo que necesitas
-      </h2>
-      <div class="nz-grid--3" style="gap: var(--nz-space-5);">
-        <div class="nz-card">
-          <div class="nz-card__body">
-            <h3 class="nz-text-lg">Rápido</h3>
-            <p class="u-nz-text-muted">Deploy en segundos con nuestra infraestructura global.</p>
-          </div>
-        </div>
-        <div class="nz-card">
-          <div class="nz-card__body">
-            <h3 class="nz-text-lg">Seguro</h3>
-            <p class="u-nz-text-muted">Encriptación end-to-end y cumplimiento GDPR incluido.</p>
-          </div>
-        </div>
-        <div class="nz-card">
-          <div class="nz-card__body">
-            <h3 class="nz-text-lg">Escalable</h3>
-            <p class="u-nz-text-muted">De 10 a 10 millones de usuarios sin cambiar código.</p>
-          </div>
-        </div>
+      <div class="nz-cluster" style="justify-content:center; margin-top:2rem;" class="nz-anim-rise nz-anim--delay-4">
+        <span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">CSS only</span>
+        <span class="nz-badge nz-badge--glass nz-badge--no-dot">Sin build</span>
+        <span class="nz-badge nz-badge--glass-accent nz-badge--no-dot">6 skins</span>
+        <span class="nz-badge nz-badge--neutral nz-badge--no-dot">Light + Dark</span>
       </div>
-    </div>
-  </section>
-  
-  <!-- Pricing -->
-  <section class="nz-section">
-    <div class="nz-container">
-      <h2 class="nz-text-h3" style="text-align: center; margin-bottom: var(--nz-space-6);">
-        Planes
-      </h2>
-      <div class="nz-grid--3" style="gap: var(--nz-space-5);">
-        <div class="nz-card">
-          <div class="nz-card__body" style="text-align: center;">
-            <h3 class="nz-text-lg">Gratis</h3>
-            <div class="nz-text-h2" style="margin: var(--nz-space-3) 0;">€0<span class="u-nz-text-muted">/mes</span></div>
-            <button class="nz-btn nz-btn--ghost" style="width: 100%;">Crear cuenta</button>
-          </div>
+    </section>
+
+    <!-- Logos -->
+    <section class="landing-logos">
+      <p class="landing-logos__title">Usado por equipos en</p>
+      <div class="landing-logos__grid">
+        <span class="landing-logos__item">ACME</span>
+        <span class="landing-logos__item">Lumina</span>
+        <span class="landing-logos__item">Northstar</span>
+        <span class="landing-logos__item">Quanta</span>
+        <span class="landing-logos__item">Helix</span>
+        <span class="landing-logos__item">Vela</span>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="landing-features" id="features">
+      <div class="landing-features__head">
+        <h2 class="landing-features__title">Todo lo que necesitas</h2>
+        <p class="u-nz-text-muted">Una base visual que escala contigo, de prototipo a producción.</p>
+      </div>
+      <div class="landing-features__grid">
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-brand-soft); color:var(--nz-color-brand);">⚡</div>
+          <h3 class="landing-feature-card__title">Rápido</h3>
+          <p class="landing-feature-card__text">Deploy en segundos con nuestra infraestructura global. CDN edge-cached para latencia mínima.</p>
         </div>
-        <div class="nz-card">
-          <div class="nz-card__body" style="text-align: center;">
-            <h3 class="nz-text-lg">Pro</h3>
-            <div class="nz-text-h2" style="margin: var(--nz-space-3) 0;">€29<span class="u-nz-text-muted">/mes</span></div>
-            <button class="nz-btn nz-btn--primary" style="width: 100%;">Empezar</button>
-          </div>
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-accent-soft); color:var(--nz-color-accent);">🔒</div>
+          <h3 class="landing-feature-card__title">Seguro</h3>
+          <p class="landing-feature-card__text">Encriptación end-to-end y cumplimiento GDPR incluido. Tu datos, siempre tuyos.</p>
         </div>
-        <div class="nz-card">
-          <div class="nz-card__body" style="text-align: center;">
-            <h3 class="nz-text-lg">Enterprise</h3>
-            <div class="nz-text-h2" style="margin: var(--nz-space-3) 0;">Custom</div>
-            <button class="nz-btn nz-btn--ghost" style="width: 100%;">Contactar</button>
-          </div>
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-success-soft); color:var(--nz-color-success);">📈</div>
+          <h3 class="landing-feature-card__title">Escalable</h3>
+          <p class="landing-feature-card__text">De 10 a 10 millones de usuarios sin cambiar código. Auto-scaling inteligente.</p>
+        </div>
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-glass-brand);">🎨</div>
+          <h3 class="landing-feature-card__title">Personalizable</h3>
+          <p class="landing-feature-card__text">6 skins, dark mode, liquid glass, OKLCH. Tu marca, tu estilo. Sin compromisos.</p>
+        </div>
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-glass-accent);">🧩</div>
+          <h3 class="landing-feature-card__title">Modular</h3>
+          <p class="landing-feature-card__text">11 packs independientes. Carga solo lo que necesites. Sin dependencias.</p>
+        </div>
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon" style="background:var(--nz-surface-raised);">🤖</div>
+          <h3 class="landing-feature-card__title">AI-Ready</h3>
+          <p class="landing-feature-card__text">Documentación optimizada para agentes IA. Genera UI con prompts, no con CSS.</p>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Footer -->
-  <footer class="nz-footer">
-    <div class="nz-container">
-      <p class="u-nz-text-muted" style="text-align: center;">© 2025 Tu Empresa. Hecho con ❤️.</p>
-    </div>
-  </footer>
+    </section>
+
+    <!-- Pricing -->
+    <section class="landing-pricing" id="pricing">
+      <div class="landing-pricing__head">
+        <h2 class="landing-pricing__title">Planes simples</h2>
+        <p class="u-nz-text-muted">Empieza gratis. Crece cuando estés listo.</p>
+      </div>
+      <div class="landing-pricing__grid">
+        <div class="landing-price-card">
+          <h3 class="landing-price-card__name">Gratis</h3>
+          <div style="margin:1rem 0;">
+            <span class="landing-price-card__amount">€0</span>
+            <span class="landing-price-card__period">/mes</span>
+          </div>
+          <ul class="landing-price-card__list">
+            <li>Hasta 3 proyectos</li>
+            <li>Comunidad</li>
+            <li>Skins básicos</li>
+          </ul>
+          <button class="nz-btn nz-btn--secondary nz-btn--block">Crear cuenta</button>
+        </div>
+        <div class="landing-price-card landing-price-card--featured">
+          <span class="landing-price-card__badge">Popular</span>
+          <h3 class="landing-price-card__name">Pro</h3>
+          <div style="margin:1rem 0;">
+            <span class="landing-price-card__amount">€29</span>
+            <span class="landing-price-card__period">/mes</span>
+          </div>
+          <ul class="landing-price-card__list">
+            <li>Proyectos ilimitados</li>
+            <li>Todos los skins</li>
+            <li>Soporte prioritario</li>
+            <li>Componentes premium</li>
+          </ul>
+          <button class="nz-btn nz-btn--primary nz-btn--block">Empezar</button>
+        </div>
+        <div class="landing-price-card">
+          <h3 class="landing-price-card__name">Enterprise</h3>
+          <div style="margin:1rem 0;">
+            <span class="landing-price-card__amount" style="font-size:1.75rem;">Custom</span>
+          </div>
+          <ul class="landing-price-card__list">
+            <li>Roles y permisos</li>
+            <li>SSO / SAML</li>
+            <li>Auditoría completa</li>
+            <li>SLA 99.9%</li>
+          </ul>
+          <button class="nz-btn nz-btn--secondary nz-btn--block">Contactar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+      <p class="landing-footer__text">© 2025 Aurora Design System · Hecho con ❤️ por David Antizar</p>
+    </footer>
+  </div>
 </body>
 </html>

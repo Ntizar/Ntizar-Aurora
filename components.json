@@ -2803,5 +2803,104 @@
         "selector_count": 7
       }
     ]
+  },
+  "examples": {
+    "login.html": {
+      "description": "Login con glass card, social login, campos form, remember me, forgot password",
+      "packs": [
+        "core",
+        "forms",
+        "patterns",
+        "next",
+        "viz",
+        "motion"
+      ],
+      "components": [
+        "nz-card--glass",
+        "nz-btn--primary",
+        "nz-field",
+        "nz-input",
+        "nz-check",
+        "nz-badge",
+        "nz-cluster"
+      ],
+      "shell": "login-shell (aurora radial gradient background, centered card)"
+    },
+    "dashboard.html": {
+      "description": "Dashboard completo con sidebar nav, KPIs, chart area, activity feed, transacciones table",
+      "packs": [
+        "core",
+        "data",
+        "charts",
+        "ui",
+        "patterns",
+        "next",
+        "motion"
+      ],
+      "components": [
+        "nz-card",
+        "nz-badge",
+        "nz-btn",
+        "nz-grid",
+        "nz-tabs",
+        "nz-stack",
+        "nz-cluster",
+        "nz-text-*"
+      ],
+      "shell": "dash-shell (sidebar sticky + main scrollable, avatar initials, stat tiles)"
+    },
+    "landing.html": {
+      "description": "Landing page con nav, hero aurora, logos cloud, features grid, pricing cards, footer",
+      "packs": [
+        "core",
+        "patterns",
+        "viz",
+        "motion",
+        "next"
+      ],
+      "components": [
+        "nz-badge",
+        "nz-btn",
+        "nz-grid",
+        "nz-cluster",
+        "nz-text-*"
+      ],
+      "shell": "landing-shell (gradient bg, aurora orbs, container max-width, feature cards hover)"
+    },
+    "ui-components.html": {
+      "description": "Tabs interactivos, dropdown, chips, command bar, spinners, modals, toasts, breadcrumbs",
+      "packs": [
+        "core",
+        "ui",
+        "data",
+        "patterns",
+        "motion"
+      ],
+      "components": [
+        "nz-btn",
+        "nz-tabs",
+        "nz-dropdown",
+        "nz-badge",
+        "nz-cluster"
+      ],
+      "shell": "ui-shell (breadcrumbs header, demo cards, JS for tabs/dropdown/modal/toast)"
+    },
+    "forms.html": {
+      "description": "Formulario completo: campos texto/email/tel, select, switch, segmented, range, OTP, file drop, stepper, search",
+      "packs": [
+        "core",
+        "forms",
+        "patterns",
+        "next"
+      ],
+      "components": [
+        "nz-field",
+        "nz-input",
+        "nz-check",
+        "nz-btn",
+        "nz-cluster"
+      ],
+      "shell": "forms-shell (card wrapper, grid 2 cols, custom switch/segmented/otp/range/stepper)"
+    }
   }
 }

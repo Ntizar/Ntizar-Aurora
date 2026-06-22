@@ -3,75 +3,591 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UI Components — Aurora</title>
+  <title>UI Components — Aurora v5.1</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.ui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.patterns.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.motion.css">
+  <style>
+    /* ===== Shell ===== */
+    .ui-shell {
+      padding: 2rem clamp(1.5rem, 4vw, 3rem);
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+    .ui-shell__head {
+      margin-bottom: 2.5rem;
+    }
+    .ui-shell__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+    .ui-shell__sub {
+      color: var(--nz-text-muted);
+      margin: 0;
+    }
+    /* Section */
+    .ui-section {
+      margin-bottom: 2.5rem;
+    }
+    .ui-section__title {
+      font-size: var(--nz-text-lg);
+      font-weight: 700;
+      color: var(--nz-text-strong);
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--nz-border-soft);
+    }
+    .ui-section__grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+    /* Card demo */
+    .ui-demo-card {
+      padding: 1.5rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-lg);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-sm);
+    }
+    .ui-demo-card__label {
+      font-size: var(--nz-text-xs);
+      font-weight: 700;
+      color: var(--nz-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    /* Tabs demo */
+    .ui-tabs-demo {
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-lg);
+      overflow: hidden;
+    }
+    .ui-tabs-demo .nz-tabs__list {
+      display: flex;
+      border-bottom: 1px solid var(--nz-border-soft);
+      background: var(--nz-surface-soft);
+    }
+    .ui-tabs-demo .nz-tab {
+      padding: 0.75rem 1.25rem;
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      color: var(--nz-text-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color var(--nz-duration-base) var(--nz-ease-standard),
+                  border-color var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .ui-tabs-demo .nz-tab:hover {
+      color: var(--nz-text-default);
+    }
+    .ui-tabs-demo .nz-tab--active {
+      color: var(--nz-color-brand);
+      border-bottom-color: var(--nz-color-brand);
+    }
+    .ui-tabs-demo .nz-tabs__panel {
+      padding: 1.25rem;
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      line-height: 1.6;
+    }
+    /* Dropdown demo */
+    .ui-dropdown-demo {
+      position: relative;
+      display: inline-block;
+    }
+    .ui-dropdown-demo .nz-dropdown__menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.25rem;
+      min-width: 14rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-md);
+      z-index: 100;
+      padding: 0.35rem;
+      display: none;
+    }
+    .ui-dropdown-demo .nz-dropdown__menu.is-open {
+      display: block;
+    }
+    .ui-dropdown-demo .nz-dropdown__item {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      text-decoration: none;
+      border-radius: var(--nz-radius-sm);
+      cursor: pointer;
+      transition: background var(--nz-duration-base) var(--nz-ease-standard);
+    }
+    .ui-dropdown-demo .nz-dropdown__item:hover {
+      background: var(--nz-surface-soft);
+    }
+    .ui-dropdown-demo .nz-dropdown__item--danger {
+      color: var(--nz-color-danger);
+    }
+    .ui-dropdown-demo .nz-dropdown__item--danger:hover {
+      background: var(--nz-surface-danger-soft);
+    }
+    .ui-dropdown-demo .nz-dropdown__sep {
+      height: 1px;
+      background: var(--nz-border-soft);
+      margin: 0.25rem 0;
+    }
+    /* Modal */
+    .ui-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      display: none;
+      place-items: center;
+      z-index: 1000;
+    }
+    .ui-modal-overlay.is-open {
+      display: grid;
+    }
+    .ui-modal-panel {
+      width: 100%;
+      max-width: 28rem;
+      border-radius: var(--nz-radius-xl);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-lg);
+      overflow: hidden;
+    }
+    .ui-modal-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--nz-border-soft);
+    }
+    .ui-modal-panel__header h3 {
+      margin: 0;
+      font-size: var(--nz-text-lg);
+      font-weight: 700;
+    }
+    .ui-modal-panel__close {
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background: transparent;
+      border-radius: var(--nz-radius-md);
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--nz-text-muted);
+      display: grid;
+      place-items: center;
+      transition: background var(--nz-duration-base);
+    }
+    .ui-modal-panel__close:hover {
+      background: var(--nz-surface-soft);
+    }
+    .ui-modal-panel__body {
+      padding: 1.5rem;
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-default);
+      line-height: 1.6;
+    }
+    .ui-modal-panel__footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--nz-border-soft);
+    }
+    /* Toast */
+    .ui-toast-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .ui-toast {
+      padding: 0.75rem 1rem;
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-raised);
+      box-shadow: var(--nz-shadow-md);
+      border: 1px solid var(--nz-border-soft);
+      font-size: var(--nz-text-sm);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      animation: ui-toast-in 0.3s ease;
+    }
+    @keyframes ui-toast-in {
+      from { opacity: 0; transform: translateX(1rem); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .ui-toast--success { border-left: 3px solid var(--nz-color-success); }
+    .ui-toast--error { border-left: 3px solid var(--nz-color-danger); }
+    .ui-toast--info { border-left: 3px solid var(--nz-color-brand); }
+    /* Breadcrumbs */
+    .ui-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: var(--nz-text-sm);
+    }
+    .ui-breadcrumbs__sep {
+      color: var(--nz-text-muted);
+      user-select: none;
+    }
+    .ui-breadcrumbs__link {
+      color: var(--nz-text-muted);
+      text-decoration: none;
+      transition: color var(--nz-duration-base);
+    }
+    .ui-breadcrumbs__link:hover { color: var(--nz-color-brand); }
+    .ui-breadcrumbs__current {
+      color: var(--nz-text-strong);
+      font-weight: 600;
+    }
+    /* Chips */
+    .ui-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--nz-radius-pill);
+      font-size: var(--nz-text-xs);
+      font-weight: 600;
+      border: 1px solid var(--nz-border-soft);
+      background: var(--nz-surface-base);
+      color: var(--nz-text-default);
+    }
+    .ui-chip--accent {
+      background: var(--nz-surface-accent-soft);
+      border-color: var(--nz-border-accent);
+      color: var(--nz-color-accent-strong);
+    }
+    .ui-chip--brand {
+      background: var(--nz-surface-brand-soft);
+      border-color: var(--nz-border-brand);
+      color: var(--nz-color-brand-strong);
+    }
+    .ui-chip__remove {
+      width: 1rem;
+      height: 1rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.75rem;
+      color: inherit;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: background var(--nz-duration-base);
+    }
+    .ui-chip__remove:hover {
+      background: rgba(0,0,0,0.1);
+    }
+    /* Command bar */
+    .ui-command-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--nz-border-soft);
+      border-radius: var(--nz-radius-md);
+      background: var(--nz-surface-base);
+      max-width: 24rem;
+    }
+    .ui-command-bar__icon {
+      color: var(--nz-text-muted);
+      font-size: 1rem;
+    }
+    .ui-command-bar__input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: var(--nz-text-sm);
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-sans);
+      outline: none;
+    }
+    .ui-command-bar__kbd {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--nz-radius-sm);
+      background: var(--nz-surface-soft);
+      border: 1px solid var(--nz-border-soft);
+      color: var(--nz-text-muted);
+      font-family: var(--nz-font-mono);
+    }
+    /* Spinner */
+    .ui-spinner-demo {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .ui-spinner {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid var(--nz-border-soft);
+      border-top-color: var(--nz-color-brand);
+      border-radius: 50%;
+      animation: ui-spin 0.8s linear infinite;
+    }
+    .ui-spinner--lg {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-width: 3px;
+    }
+    .ui-spinner--accent {
+      border-top-color: var(--nz-color-accent);
+    }
+    @keyframes ui-spin {
+      to { transform: rotate(360deg); }
+    }
+    /* Divider */
+    .ui-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--nz-text-muted);
+      font-size: var(--nz-text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .ui-divider::before,
+    .ui-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--nz-border-soft);
+    }
+    @media (max-width: 600px) {
+      .ui-shell { padding: 1rem; }
+      .ui-section__grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body class="nz" data-nz-theme="light" data-nz-skin="aurora">
-  <div class="nz-container" style="padding: 3rem 1rem;">
-    <h2 class="nz-text-h3" style="margin-bottom: var(--nz-space-5);">Componentes interactivos</h2>
-    
+  <div class="ui-shell">
+    <!-- Header -->
+    <div class="ui-shell__head">
+      <div class="ui-breadcrumbs">
+        <a class="ui-breadcrumbs__link" href="#">Home</a>
+        <span class="ui-breadcrumbs__sep">/</span>
+        <span class="ui-breadcrumbs__current">UI Components</span>
+      </div>
+      <h1 class="ui-shell__title">Componentes interactivos</h1>
+      <p class="ui-shell__sub">Modals, tabs, dropdowns, toasts y más — todo con CSS de Aurora.</p>
+    </div>
+
+    <!-- Buttons -->
+    <section class="ui-section">
+      <h2 class="ui-section__title">Botones</h2>
+      <div class="ui-demo-card">
+        <div class="ui-demo-card__label">Variantes</div>
+        <div class="nz-cluster" style="flex-wrap:wrap;">
+          <button class="nz-btn nz-btn--primary">Primary</button>
+          <button class="nz-btn nz-btn--accent">Accent</button>
+          <button class="nz-btn nz-btn--brand-mix">Brand Mix</button>
+          <button class="nz-btn nz-btn--glass">Glass</button>
+          <button class="nz-btn nz-btn--ghost">Ghost</button>
+          <button class="nz-btn nz-btn--danger">Danger</button>
+        </div>
+        <div class="ui-divider" style="margin:1.25rem 0;">Tamaños</div>
+        <div class="nz-cluster">
+          <button class="nz-btn nz-btn--primary nz-btn--sm">Small</button>
+          <button class="nz-btn nz-btn--primary">Default</button>
+          <button class="nz-btn nz-btn--primary nz-btn--lg">Large</button>
+          <button class="nz-btn nz-btn--primary nz-btn--block">Full Width</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Tabs -->
-    <div class="nz-tabs" style="margin-bottom: var(--nz-space-6);">
-      <div class="nz-tabs__list">
-        <button class="nz-tab--active" data-tab="0">General</button>
-        <button class="nz-tab" data-tab="1">Avanzado</button>
-        <button class="nz-tab" data-tab="2">API</button>
-      </div>
-      <div class="nz-tabs__panel">Panel 1: Configuración general</div>
-      <div class="nz-tabs__panel" style="display:none;">Panel 2: Opciones avanzadas</div>
-      <div class="nz-tabs__panel" style="display:none;">Panel 3: Documentación API</div>
-    </div>
-    
-    <!-- Dropdown -->
-    <div class="nz-dropdown" style="margin-bottom: var(--nz-space-5);">
-      <button class="nz-btn nz-btn--primary nz-dropdown__toggle">Acciones ▾</button>
-      <div class="nz-dropdown__menu">
-        <a class="nz-dropdown__item" href="#">Editar</a>
-        <a class="nz-dropdown__item" href="#">Duplicar</a>
-        <div class="nz-dropdown__sep"></div>
-        <a class="nz-dropdown__item--danger" href="#">Eliminar</a>
-      </div>
-    </div>
-    
-    <!-- Modal trigger -->
-    <button class="nz-btn nz-btn--accent" id="open-modal">Abrir modal</button>
-    
-    <dialog class="nz-modal" id="my-modal">
-      <div class="nz-modal__panel">
-        <div class="nz-modal__header">
-          <h3 class="nz-text-lg">Confirmar acción</h3>
-          <button class="nz-modal__close" id="close-modal">✕</button>
-        </div>
-        <div class="nz-modal__body">
-          <p>¿Estás seguro de que quieres realizar esta acción? No se puede deshacer.</p>
-        </div>
-        <div class="nz-modal__footer">
-          <button class="nz-btn nz-btn--ghost" id="cancel-modal">Cancelar</button>
-          <button class="nz-btn nz-btn--primary">Confirmar</button>
+    <section class="ui-section">
+      <h2 class="ui-section__title">Tabs</h2>
+      <div class="ui-demo-card">
+        <div class="ui-tabs-demo">
+          <div class="nz-tabs__list">
+            <button class="nz-tab nz-tab--active" data-tab="0">General</button>
+            <button class="nz-tab" data-tab="1">Avanzado</button>
+            <button class="nz-tab" data-tab="2">API</button>
+          </div>
+          <div class="nz-tabs__panel" id="tab-0">
+            <p>Configuración general del proyecto. Aquí puedes ajustar las opciones básicas como el nombre, la descripción y las etiquetas.</p>
+          </div>
+          <div class="nz-tabs__panel" id="tab-1" style="display:none;">
+            <p>Opciones avanzadas: Webhooks, CORS, rate limiting, custom domains y más. Solo para usuarios experimentados.</p>
+          </div>
+          <div class="nz-tabs__panel" id="tab-2" style="display:none;">
+            <p>Documentación de la API REST. Endpoints, auth con JWT, paginación y ejemplos de curl.</p>
+          </div>
         </div>
       </div>
-    </dialog>
-    
-    <!-- Toast -->
-    <div class="nz-toast" id="toast-example" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000;">
-      <div class="nz-card" style="padding: 1rem;">
-        <p class="u-nz-text-strong">✅ Acción completada</p>
+    </section>
+
+    <!-- Dropdown + Chips -->
+    <section class="ui-section">
+      <h2 class="ui-section__title">Dropdown & Chips</h2>
+      <div class="ui-section__grid">
+        <div class="ui-demo-card">
+          <div class="ui-demo-card__label">Dropdown</div>
+          <div class="ui-dropdown-demo" id="demo-dropdown">
+            <button class="nz-btn nz-btn--primary" onclick="document.getElementById('demo-dropdown').querySelector('.nz-dropdown__menu').classList.toggle('is-open')">
+              Acciones ▾
+            </button>
+            <div class="nz-dropdown__menu">
+              <a class="nz-dropdown__item" href="#">✏️ Editar</a>
+              <a class="nz-dropdown__item" href="#">📋 Duplicar</a>
+              <a class="nz-dropdown__item" href="#">📤 Exportar</a>
+              <div class="nz-dropdown__sep"></div>
+              <a class="nz-dropdown__item--danger" href="#">🗑 Eliminar</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui-demo-card">
+          <div class="ui-demo-card__label">Chips</div>
+          <div class="nz-cluster">
+            <span class="ui-chip">Tag <button class="ui-chip__remove">×</button></span>
+            <span class="ui-chip ui-chip--brand">Brand <button class="ui-chip__remove">×</button></span>
+            <span class="ui-chip ui-chip--accent">Accent <button class="ui-chip__remove">×</button></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Command bar + Spinner + Divider -->
+    <section class="ui-section">
+      <h2 class="ui-section__title">Barra de comandos & Utilidades</h2>
+      <div class="ui-section__grid">
+        <div class="ui-demo-card">
+          <div class="ui-demo-card__label">Command Bar</div>
+          <div class="ui-command-bar">
+            <span class="ui-command-bar__icon">⌕</span>
+            <input class="ui-command-bar__input" type="text" placeholder="Buscar o escribir un comando...">
+            <span class="ui-command-bar__kbd">⌘K</span>
+          </div>
+        </div>
+        <div class="ui-demo-card">
+          <div class="ui-demo-card__label">Spinners</div>
+          <div class="ui-spinner-demo">
+            <div class="ui-spinner"></div>
+            <div class="ui-spinner ui-spinner--accent"></div>
+            <div class="ui-spinner ui-spinner--lg"></div>
+            <div class="ui-spinner ui-spinner--lg ui-spinner--accent"></div>
+          </div>
+        </div>
+        <div class="ui-demo-card">
+          <div class="ui-demo-card__label">Divider con label</div>
+          <div class="ui-divider">o continuar con</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toast buttons -->
+    <section class="ui-section">
+      <h2 class="ui-section__title">Toasts</h2>
+      <div class="ui-demo-card">
+        <div class="ui-demo-card__label">Trigger toasts</div>
+        <div class="nz-cluster">
+          <button class="nz-btn nz-btn--primary" onclick="showToast('success')">✅ Éxito</button>
+          <button class="nz-btn nz-btn--danger" onclick="showToast('error')">❌ Error</button>
+          <button class="nz-btn nz-btn--accent" onclick="showToast('info')">ℹ️ Info</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <section class="ui-section">
+      <h2 class="ui-section__title">Modal</h2>
+      <div class="ui-demo-card">
+        <div class="ui-demo-card__label">Modal de confirmación</div>
+        <button class="nz-btn nz-btn--primary" onclick="document.getElementById('demo-modal').classList.add('is-open')">Abrir modal</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal overlay -->
+  <div class="ui-modal-overlay" id="demo-modal">
+    <div class="ui-modal-panel">
+      <div class="ui-modal-panel__header">
+        <h3>Confirmar acción</h3>
+        <button class="ui-modal-panel__close" onclick="document.getElementById('demo-modal').classList.remove('is-open')">✕</button>
+      </div>
+      <div class="ui-modal-panel__body">
+        <p>¿Estás seguro de que quieres realizar esta acción? Los cambios se aplicarán inmediatamente y no se pueden deshacer.</p>
+      </div>
+      <div class="ui-modal-panel__footer">
+        <button class="nz-btn nz-btn--ghost" onclick="document.getElementById('demo-modal').classList.remove('is-open')">Cancelar</button>
+        <button class="nz-btn nz-btn--primary" onclick="document.getElementById('demo-modal').classList.remove('is-open'); showToast('success')">Confirmar</button>
       </div>
     </div>
   </div>
-  
+
+  <!-- Toast container -->
+  <div class="ui-toast-container" id="toast-container"></div>
+
   <script>
-    // Minimal JS for interactivity (Aurora is CSS-only)
-    document.getElementById('open-modal').addEventListener('click', () => {
-      document.getElementById('my-modal').showModal();
+    // Tabs
+    document.querySelectorAll('.ui-tabs-demo .nz-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const parent = tab.closest('.ui-tabs-demo');
+        parent.querySelectorAll('.nz-tab').forEach(t => t.classList.remove('nz-tab--active'));
+        parent.querySelectorAll('.nz-tabs__panel').forEach(p => p.style.display = 'none');
+        tab.classList.add('nz-tab--active');
+        const idx = tab.dataset.tab;
+        const panel = parent.querySelector(`#tab-${idx}`);
+        if (panel) panel.style.display = 'block';
+      });
     });
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('my-modal').close();
+
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll('.ui-dropdown-demo').forEach(dd => {
+        if (!dd.contains(e.target)) {
+          dd.querySelector('.nz-dropdown__menu')?.classList.remove('is-open');
+        }
+      });
     });
-    document.getElementById('cancel-modal').addEventListener('click', () => {
-      document.getElementById('my-modal').close();
+
+    // Toasts
+    function showToast(type) {
+      const container = document.getElementById('toast-container');
+      const messages = {
+        success: '✅ Acción completada correctamente',
+        error: '❌ Ha ocurrido un error. Inténtalo de nuevo.',
+        info: 'ℹ️ Notificación: tu configuración se ha actualizado.'
+      };
+      const toast = document.createElement('div');
+      toast.className = `ui-toast ui-toast--${type}`;
+      toast.textContent = messages[type];
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(1rem)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Close modal on overlay click
+    document.getElementById('demo-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove('is-open');
+      }
     });
   </script>
 </body>
