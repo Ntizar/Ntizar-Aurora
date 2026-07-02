@@ -33,7 +33,9 @@
        Versión 2 (si se quiere punto intermedio suave): usar blue-400 (#60a5fa). */
     --nz-gradient-aurora: linear-gradient(135deg,
       var(--nz-color-blue-600) 0%,
-      var(--nz-color-orange-500) 100%);
+      var(--nz-color-orange-300) 18%,
+      var(--nz-color-orange-500) 55%,
+      var(--nz-color-orange-600) 100%);
   }
 
   /* ---------- SUNSET (naranja dominante, azul soporte) ---------- */
@@ -46,7 +48,7 @@
     --nz-color-accent-soft: #60a5fa;
     --nz-gradient-brand: linear-gradient(135deg, #fdba74 0%, #ea580c 58%, #9a3412 100%);
     --nz-gradient-accent: linear-gradient(135deg, #93c5fd 0%, #2563eb 56%, #1e3a8a 100%);
-    --nz-gradient-aurora: linear-gradient(135deg, #f97316 0%, #db2777 46%, #2563eb 100%);
+    --nz-gradient-aurora: linear-gradient(135deg, #f97316 0%, #fdba74 30%, #2563eb 100%);
     --nz-shadow-brand: 0 14px 34px rgba(234, 88, 12, 0.26), 0 24px 54px rgba(251, 146, 60, 0.14);
     --nz-shadow-accent: 0 14px 34px rgba(37, 99, 235, 0.22), 0 24px 54px rgba(59, 130, 246, 0.12);
     --nz-shadow-aurora: 0 16px 36px rgba(234, 88, 12, 0.22), 0 26px 54px rgba(37, 99, 235, 0.18);

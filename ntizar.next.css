@@ -432,7 +432,8 @@
       linear-gradient(var(--nz-surface-glass), var(--nz-surface-glass)) padding-box,
       linear-gradient(135deg,
         oklch(85% 0.15 200) 0%,
-        oklch(85% 0.08 250) 50%,
+        oklch(85% 0.06 250) 30%,
+        oklch(85% 0.10 80) 60%,
         oklch(85% 0.15 50) 100%) border-box;
     box-shadow:
       /* (c) dual inset shadow */
@@ -540,7 +541,8 @@
       linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)) padding-box,
       linear-gradient(135deg,
         oklch(40% 0.15 200) 0%,
-        oklch(40% 0.10 250) 50%,
+        oklch(40% 0.06 250) 30%,
+        oklch(40% 0.10 80) 60%,
         oklch(40% 0.15 50) 100%) border-box;
     box-shadow:
       inset 0 1px 0 0 rgba(255, 255, 255, 0.18),
