@@ -13,7 +13,7 @@
      .nz-stage__hud         -> capa HTML encima del canvas
      .nz-stage__caption     -> texto inferior
 
-     .nz-aurora-bg          -> fondo animado azul+violeta+naranja
+     .nz-aurora-bg          -> fondo animado azul+naranja
      .nz-aurora-bg--static  -> sin animación
      .nz-aurora-bg--soft    -> menos saturado
      .nz-grid-bg            -> fondo de cuadrícula sutil
@@ -36,7 +36,7 @@
     isolation: isolate;
     background:
       radial-gradient(circle at 18% 22%, color-mix(in srgb, var(--nz-color-brand) 26%, transparent), transparent 32%),
-      radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--nz-color-violet-500) 22%, transparent), transparent 28%),
+      radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--nz-color-orange-400) 22%, transparent), transparent 28%),
       radial-gradient(circle at 78% 82%, color-mix(in srgb, var(--nz-color-accent) 26%, transparent), transparent 32%),
       linear-gradient(135deg, var(--nz-surface-page), var(--nz-surface-base));
   }
@@ -199,7 +199,7 @@
   .nz :where(.nz-orb--aurora) {
     background: radial-gradient(circle at 28% 28%,
       var(--nz-color-blue-400) 0%,
-      var(--nz-color-violet-500) 45%,
+      var(--nz-color-orange-400) 45%,
       var(--nz-color-orange-500) 100%);
   }
   .nz :where(.nz-orb--sm) { --nz-orb-size: 7rem; }
@@ -214,7 +214,7 @@
     width: var(--nz-ring-size);
     height: var(--nz-ring-size);
     border-radius: 50%;
-    background: conic-gradient(var(--nz-ring-c1), var(--nz-color-violet-500), var(--nz-ring-c2), var(--nz-ring-c1));
+    background: conic-gradient(var(--nz-ring-c1), var(--nz-color-orange-500), var(--nz-ring-c2), var(--nz-ring-c1));
     position: relative;
     filter: drop-shadow(0 0 30px color-mix(in srgb, var(--nz-color-brand) 40%, transparent));
     animation: nz-spin 12s linear infinite;

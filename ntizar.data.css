@@ -236,7 +236,7 @@
     background: conic-gradient(
       from 180deg,
       var(--nz-color-blue-500) 0%,
-      var(--nz-color-violet-500) 30%,
+      var(--nz-color-orange-400) 30%,
       var(--nz-color-orange-500) calc(var(--nz-meter-value) * 1%),
       var(--nz-surface-soft) 0);
   }

@@ -156,7 +156,7 @@
     --nz-backdrop-blur-strong: blur(28px);
     --nz-gradient-brand: linear-gradient(135deg, var(--nz-color-brand-soft) 0%, var(--nz-color-brand) 58%, var(--nz-color-brand-strong) 100%);
     --nz-gradient-accent: linear-gradient(135deg, var(--nz-color-accent-soft) 0%, var(--nz-color-accent) 56%, var(--nz-color-accent-strong) 100%);
-    --nz-gradient-aurora: linear-gradient(135deg, var(--nz-color-blue-500) 0%, var(--nz-color-violet-500) 46%, var(--nz-color-orange-500) 100%);
+    --nz-gradient-aurora: linear-gradient(135deg, var(--nz-color-blue-600) 0%, var(--nz-color-orange-500) 50%, var(--nz-color-orange-600) 100%);
 
     --nz-duration-fast: 150ms;
     --nz-duration-base: 220ms;
@@ -857,7 +857,7 @@
   .nz :where(.nz-btn--brand-mix) {
     background: var(--nz-gradient-aurora);
     color: var(--nz-text-on-brand);
-    border-color: color-mix(in srgb, var(--nz-color-violet-500) 42%, transparent);
+    border-color: color-mix(in srgb, var(--nz-color-brand-strong) 42%, transparent);
     --nz-btn-shadow: var(--nz-shadow-aurora);
     --nz-btn-shadow-hover: var(--nz-shadow-lg);
   }
