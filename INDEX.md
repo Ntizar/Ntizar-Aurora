@@ -18,15 +18,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
 
 <!-- packs opcionales, independientes entre sí -->
+<link rel="stylesheet" href="ntizar.nucleo.css">  <!-- Núcleo: colores sólidos, bento, stats, CSS charts, three.js, mapas sólidos, transporte -->
 <link rel="stylesheet" href="ntizar.data.css">    <!-- KPIs, dashboards -->
 <link rel="stylesheet" href="ntizar.charts.css">  <!-- charts + paletas -->
 <link rel="stylesheet" href="ntizar.maps.css">    <!-- Leaflet/Mapbox/MapLibre -->
-<link rel="stylesheet" href="ntizar.viz.css">     <!-- three.js, fondos aurora, orbs -->
+<link rel="stylesheet" href="ntizar.viz.css">     <!-- three.js, fondos aurora, orbs (modo glass) -->
 <link rel="stylesheet" href="ntizar.motion.css">  <!-- animaciones -->
 <link rel="stylesheet" href="ntizar.forms.css">   <!-- switch, otp, range, file, stepper -->
 <link rel="stylesheet" href="ntizar.ui.css">      <!-- modal, drawer, tabs, dropdown, toast -->
 <link rel="stylesheet" href="ntizar.patterns.css"><!-- app-shell, hero, pricing, faq, footer -->
-<link rel="stylesheet" href="ntizar.next.css">    <!-- v5: liquid glass real, OKLCH, multi-axis, mesh, forced-colors -->
+<link rel="stylesheet" href="ntizar.next.css">    <!-- v5: liquid glass real, OKLCH, multi-axis, mesh (modo glass) -->
 
 <body class="nz"
       data-nz-theme="light"
@@ -52,6 +53,7 @@ Reglas duras:
 ||---|---|---|---|
 || `ntizar.css` | core (≈40 KB) | Tokens, base, objects, componentes base, utilities | **Siempre** |
 || `ntizar.themes.css` | skins | 5 paletas (aurora/sunset/midnight/ocean/citrus) + paleta de charts | Quieras cambiar identidad sin tocar tokens |
+|| `ntizar.nucleo.css` | **nucleo** | **Colores sólidos puros** (azul+naranja sin gradientes), bento grid asimétrico, stats bar, CSS-only charts (barras, ring), Three.js stage, solid nav, mapas sólidos, patrones de transporte (horarios, líneas), KPI compact, table solid | Construyas dashboards, landings, visores de mapas o herramientas de transporte con estilo Núcleo |
 || `ntizar.data.css` | data | KPIs, stat-tile, progress, meter, skeletons, avatars, timeline, tags | Construyas dashboards o data-heavy |
 || `ntizar.charts.css` | charts | `.nz-chart` (contenedor para Chart.js / ApexCharts / D3 / SVG / Canvas), legends, tooltips, sparkline + donut CSS-only | Renderices gráficos con cualquier librería |
 || `ntizar.maps.css` | maps | `.nz-map` para Leaflet/Mapbox/MapLibre, overlays HUD, pins, popups | Uses mapas |

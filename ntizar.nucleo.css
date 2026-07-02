@@ -1,0 +1,609 @@
+/* ============================================================
+   NTIZAR NUCLEO PACK — v5.2
+   Depende de: ntizar.css
+
+   Estilo "Núcleo": colores sólidos puros, sin gradientes.
+   Azul #2563eb + Naranja #f97316 + Blanco + Negro.
+
+   API pública:
+     .nz-nucleo              -> activa modo sólido en un contenedor
+     .nz-bento               -> grid bento asimétrico
+     .nz-bento__cell         -> celda del bento
+     .nz-bento__cell--azul   -> fondo azul sólido
+     .nz-bento__cell--naranja-> fondo naranja sólido
+     .nz-bento__cell--dark   -> fondo negro sólido
+     .nz-bento__cell--white  -> fondo blanco con borde
+     .nz-bento__cell--span-2 -> ocupa 2 columnas
+     .nz-bento__cell--span-3 -> ocupa 3 columnas
+     .nz-stats-bar           -> barra de stats a todo ancho
+     .nz-stat                -> stat individual sólido
+     .nz-stat--azul          -> fondo azul
+     .nz-stat--naranja       -> fondo naranja
+     .nz-bars                -> gráfico de barras CSS-only
+     .nz-bars__col           -> columna de barra
+     .nz-bars__col--azul     -> barra azul
+     .nz-bars__col--naranja  -> barra naranja
+     .nz-bars__col--active   -> barra destacada
+     .nz-ring                -> gráfico circular CSS-only
+     .nz-ring__inner         -> centro del ring
+     .nz-activity            -> lista de actividad
+     .nz-activity__item      -> item de actividad
+     .nz-activity__dot       -> punto de color
+     .nz-activity__dot--azul -> punto azul
+     .nz-activity__dot--naranja -> punto naranja
+     .nz-solid-nav           -> navegación sólida (no glass)
+     .nz-stage3d             -> contenedor para Three.js canvas
+     .nz-stage3d__badge      -> badge flotante sobre el canvas
+     .nz-stage3d__hint       -> texto de ayuda flotante
+   ============================================================ */
+
+@layer ntizar.components {
+
+  /* ---------- MODO NÚCLEO ---------- */
+  .nz:where([data-nz-mode="nucleo"]) {
+    --nz-gradient-aurora: var(--nz-color-accent);
+    --nz-glass-stroke: none;
+  }
+
+  /* ---------- BENTO GRID ---------- */
+  .nz :where(.nz-bento) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--nz-space-3);
+  }
+
+  .nz :where(.nz-bento__cell) {
+    border-radius: var(--nz-radius-lg);
+    padding: var(--nz-space-5);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--nz-duration-base) var(--nz-ease-standard);
+  }
+
+  .nz :where(.nz-bento__cell):hover {
+    transform: translateY(-3px);
+  }
+
+  .nz :where(.nz-bento__cell--azul) {
+    background: var(--nz-color-brand);
+    color: var(--nz-text-on-brand);
+  }
+
+  .nz :where(.nz-bento__cell--naranja) {
+    background: var(--nz-color-accent);
+    color: var(--nz-text-on-brand);
+  }
+
+  .nz :where(.nz-bento__cell--dark) {
+    background: #0a0a0a;
+    color: #ffffff;
+  }
+
+  .nz :where(.nz-bento__cell--white) {
+    background: #ffffff;
+    border: 1px solid var(--nz-border-soft);
+    color: var(--nz-text-strong);
+  }
+
+  .nz :where(.nz-bento__cell--span-2) { grid-column: span 2; }
+  .nz :where(.nz-bento__cell--span-3) { grid-column: span 3; }
+  .nz :where(.nz-bento__cell--wide) { grid-column: span 2; }
+  .nz :where(.nz-bento__cell--full) { grid-column: 1 / -1; }
+
+  @media (min-width: 768px) {
+    .nz :where(.nz-bento) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ---------- STATS BAR ---------- */
+  .nz :where(.nz-stats-bar) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: var(--nz-radius-lg);
+    overflow: hidden;
+  }
+
+  .nz :where(.nz-stat) {
+    padding: var(--nz-space-5) var(--nz-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--nz-space-1);
+  }
+
+  .nz :where(.nz-stat--azul) {
+    background: var(--nz-color-brand);
+    color: var(--nz-text-on-brand);
+  }
+
+  .nz :where(.nz-stat--naranja) {
+    background: var(--nz-color-accent);
+    color: var(--nz-text-on-brand);
+  }
+
+  .nz :where(.nz-stat__value) {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .nz :where(.nz-stat__label) {
+    font-size: var(--nz-text-sm);
+    opacity: 0.85;
+    font-weight: 500;
+  }
+
+  .nz :where(.nz-stat__trend) {
+    font-size: var(--nz-text-xs);
+    opacity: 0.7;
+    margin-top: var(--nz-space-1);
+  }
+
+  @media (min-width: 768px) {
+    .nz :where(.nz-stats-bar) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* ---------- CSS-ONLY BAR CHART ---------- */
+  .nz :where(.nz-bars) {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--nz-space-1);
+    height: 5rem;
+    margin-top: var(--nz-space-3);
+  }
+
+  .nz :where(.nz-bars__col) {
+    flex: 1;
+    border-radius: var(--nz-radius-sm) var(--nz-radius-sm) 0 0;
+    transition: height 0.6s var(--nz-ease-standard);
+    min-height: 4px;
+  }
+
+  .nz :where(.nz-bars__col--azul) {
+    background: var(--nz-color-blue-400);
+  }
+
+  .nz :where(.nz-bars__col--naranja) {
+    background: var(--nz-color-orange-400);
+  }
+
+  .nz :where(.nz-bars__col--active) {
+    background: var(--nz-color-accent);
+  }
+
+  /* ---------- CSS-ONLY RING CHART ---------- */
+  .nz :where(.nz-ring) {
+    --nz-ring-pct: 72;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--nz-color-accent) 0% calc(var(--nz-ring-pct) * 1%),
+      var(--nz-surface-soft) calc(var(--nz-ring-pct) * 1%) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--nz-space-3);
+  }
+
+  .nz :where(.nz-ring__inner) {
+    width: 4.5rem;
+    height: 4.5rem;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: var(--nz-text-strong);
+  }
+
+  /* ---------- ACTIVITY LIST ---------- */
+  .nz :where(.nz-activity) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nz-space-2);
+    margin-top: var(--nz-space-3);
+  }
+
+  .nz :where(.nz-activity__item) {
+    display: flex;
+    align-items: center;
+    gap: var(--nz-space-2);
+    font-size: var(--nz-text-sm);
+  }
+
+  .nz :where(.nz-activity__dot) {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .nz :where(.nz-activity__dot--azul) {
+    background: var(--nz-color-brand);
+  }
+
+  .nz :where(.nz-activity__dot--naranja) {
+    background: var(--nz-color-accent);
+  }
+
+  .nz :where(.nz-activity__time) {
+    margin-left: auto;
+    opacity: 0.5;
+    font-size: var(--nz-text-xs);
+  }
+
+  /* ---------- SOLID NAV (no glass) ---------- */
+  .nz :where(.nz-solid-nav) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--nz-space-3) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--nz-border-soft);
+  }
+
+  .nz :where(.nz-solid-nav__brand) {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: var(--nz-space-1);
+  }
+
+  .nz :where(.nz-solid-nav__dot) {
+    width: 0.875rem;
+    height: 0.875rem;
+    background: var(--nz-color-accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nz :where(.nz-solid-nav__links) {
+    display: flex;
+    gap: var(--nz-space-5);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nz :where(.nz-solid-nav__links) a {
+    text-decoration: none;
+    color: var(--nz-text-muted);
+    font-size: var(--nz-text-sm);
+    font-weight: 500;
+    transition: color var(--nz-duration-fast) var(--nz-ease-standard);
+  }
+
+  .nz :where(.nz-solid-nav__links) a:hover {
+    color: var(--nz-color-brand);
+  }
+
+  .nz :where(.nz-solid-nav__links) a.is-active {
+    color: var(--nz-text-strong);
+    font-weight: 600;
+  }
+
+  .nz :where(.nz-solid-nav__cta) {
+    background: var(--nz-color-brand);
+    color: var(--nz-text-on-brand);
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--nz-radius-md);
+    font-weight: 600;
+    font-size: var(--nz-text-sm);
+    cursor: pointer;
+    transition: transform var(--nz-duration-fast) var(--nz-ease-standard),
+                background var(--nz-duration-fast) var(--nz-ease-standard);
+    min-height: 44px;
+  }
+
+  .nz :where(.nz-solid-nav__cta):hover {
+    background: var(--nz-color-brand-strong);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- THREE.JS STAGE ---------- */
+  .nz :where(.nz-stage3d) {
+    position: relative;
+    width: 100%;
+    height: clamp(22rem, 50vh, 30rem);
+    border-radius: var(--nz-radius-xl);
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  .nz :where(.nz-stage3d) canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+  }
+
+  .nz :where(.nz-stage3d) canvas:active {
+    cursor: grabbing;
+  }
+
+  .nz :where(.nz-stage3d__badge) {
+    position: absolute;
+    top: var(--nz-space-2);
+    left: var(--nz-space-2);
+    background: var(--nz-color-accent);
+    color: var(--nz-text-on-brand);
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--nz-radius-pill);
+    font-size: var(--nz-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  .nz :where(.nz-stage3d__hint) {
+    position: absolute;
+    bottom: var(--nz-space-2);
+    right: var(--nz-space-2);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--nz-text-xs);
+    font-weight: 500;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .nz :where(.nz-stage3d) {
+      height: 30rem;
+    }
+  }
+
+  /* ---------- PROGRESS BAR SOLID ---------- */
+  .nz :where(.nz-progress-solid) {
+    height: 6px;
+    border-radius: var(--nz-radius-pill);
+    background: var(--nz-surface-soft);
+    overflow: hidden;
+  }
+
+  .nz :where(.nz-progress-solid__fill) {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--nz-color-brand);
+    transition: width 0.6s var(--nz-ease-standard);
+  }
+
+  .nz :where(.nz-progress-solid__fill--naranja) {
+    background: var(--nz-color-accent);
+  }
+
+  /* ---------- SOLID BUTTONS ---------- */
+  .nz :where(.nz-btn-solid-azul) {
+    background: var(--nz-color-brand);
+    color: var(--nz-text-on-brand);
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--nz-radius-md);
+    font-weight: 700;
+    font-size: var(--nz-text-sm);
+    cursor: pointer;
+    transition: transform var(--nz-duration-fast) var(--nz-ease-standard),
+                box-shadow var(--nz-duration-base) var(--nz-ease-standard);
+    min-height: 44px;
+  }
+
+  .nz :where(.nz-btn-solid-azul):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--nz-color-brand) 35%, transparent);
+  }
+
+  .nz :where(.nz-btn-solid-naranja) {
+    background: var(--nz-color-accent);
+    color: var(--nz-text-on-brand);
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--nz-radius-md);
+    font-weight: 700;
+    font-size: var(--nz-text-sm);
+    cursor: pointer;
+    transition: transform var(--nz-duration-fast) var(--nz-ease-standard),
+                box-shadow var(--nz-duration-base) var(--nz-ease-standard);
+    min-height: 44px;
+  }
+
+  .nz :where(.nz-btn-solid-naranja):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--nz-color-accent) 35%, transparent);
+  }
+
+  .nz :where(.nz-btn-outline-azul) {
+    background: transparent;
+    color: var(--nz-color-brand);
+    border: 2px solid var(--nz-color-brand);
+    padding: calc(0.875rem - 2px) calc(1.75rem - 2px);
+    border-radius: var(--nz-radius-md);
+    font-weight: 700;
+    font-size: var(--nz-text-sm);
+    cursor: pointer;
+    transition: background var(--nz-duration-fast) var(--nz-ease-standard);
+    min-height: 44px;
+  }
+
+  .nz :where(.nz-btn-outline-azul):hover {
+    background: var(--nz-color-brand);
+    color: var(--nz-text-on-brand);
+  }
+
+  /* ---------- MAP SOLID VARIANTS ---------- */
+  .nz :where(.nz-map--solid) {
+    border: 1px solid var(--nz-border-soft);
+    border-radius: var(--nz-radius-lg);
+    box-shadow: var(--nz-shadow-sm);
+    background: var(--nz-surface-soft);
+  }
+
+  .nz :where(.nz-map--solid) .nz-map__overlay {
+    background: #ffffff;
+    border: 1px solid var(--nz-border-soft);
+    box-shadow: var(--nz-shadow-md);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nz :where(.nz-map--solid) .nz-map__controls {
+    background: #ffffff;
+    border: 1px solid var(--nz-border-soft);
+    box-shadow: var(--nz-shadow-md);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nz :where(.nz-map--solid) .nz-map__controls button:hover {
+    background: var(--nz-surface-brand-soft);
+  }
+
+  .nz :where(.nz-map--solid) .nz-map__legend {
+    background: #ffffff;
+    border: 1px solid var(--nz-border-soft);
+    box-shadow: var(--nz-shadow-md);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Map route line styles */
+  .nz :where(.nz-map__route) {
+    stroke: var(--nz-color-brand);
+    stroke-width: 3;
+    fill: none;
+  }
+
+  .nz :where(.nz-map__route--naranja) {
+    stroke: var(--nz-color-accent);
+  }
+
+  /* ---------- TRANSPORT PATTERNS ---------- */
+  .nz :where(.nz-line-badge) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    padding: 0 0.5rem;
+    border-radius: var(--nz-radius-sm);
+    font-size: var(--nz-text-xs);
+    font-weight: 800;
+    color: var(--nz-text-on-brand);
+  }
+
+  .nz :where(.nz-line-badge--azul) {
+    background: var(--nz-color-brand);
+  }
+
+  .nz :where(.nz-line-badge--naranja) {
+    background: var(--nz-color-accent);
+  }
+
+  .nz :where(.nz-schedule) {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--nz-space-2);
+    align-items: center;
+    padding: var(--nz-space-2) 0;
+    border-bottom: 1px solid var(--nz-border-soft);
+    font-size: var(--nz-text-sm);
+  }
+
+  .nz :where(.nz-schedule__time) {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--nz-text-strong);
+  }
+
+  .nz :where(.nz-schedule__time--next) {
+    color: var(--nz-color-accent);
+  }
+
+  /* ---------- DATA TABLE SOLID ---------- */
+  .nz :where(.nz-table-solid) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--nz-text-sm);
+  }
+
+  .nz :where(.nz-table-solid) th {
+    text-align: left;
+    padding: var(--nz-space-2) var(--nz-space-3);
+    font-size: var(--nz-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--nz-text-muted);
+    border-bottom: 2px solid var(--nz-border-soft);
+  }
+
+  .nz :where(.nz-table-solid) td {
+    padding: var(--nz-space-2) var(--nz-space-3);
+    border-bottom: 1px solid var(--nz-border-soft);
+    color: var(--nz-text-default);
+  }
+
+  .nz :where(.nz-table-solid) tr:hover td {
+    background: var(--nz-surface-soft);
+  }
+
+  .nz :where(.nz-table-solid) .num {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
+
+  /* ---------- KPI COMPACT (Núcleo style) ---------- */
+  .nz :where(.nz-kpi-solid) {
+    padding: var(--nz-space-3) var(--nz-space-4);
+    border-radius: var(--nz-radius-lg);
+    background: #ffffff;
+    border: 1px solid var(--nz-border-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--nz-space-1);
+  }
+
+  .nz :where(.nz-kpi-solid__label) {
+    font-size: var(--nz-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--nz-text-muted);
+  }
+
+  .nz :where(.nz-kpi-solid__value) {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--nz-text-strong);
+  }
+
+  .nz :where(.nz-kpi-solid__trend) {
+    font-size: var(--nz-text-xs);
+    font-weight: 600;
+  }
+
+  .nz :where(.nz-kpi-solid__trend--up) {
+    color: var(--nz-color-success);
+  }
+
+  .nz :where(.nz-kpi-solid__trend--down) {
+    color: var(--nz-color-danger);
+  }
+
+}

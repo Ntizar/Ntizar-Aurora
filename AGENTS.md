@@ -86,16 +86,17 @@ Aurora ships **no JS**. The user (or you, with their permission) must write it. 
 || Need | Pack |
 ||---|---|
 || Buttons, cards, badges, fields, alerts, layout | `ntizar.css` (core) |
+|| **Solid colors, bento, stats, CSS charts, three.js, maps solid, transport** | `ntizar.nucleo.css` |
 || Brand variants (5 skins) | `ntizar.themes.css` |
 || KPIs, progress, skeleton, avatars, timeline | `ntizar.data.css` |
 || Chart.js / Apex / D3 wrappers | `ntizar.charts.css` |
 || Leaflet / Mapbox / MapLibre styling | `ntizar.maps.css` |
-|| three.js stages, aurora backgrounds | `ntizar.viz.css` |
+|| three.js stages, aurora backgrounds (glass mode) | `ntizar.viz.css` |
 || Reveal, glow-pulse, shimmer animations | `ntizar.motion.css` |
 || Switch, OTP, file drop, range, stepper | `ntizar.forms.css` |
 || Modal, drawer, tabs, dropdown, toast, tooltip | `ntizar.ui.css` |
 || App-shell, hero, pricing, FAQ, footer, auth | `ntizar.patterns.css` |
-|| **Liquid glass, OKLCH, multi-axis, mesh, AAA skin** | `ntizar.next.css` (v5+) |
+|| **Liquid glass, OKLCH, multi-axis, mesh, AAA skin** (glass mode) | `ntizar.next.css` (v5+) |
 
 Full class lists are in [`INDEX.md`](INDEX.md). Reference API also in `gallery.html` sections `#api-root`, `#api-objects`, `#api-components`, `#api-utilities`.
 

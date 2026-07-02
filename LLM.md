@@ -22,25 +22,27 @@
 | ¿Qué construyes? | Packs a cargar | Clases clave |
 |---|---|---|
 | **Cualquier cosa** | core | `.nz-container`, `.nz-stack`, `.nz-card`, `.nz-btn`, `.nz-field` |
-| **Dashboard / admin** | core + data + charts + ui + patterns | `.nz-kpi`, `.nz-chart`, `.nz-table`, `.nz-modal` |
-| **Landing / marketing** | core + patterns + viz + motion | `.nz-hero`, `.nz-pricing`, `.nz-footer`, `.nz-anim-fade-in` |
-| **App de mapas / IoT** | core + maps + data + ui | `.nz-map`, `.nz-map__pin`, `.nz-kpi` |
-| **Portfolio / 3D** | core + viz + motion + patterns | `.nz-stage`, `.nz-aurora-bg`, `.nz-hero` |
+| **Dashboard / admin** | core + nucleo + data + charts + ui | `.nz-bento`, `.nz-stats-bar`, `.nz-kpi-solid`, `.nz-bars`, `.nz-ring` |
+| **Landing / marketing** | core + nucleo + patterns + motion | `.nz-hero`, `.nz-stage3d`, `.nz-solid-nav`, `.nz-anim-fade-in` |
+| **Visor de mapas** | core + nucleo + maps + data | `.nz-map--solid`, `.nz-map__pin`, `.nz-map__overlay`, `.nz-line-badge` |
+| **Herramienta transporte** | core + nucleo + maps + data | `.nz-schedule`, `.nz-line-badge`, `.nz-map__route`, `.nz-table-solid` |
+| **Portfolio / 3D** | core + nucleo + motion + patterns | `.nz-stage3d`, `.nz-solid-nav`, `.nz-bento`, `.nz-hero` |
 | **Auth (login/signup)** | core + forms + patterns | `.nz-field`, `.nz-btn`, `.nz-auth-shell` |
 | **Formularios complejos** | core + forms + ui | `.nz-switch`, `.nz-otp`, `.nz-stepper`, `.nz-toast` |
 | **Widget aislado** | core + pack mínimo | envolver en `<div class="nz">…</div>` |
 
 **Packs opcionales (cargar solo si los usas):**
+- `ntizar.nucleo.css` → **Núcleo**: colores sólidos, bento, stats, CSS charts, three.js stage, mapas sólidos, transporte
 - `ntizar.themes.css` → skins (aurora/sunset/midnight/ocean/citrus)
 - `ntizar.data.css` → KPIs, progress, skeleton, avatar, timeline
 - `ntizar.charts.css` → Chart.js/Apex/D3 containers
 - `ntizar.maps.css` → Leaflet/Mapbox/MapLibre styling
-- `ntizar.viz.css` → three.js stages, aurora backgrounds, orbs
+- `ntizar.viz.css` → three.js stages, aurora backgrounds, orbs (modo glass)
 - `ntizar.motion.css` → animations (reveal, glow, shimmer, marquee)
 - `ntizar.forms.css` → switch, otp, range, file, stepper
 - `ntizar.ui.css` → modal, drawer, tabs, dropdown, toast, tooltip
 - `ntizar.patterns.css` → app-shell, hero, pricing, FAQ, footer, auth
-- `ntizar.next.css` → liquid glass, OKLCH, mesh, multi-axis
+- `ntizar.next.css` → liquid glass, OKLCH, mesh, multi-axis (modo glass)
 
 ---
 
@@ -152,13 +154,28 @@
 - Reveal scroll → `.nz-reveal` + observer JS
 - Hover lift → `.nz-hover-lift`
 
-### Next (v5 — liquid glass, OKLCH, mesh)
+### Next (v5 — liquid glass, OKLCH, mesh) — MODO GLASS
 - Glass liquid → `.nz-card--glass-liquid` / `.nz-btn--glass-liquid`
 - Aurora mesh → `.nz-aurora-mesh` + `--animated` / `--glass` / `--hero`
 - Text auto-contrast → `.u-nz-text-auto`
 - Background mesh → `.u-nz-bg-mesh`
 - Text gradient → `.u-nz-text-gradient` / `--brand`
 - Glow utility → `.u-nz-glow` / `--accent` / `--aurora`
+
+### Núcleo (v5.2 — colores sólidos) — MODO DEFAULT
+- Bento grid → `.nz-bento` + `.nz-bento__cell[--azul/--naranja/--dark/--white/--span-2/--wide/--full]`
+- Stats bar → `.nz-stats-bar` + `.nz-stat[--azul/--naranja]` + `__value/__label/__trend`
+- CSS bar chart → `.nz-bars` + `.nz-bars__col[--azul/--naranja/--active]`
+- CSS ring chart → `.nz-ring` + `.nz-ring__inner` (usar `--nz-ring-pct`)
+- Activity list → `.nz-activity` + `.nz-activity__item` + `.nz-activity__dot[--azul/--naranja]` + `__time`
+- Solid nav → `.nz-solid-nav` + `__brand/__dot/__links/__cta`
+- Three.js stage → `.nz-stage3d` + `__badge/__hint` (canvas dentro)
+- Solid buttons → `.nz-btn-solid-azul` / `.nz-btn-solid-naranja` / `.nz-btn-outline-azul`
+- Progress solid → `.nz-progress-solid` + `__fill[--naranja]`
+- Map solid → `.nz-map--solid` (overlays sólidos, sin glass)
+- Transport → `.nz-line-badge[--azul/--naranja]`, `.nz-schedule` + `__time[--next]`, `.nz-map__route[--naranja]`
+- KPI compact → `.nz-kpi-solid` + `__label/__value/__trend[--up/--down]`
+- Table solid → `.nz-table-solid`
 
 ---
 
@@ -233,15 +250,17 @@ Para cambiar runtime: `document.body.dataset.nzTheme = 'dark'`.
 
 ```
 ¿Botón/card/badge/alert/field/table?          → core
-¿Dashboard con KPIs?                           → core + data
-¿Gráficos?                                     → core + charts
-¿Mapas?                                        → core + maps
+¿Bento/stats/barras CSS/ring/three.js stage?  → core + nucleo
+¿Dashboard con KPIs sólidos?                   → core + nucleo + data
+¿Gráficos Chart.js?                            → core + charts
+¿Mapas Leaflet sólidos?                        → core + nucleo + maps
+¿Horarios/líneas transporte?                   → core + nucleo + maps + data
 ¿Modals/tabs/dropdowns/toasts?                 → core + ui
 ¿Formularios (switch/otp/stepper)?             → core + forms
 ¿Hero/pricing/footer/auth?                     → core + patterns
 ¿Animaciones?                                  → core + motion
-¿3D/WebGL?                                     → core + viz
-¿Liquid glass / mesh / OKLCH?                  → core + next
+¿3D/WebGL stage?                               → core + nucleo (nz-stage3d)
+¿Liquid glass / mesh?                          → core + next (modo glass)
 ¿Cambiar paleta?                               → core + themes
 ¿Todo junto?                                   → core + todos los packs
 ```
