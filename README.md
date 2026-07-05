@@ -1,35 +1,36 @@
-# Ntizar Design System
+# Ntizar Aurora
 
-> Aurora v5.1 **Constellation**: a copy-paste CSS core + 10 optional packs to build any web app (dashboards, maps, 3D scenes, landings, forms, generative art) keeping the blue + orange identity. v5 added **real Liquid Glass**, **OKLCH**, **multi-axis theming** and **forced-colors**. v5.1 ships **agent-ready onboarding** ([`AGENTS.md`](AGENTS.md)) + **public CDN** so you stop pasting CSS into AI prompts.
+> Aurora v5.2 **Constellation**: design system CSS-only con 11 packs modulares, liquid glass real, three.js, OKLCH y multi-axis theming. Identidad azul `#2563eb` + naranja `#f97316`, sin morados. Sin build, sin dependencias, sin JS obligatorio.
 
-![Version](https://img.shields.io/badge/version-5.1.0-2563eb)
-![CDN](https://img.shields.io/badge/cdn-jsdelivr-9333ea)
+![Version](https://img.shields.io/badge/version-5.2.0-2563eb)
+![CDN](https://img.shields.io/badge/cdn-jsdelivr-2563eb)
 ![API](https://img.shields.io/badge/api-namespaced-0f172a)
 ![Modo](https://img.shields.io/badge/theme-light%20%7C%20dark%20%7C%20forced--colors-f97316)
-![Skins](https://img.shields.io/badge/skins-6-7c3aed)
+![Skins](https://img.shields.io/badge/skins-6-2563eb)
 ![CSS Only](https://img.shields.io/badge/css-only-16a34a)
 
-`CSS-only` · `Opt-in` · `Namespaced` · `Light-first` · `Liquid glass` · `Modular packs` · `Agent-ready`
+`CSS-only` · `Opt-in` · `Namespaced` · `Light-first` · `Liquid glass` · `Three.js ready` · `Modular packs` · `Agent-ready`
 
 ---
 
 ## Arquitectura Constellation
 
 ```
-ntizar.css            -> core (siempre)
-ntizar.themes.css     -> 5 skins (aurora · sunset · midnight · ocean · citrus) + paleta de charts
+ntizar.css            -> core (siempre) — tokens, base, objetos, componentes, utilities
+ntizar.themes.css     -> 6 skins (aurora · sunset · midnight · ocean · citrus · contrast) + paleta charts
 ntizar.data.css       -> KPIs, dashboards, progress, meter, skeleton, avatar, timeline
-ntizar.charts.css     -> contenedores para Chart.js/Apex/D3, sparkline + donut CSS-only, paletas
+ntizar.charts.css     -> contenedores para Chart.js/Apex/D3, sparkline + donut CSS-only
 ntizar.maps.css       -> Leaflet/Mapbox/MapLibre con look Ntizar
-ntizar.viz.css        -> stages para three.js, fondos aurora, orbs, glow ring
+ntizar.viz.css        -> stages para three.js, fondos aurora, orbs, glow ring, scanlines
 ntizar.motion.css     -> reveal, glow-pulse, aurora-pan, shimmer, marquee, typing, hover-lift
 ntizar.forms.css      -> switch, custom check/radio, range, OTP, file drop, stepper, search
 ntizar.ui.css         -> modal, drawer, tabs, accordion, dropdown, toast, tooltip, command-bar
 ntizar.patterns.css   -> app-shell, hero, pricing, features, faq, footer, auth-shell, empty/error
 ntizar.next.css       -> v5: liquid glass real, OKLCH, multi-axis theming, mesh, forced-colors, skin AAA
+ntizar.nucleo.css     -> v5.2: colores sólidos puros, bento grid, stats bar, barras/ring CSS-only, stage3d
 ```
 
-Cada pack es independiente. Carga 1 o los 10.
+Cada pack es independiente. Carga 1 o los 11. **Total: 243 KB CSS, 119 componentes, 0 dependencias.**
 
 ## Documentación
 
@@ -40,6 +41,7 @@ Cada pack es independiente. Carga 1 o los 10.
 - [DESIGN.md](DESIGN.md) → **spec machine-readable** (Google design.md): tokens, tipografía, componentes
 - [examples/](examples/) → **5 ejemplos completos**: login, dashboard, landing, UI components, forms
 - [gallery.html](gallery.html) → **showcase** con todo en vivo (foundations + core + packs + reference API)
+- [index.html](index.html) → **landing page** con Three.js (icosaedro wireframe + constelación de partículas + parallax)
 
 ### Ecosistema design.md
 
@@ -63,7 +65,25 @@ CI activo en [.github/workflows/design-lint.yml](.github/workflows/design-lint.y
 </body>
 ```
 
-> **Pin a version in production:** replace `@master` with `@v5.1.0` once tagged for immutable, edge-cached assets.
+> **Pin a version in production:** replace `@master` with `@v5.2.0` once tagged for immutable, edge-cached assets.
+
+---
+
+## Qué es un "diseño Aurora Ntizar"
+
+Cuando pidas un **diseño Aurora Ntizar**, esto es lo que significa:
+
+| Aspecto | Especificación |
+|---|---|
+| **Colores** | Azul `#2563eb` + Naranja `#f97316`. **Sin morados, sin violeta.** Los gradientes azul→naranja interpolan via azul claro `#3b82f6`, nunca via `#7c3aed` |
+| **Fondo** | Blanco puro `#ffffff` (light mode por defecto) |
+| **Glass** | Liquid Glass real de 4 capas: base translúcida + `backdrop-filter: blur(24px) saturate(180%)` + dual inset shadow + borde cromático |
+| **Layout** | Bento grid asimétrico responsive, no cards bordeadas genéricas |
+| **3D** | Three.js con partículas, wireframes, parallax mouse. Paleta sincronizada con el skin activo |
+| **CSS** | Solo clases `.nz-*` y tokens `--nz-*`. Sin hardcodear hex/px. Sin build, sin npm |
+| **Scope** | Todo dentro de `.nz` — no colisiona con Tailwind/Bootstrap/etc |
+| **Theming** | `data-nz-theme`, `data-nz-skin`, `data-nz-shape`, `data-nz-density`, `data-nz-motion`, `data-nz-color-system` |
+| **Atribución** | "Hecho con ❤️ por David Antizar" |
 
 ---
 
@@ -75,22 +95,23 @@ Aurora es **CSS puro**. Sin npm, sin build, sin JS obligatorio. Lo único que ha
 
 `ntizar.css` trae tokens, layout primitives (`.nz-container`, `.nz-stack`, `.nz-grid`, `.nz-cluster`, `.nz-surface`), componentes (`.nz-btn`, `.nz-card`, `.nz-badge`, `.nz-input`, `.nz-alert`…) y utilidades (`.u-nz-*`). Es lo único obligatorio.
 
-### Los 10 packs: opt-in
+### Los 11 packs: opt-in
 
 Cada pack añade un dominio. Cargas solo los que necesites:
 
 | Pack | Para qué sirve |
 |---|---|
-| `themes` | 5 skins de marca (`aurora`, `sunset`, `midnight`, `ocean`, `citrus`) |
+| `themes` | 6 skins de marca (`aurora`, `sunset`, `midnight`, `ocean`, `citrus`, `contrast`) |
 | `data` | KPIs, progress bars, skeletons, avatars, timeline |
 | `charts` | Wrappers para Chart.js / Apex / D3 + sparklines y donuts CSS-only |
 | `maps` | Estilos para Leaflet / Mapbox / MapLibre |
-| `viz` | Stages para three.js, fondos aurora, orbs |
+| `viz` | Stages para three.js, fondos aurora, orbs, glow rings |
 | `motion` | Animaciones reveal, glow-pulse, aurora-pan, shimmer |
 | `forms` | Switches, OTP, file drop, range, stepper |
 | `ui` | Modal, drawer, tabs, dropdown, toast, tooltip |
 | `patterns` | App-shell, hero, pricing, FAQ, footer, auth |
 | **`next`** | **v5: liquid glass real, OKLCH, multi-axis, mesh, AAA** |
+| **`nucleo`** | **v5.2: colores sólidos puros, bento grid, stats bar, barras/ring CSS-only, stage3d** |
 
 ### Cómo se personaliza: atributos en el root
 
@@ -115,6 +136,32 @@ Cambias un atributo y **toda la página** se reescribe en runtime. Sin JS, sin r
 3. **Sin `!important`** fuera de utilidades.
 4. **BEM** para componentes: `.nz-card__body--featured`.
 5. **Si no aparece en `gallery.html`, no existe** — la galería es la única fuente de verdad de la API pública.
+
+---
+
+## ✨ What's new in v5.2
+
+### Pack `nucleo` — colores sólidos puros
+
+Estilo "Núcleo": azul `#2563eb` + naranja `#f97316` + blanco + negro, **sin gradientes**. Incluye:
+- `.nz-bento` — grid bento asimétrico con cells sólidas (`--azul`, `--naranja`, `--dark`, `--white`)
+- `.nz-stats-bar` — barra de stats a todo ancho
+- `.nz-bars` / `.nz-ring` — gráficos CSS-only
+- `.nz-stage3d` — contenedor para Three.js canvas con badges flotantes
+
+### Landing page con Three.js
+
+`index.html` ahora es una landing page espectacular:
+- Icosaedro wireframe central con parallax mouse
+- Constelación de 1200 partículas (toroide + esfera) con shader custom
+- Líneas de constelación dinámicas entre partículas cercanas
+- 3 anillos orbitales alternando azul y naranja
+- Liquid glass real de 4 capas en bento grid asimétrico
+- Respeta `prefers-reduced-motion`
+
+### Fix violeta residual
+
+Eliminado `#7c3aed` de todos los gradientes, three.js y paletas de charts. Los gradientes azul→naranja ahora interpolan via `#3b82f6` (azul claro), nunca via violeta.
 
 ---
 
@@ -164,7 +211,7 @@ Animated mesh-gradient hero, **0 KB of images**. Four OKLCH `radial-gradient` la
 - **No JS shipped.** Modal/tabs/drawer/dropdown/toast are styled, not behaved. You (or the agent) must toggle state classes like `.nz-modal--open`.
 - **"WCAG AAA" applies to the `contrast` skin specifically**, not to every skin/component combination. The other skins target AA.
 - **No tree-shaking.** A page using 5 components still loads the full pack. For ultra-small bundles, copy only the rules you need (the file is plain CSS — grep is enough).
-- **No releases tagged yet.** Until v5.1.0 is tagged, `@master` and `@v5.1.0` resolve differently. Pin once tagged.
+- **No releases tagged yet.** Until v5.2.0 is tagged, `@master` and `@v5.2.0` resolve differently. Pin once tagged.
 
 ---
 
@@ -195,3 +242,7 @@ Aurora v4 fue un reinicio deliberado:
 - El proyecto ya tiene un design system maduro
 - Solo necesitas tokens de marca y no componentes
 - Quieres un framework enorme de utilidades o JS interactivo
+
+---
+
+Hecho con ❤️ por David Antizar
