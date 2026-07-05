@@ -461,7 +461,7 @@
             <pre><code>.mi-shell.nz {
   --nz-color-brand: #2563eb;
   --nz-color-accent: #f97316;
-  --nz-gradient-aurora: linear-gradient(135deg, #2563eb 0%, #7c3aed 48%, #f97316 100%);
+  --nz-gradient-aurora: linear-gradient(135deg, #2563eb 0%, #3b82f6 48%, #f97316 100%);
 }</code></pre>
           </div>
         </details>
@@ -1128,7 +1128,7 @@
           </div>
 
           <!-- Glass Tables demo -->
-          <div style="background: linear-gradient(135deg, var(--nz-color-brand) 0%, #7c3aed 50%, var(--nz-color-accent) 100%); border-radius: var(--nz-radius-xl); padding: 2rem; color: var(--nz-text-strong);">
+          <div style="background: linear-gradient(135deg, var(--nz-color-brand) 0%, #3b82f6 50%, var(--nz-color-accent) 100%); border-radius: var(--nz-radius-xl); padding: 2rem; color: var(--nz-text-strong);">
             <div class="nz-text-h4" style="margin-bottom: 1rem; color: var(--nz-text-strong);">🪟 Tabla Glass sobre fondo colorido</div>
             <div class="nz-table--glass">
               <div class="nz-table-wrap">
@@ -2084,7 +2084,7 @@ L.marker([40.4168, -3.7038], {
                   <div class="nz-text-sm" style="color:var(--nz-text-muted)">Social</div>
                 </div>
                 <div style="text-align:center">
-                  <div style="font-size:1.25rem; font-weight:700; color:var(--nz-color-violet)">27%</div>
+                  <div style="font-size:1.25rem; font-weight:700; color:var(--nz-color-brand)">27%</div>
                   <div class="nz-text-sm" style="color:var(--nz-text-muted)">Directo</div>
                 </div>
               </div>
@@ -2682,7 +2682,7 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
               <tr><td><code>.nz-btn</code></td><td>Base de botón o link accionable.</td></tr>
               <tr><td><code>.nz-btn--primary</code></td><td>CTA principal.</td></tr>
               <tr><td><code>.nz-btn--accent</code></td><td>CTA destacado alternativo.</td></tr>
-              <tr><td><code>.nz-btn--brand-mix</code></td><td>CTA de marca completa azul-violeta-naranja.</td></tr>
+              <tr><td><code>.nz-btn--brand-mix</code></td><td>CTA de marca completa azul-naranja.</td></tr>
               <tr><td><code>.nz-btn--glass</code></td><td>Acción secundaria con liquid glass neutro.</td></tr>
               <tr><td><code>.nz-btn--glass-brand</code></td><td>Acción glass con sesgo azul/marca.</td></tr>
               <tr><td><code>.nz-btn--glass-accent</code></td><td>Acción glass con sesgo acento.</td></tr>
@@ -3128,7 +3128,7 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
       const seeds = new Float32Array(N);
       const c1 = new THREE.Color(cssValue('--nz-color-brand'));
       const c2 = new THREE.Color(cssValue('--nz-color-accent'));
-      const c3 = new THREE.Color('#7c3aed');
+      const c3 = new THREE.Color('#3b82f6');
       for (let i = 0; i < N; i++) {
         const r = 6 + Math.random() * 4;
         const th = Math.random() * Math.PI * 2;
@@ -3163,7 +3163,7 @@ document.querySelectorAll('[data-liquid]').forEach(el =&gt; {
       const { THREE, seeds, colorsAttr } = threeState;
       const c1 = new THREE.Color(cssValue('--nz-color-brand'));
       const c2 = new THREE.Color(cssValue('--nz-color-accent'));
-      const c3 = new THREE.Color('#7c3aed');
+      const c3 = new THREE.Color('#3b82f6');
       for (let i = 0; i < seeds.length; i++) {
         const t = seeds[i];
         const c = t < .4 ? c1 : t < .7 ? c3 : c2;

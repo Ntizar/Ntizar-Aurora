@@ -3,56 +3,1243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ntizar Aurora · Constellation</title>
+  <title>Ntizar Aurora · Design System Constellation</title>
+  <meta name="description" content="Aurora — Design System CSS-only de Ntizar. 11 packs, liquid glass real, three.js, OKLCH. Azul + naranja, sin build, sin dependencias.">
+
+  <!-- Aurora core + packs via CDN -->
   <link rel="stylesheet" href="ntizar.css">
   <link rel="stylesheet" href="ntizar.themes.css">
+  <link rel="stylesheet" href="ntizar.data.css">
+  <link rel="stylesheet" href="ntizar.viz.css">
+  <link rel="stylesheet" href="ntizar.motion.css">
+  <link rel="stylesheet" href="ntizar.next.css">
+
+  <!-- Three.js via importmap -->
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.164/build/three.module.js" } }
+  </script>
+
   <style>
-    html,
+    /* ====== Reset y base ====== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100%;
+      background: #ffffff;
+      color: var(--nz-text-strong);
+      font-family: var(--nz-font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
-    .landing {
+    /* ====== Liquid Glass REAL — 4 capas estilo iOS 26 ====== */
+    .glass {
+      position: relative;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.72) 0%,
+        rgba(241,245,249,0.55) 50%,
+        rgba(255,255,255,0.62) 100%
+      );
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 0 rgba(0,0,0,0.04),
+        0 8px 32px rgba(37,99,235,0.06),
+        0 2px 8px rgba(249,115,22,0.04);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    /* Capa 2: specular highlight superior */
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.45) 0%,
+        rgba(255,255,255,0.08) 40%,
+        transparent 60%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Capa 3: borde cromático (azul+naranja, sin morado) */
+    .glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.35),
+        inset 0 0 20px rgba(37,99,235,0.04),
+        inset 0 0 40px rgba(249,115,22,0.03);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .glass > * { position: relative; z-index: 2; }
+
+    /* ====== Hero ====== */
+    .hero {
+      position: relative;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.20), transparent 28rem),
-        radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.18), transparent 24rem),
-        var(--nz-surface-page);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 2rem 1.5rem;
+    }
+    .hero__canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 52rem;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(37,99,235,0.15);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--nz-color-brand-strong);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+    }
+    .hero__badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--nz-color-accent);
+      box-shadow: 0 0 12px var(--nz-color-accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero__title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin: 0 0 1.25rem;
+      color: var(--nz-text-strong);
+    }
+    .hero__title .accent {
+      color: var(--nz-color-accent-strong);
+    }
+    .hero__title .brand {
+      color: var(--nz-color-brand);
+    }
+    .hero__sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--nz-text-muted);
+      max-width: 38rem;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .hero__cta {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 999px;
+      background: var(--nz-color-brand);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37,99,235,0.35);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--nz-color-brand-strong);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(37,99,235,0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.12);
     }
 
-    .landing-center {
-      min-height: 100vh;
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--nz-text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce-soft 2s ease-in-out infinite;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 2rem;
+      background: linear-gradient(to bottom, var(--nz-color-brand), transparent);
+    }
+    @keyframes bounce-soft {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ====== Stats bar ====== */
+    .stats {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--nz-border-soft);
+      border-top: 1px solid var(--nz-border-soft);
+      border-bottom: 1px solid var(--nz-border-soft);
+    }
+    .stat {
+      background: #fff;
+      padding: 1.75rem 1rem;
+      text-align: center;
+    }
+    .stat__num {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--nz-color-brand);
+      line-height: 1;
+    }
+    .stat__num.accent { color: var(--nz-color-accent); }
+    .stat__label {
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--nz-text-muted);
+    }
+
+    /* ====== Section base ====== */
+    .section {
+      padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+    .section__head {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--nz-color-accent-strong);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section__kicker::before, .section__kicker::after {
+      content: "";
+      width: 2rem;
+      height: 1px;
+      background: var(--nz-color-accent);
+      opacity: 0.4;
+    }
+    .section__title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.75rem;
+      color: var(--nz-text-strong);
+    }
+    .section__sub {
+      color: var(--nz-text-muted);
+      max-width: 36rem;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* ====== Bento grid asimétrico ====== */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: minmax(160px, auto);
+      gap: 1rem;
+    }
+    .bento__cell {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .bento__cell:hover {
+      transform: translateY(-4px);
+    }
+    .bento__cell--lg { grid-column: span 2; grid-row: span 2; }
+    .bento__cell--wide { grid-column: span 2; }
+    .bento__cell--tall { grid-row: span 2; }
+
+    .bento__icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      padding: 2rem 0;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .bento__icon--blue {
+      background: rgba(37,99,235,0.1);
+      color: var(--nz-color-brand);
+    }
+    .bento__icon--orange {
+      background: rgba(249,115,22,0.1);
+      color: var(--nz-color-accent-strong);
+    }
+    .bento__title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--nz-text-strong);
+      margin: 0;
+    }
+    .bento__desc {
+      color: var(--nz-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .bento__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .bento__tag--core { background: rgba(37,99,235,0.1); color: var(--nz-color-brand-strong); }
+    .bento__tag--accent { background: rgba(249,115,22,0.1); color: var(--nz-color-accent-strong); }
+
+    /* Bento cell especial: preview de colores */
+    .bento__swatches {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .bento__swatch {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .landing-card {
-      width: min(100% - 2rem, 48rem);
+    /* Bento cell especial: código */
+    .bento__code {
+      background: var(--nz-color-slate-900);
+      color: var(--nz-color-slate-100);
+      border-radius: 12px;
+      padding: 1rem;
+      font-family: var(--nz-font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: auto;
+    }
+    .bento__code .k { color: #60a5fa; }
+    .bento__code .s { color: #fdba74; }
+    .bento__code .c { color: #64748b; }
+
+    /* ====== Skins showcase ====== */
+    .skins {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .skin-card {
+      padding: 1.5rem;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid var(--nz-border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .skin-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .skin-card__preview {
+      height: 5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .skin-card__name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--nz-text-strong);
+      margin: 0;
+    }
+    .skin-card__desc {
+      font-size: 0.78rem;
+      color: var(--nz-text-muted);
+      margin: 0.25rem 0 0;
+    }
+    .skin-preview--aurora {
+      background:
+        radial-gradient(circle at 25% 30%, #2563eb 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, #f97316 0%, transparent 50%),
+        #f4f7ff;
+    }
+    .skin-preview--sunset {
+      background:
+        radial-gradient(circle at 30% 40%, #ea580c 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, #f59e0b 0%, transparent 50%),
+        #fff7ed;
+    }
+    .skin-preview--midnight {
+      background:
+        radial-gradient(circle at 25% 30%, #1e40af 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, #1e3a8a 0%, transparent 50%),
+        #0f172a;
+    }
+    .skin-preview--ocean {
+      background:
+        radial-gradient(circle at 30% 40%, #0891b2 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, #0e7490 0%, transparent 50%),
+        #ecfeff;
+    }
+    .skin-preview--citrus {
+      background:
+        radial-gradient(circle at 25% 30%, #f97316 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, #facc15 0%, transparent 50%),
+        #fffbeb;
+    }
+    .skin-preview--contrast {
+      background: #000;
+      border: 2px solid #fff;
+    }
+    .skin-preview--contrast::after {
+      content: "AAA";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ====== Glass demo ====== */
+    .glass-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .glass-demo__card {
+      padding: 2rem;
+      min-height: 14rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .glass-demo__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--nz-color-brand);
+    }
+    .glass-demo__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+      color: var(--nz-text-strong);
+    }
+    .glass-demo__text {
+      color: var(--nz-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .glass-demo__bg {
+      position: absolute;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ====== CTA final ====== */
+    .cta {
+      position: relative;
+      padding: clamp(4rem, 8vw, 6rem) 1.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(37,99,235,0.08), transparent 40%),
+        radial-gradient(circle at 80% 50%, rgba(249,115,22,0.08), transparent 40%);
+    }
+    .cta__content {
+      position: relative;
+      z-index: 2;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+    .cta__title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      color: var(--nz-text-strong);
+    }
+    .cta__sub {
+      color: var(--nz-text-muted);
+      font-size: 1.1rem;
+      margin: 0 0 2rem;
+      line-height: 1.6;
+    }
+
+    /* ====== Footer ====== */
+    .footer {
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--nz-border-soft);
+      background: #fafbff;
+    }
+    .footer__text {
+      color: var(--nz-text-muted);
+      font-size: 0.85rem;
+      margin: 0;
+    }
+    .footer__heart {
+      color: var(--nz-color-accent);
+    }
+
+    /* ====== Responsive ====== */
+    @media (max-width: 900px) {
+      .bento { grid-template-columns: repeat(2, 1fr); }
+      .bento__cell--lg { grid-column: span 2; grid-row: span 1; }
+      .bento__cell--wide { grid-column: span 2; }
+      .bento__cell--tall { grid-row: span 1; }
+    }
+    @media (max-width: 560px) {
+      .bento { grid-template-columns: 1fr; }
+      .bento__cell--lg, .bento__cell--wide, .bento__cell--tall {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .hero__cta { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
-<body class="nz landing" data-nz-theme="light" data-nz-skin="aurora">
-  <main class="landing-center">
-    <section class="nz-container landing-card">
-      <article class="nz-card nz-card--glass nz-stack nz-stack--lg">
-        <div class="nz-stack nz-stack--sm">
-          <span class="nz-badge nz-badge--primary nz-badge--no-dot">Aurora v4.2 · Constellation</span>
-          <h1><span class="u-nz-text-gradient">Ntizar</span> Design System</h1>
-          <p>Core + 9 packs opcionales para construir dashboards, mapas, 3D, formularios y landings con una identidad azul+naranja unificada.</p>
-        </div>
+<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
 
-        <div class="nz-callout nz-callout--tip">
-          <span class="nz-callout__title">Entrada principal</span>
-          <div class="nz-callout__body">La entrada principal vive en <code>gallery.html</code>: foundations, core, charts, maps, three.js, forms, UI, patterns, reglas de uso y reference API en una sola página.</div>
-        </div>
+  <!-- ====== HERO con Three.js ====== -->
+  <section class="hero">
+    <canvas class="hero__canvas" id="aurora-canvas"></canvas>
+    <div class="hero__content">
+      <span class="hero__badge">Aurora v5.2 · Constellation</span>
+      <h1 class="hero__title">
+        <span class="brand">Ntizar</span> <span class="accent">Aurora</span>
+      </h1>
+      <p class="hero__sub">
+        Design System CSS-only con liquid glass real, three.js y OKLCH.
+        11 packs modulares, 119 componentes, sin build, sin dependencias.
+        Azul y naranja puros — sin morados.
+      </p>
+      <div class="hero__cta">
+        <a class="btn-primary" href="gallery.html">
+          Ver showcase completo →
+        </a>
+        <a class="btn-secondary" href="https://github.com/Ntizar/Ntizar-Aurora" target="_blank" rel="noopener">
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
 
-        <div class="nz-card__footer">
-          <a class="nz-btn nz-btn--primary" href="gallery.html">Abrir gallery</a>
+  <!-- ====== Stats ====== -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat__num">11</div>
+      <div class="stat__label">Packs CSS</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num accent">119</div>
+      <div class="stat__label">Componentes</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">6</div>
+      <div class="stat__label">Skins</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num accent">0</div>
+      <div class="stat__label">Dependencias</div>
+    </div>
+    <div class="stat">
+      <div class="stat__num">243</div>
+      <div class="stat__label">KB CSS total</div>
+    </div>
+  </div>
+
+  <!-- ====== Bento: packs destacados ====== -->
+  <section class="section">
+    <div class="section__head">
+      <span class="section__kicker">Arquitectura</span>
+      <h2 class="section__title">11 packs modulares, carga lo que usas</h2>
+      <p class="section__sub">
+        Core obligatorio + 10 packs opcionales opt-in. Cada pack resuelve un dominio:
+        datos, charts, mapas, 3D, forms, UI, motion, patterns, glass y next-gen.
+      </p>
+    </div>
+
+    <div class="bento">
+      <!-- Core (lg) -->
+      <div class="glass bento__cell bento__cell--lg">
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div class="bento__icon bento__icon--blue">◆</div>
+          <div>
+            <span class="bento__tag bento__tag--core">Core · obligatorio</span>
+            <h3 class="bento__title" style="margin-top:0.5rem;">ntizar.css</h3>
+          </div>
         </div>
-      </article>
-    </section>
-  </main>
+        <p class="bento__desc">
+          Tokens, base, objetos, componentes y utilities en 64 KB. El corazón del sistema:
+          botones, cards, badges, fields, alerts, layout primitives. Todo namespaced <code>.nz</code>.
+        </p>
+        <div class="bento__code">
+<span class="c">&lt;!-- 1 link, 0 build --&gt;</span>
+<span class="k">&lt;link</span> <span class="k">rel</span>=<span class="s">"stylesheet"</span>
+      <span class="k">href</span>=<span class="s">"ntizar.css"</span><span class="k">&gt;</span>
+<span class="k">&lt;body</span> <span class="k">class</span>=<span class="s">"nz"</span>
+      <span class="k">data-nz-theme</span>=<span class="s">"light"</span><span class="k">&gt;</span>
+        </div>
+      </div>
+
+      <!-- Viz / Three.js -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--orange">▲</div>
+        <span class="bento__tag bento__tag--accent">viz</span>
+        <h3 class="bento__title">Three.js ready</h3>
+        <p class="bento__desc">
+          Stages full-bleed, aurora-bg animado, orbs, glow-rings y scanlines.
+          Canvas auto-resize, HUD overlays.
+        </p>
+      </div>
+
+      <!-- Next / Liquid Glass -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--blue">◈</div>
+        <span class="bento__tag bento__tag--core">next</span>
+        <h3 class="bento__title">Liquid Glass</h3>
+        <p class="bento__desc">
+          4 capas reales: base translúcida, backdrop saturate, dual inset shadow,
+          borde cromático. OKLCH + multi-axis theming.
+        </p>
+      </div>
+
+      <!-- Data -->
+      <div class="glass bento__cell bento__cell--wide">
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div class="bento__icon bento__icon--orange">▤</div>
+          <div>
+            <span class="bento__tag bento__tag--accent">data</span>
+            <h3 class="bento__title" style="margin-top:0.5rem;">KPIs, progress, skeletons</h3>
+          </div>
+        </div>
+        <p class="bento__desc">
+          Stat-tiles, KPI cards, progress bars, meters, skeletons, avatars, timelines y tags.
+          Todo lo que un dashboard necesita para mostrar datos con estilo.
+        </p>
+      </div>
+
+      <!-- Charts -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--blue">╱</div>
+        <span class="bento__tag bento__tag--core">charts</span>
+        <h3 class="bento__title">Chart.js / Apex</h3>
+        <p class="bento__desc">
+          Wrappers CSS para Chart.js, ApexCharts y D3. Sparklines, donuts, legends y tooltips.
+        </p>
+      </div>
+
+      <!-- Maps -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--orange">◉</div>
+        <span class="bento__tag bento__tag--accent">maps</span>
+        <h3 class="bento__title">Leaflet / Mapbox</h3>
+        <p class="bento__desc">
+          Styling para mapas interactivos. Pins, popups, overlays HUD y capas.
+        </p>
+      </div>
+
+      <!-- UI -->
+      <div class="glass bento__cell bento__cell--tall">
+        <div class="bento__icon bento__icon--blue">▦</div>
+        <span class="bento__tag bento__tag--core">ui</span>
+        <h3 class="bento__title">Overlays completos</h3>
+        <p class="bento__desc">
+          Modals, drawers, tabs, accordions, dropdowns, toasts, tooltips y command bars.
+          CSS-only con estado via clases.
+        </p>
+        <div class="bento__swatches">
+          <div class="bento__swatch" style="background: var(--nz-color-brand);"></div>
+          <div class="bento__swatch" style="background: var(--nz-color-accent);"></div>
+          <div class="bento__swatch" style="background: var(--nz-color-brand-soft);"></div>
+          <div class="bento__swatch" style="background: var(--nz-color-accent-soft);"></div>
+        </div>
+      </div>
+
+      <!-- Forms -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--orange">⬚</div>
+        <span class="bento__tag bento__tag--accent">forms</span>
+        <h3 class="bento__title">Forms avanzados</h3>
+        <p class="bento__desc">
+          Switch, OTP, file drop, range, stepper. Inputs accesibles.
+        </p>
+      </div>
+
+      <!-- Motion -->
+      <div class="glass bento__cell">
+        <div class="bento__icon bento__icon--blue">⟿</div>
+        <span class="bento__tag bento__tag--core">motion</span>
+        <h3 class="bento__title">Animaciones</h3>
+        <p class="bento__desc">
+          Reveal, glow-pulse, shimmer, float, marquee. Respeta reduced-motion.
+        </p>
+      </div>
+
+      <!-- Patterns -->
+      <div class="glass bento__cell bento__cell--wide">
+        <div style="display:flex; gap:1rem; align-items:flex-start;">
+          <div class="bento__icon bento__icon--orange">⬗</div>
+          <div>
+            <span class="bento__tag bento__tag--accent">patterns</span>
+            <h3 class="bento__title" style="margin-top:0.5rem;">Páginas completas</h3>
+          </div>
+        </div>
+        <p class="bento__desc">
+          App-shell, hero, pricing, features, FAQ, footer, auth-shell.
+          Componentes de página lista para ensamblar landings y apps.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Skins ====== -->
+  <section class="section">
+    <div class="section__head">
+      <span class="section__kicker">Identidad</span>
+      <h2 class="section__title">6 skins, multi-axis theming</h2>
+      <p class="section__sub">
+        Cambia toda la identidad con un atributo: <code>data-nz-skin</code>.
+        Más shape, density, motion y color-system via data-*.
+      </p>
+    </div>
+    <div class="skins">
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--aurora"></div>
+        <h3 class="skin-card__name">Aurora</h3>
+        <p class="skin-card__desc">Azul + naranja · default</p>
+      </div>
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--sunset"></div>
+        <h3 class="skin-card__name">Sunset</h3>
+        <p class="skin-card__desc">Naranja cálido</p>
+      </div>
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--midnight"></div>
+        <h3 class="skin-card__name">Midnight</h3>
+        <p class="skin-card__desc">Azul profundo oscuro</p>
+      </div>
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--ocean"></div>
+        <h3 class="skin-card__name">Ocean</h3>
+        <p class="skin-card__desc">Cian turquesa</p>
+      </div>
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--citrus"></div>
+        <h3 class="skin-card__name">Citrus</h3>
+        <p class="skin-card__desc">Amarillo cítrico</p>
+      </div>
+      <div class="skin-card glass">
+        <div class="skin-card__preview skin-preview--contrast"></div>
+        <h3 class="skin-card__name">Contrast</h3>
+        <p class="skin-card__desc">WCAG AAA</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Liquid Glass demo ====== -->
+  <section class="section" style="position: relative;">
+    <div class="section__head">
+      <span class="section__kicker">Liquid Glass</span>
+      <h2 class="section__title">Glass real, no blur genérico</h2>
+      <p class="section__sub">
+        4 capas: base translúcida + backdrop saturate + dual inset shadow + borde cromático.
+        Profundidad y reflejos, no solo blur.
+      </p>
+    </div>
+    <div style="position: relative; padding: 2rem 0; overflow: hidden;">
+      <!-- Orbes de fondo para que el glass se vea -->
+      <div class="glass-demo__bg" style="background: var(--nz-color-blue-400); top: 0; left: 10%;"></div>
+      <div class="glass-demo__bg" style="background: var(--nz-color-accent); top: 4rem; right: 15%;"></div>
+      <div class="glass-demo__bg" style="background: var(--nz-color-blue-500); bottom: 2rem; left: 40%;"></div>
+
+      <div class="glass-demo">
+        <div class="glass glass-demo__card">
+          <div>
+            <span class="glass-demo__label">Capa 1 · Base</span>
+            <h3 class="glass-demo__title">Translúcida</h3>
+            <p class="glass-demo__text">
+              Gradiente blanco sutil con 72% opacidad. Deja ver el fondo sin perder legibilidad.
+            </p>
+          </div>
+        </div>
+        <div class="glass glass-demo__card">
+          <div>
+            <span class="glass-demo__label">Capa 2 · Backdrop</span>
+            <h3 class="glass-demo__title">Saturate 180%</h3>
+            <p class="glass-demo__text">
+              <code>backdrop-filter: blur(24px) saturate(180%)</code>. Aumenta la saturación del fondo difuminado.
+            </p>
+          </div>
+        </div>
+        <div class="glass glass-demo__card">
+          <div>
+            <span class="glass-demo__label">Capa 3 · Inset</span>
+            <h3 class="glass-demo__title">Dual shadow</h3>
+            <p class="glass-demo__text">
+              Highlight superior + sombra inferior interior. Simula profundidad real del cristal.
+            </p>
+          </div>
+        </div>
+        <div class="glass glass-demo__card">
+          <div>
+            <span class="glass-demo__label">Capa 4 · Borde</span>
+            <h3 class="glass-demo__title">Cromático</h3>
+            <p class="glass-demo__text">
+              Inset box-shadow con tinte azul + naranja. Reflejo cromático en el borde, sin morado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="cta">
+    <div class="cta__bg"></div>
+    <div class="cta__content glass" style="padding: 3rem 2rem;">
+      <h2 class="cta__title">Empieza a construir</h2>
+      <p class="cta__sub">
+        Un link CSS, cero build, cero dependencias. Aurora se carga desde CDN
+        y no choca con otros sistemas gracias al scope <code>.nz</code>.
+      </p>
+      <div class="hero__cta" style="justify-content: center;">
+        <a class="btn-primary" href="gallery.html">Ver gallery →</a>
+        <a class="btn-secondary" href="LLM.md" target="_blank">Guía LLM</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer class="footer">
+    <p class="footer__text">
+      Hecho con <span class="footer__heart">❤</span> por David Antizar ·
+      <a href="https://github.com/Ntizar/Ntizar-Aurora" style="color: var(--nz-color-brand); text-decoration: none; font-weight: 600;">Ntizar/Ntizar-Aurora</a>
+    </p>
+  </footer>
+
+  <!-- ====== Three.js: Constelación Aurora ====== -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('aurora-canvas');
+    const scene = new THREE.Scene();
+
+    // Forzar contexto WebGL explícitamente (algunos navegadores crean 2D por defecto)
+    const gl = canvas.getContext('webgl2', { alpha: true, antialias: true, powerPreference: 'high-performance' })
+            || canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'high-performance' });
+
+    const renderer = new THREE.WebGLRenderer({
+      context: gl,
+      canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+    camera.position.z = 16;
+
+    // Colores Aurora: solo azul y naranja, SIN morado
+    const COLOR_BLUE = new THREE.Color('#2563eb');
+    const COLOR_BLUE_SOFT = new THREE.Color('#60a5fa');
+    const COLOR_ORANGE = new THREE.Color('#f97316');
+    const COLOR_ORANGE_SOFT = new THREE.Color('#fdba74');
+    const COLOR_WHITE = new THREE.Color('#ffffff');
+
+    // --- 1. Icosaedro wireframe central ---
+    const icoGeo = new THREE.IcosahedronGeometry(4.5, 1);
+    const icoMat = new THREE.LineBasicMaterial({
+      color: COLOR_BLUE,
+      transparent: true,
+      opacity: 0.35,
+      linewidth: 1
+    });
+    const icoEdges = new THREE.EdgesGeometry(icoGeo);
+    const icoWire = new THREE.LineSegments(icoEdges, icoMat);
+    scene.add(icoWire);
+
+    // Icosaedro interior sólido translúcido
+    const icoSolidMat = new THREE.MeshBasicMaterial({
+      color: COLOR_BLUE,
+      transparent: true,
+      opacity: 0.03,
+      side: THREE.DoubleSide
+    });
+    const icoSolid = new THREE.Mesh(icoGeo, icoSolidMat);
+    scene.add(icoSolid);
+
+    // --- 2. Partículas en toroide (aurora boreal) ---
+    const N_PARTICLES = 1200;
+    const pGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(N_PARTICLES * 3);
+    const colors = new Float32Array(N_PARTICLES * 3);
+    const sizes = new Float32Array(N_PARTICLES);
+    const seeds = new Float32Array(N_PARTICLES);
+
+    for (let i = 0; i < N_PARTICLES; i++) {
+      // Distribución en toroide + esfera para efecto aurora
+      const t = Math.random();
+      let x, y, z;
+      if (t < 0.5) {
+        // Toroside
+        const R = 7;
+        const r = 2.5 + Math.random() * 1.5;
+        const u = Math.random() * Math.PI * 2;
+        const v = Math.random() * Math.PI * 2;
+        x = (R + r * Math.cos(v)) * Math.cos(u);
+        y = r * Math.sin(v);
+        z = (R + r * Math.cos(v)) * Math.sin(u);
+      } else {
+        // Esfera dispersa
+        const rad = 8 + Math.random() * 4;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        x = rad * Math.sin(phi) * Math.cos(theta);
+        y = rad * Math.sin(phi) * Math.sin(theta);
+        z = rad * Math.cos(phi);
+      }
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
+
+      // Color: azul o naranja, sin morado
+      const c = Math.random();
+      let col;
+      if (c < 0.45) col = COLOR_BLUE;
+      else if (c < 0.70) col = COLOR_BLUE_SOFT;
+      else if (c < 0.90) col = COLOR_ORANGE;
+      else col = COLOR_ORANGE_SOFT;
+      colors[i * 3] = col.r;
+      colors[i * 3 + 1] = col.g;
+      colors[i * 3 + 2] = col.b;
+
+      sizes[i] = 0.04 + Math.random() * 0.08;
+      seeds[i] = Math.random() * Math.PI * 2;
+    }
+
+    pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    pGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    pGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    // Shader material para partículas circulares suaves
+    const pMat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) }
+      },
+      vertexShader: `
+        attribute float size;
+        attribute vec3 color;
+        varying vec3 vColor;
+        uniform float uTime;
+        uniform float uPixelRatio;
+        void main() {
+          vColor = color;
+          vec3 pos = position;
+          // Pulsación sutil
+          float pulse = sin(uTime * 0.5 + length(pos) * 0.3) * 0.15;
+          pos *= 1.0 + pulse;
+          vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+          gl_PointSize = size * 300.0 * uPixelRatio / -mvPosition.z;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+        void main() {
+          vec2 uv = gl_PointCoord - 0.5;
+          float dist = length(uv);
+          if (dist > 0.5) discard;
+          float alpha = smoothstep(0.5, 0.0, dist);
+          alpha = pow(alpha, 1.5);
+          gl_FragColor = vec4(vColor, alpha * 0.85);
+        }
+      `,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    // --- 3. Líneas de constelación (conexiones dinámicas) ---
+    const MAX_LINES = 200;
+    const lineGeo = new THREE.BufferGeometry();
+    const linePositions = new Float32Array(MAX_LINES * 2 * 3);
+    const lineColors = new Float32Array(MAX_LINES * 2 * 3);
+    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+    lineGeo.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+    lineGeo.setDrawRange(0, 0);
+
+    const lineMat = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.25,
+      blending: THREE.AdditiveBlending
+    });
+    const constellation = new THREE.LineSegments(lineGeo, lineMat);
+    scene.add(constellation);
+
+    // --- 4. Anillos orbitales ---
+    const ringGroup = new THREE.Group();
+    for (let i = 0; i < 3; i++) {
+      const ringGeo = new THREE.TorusGeometry(6 + i * 1.5, 0.015, 8, 80);
+      const ringCol = i % 2 === 0 ? COLOR_BLUE : COLOR_ORANGE;
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: ringCol,
+        transparent: true,
+        opacity: 0.15
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2 + (i * 0.3);
+      ring.rotation.y = i * 0.4;
+      ringGroup.add(ring);
+    }
+    scene.add(ringGroup);
+
+    // --- Mouse parallax ---
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.tx = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.ty = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.tx = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+        mouse.ty = -(e.touches[0].clientY / window.innerHeight) * 2 + 1;
+      }
+    }, { passive: true });
+
+    // --- Resize ---
+    function resize() {
+      const w = window.innerWidth;
+      const h = document.querySelector('.hero').offsetHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // --- Animation loop ---
+    const clock = new THREE.Clock();
+    let frameCount = 0;
+
+    function animate() {
+      const time = clock.getElapsedTime();
+      frameCount++;
+
+      // Smooth mouse
+      mouse.x += (mouse.tx - mouse.x) * 0.05;
+      mouse.y += (mouse.ty - mouse.y) * 0.05;
+
+      // Rotar icosaedro
+      icoWire.rotation.x = time * 0.15 + mouse.y * 0.3;
+      icoWire.rotation.y = time * 0.10 + mouse.x * 0.3;
+      icoSolid.rotation.x = icoWire.rotation.x;
+      icoSolid.rotation.y = icoWire.rotation.y;
+
+      // Rotar partículas
+      particles.rotation.y = time * 0.05;
+      particles.rotation.x = Math.sin(time * 0.1) * 0.15 + mouse.y * 0.1;
+
+      // Rotar anillos
+      ringGroup.rotation.y = time * 0.08;
+      ringGroup.rotation.z = time * 0.03;
+
+      // Camera parallax
+      camera.position.x = mouse.x * 2;
+      camera.position.y = mouse.y * 2;
+      camera.lookAt(0, 0, 0);
+
+      // Update shader time
+      pMat.uniforms.uTime.value = time;
+
+      // Constellation lines: actualizar cada 3 frames para performance
+      if (frameCount % 3 === 0) {
+        updateConstellation();
+      }
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    function updateConstellation() {
+      const posAttr = pGeo.getAttribute('position');
+      const colAttr = pGeo.getAttribute('color');
+      const linePosAttr = lineGeo.getAttribute('position');
+      const lineColAttr = lineGeo.getAttribute('color');
+
+      const threshold = 2.5;
+      let lineIdx = 0;
+
+      // Samplear subconjunto para performance
+      const step = 4;
+      for (let i = 0; i < N_PARTICLES && lineIdx < MAX_LINES; i += step) {
+        const x1 = posAttr.array[i * 3];
+        const y1 = posAttr.array[i * 3 + 1];
+        const z1 = posAttr.array[i * 3 + 2];
+        for (let j = i + step; j < N_PARTICLES && lineIdx < MAX_LINES; j += step) {
+          const x2 = posAttr.array[j * 3];
+          const y2 = posAttr.array[j * 3 + 1];
+          const z2 = posAttr.array[j * 3 + 2];
+          const dx = x1 - x2, dy = y1 - y2, dz = z1 - z2;
+          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          if (dist < threshold) {
+            linePosAttr.array[lineIdx * 6] = x1;
+            linePosAttr.array[lineIdx * 6 + 1] = y1;
+            linePosAttr.array[lineIdx * 6 + 2] = z1;
+            linePosAttr.array[lineIdx * 6 + 3] = x2;
+            linePosAttr.array[lineIdx * 6 + 4] = y2;
+            linePosAttr.array[lineIdx * 6 + 5] = z2;
+
+            lineColAttr.array[lineIdx * 6] = colAttr.array[i * 3];
+            lineColAttr.array[lineIdx * 6 + 1] = colAttr.array[i * 3 + 1];
+            lineColAttr.array[lineIdx * 6 + 2] = colAttr.array[i * 3 + 2];
+            lineColAttr.array[lineIdx * 6 + 3] = colAttr.array[j * 3];
+            lineColAttr.array[lineIdx * 6 + 4] = colAttr.array[j * 3 + 1];
+            lineColAttr.array[lineIdx * 6 + 5] = colAttr.array[j * 3 + 2];
+
+            lineIdx++;
+          }
+        }
+      }
+
+      lineGeo.setDrawRange(0, lineIdx * 2);
+      linePosAttr.needsUpdate = true;
+      lineColAttr.needsUpdate = true;
+    }
+
+    // Reduced motion check
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // Render una sola vez
+      renderer.render(scene, camera);
+    } else {
+      animate();
+    }
+  </script>
 </body>
 </html>
