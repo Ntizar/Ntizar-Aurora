@@ -468,6 +468,38 @@ Todos requieren `backdrop-filter` (bajo `@supports` en core) y degradan a surfac
 - `prefers-reduced-motion: reduce` desactiva animaciones decorativas.
 - Estado nunca solo por color (icono o texto obligatorio).
 
+## Accent Budget
+
+El azul `#2563eb` y el naranja `#f97316` son la señal, no el fondo. Si todo es color, nada es color.
+
+```yaml
+accent_budget:
+  max_strong_moments: 5    # momentos de color saturado por página
+  scope: page              # el conteo es por página entera, no por sección
+  use_for:
+    - "CTAs y botones primarios"
+    - "Links activos"
+    - "1-2 KPIs destacados"
+    - "1 serie de chart como máximo"
+    - "Badges de estado crítico"
+  never_in:
+    - "Texto de cuerpo (usar --nz-text-default)"
+    - "Iconos decorativos (usar --nz-text-muted)"
+    - "Separadores / bordes (usar --nz-border-soft)"
+    - "Fondos grandes de sección (usar --nz-surface-page)"
+  dual_rule: "El azul y el naranja no se mezclan en la misma sección. Uno es primary, el otro es secondary."
+```
+
+## Brand Voice
+
+Aurora tiene voz propia. Ver [BRAND.md](BRAND.md) para el documento completo.
+
+- **Posicionamiento:** CSS-only, sin build, sin dependencias, namespaced.
+- **Tono:** Técnico pero accesible. Sin hype. Sin "revolucionario".
+- **Antetítulo:** `› SECCIÓN` con `.nz-eyebrow` — la firma de marca.
+- **Atribución:** `Hecho con ❤️ por David Antizar` (emoji U+2764 real).
+- **Aurora NO es:** Tailwind, Bootstrap, un framework JS, un theme de WordPress.
+
 ## Versioning
 
 Semver estricto. Detalle completo en [SYSTEM.md](SYSTEM.md) §8.

@@ -1162,6 +1162,29 @@
     width: 100%;
   }
 
+  /* ── Eyebrow / antetítulo — firma de marca ── */
+  .nz :where(.nz-eyebrow) {
+    display: inline-block;
+    font-family: var(--nz-font-mono, ui-monospace, "SF Mono", monospace);
+    font-size: var(--nz-text-xs, 0.75rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--nz-color-brand, #2563eb);
+    margin-bottom: 0.75rem;
+  }
+  .nz :where(.nz-eyebrow)::before {
+    content: "\203A\00a0";
+    opacity: 0.7;
+  }
+  .nz :where(.nz-eyebrow--accent) {
+    color: var(--nz-color-accent, #f97316);
+  }
+  .nz :where(.nz-eyebrow--muted) {
+    color: var(--nz-text-muted, #64748b);
+  }
+
   .nz :where(.nz-badge) {
     display: inline-flex;
     align-items: center;

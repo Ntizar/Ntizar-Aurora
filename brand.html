@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora · Kit de Marca</title>
+  <meta name="description" content="Aurora — el sistema de diseño, el logo, las palabras. Kit de marca vivo.">
+  <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon/favicon-180.png">
+
+  <!-- Aurora CSS -->
+  <link rel="stylesheet" href="ntizar.css">
+  <link rel="stylesheet" href="ntizar.nucleo.css">
+  <link rel="stylesheet" href="ntizar.ui.css">
+  <link rel="stylesheet" href="ntizar.data.css">
+  <link rel="stylesheet" href="ntizar.motion.css">
+
+  <!-- Three.js -->
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.164/build/three.module.js" } }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; }
+
+    /* Scroll progress */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      z-index: 100; transition: width .1s;
+    }
+
+    /* Nav */
+    .brand-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; transition: background .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    .brand-nav.scrolled {
+      background: rgba(10,10,10,.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .brand-nav__logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; }
+    .brand-nav__logo img { width: 28px; height: 28px; }
+    .brand-nav__logo span { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1.1rem; color: #fff; letter-spacing: -.5px; }
+    .brand-nav__links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+    .brand-nav__links a { color: rgba(255,255,255,.55); text-decoration: none; font-size: .875rem; font-family: Inter, system-ui, sans-serif; transition: color .2s; }
+    .brand-nav__links a:hover { color: #fff; }
+    .brand-nav__gh { color: #60a5fa; text-decoration: none; font-size: .875rem; font-family: Inter, system-ui, sans-serif; }
+
+    /* Hero */
+    .brand-hero {
+      position: relative; min-height: 100vh; display: flex;
+      align-items: center; justify-content: center; overflow: hidden;
+      background: #0a0a0a;
+    }
+    #brand-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .brand-hero__content { position: relative; z-index: 1; text-align: center; padding: 2rem; max-width: 640px; }
+    .brand-hero__content h1 {
+      font-family: Inter, system-ui, sans-serif; font-weight: 700;
+      font-size: clamp(2rem, 1.5rem + 3vw, 3.5rem); line-height: 1.1;
+      color: #fff; margin: 0 0 1rem;
+    }
+    .brand-hero__content h1 em { font-style: normal; color: #60a5fa; }
+    .brand-hero__content p { color: rgba(255,255,255,.55); font-size: 1.125rem; font-family: Inter, system-ui, sans-serif; margin: 0 0 .5rem; }
+    .brand-hero__date { color: rgba(255,255,255,.35); font-size: .75rem; font-family: ui-monospace, monospace; }
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.3); font-size: 1.5rem; animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+    /* Sections */
+    .brand-section { max-width: 960px; margin: 0 auto; padding: 6rem 2rem; }
+    .brand-section h2 {
+      font-family: Inter, system-ui, sans-serif; font-weight: 600;
+      font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem); color: #fff;
+      margin: 0 0 1rem; line-height: 1.2;
+    }
+    .brand-section > p { color: rgba(255,255,255,.55); font-size: 1rem; font-family: Inter, system-ui, sans-serif; max-width: 600px; margin: 0 0 2rem; }
+
+    /* Color swatches */
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .swatch { border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+    .swatch__chip { height: 72px; display: flex; align-items: flex-end; padding: .5rem .75rem; }
+    .swatch__chip span { font-family: ui-monospace, monospace; font-size: .7rem; font-weight: 500; }
+    .swatch__info { padding: .75rem; }
+    .swatch__name { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: .875rem; color: #fff; }
+    .swatch__desc { font-family: Inter, system-ui, sans-serif; font-size: .75rem; color: rgba(255,255,255,.45); margin-top: .25rem; }
+
+    /* Logo cards */
+    .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .logo-card { border: 1px solid rgba(255,255,255,.08); padding: 2.5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; min-height: 140px; }
+    .logo-card--dark { background: #0a0a0a; }
+    .logo-card--light { background: #fff; }
+    .logo-card--surface { background: #111; }
+    .logo-card img { max-width: 180px; max-height: 60px; }
+    .logo-card__label { font-family: ui-monospace, monospace; font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; }
+    .logo-card--dark .logo-card__label, .logo-card--surface .logo-card__label { color: rgba(255,255,255,.4); }
+    .logo-card--light .logo-card__label { color: rgba(0,0,0,.4); }
+
+    /* Rules list */
+    .rules-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .rules-list li { font-family: Inter, system-ui, sans-serif; font-size: .875rem; color: rgba(255,255,255,.55); padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; gap: .5rem; }
+    .rules-list li::before { content: "✗"; color: #dc2626; flex-shrink: 0; }
+
+    /* Typography showcase */
+    .type-row { display: flex; flex-direction: column; gap: .25rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .type-row__label { font-family: ui-monospace, monospace; font-size: .7rem; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .1em; }
+    .type-row__sample { color: #fff; }
+
+    /* Spacing scale */
+    .spacing-scale { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 2rem; }
+    .spacing-bar { background: #2563eb; height: 28px; display: flex; align-items: center; padding-left: .75rem; color: #fff; font-family: ui-monospace, monospace; font-size: .75rem; }
+
+    /* Bento demo */
+    .bento-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 2rem; }
+    .bento-demo__cell { padding: 2rem; display: flex; align-items: center; justify-content: center; font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; min-height: 100px; }
+    .bento-demo__cell--azul { background: #2563eb; color: #fff; grid-column: span 2; }
+    .bento-demo__cell--naranja { background: #f97316; color: #fff; }
+    .bento-demo__cell--dark { background: #0a0a0a; color: #fff; border: 1px solid rgba(255,255,255,.1); }
+    .bento-demo__cell--white { background: #fff; color: #0a0a0a; grid-column: span 2; }
+
+    /* Terminal */
+    .terminal { background: #161616; border: 1px solid rgba(255,255,255,.1); padding: 1.5rem; font-family: ui-monospace, monospace; font-size: .8125rem; line-height: 1.7; color: rgba(255,255,255,.5); margin-bottom: 2rem; overflow-x: auto; white-space: pre; }
+    .terminal .prompt { color: #60a5fa; }
+    .terminal .flag { color: #f97316; }
+    .terminal .str { color: #6ee7b7; }
+    .terminal .comment { color: rgba(255,255,255,.25); }
+
+    /* KPI grid */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .kpi-card { background: #111; border: 1px solid rgba(255,255,255,.08); padding: 1.5rem; }
+    .kpi-card__value { font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 2rem; color: #fff; }
+    .kpi-card__value--azul { color: #60a5fa; }
+    .kpi-card__value--naranja { color: #fdba74; }
+    .kpi-card__label { font-family: ui-monospace, monospace; font-size: .7rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; margin-top: .25rem; }
+
+    /* Keywords */
+    .keyword-grid { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+    .keyword { display: inline-block; padding: .4rem .8rem; border: 1px solid rgba(96,165,250,.3); color: #60a5fa; font-family: ui-monospace, monospace; font-size: .75rem; font-weight: 500; }
+
+    /* Tone do/dont */
+    .tone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .tone-col { padding: 1.5rem; }
+    .tone-col--do { background: rgba(22,163,74,.08); border: 1px solid rgba(22,163,74,.2); }
+    .tone-col--dont { background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.2); }
+    .tone-col h4 { font-family: Inter, system-ui, sans-serif; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; margin: 0 0 .75rem; }
+    .tone-col--do h4 { color: #4ade80; }
+    .tone-col--dont h4 { color: #f87171; }
+    .tone-col p { font-family: Inter, system-ui, sans-serif; font-size: .875rem; color: rgba(255,255,255,.6); margin: 0 0 .5rem; }
+
+    /* Download cards */
+    .dl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .dl-card { background: #111; border: 1px solid rgba(255,255,255,.08); padding: 1.5rem; }
+    .dl-card h3 { font-family: Inter, system-ui, sans-serif; font-weight: 600; font-size: 1rem; color: #fff; margin: 0 0 .5rem; }
+    .dl-card p { font-family: Inter, system-ui, sans-serif; font-size: .75rem; color: rgba(255,255,255,.4); margin: 0 0 1rem; }
+    .dl-card ul { list-style: none; padding: 0; margin: 0; }
+    .dl-card li { font-family: ui-monospace, monospace; font-size: .75rem; color: rgba(255,255,255,.5); padding: .25rem 0; }
+    .dl-card a { color: #60a5fa; text-decoration: none; }
+    .dl-card a:hover { color: #fff; }
+
+    /* Footer */
+    .brand-footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,.06); }
+    .brand-footer p { font-family: Inter, system-ui, sans-serif; font-size: .875rem; color: rgba(255,255,255,.4); margin: 0; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .brand-nav__links { display: none; }
+      .brand-nav { padding: .75rem 1rem; }
+      .brand-section { padding: 4rem 1rem; }
+      .bento-demo { grid-template-columns: 1fr; }
+      .bento-demo__cell--azul, .bento-demo__cell--white { grid-column: span 1; }
+      .tone-grid { grid-template-columns: 1fr; }
+      .terminal { font-size: .7rem; }
+    }
+  </style>
+</head>
+<body class="nz" data-nz-skin="aurora" data-nz-theme="dark" style="background:#0a0a0a; color:#fff;">
+
+  <div id="scroll-progress"></div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="brand-nav">
+    <a href="#" class="brand-nav__logo">
+      <img src="assets/simbolo/aurora-simbolo-color.svg" alt="Aurora">
+      <span>aurora</span>
+    </a>
+    <ul class="brand-nav__links">
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#tipografia">Tipografía</a></li>
+      <li><a href="#forma">Forma</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#voz">Voz</a></li>
+      <li><a href="#descargas">Descargas</a></li>
+    </ul>
+    <a href="https://github.com/Ntizar/Ntizar-Aurora" class="brand-nav__gh">GitHub →</a>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="brand-hero">
+    <canvas id="brand-canvas"></canvas>
+    <div class="brand-hero__content">
+      <p class="nz-eyebrow" style="color:#60a5fa;">Kit de Marca</p>
+      <h1>El diseño,<br>el logo, <em>las palabras.</em></h1>
+      <p>Un único lugar para todo lo que Aurora parece y suena — el sistema de diseño vivo y un kit de marca listo para usar. Coge lo que necesites.</p>
+      <p class="brand-hero__date">Actualizado Julio 2026 · v5.2</p>
+    </div>
+    <div class="scroll-indicator">↓</div>
+  </section>
+
+  <!-- ═══ LOGO ═══ -->
+  <section id="logo" class="brand-section fade-in">
+    <p class="nz-eyebrow">Logo</p>
+    <h2>Símbolo & logotipo.</h2>
+    <p>Una <strong style="color:#fff">A</strong> geométrica construida con dos trazos que se encuentran en el vértice. El trazo izquierdo es azul <code style="color:#60a5fa">#2563eb</code>, el derecho naranja <code style="color:#fdba74">#f97316</code>, con una barra horizontal en negro. Es la inicial de Antizar. Siempre vectorial — nunca lo recrees a mano.</p>
+
+    <p class="nz-eyebrow" style="margin-top:2rem;">Símbolo</p>
+    <div class="logo-grid">
+      <div class="logo-card logo-card--surface">
+        <img src="assets/simbolo/aurora-simbolo-color.svg" alt="Símbolo color" style="max-height:80px;">
+        <span class="logo-card__label">Color — default</span>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="assets/simbolo/aurora-simbolo-blanco.svg" alt="Símbolo blanco" style="max-height:80px;">
+        <span class="logo-card__label">Blanco</span>
+      </div>
+      <div class="logo-card logo-card--light">
+        <img src="assets/simbolo/aurora-simbolo-negro.svg" alt="Símbolo negro" style="max-height:80px;">
+        <span class="logo-card__label">Negro</span>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="assets/simbolo/aurora-simbolo-azul.svg" alt="Símbolo azul" style="max-height:80px;">
+        <span class="logo-card__label">Azul</span>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="assets/simbolo/aurora-simbolo-naranja.svg" alt="Símbolo naranja" style="max-height:80px;">
+        <span class="logo-card__label">Naranja</span>
+      </div>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">Logotipo</p>
+    <div class="logo-grid">
+      <div class="logo-card logo-card--dark">
+        <img src="assets/logo/aurora-logo-negativo.svg" alt="Logo negativo">
+        <span class="logo-card__label">Negativo — sobre oscuro</span>
+      </div>
+      <div class="logo-card logo-card--light">
+        <img src="assets/logo/aurora-logo-positivo.svg" alt="Logo positivo">
+        <span class="logo-card__label">Positivo — sobre claro</span>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="assets/logo/aurora-logo-blanco.svg" alt="Logo blanco">
+        <span class="logo-card__label">Monocromo blanco</span>
+      </div>
+      <div class="logo-card logo-card--light">
+        <img src="assets/logo/aurora-logo-negro.svg" alt="Logo negro">
+        <span class="logo-card__label">Monocromo negro</span>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="assets/logo/aurora-logo-azul.svg" alt="Logo azul">
+        <span class="logo-card__label">Monocromo azul</span>
+      </div>
+    </div>
+
+    <p style="font-family:ui-monospace,monospace;font-size:.75rem;color:rgba(255,255,255,.35);margin-bottom:1rem;">Tamaño mínimo: símbolo ≈ 24px · logo ≈ 120px de ancho. Mantén un espacio libre de al menos el ancho del símbolo en los cuatro lados.</p>
+
+    <p class="nz-eyebrow nz-eyebrow--accent" style="margin-top:1.5rem;">Nunca</p>
+    <ul class="rules-list">
+      <li>Recolorear los trazos — el izquierdo siempre es azul, el derecho siempre naranja.</li>
+      <li>Reescribir el wordmark con una fuente — usa siempre el SVG.</li>
+      <li>Rotar, distorsionar o aplicar sombra, degradado o brillo.</li>
+      <li>Colocar el símbolo color sobre un fondo de bajo contraste.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ COLOR ═══ -->
+  <section id="color" class="brand-section fade-in">
+    <p class="nz-eyebrow">Color</p>
+    <h2>Dos colores. Una señal.</h2>
+    <p>El azul <code style="color:#60a5fa">#2563eb</code> y el naranja <code style="color:#fdba74">#f97316</code> son la señal, no el fondo. Si todo es color, nada es color.</p>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Marca</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:#2563eb"><span style="color:#fff">#2563eb</span></div><div class="swatch__info"><div class="swatch__name">Azul</div><div class="swatch__desc">Color principal, CTAs, identidad</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#1e40af"><span style="color:#fff">#1e40af</span></div><div class="swatch__info"><div class="swatch__name">Azul profundo</div><div class="swatch__desc">Hover/active del azul</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#60a5fa"><span style="color:#0a0a0a">#60a5fa</span></div><div class="swatch__info"><div class="swatch__name">Azul claro</div><div class="swatch__desc">Barras de chart, acentos sutiles</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#f97316"><span style="color:#fff">#f97316</span></div><div class="swatch__info"><div class="swatch__name">Naranja</div><div class="swatch__desc">Color secundario, CTA destacado</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#ea580c"><span style="color:#fff">#ea580c</span></div><div class="swatch__info"><div class="swatch__name">Naranja profundo</div><div class="swatch__desc">Hover/active del naranja</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#fdba74"><span style="color:#0a0a0a">#fdba74</span></div><div class="swatch__info"><div class="swatch__name">Naranja claro</div><div class="swatch__desc">Barras de chart, acentos sutiles</div></div></div>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">Neutros</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:#ffffff;border:1px solid rgba(255,255,255,.1)"><span style="color:#0a0a0a">#ffffff</span></div><div class="swatch__info"><div class="swatch__name">Blanco</div><div class="swatch__desc">Fondo limpio, texto sobre color</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#0a0a0a"><span style="color:#fff">#0a0a0a</span></div><div class="swatch__info"><div class="swatch__name">Negro</div><div class="swatch__desc">Texto principal, bloques dark</div></div></div>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">Estado — solo severidad, nunca marca</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:#16a34a"><span style="color:#fff">#16a34a</span></div><div class="swatch__info"><div class="swatch__name">Verde</div><div class="swatch__desc">OK / correcto</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#d97706"><span style="color:#fff">#d97706</span></div><div class="swatch__info"><div class="swatch__name">Amarillo</div><div class="swatch__desc">Advertencia</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:#dc2626"><span style="color:#fff">#dc2626</span></div><div class="swatch__info"><div class="swatch__name">Rojo</div><div class="swatch__desc">Error / crítico</div></div></div>
+    </div>
+
+    <p class="nz-eyebrow nz-eyebrow--accent" style="margin-top:2rem;">Reglas del acento</p>
+    <p style="margin-bottom:.5rem;"><strong style="color:#fff">Presupuesto: máx 5 momentos de color saturado por página.</strong></p>
+    <p style="margin-bottom:.25rem;">✅ CTAs, links activos, 1-2 KPIs, 1 serie de chart, badges críticos.</p>
+    <p style="margin-bottom:.25rem;">✗ Texto de cuerpo, iconos decorativos, separadores, fondos de sección.</p>
+    <p style="margin-bottom:1rem;"><strong style="color:#fff">Regla dual:</strong> el azul y el naranja no se mezclan en la misma sección. Uno es primary, el otro es secondary.</p>
+
+    <p class="nz-eyebrow nz-eyebrow--accent" style="margin-top:1.5rem;">Sin gradientes azul→naranja</p>
+    <p>La interpolación sRGB entre <code style="color:#60a5fa">#2563eb</code> y <code style="color:#fdba74">#f97316</code> produce gris morado en el punto medio. Usar bloques de color sólido. Si se necesita un gradiente, monocromo (azul→azul-claro).</p>
+  </section>
+
+  <!-- ═══ TIPOGRAFÍA ═══ -->
+  <section id="tipografia" class="brand-section fade-in">
+    <p class="nz-eyebrow">Tipografía</p>
+    <h2>Una familia. Nada más.</h2>
+    <p>Inter en todo el sistema. Tamaños fluidos con <code style="color:#60a5fa">clamp()</code> para display y h1.</p>
+
+    <div class="type-row">
+      <span class="type-row__label">Display · Inter 700</span>
+      <span class="type-row__sample" style="font-size:clamp(2rem,1.5rem+2vw,3rem);font-weight:700;line-height:1.1;">Control de la interfaz</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">H1 · Inter 700</span>
+      <span class="type-row__sample" style="font-size:clamp(1.5rem,1.2rem+1.2vw,2rem);font-weight:700;">CSS-only, sin build</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">H2 · Inter 600</span>
+      <span class="type-row__sample" style="font-size:1.5rem;font-weight:600;">11 packs modulares</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">H3 · Inter 600</span>
+      <span class="type-row__sample" style="font-size:1.25rem;font-weight:600;">Liquid glass real de 4 capas</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">Cuerpo grande · Inter 400</span>
+      <span class="type-row__sample" style="font-size:1.125rem;font-weight:400;color:rgba(255,255,255,.7);">243 KB de CSS puro, 119 componentes, 0 dependencias. Cero JavaScript obligatorio.</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">Cuerpo · Inter 400</span>
+      <span class="type-row__sample" style="font-size:1rem;font-weight:400;color:rgba(255,255,255,.6);">Un único precio. Cada componente, pack y token incluidos.</span>
+    </div>
+    <div class="type-row">
+      <span class="type-row__label">Mono / antetítulo · .nz-eyebrow</span>
+      <span class="type-row__sample nz-eyebrow" style="font-size:.75rem;">Sección</span>
+    </div>
+  </section>
+
+  <!-- ═══ FORMA & ESPACIO ═══ -->
+  <section id="forma" class="brand-section fade-in">
+    <p class="nz-eyebrow">Forma & Espacio</p>
+    <h2>Bento asimétrico. Múltiplos de 4.</h2>
+    <p>Bloques de color sólido con tamaños irregulares. No grid de cards iguales. Usar <code style="color:#60a5fa">.nz-bento</code> con <code style="color:#60a5fa">__cell--span-*</code>.</p>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Bento grid</p>
+    <div class="bento-demo">
+      <div class="bento-demo__cell bento-demo__cell--azul">Azul · span 2</div>
+      <div class="bento-demo__cell bento-demo__cell--naranja">Naranja</div>
+      <div class="bento-demo__cell bento-demo__cell--dark">Dark</div>
+      <div class="bento-demo__cell bento-demo__cell--white">White · span 2</div>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Escala de espaciado — múltiplos de 4px</p>
+    <div class="spacing-scale">
+      <div class="spacing-bar" style="width:4px;">4</div>
+      <div class="spacing-bar" style="width:8px;">8</div>
+      <div class="spacing-bar" style="width:12px;">12</div>
+      <div class="spacing-bar" style="width:16px;">16</div>
+      <div class="spacing-bar" style="width:24px;">24</div>
+      <div class="spacing-bar" style="width:32px;">32</div>
+      <div class="spacing-bar" style="width:48px;">48</div>
+      <div class="spacing-bar" style="width:64px;">64</div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPONENTES ═══ -->
+  <section id="componentes" class="brand-section fade-in">
+    <p class="nz-eyebrow">Componentes</p>
+    <h2>En vivo, desde el sistema.</h2>
+    <p>Renderizado directamente desde <code style="color:#60a5fa">ntizar.css</code> — no son capturas, así que nunca se desvían.</p>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Botones</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2rem;">
+      <button class="nz-btn nz-btn--primary">primario</button>
+      <button class="nz-btn nz-btn--accent">secundario</button>
+      <button class="nz-btn nz-btn--secondary">ghost</button>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">Tags</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem;">
+      <span class="nz-badge nz-badge--neutral">NEUTRAL</span>
+      <span class="nz-badge nz-badge--accent">ACENTO</span>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">KPIs</p>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-card__value kpi-card__value--azul">243<span style="font-size:1rem;margin-left:.15rem;">KB</span></div><div class="kpi-card__label">CSS Total</div></div>
+      <div class="kpi-card"><div class="kpi-card__value">119</div><div class="kpi-card__label">Componentes</div></div>
+      <div class="kpi-card"><div class="kpi-card__value kpi-card__value--naranja">11</div><div class="kpi-card__label">Packs modulares</div></div>
+      <div class="kpi-card"><div class="kpi-card__value">0</div><div class="kpi-card__label">Dependencias</div></div>
+    </div>
+
+    <p class="nz-eyebrow" style="margin-top:1rem;">Terminal</p>
+    <div class="terminal"><span class="comment"># CDN vía jsDelivr — sin npm, sin build</span>
+$ <span class="prompt">curl</span> <span class="str">https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css</span> \
+    <span class="flag">-o</span> ntizar.css
+
+$ <span class="prompt">cat</span> index.html
+<span class="str">&lt;link</span> rel=<span class="flag">"stylesheet"</span> href=<span class="flag">"ntizar.css"</span><span class="str">&gt;</span>
+<span class="str">&lt;link</span> rel=<span class="flag">"stylesheet"</span> href=<span class="flag">"ntizar.nucleo.css"</span><span class="str">&gt;</span>
+
+<span class="str">&lt;body</span> class=<span class="flag">"nz"</span> data-nz-skin=<span class="flag">"aurora"</span> data-nz-theme=<span class="flag">"light"</span><span class="str">&gt;</span>
+  <span class="comment">&lt;!-- tu contenido --&gt;</span>
+<span class="str">&lt;/body&gt;</span></div>
+  </section>
+
+  <!-- ═══ VOZ ═══ -->
+  <section id="voz" class="brand-section fade-in">
+    <p class="nz-eyebrow">Voz & Posicionamiento</p>
+    <h2>CSS-only. Sin build. Sin dependencias.</h2>
+    <p>Aurora es un design system CSS-only creado por David Antizar. 243 KB de CSS puro, 119 componentes en 11 packs modulares, sin build step, sin dependencias, sin JavaScript obligatorio. Todo namespaced bajo <code style="color:#60a5fa">.nz</code> para no colisionar con Tailwind, Bootstrap o cualquier otro framework.</p>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Keywords de marca</p>
+    <div class="keyword-grid">
+      <span class="keyword">CSS-only</span>
+      <span class="keyword">Namespaced</span>
+      <span class="keyword">Modular</span>
+      <span class="keyword">Liquid glass</span>
+      <span class="keyword">Agent-ready</span>
+      <span class="keyword">Light-first</span>
+      <span class="keyword">OKLCH</span>
+    </div>
+
+    <p class="nz-eyebrow nz-eyebrow--accent" style="margin-top:1.5rem;">Aurora NO es</p>
+    <ul class="rules-list">
+      <li>Tailwind — no hay utilidades de una sola clase.</li>
+      <li>Bootstrap — no hay grid de 12 columnas ni JS de componentes.</li>
+      <li>Un framework JS — Aurora solo pinta, el JS es del usuario.</li>
+      <li>Un theme de WordPress — es CSS puro para cualquier web.</li>
+      <li>Un design system corporativo — es personal, de David Antizar.</li>
+    </ul>
+
+    <p class="nz-eyebrow" style="margin-top:1.5rem;">Tono</p>
+    <div class="tone-grid">
+      <div class="tone-col tone-col--do">
+        <h4>✓ Sí</h4>
+        <p>"243 KB de CSS, 119 componentes, 0 dependencias"</p>
+        <p>"Cambia un atributo y toda la página se reescribe"</p>
+        <p>"Liquid glass real de 4 capas con borde cromático"</p>
+      </div>
+      <div class="tone-col tone-col--dont">
+        <h4>✗ No</h4>
+        <p>"El design system más revolucionario del mercado"</p>
+        <p>"Cambia para siempre tu forma de desarrollar"</p>
+        <p>"La solución definitiva para..."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DESCARGAS ═══ -->
+  <section id="descargas" class="brand-section fade-in">
+    <p class="nz-eyebrow">Descargas</p>
+    <h2>Llévate los recursos.</h2>
+    <p>Logos (SVG + PNG), símbolo, favicon y brandbook. Para cualquier otra cosa — colaboraciones, recursos a medida — abre un issue en GitHub.</p>
+
+    <div class="dl-grid">
+      <div class="dl-card">
+        <h3>Logotipo</h3>
+        <p>5 variantes en SVG + PNG</p>
+        <ul>
+          <li><a href="assets/logo/aurora-logo-negativo.svg">aurora-logo-negativo.svg</a></li>
+          <li><a href="assets/logo/aurora-logo-positivo.svg">aurora-logo-positivo.svg</a></li>
+          <li><a href="assets/logo/aurora-logo-blanco.svg">aurora-logo-blanco.svg</a></li>
+          <li><a href="assets/logo/aurora-logo-negro.svg">aurora-logo-negro.svg</a></li>
+          <li><a href="assets/logo/aurora-logo-azul.svg">aurora-logo-azul.svg</a></li>
+        </ul>
+      </div>
+      <div class="dl-card">
+        <h3>Símbolo</h3>
+        <p>5 variantes en SVG + PNG</p>
+        <ul>
+          <li><a href="assets/simbolo/aurora-simbolo-color.svg">aurora-simbolo-color.svg</a></li>
+          <li><a href="assets/simbolo/aurora-simbolo-blanco.svg">aurora-simbolo-blanco.svg</a></li>
+          <li><a href="assets/simbolo/aurora-simbolo-negro.svg">aurora-simbolo-negro.svg</a></li>
+          <li><a href="assets/simbolo/aurora-simbolo-azul.svg">aurora-simbolo-azul.svg</a></li>
+          <li><a href="assets/simbolo/aurora-simbolo-naranja.svg">aurora-simbolo-naranja.svg</a></li>
+        </ul>
+      </div>
+      <div class="dl-card">
+        <h3>Favicon</h3>
+        <p>SVG, ICO y PNG multi-tamaño</p>
+        <ul>
+          <li><a href="assets/favicon/favicon.svg">favicon.svg</a></li>
+          <li><a href="assets/favicon/favicon.ico">favicon.ico</a></li>
+          <li><a href="assets/favicon/favicon-32.png">favicon-32.png</a></li>
+          <li><a href="assets/favicon/favicon-180.png">favicon-180.png</a></li>
+          <li><a href="assets/favicon/favicon-512.png">favicon-512.png</a></li>
+        </ul>
+      </div>
+      <div class="dl-card">
+        <h3>Brandbook</h3>
+        <p>Guía de marca completa en markdown</p>
+        <ul>
+          <li><a href="brandbook.md">brandbook.md</a></li>
+          <li><a href="BRAND.md">BRAND.md</a> — voz y posicionamiento</li>
+          <li><a href="DESIGN.md">DESIGN.md</a> — spec machine-readable</li>
+          <li><a href="AGENTS.md">AGENTS.md</a> — contrato para IAs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="brand-footer">
+    <p>Hecho con ❤️ por David Antizar</p>
+  </footer>
+
+  <!-- ═══ THREE.JS ═══ -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('brand-canvas');
+    const hero = document.querySelector('.brand-hero');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let width = hero.clientWidth;
+    let height = hero.clientHeight;
+
+    // Scene
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x0a0a0a, 6, 14);
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100);
+    camera.position.set(0, 0, 7);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x0a0a0a, 1);
+
+    // Lighting
+    scene.add(new THREE.AmbientLight(0x404040, 1.2));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    keyLight.position.set(5, 8, 5);
+    scene.add(keyLight);
+    const blueRim = new THREE.DirectionalLight(0x2563eb, 0.6);
+    blueRim.position.set(-6, 2, 3);
+    scene.add(blueRim);
+    const orangeRim = new THREE.DirectionalLight(0xf97316, 0.4);
+    orangeRim.position.set(6, -2, 3);
+    scene.add(orangeRim);
+
+    // ── "A" symbol (extruded) ──
+    const symbolGroup = new THREE.Group();
+    const extrudeSettings = { depth: 12, bevelEnabled: true, bevelSize: 2, bevelThickness: 2, bevelSegments: 3 };
+
+    // Left half (blue)
+    const leftShape = new THREE.Shape();
+    leftShape.moveTo(50, 12);
+    leftShape.lineTo(14, 88);
+    leftShape.lineTo(38, 88);
+    leftShape.lineTo(50, 42);
+    leftShape.closePath();
+    const leftMesh = new THREE.Mesh(
+      new THREE.ExtrudeGeometry(leftShape, extrudeSettings),
+      new THREE.MeshStandardMaterial({ color: 0x2563eb, metalness: 0.4, roughness: 0.35, emissive: 0x2563eb, emissiveIntensity: 0.08 })
+    );
+    symbolGroup.add(leftMesh);
+
+    // Right half (orange)
+    const rightShape = new THREE.Shape();
+    rightShape.moveTo(50, 12);
+    rightShape.lineTo(86, 88);
+    rightShape.lineTo(62, 88);
+    rightShape.lineTo(50, 42);
+    rightShape.closePath();
+    const rightMesh = new THREE.Mesh(
+      new THREE.ExtrudeGeometry(rightShape, extrudeSettings),
+      new THREE.MeshStandardMaterial({ color: 0xf97316, metalness: 0.4, roughness: 0.35, emissive: 0xf97316, emissiveIntensity: 0.08 })
+    );
+    symbolGroup.add(rightMesh);
+
+    // Crossbar (white)
+    const crossShape = new THREE.Shape();
+    crossShape.moveTo(34, 55);
+    crossShape.lineTo(66, 55);
+    crossShape.lineTo(66, 62);
+    crossShape.lineTo(34, 62);
+    crossShape.closePath();
+    const crossMesh = new THREE.Mesh(
+      new THREE.ExtrudeGeometry(crossShape, extrudeSettings),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.2, roughness: 0.5 })
+    );
+    symbolGroup.add(crossMesh);
+
+    // Scale & center
+    symbolGroup.scale.set(0.035, 0.035, 0.035);
+    const box = new THREE.Box3().setFromObject(symbolGroup);
+    const center = box.getCenter(new THREE.Vector3());
+    symbolGroup.position.sub(center);
+    scene.add(symbolGroup);
+
+    // ── Orbital rings ──
+    const rings = [];
+    const ringConfigs = [
+      { radius: 2.2, color: 0x2563eb, opacity: 0.35, rotX: Math.PI / 2.2, rotY: 0 },
+      { radius: 2.7, color: 0xf97316, opacity: 0.25, rotX: Math.PI / 3, rotY: Math.PI / 4 },
+      { radius: 3.3, color: 0xffffff, opacity: 0.08, rotX: Math.PI / 2.5, rotY: Math.PI / 6 },
+    ];
+    ringConfigs.forEach(cfg => {
+      const ring = new THREE.Mesh(
+        new THREE.TorusGeometry(cfg.radius, 0.012, 8, 120),
+        new THREE.MeshBasicMaterial({ color: cfg.color, transparent: true, opacity: cfg.opacity })
+      );
+      ring.rotation.x = cfg.rotX;
+      ring.rotation.y = cfg.rotY;
+      rings.push(ring);
+      scene.add(ring);
+    });
+
+    // ── Particles ──
+    function createCircleTexture() {
+      const c = document.createElement('canvas');
+      c.width = 64; c.height = 64;
+      const ctx = c.getContext('2d');
+      const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      g.addColorStop(0, 'rgba(255,255,255,1)');
+      g.addColorStop(0.4, 'rgba(255,255,255,0.6)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(c);
+    }
+
+    const particleCount = 600;
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      const r = 3 + Math.random() * 4.5;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = r * Math.cos(phi);
+      if (Math.random() > 0.5) {
+        colors[i * 3] = 0.145; colors[i * 3 + 1] = 0.388; colors[i * 3 + 2] = 0.922;
+      } else {
+        colors[i * 3] = 0.976; colors[i * 3 + 1] = 0.451; colors[i * 3 + 2] = 0.086;
+      }
+    }
+    const particleGeo = new THREE.BufferGeometry();
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    const particles = new THREE.Points(particleGeo, new THREE.PointsMaterial({
+      size: 0.06, map: createCircleTexture(), vertexColors: true,
+      transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending,
+      depthWrite: false, sizeAttenuation: true,
+    }));
+    scene.add(particles);
+
+    // ── Mouse parallax ──
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    document.addEventListener('mousemove', (e) => {
+      targetX = (e.clientX / window.innerWidth) * 2 - 1;
+      targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // ── Animation ──
+    let frame = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      frame++;
+
+      if (!prefersReduced) {
+        symbolGroup.rotation.y += 0.004;
+        symbolGroup.rotation.x = Math.sin(frame * 0.003) * 0.1;
+        particles.rotation.y -= 0.0008;
+        particles.rotation.x += 0.0003;
+        rings.forEach((ring, i) => {
+          ring.rotation.z += 0.002 * (i + 1) * (i % 2 === 0 ? 1 : -1);
+        });
+
+        mouseX += (targetX - mouseX) * 0.04;
+        mouseY += (targetY - mouseY) * 0.04;
+        camera.position.x = mouseX * 0.8;
+        camera.position.y = mouseY * 0.5;
+        camera.lookAt(0, 0, 0);
+      }
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // ── Resize ──
+    function onResize() {
+      width = hero.clientWidth;
+      height = hero.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+    window.addEventListener('resize', onResize);
+    setTimeout(onResize, 100);
+
+    // ── Nav scroll effect ──
+    const nav = document.querySelector('.brand-nav');
+    const progress = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      const h = document.body.scrollHeight - window.innerHeight;
+      progress.style.width = (window.scrollY / h * 100) + '%';
+    });
+
+    // ── Fade-in on scroll ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

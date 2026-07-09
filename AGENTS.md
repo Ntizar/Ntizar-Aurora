@@ -1,245 +1,104 @@
-# AGENTS.md — Aurora v5.1 "Constellation"
+# AGENTS.md — Contrato para IAs
 
-> **Single source of truth** for any AI agent (Claude Code, Copilot, Cursor, ChatGPT, Gemini, etc.) working with the Ntizar Aurora design system.
+Reglas duras para cualquier agente que genere HTML con Aurora.
 
-## Decision tree (follow this order)
+---
 
-1. **Read `LLM.md` first** → 2 KB de heurística pura: "necesito X → packs Y → clases Z". Cubre el 95% de casos.
-2. **Si `LLM.md` no tiene tu caso** → leer `INDEX.md` → buscar "Necesito X" en el mapa de decisión.
-3. **Si necesitas el spec exacto de tokens** → leer `DESIGN.md` (machine-readable, Google design.md compatible).
-4. **Si necesitas ver el componente en vivo** → abrir `gallery.html` o los ejemplos en `examples/`.
-5. **NUNCA leer los archivos CSS** (~170 KB, ~50k tokens). El CSS vive en el HTML del usuario vía CDN.
+## 5 reglas duras
 
-## What you are working with
+1. **`body class="nz"` siempre.** Sin `.nz` en el body, nada funciona. Es la regla número 1.
+2. **`data-nz-skin="aurora"` + `data-nz-theme="light"` por defecto.** David prefiere fondos claros.
+3. **Sin gradientes azul→naranja.** La interpolación sRGB genera morado. Usar colores sólidos del Núcleo. Si hace falta un gradiente, monocromo.
+4. **CSS custom < 30 líneas.** Si necesitas más, estás recreando Aurora en vez de usarla. Cargar `INDEX.md` y usar componentes documentados.
+5. **Footer:** `Hecho con ❤️ por David Antizar` (emoji U+2764 real, sin variantes, sin "via Mastermind").
 
-**Aurora is a CSS-only design system.** No build, no JS required, no npm. Everything lives under the `.nz` class so it never collides with other systems.
+---
 
-- **Repo:** https://github.com/Ntizar/Ntizar-Aurora
-- **Public CDN:** https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/
-- **LLM decision guide:** [`LLM.md`](LLM.md) — **start here** for quick decisions (~2 KB)
-- **Operative map:** [`INDEX.md`](INDEX.md) — full class reference + decision matrix (~16 KB)
-- **Machine-readable spec:** [`components.json`](components.json) — all 119 components with modifiers, categories, packs (~57 KB)
-- **Machine-readable spec:** [`DESIGN.md`](DESIGN.md) — Google design.md compatible, tokens + types (~22 KB)
-- **Examples:** [`examples/`](examples/) — login, dashboard, landing, UI, forms (~5 files)
-- **Live gallery:** [`gallery.html`](gallery.html) — all components rendered in context
+## Reglas de acento
 
-## How to use Aurora **without burning tokens**
+**Presupuesto: máx 5 momentos de color saturado por página.**
 
-**DO NOT paste the CSS files into the prompt.** They are ~170 KB combined (~50k tokens). The CSS lives on the user's HTML, not in your context.
+Antes de entregar, contar los usos de `var(--nz-color-brand)` y `var(--nz-color-accent)` en elementos visibles. Si >5, reducir.
 
-Correct workflow:
+**SÍ en:**
+- CTAs y botones primarios
+- Links activos
+- 1-2 KPIs destacados
+- 1 serie de chart como máximo
+- Badges de estado crítico
 
-1. **Load `LLM.md`** (~2 KB / ~500 tokens). It tells you which packs and classes to use for any task.
-2. **Link the CSS via CDN** in the generated HTML (see snippet below). The browser fetches it; you don't need to know its content.
-3. **Generate HTML only.** Use Aurora classes. Do not invent class names. Do not write parallel CSS for things Aurora already covers.
+**NUNCA en:**
+- Texto de cuerpo → `var(--nz-text-default)`
+- Iconos decorativos → `var(--nz-text-muted)`
+- Separadores / bordes → `var(--nz-border-soft)`
+- Fondos grandes de sección → `var(--nz-surface-page)`
 
-## The 5 hard rules (non-negotiable)
+**Regla dual:** el azul y el naranja no se mezclan en la misma sección. Uno es primary, el otro es secondary. Nunca los dos como protagonistas simultáneos.
 
-1. **Always wrap with `.nz`.** Put `class="nz"` on `<body>` or on the section you want to scope.
-2. **Use only classes documented in `INDEX.md`.** If you can't find a class for what you need, use a `--nz-*` token in inline `style` rather than inventing a class.
-3. **Never hardcode values.** No hex colors, no `16px`, no `1rem`. Use tokens like `var(--nz-color-brand)`, `var(--nz-space-4)`.
-4. **Never write CSS for things Aurora already provides.** Buttons, cards, badges, alerts, fields, layout primitives, modals, tabs, etc. — all are in the system.
-5. **Customize via root attributes**, not CSS overrides:
-   - `data-nz-theme="light|dark"`
-   - `data-nz-skin="aurora|sunset|midnight|ocean|citrus|contrast"`
-   - `data-nz-shape="default|sharp|rounded|brutalist"`
-   - `data-nz-density="comfortable|compact|spacious"`
-   - `data-nz-motion="standard|springy|calm|none"`
-   - `data-nz-color-system="hex|oklch"`
+---
 
-## Minimum viable HTML (copy verbatim)
+## Convención de antetítulo
+
+Usar `.nz-eyebrow` antes de cada `<h2>` en páginas Aurora:
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-
-  <!-- Aurora core (mandatory) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.css">
-
-  <!-- Optional packs — load only what you use -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.themes.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.ui.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.next.css">
-</head>
-<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
-  <!-- your content -->
-</body>
-</html>
+<p class="nz-eyebrow">Logo</p>
+<h2>Símbolo & logotipo</h2>
 ```
 
-> **Pin a version in production:** replace `@master` with `@v5.1.0` (or whatever release tag is current) so the CDN cache becomes immutable.
+Output visual: `› LOGO` en mono, uppercase, color brand. Es la firma de marca.
 
-## When you need interactivity (modal, tabs, dropdown, toast)
+Variantes:
+- `.nz-eyebrow` — color brand (azul)
+- `.nz-eyebrow--accent` — color accent (naranja)
+- `.nz-eyebrow--muted` — color muted
 
-Aurora ships **no JS**. The user (or you, with their permission) must write it. Convention:
+---
 
-- Toggle a state class on the component root (e.g. `.nz-modal--open`, `.nz-tabs__panel--active`).
-- Aurora's CSS already handles all visual states once the class is present.
-- Do **not** invent new components for interactivity that already exists in the system.
+## Anti-patterns
 
-## Pack quick map
+| ❌ No | ✅ Sí |
+|---|---|
+| `nz-btn--glass-liquid-secondary` | Usar clases de `INDEX.md` solo |
+| Hardcodear `#2563eb` en CSS custom | `var(--nz-color-brand)` |
+| Cargar `ntizar.next.css` sin usar glass | Cargar solo lo necesario |
+| CSS custom > 30 líneas | Usar componentes Aurora |
+| `const charts = {}` | `var charts = window.charts = {}` |
+| Gradiente `#2563eb → #f97316` | Bloques de color sólido |
 
-|| Need | Pack |
-||---|---|
-|| Buttons, cards, badges, fields, alerts, layout | `ntizar.css` (core) |
-|| **Solid colors, bento, stats, CSS charts, three.js, maps solid, transport** | `ntizar.nucleo.css` |
-|| Brand variants (5 skins) | `ntizar.themes.css` |
-|| KPIs, progress, skeleton, avatars, timeline | `ntizar.data.css` |
-|| Chart.js / Apex / D3 wrappers | `ntizar.charts.css` |
-|| Leaflet / Mapbox / MapLibre styling | `ntizar.maps.css` |
-|| three.js stages, aurora backgrounds (glass mode) | `ntizar.viz.css` |
-|| Reveal, glow-pulse, shimmer animations | `ntizar.motion.css` |
-|| Switch, OTP, file drop, range, stepper | `ntizar.forms.css` |
-|| Modal, drawer, tabs, dropdown, toast, tooltip | `ntizar.ui.css` |
-|| App-shell, hero, pricing, FAQ, footer, auth | `ntizar.patterns.css` |
-|| **Liquid glass, OKLCH, multi-axis, mesh, AAA skin** (glass mode) | `ntizar.next.css` (v5+) |
+---
 
-Full class lists are in [`INDEX.md`](INDEX.md). Reference API also in `gallery.html` sections `#api-root`, `#api-objects`, `#api-components`, `#api-utilities`.
-
-## Anti-patterns (do not do these)
-
-```html
-<!-- ❌ Inventing class names -->
-<div class="nz-fancy-card">...</div>
-
-<!-- ❌ Hardcoding values -->
-<button style="background: #2563eb; padding: 16px;">Click</button>
-
-<!-- ❌ Parallel CSS for existing components -->
-<style> .my-button { ... } </style>
-
-<!-- ❌ Skipping .nz wrapper -->
-<body>
-  <button class="nz-btn nz-btn--primary">Click</button>
-</body>
-
-<!-- ✅ Correct -->
-<body class="nz" data-nz-theme="light" data-nz-skin="aurora">
-  <button class="nz-btn nz-btn--primary">Click</button>
-</body>
-```
-
-## System constitution (from SYSTEM.md)
-
-### Architecture
+## Decision tree
 
 ```
-ntizar.css            ← core (tokens, base, objects, components, utilities)
-ntizar.themes.css     ← skins (aurora, sunset, midnight, ocean, citrus, contrast)
-ntizar.data.css       ← KPIs, progress, meter, skeleton, avatar, timeline, tag
-ntizar.charts.css     ← containers, sparkline, donut, legend
-ntizar.maps.css       ← container + overlay + pins + popups
-ntizar.viz.css        ← stage 3D, aurora-bg, orb, glow-ring, scanline
-ntizar.motion.css     ← keyframes + animation classes, reveal, marquee
-ntizar.forms.css      ← switch, custom check/radio, range, otp, file, stepper
-ntizar.ui.css         ← modal, drawer, tabs, accordion, dropdown, toast, tooltip, command-bar
-ntizar.patterns.css   ← app-shell, hero, pricing, features, faq, footer, auth-shell
-ntizar.next.css       ← v5: liquid glass, OKLCH, multi-axis, mesh, forced-colors
+¿Necesitas un botón?
+  → .nz-btn + .nz-btn--primary (azul) o .nz-btn--accent (naranja)
+
+¿Necesitas una card?
+  → .nz-card (básica) o .nz-card--glass-liquid (glass)
+
+¿Necesitas un KPI?
+  → .nz-kpi (pack data) o .nz-stat (pack nucleo)
+
+¿Necesitas un chart?
+  → CSS-only: .nz-bars / .nz-ring (pack nucleo)
+  → Librería: .nz-chart wrapper (pack charts)
+
+¿Necesitas un mapa?
+  → .nz-map--solid (pack maps)
+
+¿Necesitas un layout?
+  → .nz-bento (pack nucleo) o .nz-grid (core)
 ```
 
-### CSS layers (`@layer`)
+---
 
-```
-ntizar.tokens     → only :root / theme attributes. No selectors.
-ntizar.base       → reset, base typography, scrollbar, focus.
-ntizar.objects    → structure without aesthetics: container, section, stack, cluster, grid, surface.
-ntizar.components → elements with visual identity: nz-btn, nz-card, nz-kpi, nz-chart, etc.
-ntizar.utilities  → atomic modifiers `.u-nz-*`.
-```
+## Workflow
 
-Priority: utilities > components > objects. **Don't break it.**
-
-### Naming conventions
-
-|| Pattern | Use | Example |
-|| --- | --- | --- |
-|| `.nz` | Scope activator (opt-in root) | `<body class="nz">` |
-|| `.nz-thing` | Component | `.nz-card`, `.nz-modal` |
-|| `.nz-thing__part` | Component part | `.nz-card__header` |
-|| `.nz-thing--mod` | Modifier | `.nz-btn--primary`, `.nz-hero--split` |
-|| `.is-state` | Runtime state | `.is-open`, `.is-active`, `.is-visible` |
-|| `.u-nz-*` | Atomic utility | `.u-nz-text-accent`, `.u-nz-glow` |
-|| `--nz-token` | CSS variable | `--nz-color-brand`, `--nz-space-4` |
-|| `data-nz-theme` | Theme | `light` / `dark` |
-|| `data-nz-skin` | Skin | `aurora` / `sunset` / `midnight` / `ocean` / `citrus` / `contrast` |
-|| `data-nz-shape` | v5 · Curvature | `default` / `sharp` / `rounded` / `brutalist` |
-|| `data-nz-density` | v5 · Spacing scale | `comfortable` / `compact` / `spacious` |
-|| `data-nz-motion` | v5 · Motion personality | `standard` / `springy` / `calm` / `none` |
-|| `data-nz-color-system` | v5 · Color space | `hex` / `oklch` |
-
-### Prohibited
-
-- Styling generic selectors (`button`, `input`, `h1`) outside `ntizar.base`.
-- `!important` outside `@layer ntizar.utilities` (except external library overrides, clearly commented).
-- Hex literals in `@layer ntizar.components` and `@layer ntizar.utilities` — use `var(--nz-*)` or `color-mix()` on tokens.
-- `position: absolute` without `isolation: isolate` or a relative parent.
-
-### Token families
-
-- **Color:** `--nz-color-brand[-strong/-soft]`, `--nz-color-accent[-strong/-soft]`, scales `--nz-color-{blue,orange,violet,cyan,pink,green,red,yellow,slate}-{50..950}`
-- **Surface:** `--nz-surface-{page,base,soft,raised,glass-soft,glass,glass-strong,glass-brand,glass-accent,brand-soft,accent-soft}` + tonal system: `--nz-surface-{brand,accent,success,danger,warning}-{soft,raised,pressed,glass}`
-- **Text:** `--nz-text-{strong,default,muted,soft,inverse,on-brand}`
-- **Border:** `--nz-border-{soft,default,strong,brand,accent,glass}`
-- **Shadow:** `--nz-shadow-{sm,md,lg,brand,accent,aurora}`
-- **Spacing:** `--nz-space-{1..8}`
-- **Radius:** `--nz-radius-{sm,md,lg,xl,pill}`
-- **Gradient:** `--nz-gradient-{brand,accent,aurora}`
-- **Motion:** `--nz-duration-{fast,base}`, `--nz-ease-standard`
-- **Type:** `--nz-font-sans`, `--nz-font-display`, `--nz-font-mono`
-- **Charts:** `--nz-chart-1..8`, `--nz-chart-{grid,axis,bg}`
-
-### Adding a component
-
-1. **Core or pack?** Core if primitive and reusable by everything (button, card, input). Pack if domain-specific (data, maps, 3D, advanced forms, UI overlays, page patterns).
-2. **Name** following BEM (`nz-thing__part--mod`).
-3. **Write in `@layer ntizar.components`** with `:where(...)` for low specificity.
-4. **Only tokens.** If a token is missing, add it to `ntizar.css` (layer `ntizar.tokens`) first.
-5. **Support theme and skins.** Test with `data-nz-theme="dark"` and at least one non-aurora skin.
-6. **Support motion-reduce.** Wrap animations with `@media (prefers-reduced-motion: reduce)`.
-7. **Document the API** above the block (classes, modifiers, slots).
-8. **Add demo** to `gallery.html`. If it's not in gallery, it doesn't exist.
-9. **Update `INDEX.md`** (file table + decision matrix).
-
-### Versioning
-
-- **MAJOR** → incompatible changes (renames, removals, visual identity).
-- **MINOR** → new components, packs, utilities, tokens.
-- **PATCH** → bugfixes, fine adjustments, accessibility, performance.
-
-### Accessibility
-
-- Visible focus always (`:focus-visible` with `--nz-ring`).
-- Minimum AA contrast on text over any surface.
-- Click targets ≥ 40px on mobile.
-- `prefers-reduced-motion: reduce` disables decorative animations.
-- States not communicated only by color (add icon or text).
-
-### Multi-axis theming (v5+)
-
-From v5, appearance is controlled by **6 orthogonal axes** on the `.nz` root. Rule: **axes are independent**. Any combination must remain legible and coherent.
-
-|| Axis | Attribute | Values | Lives in |
-|| --- | --- | --- | --- |
-|| Theme | `data-nz-theme` | `light` · `dark` | `ntizar.css` |
-|| Skin | `data-nz-skin` | `aurora` · `sunset` · `midnight` · `ocean` · `citrus` | `ntizar.themes.css` |
-|| Skin | `data-nz-skin` | `contrast` (AAA) | `ntizar.next.css` |
-|| Shape | `data-nz-shape` | `default` · `sharp` · `rounded` · `brutalist` | `ntizar.next.css` |
-|| Density | `data-nz-density` | `comfortable` · `compact` · `spacious` | `ntizar.next.css` |
-|| Motion | `data-nz-motion` | `standard` · `springy` · `calm` · `none` | `ntizar.next.css` |
-|| Color system | `data-nz-color-system` | `hex` · `oklch` | `ntizar.next.css` |
-
-Rules for new components:
-- **Never assume an axis.** Read tokens (`var(--nz-radius-*)`, `var(--nz-space-*)`, `var(--nz-duration-*)`); axes reassign them at runtime.
-- **Motion respects `prefers-reduced-motion`** regardless of `data-nz-motion` value. If the user requests it, it always wins.
-- **AAA (`data-nz-skin="contrast"`)** must remain legible. If your component uses `backdrop-filter` or opacities, prepare a branch inside `[data-nz-skin="contrast"]` that disables them.
-- **Forced-colors mode** (`@media (forced-colors: active)`) is non-negotiable: map to `Canvas`, `CanvasText`, `Highlight`, `Mark`.
-
-## Versioning
-
-- Public API (classes, tokens, data attributes) follows semver.
-- Breaking changes ship in major versions only.
-- v5.x is fully backward compatible with v4.x. The new disruptive features live in `ntizar.next.css` (additive opt-in).
+1. Cargar `LLM.md` del repo (~9 KB) — guía de decisión rápida
+2. Cargar `INDEX.md` si necesitas clases específicas
+3. Decidir modo: Núcleo (default) o Glass (solo si se pide)
+4. Cargar packs CDN según necesidad
+5. Generar HTML usando solo clases de `INDEX.md`
+6. Verificar checklist de 8 items (ver skill `aurora-design-system`)
+7. Contar acentos — si >5, reducir

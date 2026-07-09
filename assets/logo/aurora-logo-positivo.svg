@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100">
+  <g>
+    <path d="M50,12 L14,88 L38,88 L50,42 Z" fill="#2563eb"/>
+    <path d="M50,12 L86,88 L62,88 L50,42 Z" fill="#f97316"/>
+    <path d="M34,55 L66,55 L66,62 L34,62 Z" fill="#0a0a0a"/>
+  </g>
+  <text x="112" y="50" dominant-baseline="central"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="46" font-weight="600" letter-spacing="-1.5"
+        fill="#0a0a0a">aurora</text>
+</svg>
