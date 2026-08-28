@@ -1,6 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <rect width="100" height="100" rx="20" fill="#0a0a0a"/>
-  <path d="M50,12 L14,88 L38,88 L50,42 Z" fill="#2563eb"/>
-  <path d="M50,12 L86,88 L62,88 L50,42 Z" fill="#f97316"/>
-  <path d="M34,55 L66,55 L66,62 L34,62 Z" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <title>Aurora Favicon</title>
+  <!-- Dark rounded background -->
+  <rect width="32" height="32" rx="6" ry="6" fill="#1e293b"/>
+  <!-- Constellation symbol scaled to fit (0,0)-(32,32) -->
+  <g transform="translate(1.5, 1.5) scale(0.29)">
+    <!-- Constellation lines (40% opacity) -->
+    <g stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" opacity="0.4">
+      <line x1="50" y1="48" x2="30" y2="22"/>
+      <line x1="50" y1="48" x2="72" y2="20"/>
+      <line x1="50" y1="48" x2="80" y2="56"/>
+      <line x1="50" y1="48" x2="26" y2="70"/>
+      <line x1="50" y1="48" x2="62" y2="78"/>
+      <line x1="30" y1="22" x2="72" y2="20"/>
+      <line x1="72" y1="20" x2="80" y2="56"/>
+      <line x1="26" y1="70" x2="12" y2="42"/>
+      <line x1="26" y1="70" x2="62" y2="78"/>
+    </g>
+    <!-- Star dots -->
+    <circle cx="30" cy="22" r="12" fill="#ffffff"/>
+    <circle cx="72" cy="20" r="14" fill="#ffffff"/>
+    <circle cx="80" cy="56" r="8.6" fill="#ffffff"/>
+    <circle cx="12" cy="42" r="6.2" fill="#ffffff"/>
+    <circle cx="26" cy="70" r="10.3" fill="#ffffff"/>
+    <circle cx="62" cy="78" r="6.9" fill="#ffffff"/>
+    <circle cx="50" cy="48" r="20.7" fill="#ffffff"/>
+  </g>
 </svg>

@@ -1,11 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100">
-  <g>
-    <path d="M50,12 L14,88 L38,88 L50,42 Z" fill="#2563eb"/>
-    <path d="M50,12 L86,88 L62,88 L50,42 Z" fill="#f97316"/>
-    <path d="M34,55 L66,55 L66,62 L34,62 Z" fill="#0a0a0a"/>
+  <title>Aurora Logo — Negative (White on transparent)</title>
+  <!-- Symbol group: scaled and positioned -->
+  <g transform="translate(10, 10) scale(0.8)">
+    <!-- Constellation lines (40% opacity) -->
+    <g stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.4">
+      <line x1="50" y1="48" x2="30" y2="22"/>
+      <line x1="50" y1="48" x2="72" y2="20"/>
+      <line x1="50" y1="48" x2="80" y2="56"/>
+      <line x1="50" y1="48" x2="26" y2="70"/>
+      <line x1="50" y1="48" x2="62" y2="78"/>
+      <line x1="30" y1="22" x2="72" y2="20"/>
+      <line x1="72" y1="20" x2="80" y2="56"/>
+      <line x1="26" y1="70" x2="12" y2="42"/>
+      <line x1="26" y1="70" x2="62" y2="78"/>
+    </g>
+    <!-- Star dots -->
+    <circle cx="30" cy="22" r="3.5" fill="#ffffff"/>
+    <circle cx="72" cy="20" r="4" fill="#ffffff"/>
+    <circle cx="80" cy="56" r="2.5" fill="#ffffff"/>
+    <circle cx="12" cy="42" r="1.8" fill="#ffffff"/>
+    <circle cx="26" cy="70" r="3" fill="#ffffff"/>
+    <circle cx="62" cy="78" r="2" fill="#ffffff"/>
+    <circle cx="50" cy="48" r="6" fill="#ffffff"/>
   </g>
-  <text x="112" y="50" dominant-baseline="central"
-        font-family="Inter, system-ui, -apple-system, Segoe UI, sans-serif"
-        font-size="46" font-weight="600" letter-spacing="-1.5"
-        fill="#ffffff">aurora</text>
+  <!-- Wordmark -->
+  <text x="106" y="62" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="46" font-weight="700" letter-spacing="-1" fill="#ffffff">aurora</text>
 </svg>
