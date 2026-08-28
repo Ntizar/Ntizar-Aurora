@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="ntizar.charts.css">  <!-- charts + paletas -->
 <link rel="stylesheet" href="ntizar.maps.css">    <!-- Leaflet/Mapbox/MapLibre -->
 <link rel="stylesheet" href="ntizar.viz.css">     <!-- three.js, fondos aurora, orbs (modo glass) -->
+<link rel="stylesheet" href="ntizar.three.css">   <!-- v6: contenedores .nz-three para escenas Three.js (three-scenes.js) -->
 <link rel="stylesheet" href="ntizar.motion.css">  <!-- animaciones -->
 <link rel="stylesheet" href="ntizar.forms.css">   <!-- switch, otp, range, file, stepper -->
 <link rel="stylesheet" href="ntizar.ui.css">      <!-- modal, drawer, tabs, dropdown, toast -->
@@ -58,6 +59,7 @@ Reglas duras:
 || `ntizar.charts.css` | charts | `.nz-chart` (contenedor para Chart.js / ApexCharts / D3 / SVG / Canvas), legends, tooltips, sparkline + donut CSS-only | Renderices gráficos con cualquier librería |
 || `ntizar.maps.css` | maps | `.nz-map` para Leaflet/Mapbox/MapLibre, overlays HUD, pins, popups | Uses mapas |
 || `ntizar.viz.css` | viz | Stages full-bleed para three.js/canvas, fondos aurora animados, orbs, glow rings, grid/dot bg | Hagas hero 3D, generative art, fondos cinematográficos |
+|| `ntizar.three.css` | **v6 three** | Contenedores `.nz-three` (hero/md/sm/aspect/glass-frame/interactive), HUD, badges, captions, leyendas y fallback sin WebGL para las escenas de `three-scenes.js` | Uses escenas Three.js listas (icosaedro, grafo, partículas, anillos) o glass interactivo con cursor ||
 || `ntizar.motion.css` | motion | Animaciones reveal/rise/scale/glow/aurora-pan/shimmer, marquee, typing, hover-lift | Quieras dar vida sin escribir keyframes |
 || `ntizar.forms.css` | forms | Switch, custom check/radio, range, OTP, file drop, stepper, input-group, search field, form-grid | Necesites formularios ricos accesibles |
 || `ntizar.ui.css` | ui | Modal, drawer, tabs, accordion, dropdown menu, toast, tooltip CSS-only, breadcrumbs, segmented, chips, paginación, command-bar, spinner, divider con label, tag-input | Construyas overlays / interacciones |

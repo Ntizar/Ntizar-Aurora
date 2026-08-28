@@ -32,10 +32,9 @@
        Versión 1: azul puro → naranja directo.
        Versión 2 (si se quiere punto intermedio suave): usar blue-400 (#60a5fa). */
     --nz-gradient-aurora: linear-gradient(135deg,
-      var(--nz-color-blue-600) 0%,
-      var(--nz-color-orange-300) 18%,
-      var(--nz-color-orange-500) 55%,
-      var(--nz-color-orange-600) 100%);
+      var(--nz-color-brand) 0%,
+      var(--nz-color-brand-strong) 100%);
+    /* v6.1: monocromo azul — sin mezcla azul→naranja en la skin por defecto */
   }
 
   /* ---------- SUNSET (naranja dominante, azul soporte) ---------- */

@@ -26,6 +26,7 @@
 | **Landing / marketing** | core + nucleo + patterns + motion | `.nz-hero`, `.nz-stage3d`, `.nz-solid-nav`, `.nz-anim-fade-in` |
 | **Visor de mapas** | core + nucleo + maps + data | `.nz-map--solid`, `.nz-map__pin`, `.nz-map__overlay`, `.nz-line-badge` |
 | **Herramienta transporte** | core + nucleo + maps + data | `.nz-schedule`, `.nz-line-badge`, `.nz-map__route`, `.nz-table-solid` |
+| **3D con escenas listas (v6)** | core + next + three | `data-nz-three`, `.nz-three--hero`, `.nz-glass-liquid-live` |
 | **Portfolio / 3D** | core + nucleo + motion + patterns | `.nz-stage3d`, `.nz-solid-nav`, `.nz-bento`, `.nz-hero` |
 | **Auth (login/signup)** | core + forms + patterns | `.nz-field`, `.nz-btn`, `.nz-auth-shell` |
 | **Formularios complejos** | core + forms + ui | `.nz-switch`, `.nz-otp`, `.nz-stepper`, `.nz-toast` |
@@ -38,6 +39,7 @@
 - `ntizar.charts.css` → Chart.js/Apex/D3 containers
 - `ntizar.maps.css` → Leaflet/Mapbox/MapLibre styling
 - `ntizar.viz.css` → three.js stages, aurora backgrounds, orbs (modo glass)
+- `ntizar.three.css` + `three-scenes.js` → **v6**: escenas Three.js listas (`data-nz-three="icosaedro|grafo|particulas|anillos"`) y glass interactivo (`aurora-live.js` + `.nz-glass-liquid-live`)
 - `ntizar.motion.css` → animations (reveal, glow, shimmer, marquee)
 - `ntizar.forms.css` → switch, otp, range, file, stepper
 - `ntizar.ui.css` → modal, drawer, tabs, dropdown, toast, tooltip

@@ -1,8 +1,8 @@
 # Ntizar Aurora
 
-> Aurora v5.2 **Constellation**: design system CSS-only con 11 packs modulares, liquid glass real, three.js, OKLCH y multi-axis theming. Identidad azul `#2563eb` + naranja `#f97316`, sin morados. Sin build, sin dependencias, sin JS obligatorio.
+> Aurora v6 **Constellation**: design system CSS-only con 12 packs modulares, liquid glass real, three.js, OKLCH y multi-axis theming. Identidad azul `#2563eb` + naranja `#f97316`, sin morados. Sin build, sin dependencias, sin JS obligatorio.
 
-![Version](https://img.shields.io/badge/version-5.2.0-2563eb)
+![Version](https://img.shields.io/badge/version-6.0.0-2563eb)
 ![CDN](https://img.shields.io/badge/cdn-jsdelivr-2563eb)
 ![API](https://img.shields.io/badge/api-namespaced-0f172a)
 ![Modo](https://img.shields.io/badge/theme-light%20%7C%20dark%20%7C%20forced--colors-f97316)
@@ -27,6 +27,7 @@ ntizar.forms.css      -> switch, custom check/radio, range, OTP, file drop, step
 ntizar.ui.css         -> modal, drawer, tabs, accordion, dropdown, toast, tooltip, command-bar
 ntizar.patterns.css   -> app-shell, hero, pricing, features, faq, footer, auth-shell, empty/error
 ntizar.next.css       -> v5: liquid glass real, OKLCH, multi-axis theming, mesh, forced-colors, skin AAA
+ntizar.three.css       -> v6: contenedores .nz-three para escenas Three.js reutilizables (three-scenes.js: icosaedro, grafo, particulas, anillos)
 ntizar.nucleo.css     -> v5.2: colores sólidos puros, bento grid, stats bar, barras/ring CSS-only, stage3d
 ```
 
@@ -100,7 +101,7 @@ Aurora es **CSS puro**. Sin npm, sin build, sin JS obligatorio. Lo único que ha
 
 `ntizar.css` trae tokens, layout primitives (`.nz-container`, `.nz-stack`, `.nz-grid`, `.nz-cluster`, `.nz-surface`), componentes (`.nz-btn`, `.nz-card`, `.nz-badge`, `.nz-input`, `.nz-alert`…) y utilidades (`.u-nz-*`). Es lo único obligatorio.
 
-### Los 11 packs: opt-in
+### Los 12 packs: opt-in
 
 Cada pack añade un dominio. Cargas solo los que necesites:
 

@@ -1032,3 +1032,67 @@
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   v6 — GLASS INTERACTIVO (live glass)
+     --------------------------------------------------------------------------
+     Specular highlight que sigue al cursor sobre cualquier superficie glass.
+     Componible: se añade `.nz-glass-liquid-live` a cualquier elemento que ya
+     tenga base glass (`.nz-card--glass-liquid`, `.nz-surface--glass-liquid`, …)
+     o como clase standalone sobre un contenedor propio.
+
+     Alimentado por `aurora-live.js` (escribe --nz-mx / --nz-my en %).
+     Sin JS: el specular queda centrado arriba y aparece en hover igualmente.
+     ========================================================================== */
+
+    .nz :where(.nz-glass-liquid-live) {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    }
+
+    .nz :where(.nz-glass-liquid-live)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(260px circle at var(--nz-mx, 50%) var(--nz-my, 0%),
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.14) 42%,
+      transparent 70%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    }
+
+    .nz :where(.nz-glass-liquid-live):hover::before {
+    opacity: 1;
+    }
+
+    /* borde cromático vivo: reacciona al cursor con un halo azul/naranja sutil */
+    .nz :where(.nz-glass-liquid-live)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+      inset 0 0 24px -8px rgba(37, 99, 235, 0.18),
+      inset 0 0 24px -8px rgba(249, 115, 22, 0.12);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    }
+
+    .nz :where(.nz-glass-liquid-live):hover::after {
+    opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+    .nz :where(.nz-glass-liquid-live)::before,
+    .nz :where(.nz-glass-liquid-live)::after {
+      transition: none;
+    }
+    }

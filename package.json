@@ -1,7 +1,7 @@
 {
   "name": "@ntizar/design-system",
-  "version": "5.2.0",
-  "description": "Ntizar Aurora — Constellation v5.2. CSS-only design system, namespaced under .nz, with 11 optional packs, liquid glass real, three.js ready, OKLCH and multi-axis theming.",
+  "version": "6.0.0",
+  "description": "Ntizar Aurora — Constellation v6. CSS-only design system, namespaced under .nz, with 12 optional packs, liquid glass interactivo, escenas Three.js reutilizables, OKLCH and multi-axis theming.",
   "private": true,
   "license": "MIT",
   "files": [
@@ -16,6 +16,9 @@
     "ntizar.ui.css",
     "ntizar.patterns.css",
     "ntizar.next.css",
+    "ntizar.three.css",
+    "three-scenes.js",
+    "aurora-live.js",
     "ntizar.nucleo.css",
     "components.json",
     "LLM.md",

@@ -156,7 +156,11 @@
     --nz-backdrop-blur-strong: blur(28px);
     --nz-gradient-brand: linear-gradient(135deg, var(--nz-color-brand-soft) 0%, var(--nz-color-brand) 58%, var(--nz-color-brand-strong) 100%);
     --nz-gradient-accent: linear-gradient(135deg, var(--nz-color-accent-soft) 0%, var(--nz-color-accent) 56%, var(--nz-color-accent-strong) 100%);
-    --nz-gradient-aurora: linear-gradient(135deg, var(--nz-color-brand) 0%, var(--nz-color-orange-300) 18%, var(--nz-color-orange-500) 55%, var(--nz-color-orange-600) 100%);
+    --nz-gradient-aurora: linear-gradient(135deg,
+      var(--nz-color-brand) 0%,
+      var(--nz-color-brand-strong) 100%);
+      /* v6.1: monocromo azul. El degradado azul→naranja generaba el
+         efecto "gradiaente" que David rechaza. Sin mezcla de tonos. */
 
     --nz-duration-fast: 150ms;
     --nz-duration-base: 220ms;

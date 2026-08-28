@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Ntizar Design System — Pack THREE (v6)
+   --------------------------------------------------------------------------
+   Contenedores y HUD para escenas Three.js de la librería `three-scenes.js`.
+
+   Classes:
+     .nz-three                -> contenedor de escena (relative, rounded)
+     .nz-three--hero | --md | --sm | --aspect-16x9 | --aspect-1x1 | --bleed
+     .nz-three--glass-frame   -> marco liquid glass alrededor del canvas
+     .nz-three--interactive   -> parallax sutil del canvas con el cursor
+     .nz-three__canvas        -> el <canvas> (width/height 100%)
+     .nz-three__hud           -> capa HTML sobre el canvas (z-index)
+     .nz-three__badge         -> badge flotante (esquina)
+     .nz-three__caption       -> pie de escena
+     .nz-three__legend        -> leyenda de colores de la escena
+     .nz-three__fallback      -> contenido estático si no hay WebGL
+     .nz-three__fallback > *  -> se muestra solo cuando .is-fallback en el contenedor
+
+   Contrato con three-scenes.js:
+     - El script añade/remove `is-fallback` en el contenedor.
+     - Con `.nz-three--interactive` el script escribe `--nz-tx/--nz-ty`
+       (transform sutil del canvas, activado con data-nz-motion != "none").
+   ========================================================================== */
+
+.nz :where(.nz-three) {
+  --nz-three-radius: var(--nz-radius-lg, 16px);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--nz-three-radius);
+  background: var(--nz-surface, #ffffff);
+  isolation: isolate;
+}
+
+.nz :where(.nz-three__canvas) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Variantes de tamaño ---------------------------------------------------- */
+
+.nz :where(.nz-three--hero)        { height: clamp(26rem, 72vh, 46rem); }
+.nz :where(.nz-three--md)          { height: 22rem; }
+.nz :where(.nz-three--sm)          { height: 14rem; }
+.nz :where(.nz-three--aspect-16x9) { height: auto; aspect-ratio: 16 / 9; }
+.nz :where(.nz-three--aspect-1x1)  { height: auto; aspect-ratio: 1 / 1; }
+.nz :where(.nz-three--bleed) {
+  height: clamp(30rem, 85vh, 52rem);
+  border-radius: 0;
+}
+
+/* Marco liquid glass ------------------------------------------------------ */
+
+.nz :where(.nz-three--glass-frame) {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(241, 245, 249, 0.55) 50%,
+    rgba(255, 255, 255, 0.62) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.nz :where(.nz-three--glass-frame)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    inset 0 0 24px rgba(37, 99, 235, 0.04),
+    inset 0 0 48px rgba(249, 115, 22, 0.02);
+}
+
+/* HUD ---------------------------------------------------------------------- */
+
+.nz :where(.nz-three__hud) {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+  padding: var(--nz-space-4, 1.5rem);
+}
+
+.nz :where(.nz-three__badge) {
+  position: absolute;
+  top: var(--nz-space-3, 1rem);
+  right: var(--nz-space-3, 1rem);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nz-space-1, 0.25rem);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  color: var(--nz-text-default, #0f172a);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+}
+
+.nz :where(.nz-three__caption) {
+  z-index: 4;
+  max-width: 34rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--nz-text-muted, #475569);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--nz-radius-md, 12px);
+  padding: 0.6rem 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.nz :where(.nz-three__caption strong) {
+  color: var(--nz-text-default, #0f172a);
+}
+
+/* Leyenda ------------------------------------------------------------------ */
+
+.nz :where(.nz-three__legend) {
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nz-space-2, 0.5rem);
+  margin-top: var(--nz-space-2, 0.5rem);
+  font-size: 0.75rem;
+  color: var(--nz-text-muted, #475569);
+}
+
+.nz :where(.nz-three__legend-item) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--nz-border-soft, rgba(15, 23, 42, 0.08));
+}
+
+.nz :where(.nz-three__legend-dot) {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Fallback sin WebGL -------------------------------------------------------- */
+
+.nz :where(.nz-three__fallback) {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nz-space-4, 1.5rem);
+  text-align: center;
+  color: var(--nz-text-muted, #475569);
+}
+
+.nz :where(.nz-three.is-fallback .nz-three__canvas) { display: none; }
+.nz :where(.nz-three.is-fallback .nz-three__fallback) { display: flex; }
+
+/* Interactividad ------------------------------------------------------------ */
+
+.nz :where(.nz-three--interactive .nz-three__canvas) {
+  transition: transform 0.25s ease-out;
+  transform: translate3d(var(--nz-tx, 0px), var(--nz-ty, 0px), 0) scale(1.04);
+}
+
+/* Motion off ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .nz :where(.nz-three--interactive .nz-three__canvas) {
+    transform: none;
+    transition: none;
+  }
+}
+
+.nz[data-nz-motion="none"] :where(.nz-three--interactive .nz-three__canvas) {
+  transform: none;
+  transition: none;
+}
