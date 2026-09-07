@@ -31,6 +31,7 @@
 | **Auth (login/signup)** | core + forms + patterns | `.nz-field`, `.nz-btn`, `.nz-auth-shell` |
 | **Formularios complejos** | core + forms + ui | `.nz-switch`, `.nz-otp`, `.nz-stepper`, `.nz-toast` |
 | **Widget aislado** | core + pack mínimo | envolver en `<div class="nz">…</div>` |
+| **Chat / agente / dashboard AI** | core + ai + data + ui + motion | `.nz-chat`, `.nz-thinking`, `.nz-taskrow`, `.nz-toolchips`, `.nz-approval`, `.nz-stream`, `.nz-promptbar`, `.nz-recommend`, `.nz-contextcard` |
 
 **Packs opcionales (cargar solo si los usas):**
 - `ntizar.nucleo.css` → **Núcleo**: colores sólidos, bento, stats, CSS charts, three.js stage, mapas sólidos, transporte
@@ -45,6 +46,7 @@
 - `ntizar.ui.css` → modal, drawer, tabs, dropdown, toast, tooltip
 - `ntizar.patterns.css` → app-shell, hero, pricing, FAQ, footer, auth
 - `ntizar.next.css` → liquid glass, OKLCH, mesh, multi-axis (modo glass)
+- `ntizar.ai.css` → **v6.2 AI**: loaders, thinking traces, streaming, approval, tool chips, task rows, chat, prompt bar, recommendation, context cards, diff/records/filter tables, sidebar nav, command search, flowcharts, insight cards, code block con diff, fine-tune, selection. Estilo Núcleo limpio, monocromo azul, light por defecto.
 
 ---
 

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ntizar Aurora · AI-native primitives (demo)</title>
+  <meta name="description" content="Demo de los 20 primitivos AI-native del pack ntizar.ai.css.">
+  <!-- Aurora v6.2 — AI pack -->
+  <link rel="stylesheet" href="ntizar.css">
+  <link rel="stylesheet" href="ntizar.themes.css">
+  <link rel="stylesheet" href="ntizar.data.css">
+  <link rel="stylesheet" href="ntizar.ui.css">
+  <link rel="stylesheet" href="ntizar.motion.css">
+  <link rel="stylesheet" href="ntizar.ai.css">
+  <style>
+    body.nz { background: var(--nz-surface-page); min-height: 100vh; }
+    .demo-shell { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+    .demo-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .demo-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 720px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1100px) { .demo-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .demo-cell { display: flex; flex-direction: column; gap: 12px; }
+    .demo-cell > h4 { margin: 0; font-size: 13px; font-weight: 700; color: var(--nz-text-strong); text-transform: uppercase; letter-spacing: .04em; }
+    .demo-cell .nz-ai { align-items: center; }
+  </style>
+</head>
+<body class="nz" data-nz-theme="light" data-nz-skin="aurora" data-nz-shape="rounded" data-nz-motion="standard">
+  <div class="demo-shell">
+    <header class="demo-head">
+      <h1 style="font-size:20px;margin:0;">Ntizar Aurora · Primitivas AI-native</h1>
+      <p style="margin:0;color:var(--nz-text-muted);font-size:13px;">pack <code>ntizar.ai.css</code> · light + dark · monocromo azul</p>
+    </header>
+
+    <div class="demo-grid">
+
+      <!-- 01 Loading -->
+      <div class="demo-cell">
+        <h4>01 · Loading State</h4>
+        <div class="nz-ai">
+          <div class="nz-loader nz-loader--pixel" role="status">
+            <span class="nz-loader__grid">
+              <span class="nz-loader__pixel" style="animation-delay:90ms"></span><span class="nz-loader__pixel" style="animation-delay:180ms"></span><span class="nz-loader__pixel" style="animation-delay:270ms"></span>
+              <span class="nz-loader__pixel" style="animation-delay:0ms"></span><span class="nz-loader__pixel" style="animation-delay:90ms"></span><span class="nz-loader__pixel" style="animation-delay:180ms"></span>
+              <span class="nz-loader__pixel" style="animation-delay:90ms"></span><span class="nz-loader__pixel" style="animation-delay:180ms"></span><span class="nz-loader__pixel" style="animation-delay:270ms"></span>
+            </span>
+            <span>Analizando</span><span class="nz-loader__time">0.0s</span>
+          </div>
+          <div class="nz-loader nz-loader--dots" role="status">
+            <span class="nz-loader__grid"><span class="nz-loader__pixel" style="animation-delay:0ms"></span><span class="nz-loader__pixel" style="animation-delay:150ms"></span><span class="nz-loader__pixel" style="animation-delay:300ms"></span></span>
+            <span class="nz-loader__time">Procesando…</span>
+          </div>
+          <div class="nz-loader nz-loader--orbit" role="status"><span class="nz-loader__grid"><span class="nz-loader__pixel"></span></span><span>Buscar</span></div>
+          <div class="nz-loader nz-loader--surfer" role="status"><span class="nz-loader__grid"><span class="nz-loader__pixel"></span></span><span>Planificando</span></div>
+        </div>
+      </div>
+
+      <!-- 02 Thinking -->
+      <div class="demo-cell">
+        <h4>02 · Thinking</h4>
+        <div class="nz-ai">
+          <div class="nz-thinking is-open">
+            <button type="button" class="nz-thinking__toggle" onclick="this.closest('.nz-thinking').classList.toggle('is-open')">
+              <svg class="nz-thinking__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+              <span class="nz-thinking__label">Pensando</span>
+              <svg class="nz-thinking__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nz-thinking__body">
+              <div class="nz-thinking__inner">
+                <div class="nz-thinking__tabs">
+                  <button class="nz-thinking__tab is-active">Pasos</button>
+                  <button class="nz-thinking__tab">Razonamiento</button>
+                  <button class="nz-thinking__tab">Búsqueda</button>
+                  <button class="nz-thinking__tab">Código</button>
+                </div>
+                <div class="nz-thinking__traces">
+                  <div class="nz-thinking__trace"><span class="nz-thinking__trace-dot"></span><span>Consultar inventario</span><span class="nz-thinking__trace-meta">0.3s</span></div>
+                  <div class="nz-thinking__trace"><span class="nz-thinking__trace-dot nz-thinking__trace-dot--search"></span><span>Buscar proveedores</span><span class="nz-thinking__trace-meta">0.9s</span></div>
+                  <div class="nz-thinking__trace"><span class="nz-thinking__trace-dot nz-thinking__trace-dot--coding"></span><span>Generar consulta SQL</span><span class="nz-thinking__trace-meta">1.2s</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Streaming -->
+      <div class="demo-cell">
+        <h4>03 · Streaming Text</h4>
+        <div class="nz-ai">
+          <div class="nz-stream">
+            <p class="nz-stream__text">He consultado <a class="nz-stream__source" href="#">scoopdata.io</a> y <a class="nz-stream__source" href="#">trends.google.com</a>. El mercado sube un <strong>12%</strong> en ventas semanales<span class="nz-stream__caret"></span></p>
+            <div class="nz-stream__actions">
+              <button class="nz-stream__action">↗ Abrir informe</button>
+              <button class="nz-stream__action">Copiar</button>
+              <button class="nz-stream__action">Compartir</button>
+            </div>
+            <div class="nz-stream__followups">
+              <button class="nz-stream__followup">¿Comparar con el verano pasado?</button>
+              <button class="nz-stream__followup">¿Qué flavor va mejor?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Approval -->
+      <div class="demo-cell">
+        <h4>04 · Approval Card</h4>
+        <div class="nz-ai">
+          <div class="nz-approval is-open">
+            <div class="nz-approval__body">
+              <p class="nz-approval__question">¿Cuántos sabores deberíamos lanzar?</p>
+              <p class="nz-approval__sub">Recomiendo reordenar conos de <span class="nz-approval__entity"><span class="nz-approval__entity-badge">C</span>Cone King</span> con <span class="nz-approval__pill">plazo 7 días</span></p>
+            </div>
+            <div class="nz-approval__options">
+              <div class="nz-approval__options-inner">
+                <div class="nz-approval__options-list">
+                  <p class="nz-approval__options-label">Otras opciones</p>
+                  <button class="nz-approval__option">
+                    <span class="nz-approval__meter"><span style="height:10px"></span><span style="height:10px"></span><span class="is-off" style="height:10px"></span></span>
+                    <span class="nz-approval__option-text">Cambiar a Vanilla Madagascar</span><span class="nz-approval__option-meta">Requiere revisión</span>
+                  </button>
+                  <button class="nz-approval__option">
+                    <span class="nz-approval__meter"><span class="is-off" style="height:10px"></span><span class="is-off" style="height:10px"></span><span class="is-off" style="height:10px"></span></span>
+                    <span class="nz-approval__option-text">Reponer todos los SKU</span><span class="nz-approval__option-meta">Sin señal</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="nz-approval__footer">
+              <div class="nz-approval__actions">
+                <button class="nz-btn nz-btn--primary">Aprobar</button>
+                <button class="nz-btn nz-btn--ghost">Editar</button>
+              </div>
+              <span class="nz-approval__meta">1 / 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Tool chips -->
+      <div class="demo-cell">
+        <h4>05 · Tool Chips</h4>
+        <div class="nz-ai">
+          <div class="nz-toolchips is-open">
+            <button type="button" class="nz-toolchips__toggle" onclick="this.closest('.nz-toolchips').classList.toggle('is-open')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              <span class="nz-toolchips__count">4 llamadas, 2 mensajes</span>
+            </button>
+            <div class="nz-toolchips__list"><div class="nz-toolchips__inner"><div class="nz-toolchips__group">
+              <span class="nz-toolchip nz-toolchip--ok"><span class="nz-toolchip__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>inventario</span>
+              <span class="nz-toolchip nz-toolchip--edit"><span class="nz-toolchip__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>editar ventas</span>
+              <span class="nz-toolchip"><span class="nz-toolchip__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>buscar</span>
+            </div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Task rows -->
+      <div class="demo-cell">
+        <h4>06 · Task Rows</h4>
+        <div class="nz-ai">
+          <div class="nz-taskrows">
+            <div class="nz-taskrow nz-taskrow--completed is-open">
+              <button type="button" class="nz-taskrow__toggle" onclick="this.closest('.nz-taskrow').classList.toggle('is-open')">
+                <span class="nz-taskrow__icon"><span class="nz-taskrow__icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></span>
+                <span class="nz-taskrow__label">Verificar registros</span><span class="nz-taskrow__count">12 proveedores</span>
+                <span class="nz-taskrow__status">Completado</span>
+                <span class="nz-taskrow__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+              </button>
+              <div class="nz-taskrow__detail"><div class="nz-taskrow__detail-inner"><div class="nz-taskrow__metrics">
+                <span class="nz-taskrow__line"></span>
+                <div class="nz-taskrow__metric">
+                  <div class="nz-taskrow__metric-row"><span>IDs coincidentes</span><span class="nz-taskrow__metric-value">12/12</span></div>
+                  <div class="nz-taskrow__metric-row"><span>Registros obsoletos</span><span class="nz-taskrow__metric-value">0</span></div>
+                </div>
+              </div></div></div>
+            </div>
+            <div class="nz-taskrow nz-taskrow--running">
+              <button type="button" class="nz-taskrow__toggle" onclick="this.closest('.nz-taskrow').classList.toggle('is-open')">
+                <span class="nz-taskrow__icon"><span class="nz-taskrow__icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v9l6 3"/><circle cx="12" cy="12" r="9"/></svg></span></span>
+                <span class="nz-taskrow__label">Leyendo export de ventas</span><span class="nz-taskrow__count">3 archivos</span>
+                <span class="nz-taskrow__status">En curso</span>
+              </button>
+              <div class="nz-taskrow__detail"><div class="nz-taskrow__detail-inner"><div class="nz-taskrow__metrics">
+                <span class="nz-taskrow__line"></span>
+                <div class="nz-taskrow__metric"><div class="nz-taskrow__metric-row"><span>Progreso</span><span class="nz-taskrow__metric-value">68%</span></div></div>
+              </div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 07 Chat -->
+      <div class="demo-cell">
+        <h4>07 · Chat</h4>
+        <div class="nz-ai">
+          <div class="nz-chat">
+            <div class="nz-chat__tabs">
+              <button class="nz-chat__tab is-active">Ventas</button>
+              <button class="nz-chat__tab">Sabores</button>
+            </div>
+            <div class="nz-chat__thread">
+              <div class="nz-chat__msg nz-chat__msg--user"><span class="nz-chat__bubble">Compara mint chip con el verano pasado</span><span class="nz-chat__meta">Tú · ahora</span></div>
+              <div class="nz-chat__msg nz-chat__msg--agent">
+                <span class="nz-chat__bubble">Pillé 3 veranos de ventas de mint chip para comparar. Sube un <strong>12%</strong> con picos más fuertes en fin de semana.</span>
+                <span class="nz-chat__meta">Agente · <span class="nz-chat__meta-badge">Fuentes</span> 4s</span>
+              </div>
+            </div>
+            <div class="nz-chat__composer">
+              <textarea class="nz-chat__input" rows="1" placeholder="Mensaje…"></textarea>
+              <button class="nz-chat__send" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 Prompt bar -->
+      <div class="demo-cell">
+        <h4>08 · Prompt Bar</h4>
+        <div class="nz-ai">
+          <div class="nz-promptbar">
+            <div class="nz-promptbar__box">
+              <textarea class="nz-promptbar__field" rows="1" placeholder="Pregunta a tus datos…"></textarea>
+              <button class="nz-promptbar__send" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+            </div>
+            <div class="nz-promptbar__bar">
+              <div class="nz-promptbar__chips">
+                <button class="nz-promptbar__chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>@ventas</button>
+                <button class="nz-promptbar__chip nz-promptbar__chip--command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>/informe</button>
+              </div>
+              <button class="nz-promptbar__model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>qwen-flash</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 Recommend -->
+      <div class="demo-cell">
+        <h4>09 · Recommendation</h4>
+        <div class="nz-ai">
+          <div class="nz-recommend is-open">
+            <div class="nz-recommend__body">
+              <p class="nz-recommend__title">¿Quieres que coloque este pedido de reposición?</p>
+              <p class="nz-recommend__sub">Reponer conos de <span class="nz-recommend__entity"><span class="nz-recommend__entity-badge">C</span>Cone King</span> con <span class="nz-recommend__pill">plazo 7 días</span></p>
+            </div>
+            <div class="nz-recommend__options">
+              <div class="nz-recommend__options-inner">
+                <div class="nz-recommend__options-list">
+                  <p class="nz-recommend__options-label">Otras opciones</p>
+                  <button class="nz-recommend__option">
+                    <span class="nz-recommend__meter"><span style="height:10px"></span><span style="height:10px"></span><span class="is-off" style="height:10px"></span></span>
+                    <span class="nz-recommend__option-text">Cambiar a Vanilla Madagascar</span><span class="nz-recommend__option-meta">Revisión</span>
+                  </button>
+                  <button class="nz-recommend__option">
+                    <span class="nz-recommend__meter"><span class="is-off" style="height:10px"></span><span class="is-off" style="height:10px"></span><span class="is-off" style="height:10px"></span></span>
+                    <span class="nz-recommend__option-text">Reponer todos los SKU</span><span class="nz-recommend__option-meta">Sin señal</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="nz-recommend__confidence">
+              <div class="nz-recommend__confidence-track"><div class="nz-recommend__confidence-fill" style="width:82%"></div></div>
+              <span class="nz-recommend__confidence-label">Alta confianza</span>
+            </div>
+            <div class="nz-recommend__footer">
+              <button class="nz-btn nz-btn--primary">Colocar pedido</button>
+              <button class="nz-btn nz-btn--ghost">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 Context cards -->
+      <div class="demo-cell">
+        <h4>10 · Context Cards</h4>
+        <div class="nz-ai">
+          <div class="nz-contextcards">
+            <div class="nz-contextcards__head"><span class="nz-contextcards__title">Todos los chunks</span><span class="nz-contextcards__count">32</span></div>
+            <div class="nz-contextcard">
+              <div class="nz-contextcard__head">
+                <span class="nz-contextcard__name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Regla de alta de proveedor</span></span>
+                <span class="nz-contextcard__chars">290 caracteres</span>
+              </div>
+              <p class="nz-contextcard__body">La certificación de cadena de frío debe verificarse antes de añadir un nuevo lácteo al flujo de reposición.</p>
+              <div class="nz-contextcard__body" style="padding-top:0"><span class="nz-contextcard__source"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Onboarding SOP.pdf</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 Diff table -->
+      <div class="demo-cell">
+        <h4>11 · Diff Table</h4>
+        <div class="nz-ai">
+          <div class="nz-difftable">
+            <div class="nz-difftable__title">Limpieza de menú propuesta</div>
+            <table class="nz-difftable__table">
+              <thead><tr><th>Flavor</th><th>Categoría</th><th>Proveedor</th></tr></thead>
+              <tbody>
+                <tr><td><span class="nz-difftable__diff-glyph nz-difftable__diff-glyph--del">−</span> Rocky Road</td><td>Clásico</td><td>aurora-scoops</td></tr>
+                <tr><td><span class="nz-difftable__diff-glyph nz-difftable__diff-glyph--add">+</span> Pistachio</td><td class="nz-difftable__cell--add">Estacional</td><td>maple-orbit</td></tr>
+                <tr><td>Mint Chip</td><td>Clásico</td><td class="nz-difftable__cell--change">maple-orbit</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 Records table -->
+      <div class="demo-cell">
+        <h4>12 · Records Table</h4>
+        <div class="nz-ai">
+          <div class="nz-recordtable">
+            <div class="nz-recordtable__wrap">
+              <table class="nz-recordtable__table">
+                <thead><tr><th>Compañía</th><th>Tags</th><th>Último</th><th>Relación</th></tr></thead>
+                <tbody>
+                  <tr><td><div class="nz-recordtable__name"><span class="nz-recordtable__num">1A</span><span class="nz-recordtable__title">Alpine Churn — Zürich</span></div></td><td><div class="nz-recordtable__tags"><span class="nz-recordtable__tag nz-recordtable__tag--brand">B2B</span><span class="nz-recordtable__tag">Mayorista</span></div></td><td>hace 4 días</td><td><span class="nz-recordtable__strength nz-recordtable__strength--strong">Muy fuerte</span></td></tr>
+                  <tr><td><div class="nz-recordtable__name"><span class="nz-recordtable__num">2A</span><span class="nz-recordtable__title">Amber Scoop — Praga</span></div></td><td><div class="nz-recordtable__tags"><span class="nz-recordtable__tag nz-recordtable__tag--brand">Helado</span><span class="nz-recordtable__tag">B2B</span></div></td><td>hace +1 año</td><td><span class="nz-recordtable__strength nz-recordtable__strength--none">Sin comunicación</span></td></tr>
+                  <tr><td><div class="nz-recordtable__name"><span class="nz-recordtable__num">3A</span><span class="nz-recordtable__title">Andes Snow — Quito</span></div></td><td><div class="nz-recordtable__tags"><span class="nz-recordtable__tag">Catering</span><span class="nz-recordtable__tag">Local</span></div></td><td>hace ~2 años</td><td><span class="nz-recordtable__strength nz-recordtable__strength--weak">Muy débil</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 Filter table -->
+      <div class="demo-cell">
+        <h4>13 · Filter Table</h4>
+        <div class="nz-ai">
+          <div class="nz-filtertable">
+            <div class="nz-filtertable__chips">
+              <button class="nz-filtertable__chip is-active">Todas <span class="nz-filtertable__chip-count">5</span></button>
+              <button class="nz-filtertable__chip">Pendiente <span class="nz-filtertable__chip-count">2</span></button>
+              <button class="nz-filtertable__chip">En curso <span class="nz-filtertable__chip-count">2</span></button>
+              <button class="nz-filtertable__chip">Completada <span class="nz-filtertable__chip-count">1</span></button>
+            </div>
+            <div class="nz-filtertable__wrap">
+              <table class="nz-filtertable__table">
+                <thead><tr><th>Tarea</th><th>Fecha</th><th>Estado</th><th>Asesor</th></tr></thead>
+                <tbody>
+                  <tr><td>Reponer mango sorbet</td><td>Dic 03</td><td><span class="nz-filtertable__status nz-filtertable__status--todo">Pendiente</span></td><td>Mango Moon</td></tr>
+                  <tr><td>Churn black sesame</td><td>Sep 22</td><td><span class="nz-filtertable__status nz-filtertable__status--progress">En curso</span></td><td>Kumo Creamery</td></tr>
+                  <tr><td>Imprimir menú verano</td><td>Ene 02</td><td><span class="nz-filtertable__status nz-filtertable__status--done">Completada</span></td><td>Coral Coast</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 14 Sidebar nav -->
+      <div class="demo-cell">
+        <h4>14 · Sidebar Nav</h4>
+        <div class="nz-ai">
+          <nav class="nz-sidenav" aria-label="Navegación">
+            <div class="nz-sidenav__section">
+              <span class="nz-sidenav__label">Espacio</span>
+              <a class="nz-sidenav__item is-active" href="#"><span class="nz-sidenav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg></span><span class="nz-sidenav__text">Inicio</span></a>
+              <a class="nz-sidenav__item" href="#"><span class="nz-sidenav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/></svg></span><span class="nz-sidenav__text">Actividad</span><span class="nz-sidenav__badge">3</span></a>
+              <a class="nz-sidenav__item" href="#"><span class="nz-sidenav__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21H3V3M8 17l4-4 4 4M16 9l4 4"/></svg></span><span class="nz-sidenav__text">Informes</span></a>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <!-- 15 Command search -->
+      <div class="demo-cell">
+        <h4>15 · Search</h4>
+        <div class="nz-ai">
+          <div class="nz-command">
+            <div class="nz-command__input-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+              <input class="nz-command__input" placeholder="Buscar sabores…" />
+            </div>
+            <div class="nz-command__list">
+              <button class="nz-command__item is-active"><span class="nz-command__item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span><span class="nz-command__item-text">Mint Chip</span><span class="nz-command__item-group">Clásico</span></button>
+              <button class="nz-command__item"><span class="nz-command__item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg></span><span class="nz-command__item-text">Pistachio</span><span class="nz-command__item-group">Estacional</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16 Flowchart -->
+      <div class="demo-cell">
+        <h4>16 · Flowchart</h4>
+        <div class="nz-ai">
+          <div class="nz-flow">
+            <div class="nz-flow__step">
+              <span class="nz-flow__step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></span>
+              <span class="nz-flow__step-title">Disparador</span>
+            </div>
+            <div class="nz-flow__connector"></div>
+            <div class="nz-flow__step nz-flow__step--condition">
+              <span class="nz-flow__step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+              <span class="nz-flow__step-title">Si / Si no</span>
+            </div>
+            <div class="nz-flow__branch">
+              <span class="nz-flow__branch-item">Si pedido es</span>
+              <span class="nz-flow__branch-item">y pedido es</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17 Insight -->
+      <div class="demo-cell">
+        <h4>17 · Insight Cards</h4>
+        <div class="nz-ai">
+          <div class="nz-insight">
+            <div class="nz-insight__head"><span class="nz-insight__title">Insights</span><span class="nz-insight__pager">1 / 3</span></div>
+            <div class="nz-insight__body">
+              <p class="nz-insight__text">El peor rendimiento de <strong>@Creamery</strong> es Rocky Road — cae <span class="nz-insight__stat-value nz-insight__stat-value--down">-6%</span></p>
+              <div class="nz-insight__stats">
+                <div class="nz-insight__stat"><span class="nz-insight__stat-name">Mint Chip</span><span class="nz-insight__stat-value nz-insight__stat-value--down">-4.41%</span></div>
+                <div class="nz-insight__stat"><span class="nz-insight__stat-name">Pistachio</span><span class="nz-insight__stat-value nz-insight__stat-value--up">+1.15%</span></div>
+              </div>
+              <div class="nz-insight__chart">
+                <span class="nz-insight__bar" style="height:30%"></span><span class="nz-insight__bar" style="height:55%"></span><span class="nz-insight__bar nz-insight__bar--brand" style="height:70%"></span><span class="nz-insight__bar" style="height:45%"></span><span class="nz-insight__bar nz-insight__bar--brand" style="height:90%"></span>
+              </div>
+              <button class="nz-insight__toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9 9 9-9"/></svg>Instantánea</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18 Code block diff -->
+      <div class="demo-cell">
+        <h4>18 · Code Block + Diff</h4>
+        <div class="nz-ai">
+          <div class="nz-codeblock nz-codeblock--diff">
+            <div class="nz-codeblock__head"><span class="nz-codeblock__label">churn.ts</span></div>
+            <pre><code><span class="nz-codeblock__line" data-ln="1">export async function churnBatch() {</span>
+<span class="nz-codeblock__line" data-ln="2">  const flavor = await getFlavor("pistachio");</span>
+<span class="nz-codeblock__line nz-codeblock__line--del" data-ln="3"><span class="nz-codeblock__diff-glyph nz-codeblock__diff-glyph--del">−</span>const base = await dairy.fetch({ flavor });</span>
+<span class="nz-codeblock__line nz-codeblock__line--add" data-ln="3"><span class="nz-codeblock__diff-glyph nz-codeblock__diff-glyph--add">+</span>const base = await dairy.fetch({ flavor, fresh: true });</span>
+<span class="nz-codeblock__line" data-ln="4">  return base.gallons;</span></code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- 19 Fine-tune -->
+      <div class="demo-cell">
+        <h4>19 · Fine-tune Card</h4>
+        <div class="nz-ai">
+          <div class="nz-finetune">
+            <div class="nz-finetune__head"><span class="nz-finetune__title">Tarjeta de sabor</span><span class="nz-finetune__adjust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Ajustar</span></div>
+            <div class="nz-finetune__body">
+              <button class="nz-finetune__row"><span class="nz-finetune__row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="nz-finetune__row-label">Tipo</span><span class="nz-finetune__control">Clásico</span></button>
+              <button class="nz-finetune__row"><span class="nz-finetune__row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><span class="nz-finetune__row-label">Proveedor</span><span class="nz-finetune__control">maple-orbit</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 20 Selection -->
+      <div class="demo-cell">
+        <h4>20 · Selection Actions</h4>
+        <div class="nz-ai">
+          <div class="nz-selection">
+            <p class="nz-selection__text">El pistacho mantiene el primer puesto todo el fin de semana. <span class="nz-selection__highlight">Conviene churnearlo lo antes posible el sábado para que el lote tenga tiempo de asentarse</span> antes del rush de tarde.</p>
+            <div class="nz-selection__bar" style="top:56px;left:8px;">
+              <button class="nz-selection__bar-btn" aria-label="Reescribir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+              <span class="nz-selection__bar-label">Reescribir</span>
+              <button class="nz-selection__bar-btn nz-selection__bar-btn--primary">Aplicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer style="margin-top:40px;text-align:center;color:var(--nz-text-muted);font-size:13px;">
+      Hecho con ❤️ por David Antizar
+    </footer>
+  </div>
+</body>
+</html>

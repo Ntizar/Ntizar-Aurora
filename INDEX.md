@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="ntizar.ui.css">      <!-- modal, drawer, tabs, dropdown, toast -->
 <link rel="stylesheet" href="ntizar.patterns.css"><!-- app-shell, hero, pricing, faq, footer -->
 <link rel="stylesheet" href="ntizar.next.css">    <!-- v5: liquid glass real, OKLCH, multi-axis, mesh (modo glass) -->
+<link rel="stylesheet" href="ntizar.ai.css">      <!-- v6.2: primitivas AI-native (chat, thinking, tool chips, approval, streaming, task rows, ...) -->
 
 <body class="nz"
       data-nz-theme="light"
@@ -65,6 +66,7 @@ Reglas duras:
 || `ntizar.ui.css` | ui | Modal, drawer, tabs, accordion, dropdown menu, toast, tooltip CSS-only, breadcrumbs, segmented, chips, paginación, command-bar, spinner, divider con label, tag-input | Construyas overlays / interacciones |
 || `ntizar.patterns.css` | patterns | App-shell con sidebar, hero (centered/split), feature-grid, pricing, FAQ, footer, auth-shell, empty-state, error-page, cta-banner, logo-cloud, stats-banner, **bento-grid** | Compongas páginas completas |
 || `ntizar.next.css` | **v5 next** | **Liquid Glass real** (`--glass-liquid` con specular highlight + chromatic edge + dual inset shadow + saturate backdrop), **Aurora Mesh** (`.nz-aurora-mesh[--animated\|--glass\|--hero]`), **OKLCH color system** paralelo (`--nz-oklch-*`, activable con `data-nz-color-system="oklch"`), **multi-axis theming** (`data-nz-shape`, `data-nz-density`, `data-nz-motion`), **skin contrast (WCAG AAA)**, **forced-colors mode** | Quieras la capa disruptiva 2026 sin tocar el core |
+|| `ntizar.ai.css` | **v6.2 AI** | **Primitivas AI-native**: loaders (pixel/dots/orbit/surfer/sweep), thinking traces expandibles, streaming text con fuentes/acciones/follow-ups, approval card (human-in-the-loop), tool chips, task rows de agente, chat, prompt bar, recommendation con confidence meter, context cards, diff table, records table, filter table, sidebar nav, command search, flowchart, insight cards, code block con diff, fine-tune card, selection actions. **Estilo Núcleo limpio, monocromo azul, light por defecto (dark vía `data-nz-theme`)** | Construyas interfaces de agente, chat, dashboards de datos o cualquier UI con AI |
 
 Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisiones.
 
@@ -106,6 +108,7 @@ Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisione
 || **Hero / features / pricing / faq / footer** | patterns | `.nz-hero[--centered/--split]`+`__inner/__eyebrow/__title (.nz-accent)/__sub/__cta/__visual`, `.nz-feature-grid`+`.nz-feature[--accent]`+`__icon/__title/__body`, `.nz-pricing-grid`+`.nz-pricing-card[--featured]`+`__name/__price/__amount/__period/__list/__badge`, `.nz-faq` (usa accordion), `.nz-footer`+`__inner/__cols/__col/__bottom` |
 || **Auth / vacíos / errores / banners** | patterns | `.nz-auth-shell`+`__panel/__art`, `.nz-empty-state`+`__icon/__title`, `.nz-error-page`+`__code/__title/__sub`, `.nz-cta-banner`+`__title/__sub`, `.nz-logo-cloud`, `.nz-stats-banner` |
 || **Bento grid layout** | patterns | `.nz-bento-grid`+`.nz-bento-grid__cell[--span-2/--span-3/--span-full/--wide/--tall]` |
+|| **Interfaz AI-native** (chat, agente, traces, approvals) | **ai** | `.nz-loader[--pixel\|--dots\|--orbit\|--surfer\|--sweep]`, `.nz-thinking[.is-open]`+`__toggle/__label/__traces/__tabs`, `.nz-stream`+`__source/__actions/__followups`, `.nz-approval[.is-open]`+`__question/__entity/__actions`, `.nz-toolchips[.is-open]`+`.nz-toolchip[--edit\|--ok]`, `.nz-taskrow[--completed\|--running\|--failed\|--pending][.is-open]`+`__icon/__status/__detail`, `.nz-chat[.is-open]`+`__tabs/__tab/__thread/__msg[--user\|--agent]/__composer`, `.nz-promptbar`+`__field/__chips/__model/__send`, `.nz-recommend[.is-open]`+`__title/__options/__confidence/__footer`, `.nz-contextcard`+`__head/__source/__body`, `.nz-difftable`+`__cell--add/--del/--change`, `.nz-recordtable`+`__tag[--brand\|--accent]/__strength`, `.nz-filtertable`+`__chip[.is-active]/__status[--todo\|--progress\|--done]`, `.nz-sidenav[.is-collapsed]`+`__group/__item[.is-active]/__badge`, `.nz-command`+`__input/__item[.is-active]/__empty`, `.nz-flow`+`__step[--trigger\|--condition]/__connector/__branch`, `.nz-insight`+`__card/__pager/__chart/__bar[--brand\|--accent]`, `.nz-codeblock[--lines\|--diff]`+`__line[--add\|--del]`, `.nz-finetune`+`__row/__control`, `.nz-selection`+`__highlight/__bar` |
 
 ---
 
@@ -157,6 +160,7 @@ Aurora **nunca** estiliza `body`, `h1`, `button` fuera de `.nz`. Es seguro junto
 5. ¿La tarea es auth (login/signup)? → core + forms + patterns (auth-shell)
 6. ¿La tarea son formularios complejos? → core + forms + ui (toast/dropdown)
 7. ¿La tarea es solo un widget aislado? → core + el pack mínimo, envuelto en `<div class="nz">…</div>`
+8. ¿La tarea es un chat / agente / dashboard AI? → core + ai + data + ui + motion + (themes)
 
 Docs hermanas: lee **`AGENTS.md`** para reglas de cómo usar sin quemar tokens, y **`gallery.html`** para ver todo en vivo.
 

@@ -28,6 +28,7 @@ ntizar.ui.css         -> modal, drawer, tabs, accordion, dropdown, toast, toolti
 ntizar.patterns.css   -> app-shell, hero, pricing, features, faq, footer, auth-shell, empty/error
 ntizar.next.css       -> v5: liquid glass real, OKLCH, multi-axis theming, mesh, forced-colors, skin AAA
 ntizar.three.css       -> v6: contenedores .nz-three para escenas Three.js reutilizables (three-scenes.js: icosaedro, grafo, particulas, anillos)
+ntizar.ai.css          -> v6.2: primitivas AI-native (loader, thinking, stream, approval, toolchips, taskrow, chat, promptbar, recommend, contextcard, tables, sidenav, command, flow, insight, codeblock diff, finetune, selection) — Estilo Núcleo limpio, monocromo azul, light por defecto
 ntizar.nucleo.css     -> v5.2: colores sólidos puros, bento grid, stats bar, barras/ring CSS-only, stage3d
 ```
 

@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="ntizar.patterns.css">
   <link rel="stylesheet" href="ntizar.next.css">
   <link rel="stylesheet" href="ntizar.three.css">
+  <link rel="stylesheet" href="ntizar.ai.css">
 
   <style>
     /* ═══ Shell: sidebar sticky + main ═══ */
@@ -136,6 +137,7 @@
       <a class="gx-side__link" href="#pack-patterns">Patterns <span class="gx-side__tag">opcional</span></a>
       <a class="gx-side__link" href="#pack-next">Next <span class="gx-side__tag">v6</span></a>
       <a class="gx-side__link" href="#pack-three">Three <span class="gx-side__tag">v6</span></a>
+      <a class="gx-side__link" href="#pack-ai">AI-native <span class="gx-side__tag">v6.2</span></a>
     </nav>
 
     <nav class="gx-side__group" aria-label="API">
@@ -1070,6 +1072,90 @@
       </div>
     </section>
 
+    <!-- ═══ PACK AI ═══ -->
+    <section class="gx-showcase gx-anchor" id="pack-ai" data-pack="ai" data-status="stable">
+      <div class="gx-showcase__head">
+        <span class="gx-showcase__kicker">Pack 12/12 · ntizar.ai.css</span>
+        <h2 class="gx-showcase__title">AI-native primitives</h2>
+        <p class="gx-showcase__sub">Primitivas para interfaces de agente y chat — thinking traces, streaming, approval (human-in-the-loop), tool chips, task rows, prompt bar, recommendation, context cards, diff y code blocks. Estilo Núcleo limpio, monocromo azul, light por defecto.</p>
+      </div>
+      <div class="gx-showcase__live">
+        <div class="nz-grid nz-grid--3">
+          <!-- Thinking -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Thinking</div>
+            <div class="nz-card__body">
+              <div class="nz-thinking is-open">
+                <button type="button" class="nz-thinking__toggle"><svg class="nz-thinking__spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg><span class="nz-thinking__label">Pensando</span><svg class="nz-thinking__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+                <div class="nz-thinking__body"><div class="nz-thinking__inner"><div class="nz-thinking__traces">
+                  <div class="nz-thinking__trace"><span class="nz-thinking__trace-dot"></span><span>Consultar inventario</span><span class="nz-thinking__trace-meta">0.3s</span></div>
+                  <div class="nz-thinking__trace"><span class="nz-thinking__trace-dot nz-thinking__trace-dot--search"></span><span>Buscar proveedores</span><span class="nz-thinking__trace-meta">0.9s</span></div>
+                </div></div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Task row -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Task Rows</div>
+            <div class="nz-card__body">
+              <div class="nz-taskrow nz-taskrow--completed is-open">
+                <button type="button" class="nz-taskrow__toggle"><span class="nz-taskrow__icon"><span class="nz-taskrow__icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></span><span class="nz-taskrow__label">Verificar registros</span><span class="nz-taskrow__count">12</span><span class="nz-taskrow__status">Completado</span></button>
+              </div>
+            </div>
+          </div>
+          <!-- Streaming -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Streaming</div>
+            <div class="nz-card__body">
+              <div class="nz-stream"><p class="nz-stream__text">El mercado sube un <strong>12%</strong> en ventas<span class="nz-stream__caret"></span></p><div class="nz-stream__actions"><button class="nz-stream__action">Abrir informe</button><button class="nz-stream__action">Copiar</button></div></div>
+            </div>
+          </div>
+          <!-- Chat -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Chat</div>
+            <div class="nz-card__body">
+              <div class="nz-chat">
+                <div class="nz-chat__thread">
+                  <div class="nz-chat__msg nz-chat__msg--user"><span class="nz-chat__bubble">Compara con el verano pasado</span></div>
+                  <div class="nz-chat__msg nz-chat__msg--agent"><span class="nz-chat__bubble">Sube un <strong>12%</strong> con picos de fin de semana.</span><span class="nz-chat__meta">Agente · 4s</span></div>
+                </div>
+                <div class="nz-chat__composer"><textarea class="nz-chat__input" rows="1" placeholder="Mensaje…"></textarea><button class="nz-chat__send" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button></div>
+              </div>
+            </div>
+          </div>
+          <!-- Recommend -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Recommendation</div>
+            <div class="nz-card__body">
+              <div class="nz-recommend is-open">
+                <div class="nz-recommend__body"><p class="nz-recommend__title">¿Coloco este pedido?</p><p class="nz-recommend__sub">Reponer conos de <span class="nz-recommend__entity"><span class="nz-recommend__entity-badge">C</span>Cone King</span> con <span class="nz-recommend__pill">plazo 7 días</span></p></div>
+                <div class="nz-recommend__confidence"><div class="nz-recommend__confidence-track"><div class="nz-recommend__confidence-fill" style="width:82%"></div></div><span class="nz-recommend__confidence-label">Alta confianza</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Diff codeblock -->
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Code Block + Diff</div>
+            <div class="nz-card__body">
+              <div class="nz-codeblock nz-codeblock--diff">
+                <pre><code><span class="nz-codeblock__line" data-ln="1">export function churn() {</span>
+<span class="nz-codeblock__line nz-codeblock__line--del" data-ln="2"><span class="nz-codeblock__diff-glyph nz-codeblock__diff-glyph--del">−</span>const base = await dairy.fetch({ flavor });</span>
+<span class="nz-codeblock__line nz-codeblock__line--add" data-ln="2"><span class="nz-codeblock__diff-glyph nz-codeblock__diff-glyph--add">+</span>const base = await dairy.fetch({ flavor, fresh: true });</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="gx-note">Demo completo con los 20 primitivos: <code>demo-ai.html</code>.</p>
+        <details>
+          <summary>Snippet — CDN + contenedor</summary>
+          <div class="gx-snippet"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.ai.css"&gt;
+&lt;body class="nz" data-nz-theme="light" data-nz-skin="aurora"&gt;
+  &lt;div class="nz-thinking is-open"&gt;…&lt;/div&gt;
+&lt;/body&gt;</code></pre></div>
+        </details>
+      </div>
+    </section>
+
     <!-- ═══ UTILITIES ═══ -->
     <section class="gx-showcase gx-anchor" id="utilities" data-pack="core" data-status="stable">
       <div class="gx-showcase__head">
@@ -1145,6 +1231,7 @@
               <tr><td><code class="u-nz-text-mono">ntizar.patterns.css</code></td><td>hero, bento, feature-row, pricing, testimonial, faq, cta-banner, blog-card, auth-form, profile, kanban, wizard, notification-center, comment-thread</td><td><span class="nz-badge nz-badge--success nz-badge--no-dot">Estable</span></td></tr>
               <tr><td><code class="u-nz-text-mono">ntizar.next.css</code></td><td>glass-liquid-live, tile-live, ejes shape/density/motion/color-system, OKLCH</td><td><span class="nz-badge nz-badge--warning nz-badge--no-dot">Beta</span></td></tr>
               <tr><td><code class="u-nz-text-mono">ntizar.three.css</code></td><td>nz-three (+hero/md/sm), canvas, overlay, fallback · crearEscena, crearEscenasAuto (icosaedro/grafo/partículas/anillos)</td><td><span class="nz-badge nz-badge--success nz-badge--no-dot">Estable</span></td></tr>
+              <tr><td><code class="u-nz-text-mono">ntizar.ai.css</code></td><td>nz-loader, nz-thinking, nz-stream, nz-approval, nz-toolchips, nz-taskrow, nz-chat, nz-promptbar, nz-recommend, nz-contextcard, nz-difftable, nz-recordtable, nz-filtertable, nz-sidenav, nz-command, nz-flow, nz-insight, nz-codeblock--diff, nz-finetune, nz-selection</td><td><span class="nz-badge nz-badge--success nz-badge--no-dot">Estable</span></td></tr>
             </tbody>
           </table>
         </div>
