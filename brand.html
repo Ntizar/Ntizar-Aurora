@@ -29,7 +29,7 @@
     /* Scroll progress */
     #scroll-progress {
       position: fixed; top: 0; left: 0; height: 2px; width: 0;
-      background: #2563eb;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
       z-index: 100; transition: width .1s;
     }
 
@@ -319,19 +319,7 @@
     <p style="margin-bottom:1rem;"><strong style="color:#fff">Regla dual:</strong> el azul y el naranja no se mezclan en la misma sección. Uno es primary, el otro es secondary.</p>
 
     <p class="nz-eyebrow nz-eyebrow--accent" style="margin-top:1.5rem;">Sin gradientes azul→naranja</p>
-    <p>La interpolación sRGB entre <code style="color:#60a5fa">#2563eb</code> y <code style="color:#fdba74">#f97316</code> produce gris morado en el punto medio. Regla del sistema: <strong>un solo tono, bloques de color sólido, cero gradientes</strong>.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:560px;margin-top:1rem;">
-      <div style="border:1px solid #26324a;border-radius:8px;padding:1rem;">
-        <p style="margin:0 0 .5rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:#8b96ab;">✗ Mal ejemplo — azul→naranja</p>
-        <div style="height:44px;border-radius:8px;background:linear-gradient(90deg,#2563eb,#f97316);"></div>
-        <p style="margin:.5rem 0 0;font-size:.75rem;color:#c3cbdb;">Muerde a púrpura en sRGB. Prohibido.</p>
-      </div>
-      <div style="border:1px solid #26324a;border-radius:8px;padding:1rem;">
-        <p style="margin:0 0 .5rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:#8b96ab;">✓ Regla Aurora — sólido</p>
-        <div style="height:44px;border-radius:8px;background:#2563eb;"></div>
-        <p style="margin:.5rem 0 0;font-size:.75rem;color:#c3cbdb;">Un solo tono. Bloques sólidos siempre.</p>
-      </div>
-    </div>
+    <p>La interpolación sRGB entre <code style="color:#60a5fa">#2563eb</code> y <code style="color:#fdba74">#f97316</code> produce gris morado en el punto medio. Usar bloques de color sólido. Si se necesita un gradiente, monocromo (azul→azul-claro).</p>
   </section>
 
   <!-- ═══ TIPOGRAFÍA ═══ -->
@@ -350,7 +338,7 @@
     </div>
     <div class="type-row">
       <span class="type-row__label">H2 · Inter 600</span>
-      <span class="type-row__sample" style="font-size:1.5rem;font-weight:600;">15 packs modulares</span>
+      <span class="type-row__sample" style="font-size:1.5rem;font-weight:600;">11 packs modulares</span>
     </div>
     <div class="type-row">
       <span class="type-row__label">H3 · Inter 600</span>
@@ -358,7 +346,7 @@
     </div>
     <div class="type-row">
       <span class="type-row__label">Cuerpo grande · Inter 400</span>
-      <span class="type-row__sample" style="font-size:1.125rem;font-weight:400;color:rgba(255,255,255,.7);">364 KB de CSS puro, 129 componentes, 0 dependencias. Cero JavaScript obligatorio.</span>
+      <span class="type-row__sample" style="font-size:1.125rem;font-weight:400;color:rgba(255,255,255,.7);">243 KB de CSS puro, 119 componentes, 0 dependencias. Cero JavaScript obligatorio.</span>
     </div>
     <div class="type-row">
       <span class="type-row__label">Cuerpo · Inter 400</span>
@@ -442,7 +430,7 @@ $ <span class="prompt">cat</span> index.html
   <section id="voz" class="brand-section fade-in">
     <p class="nz-eyebrow">Voz & Posicionamiento</p>
     <h2>CSS-only. Sin build. Sin dependencias.</h2>
-    <p>Aurora es un design system CSS-only creado por David Antizar. 364 KB de CSS puro, 129 componentes en 15 packs modulares, sin build step, sin dependencias, sin JavaScript obligatorio. Todo namespaced bajo <code style="color:#60a5fa">.nz</code> para no colisionar con Tailwind, Bootstrap o cualquier otro framework.</p>
+    <p>Aurora es un design system CSS-only creado por David Antizar. 243 KB de CSS puro, 119 componentes en 11 packs modulares, sin build step, sin dependencias, sin JavaScript obligatorio. Todo namespaced bajo <code style="color:#60a5fa">.nz</code> para no colisionar con Tailwind, Bootstrap o cualquier otro framework.</p>
 
     <p class="nz-eyebrow" style="margin-top:1.5rem;">Keywords de marca</p>
     <div class="keyword-grid">
@@ -468,7 +456,7 @@ $ <span class="prompt">cat</span> index.html
     <div class="tone-grid">
       <div class="tone-col tone-col--do">
         <h4>✓ Sí</h4>
-        <p>"364 KB de CSS, 129 componentes, 0 dependencias"</p>
+        <p>"243 KB de CSS, 119 componentes, 0 dependencias"</p>
         <p>"Cambia un atributo y toda la página se reescribe"</p>
         <p>"Liquid glass real de 4 capas con borde cromático"</p>
       </div>

@@ -28,7 +28,6 @@
 | **Herramienta transporte** | core + nucleo + maps + data | `.nz-schedule`, `.nz-line-badge`, `.nz-map__route`, `.nz-table-solid` |
 | **3D con escenas listas (v6)** | core + next + three | `data-nz-three`, `.nz-three--hero`, `.nz-glass-liquid-live` |
 | **Portfolio / 3D** | core + nucleo + motion + patterns | `.nz-stage3d`, `.nz-solid-nav`, `.nz-bento`, `.nz-hero` |
-| **App móvil / web-app** | core + app | `.nz-app__header`, `.nz-app__tabbar`, `.nz-kpirow`, `.nz-chips`, `.nz-list`, `.nz-sheet`, `.nz-toast`, `.nz-empty` |
 | **Auth (login/signup)** | core + forms + patterns | `.nz-field`, `.nz-btn`, `.nz-auth-shell` |
 | **Formularios complejos** | core + forms + ui | `.nz-switch`, `.nz-otp`, `.nz-stepper`, `.nz-toast` |
 | **Widget aislado** | core + pack mínimo | envolver en `<div class="nz">…</div>` |
@@ -48,7 +47,6 @@
 - `ntizar.patterns.css` → app-shell, hero, pricing, FAQ, footer, auth
 - `ntizar.next.css` → liquid glass, OKLCH, mesh, multi-axis (modo glass)
 - `ntizar.ai.css` → **v6.2 AI**: loaders, thinking traces, streaming, approval, tool chips, task rows, chat, prompt bar, recommendation, context cards, diff/records/filter tables, sidebar nav, command search, flowcharts, insight cards, code block con diff, fine-tune, selection. Estilo Núcleo limpio, monocromo azul, light por defecto.
-- `ntizar.app.css` → **v6.2 App Kit**: shell de app (header sticky + tab bar táctil ≥44px + FAB), hero compacto, KPI tiles scrolleables, chips scroll-snap, listas con acciones, bottom-sheet sin JS (checkbox hack), toast, empty state, skeleton, ajustes con switch CSS, footer de acciones, offline+retry, onboarding. Un solo tono azul, sólido, sin gradientes. Doc: app-kit.html
 
 ---
 
@@ -260,7 +258,6 @@ Para cambiar runtime: `document.body.dataset.nzTheme = 'dark'`.
 ¿Dashboard con KPIs sólidos?                   → core + nucleo + data
 ¿Gráficos Chart.js?                            → core + charts
 ¿Mapas Leaflet sólidos?                        → core + nucleo + maps
-¿App móvil / web-app táctil?                   → core + app
 ¿Horarios/líneas transporte?                   → core + nucleo + maps + data
 ¿Modals/tabs/dropdowns/toasts?                 → core + ui
 ¿Formularios (switch/otp/stepper)?             → core + forms

@@ -136,7 +136,7 @@ Radio moderado por defecto. Modo `sharp` disponible con `data-nz-shape="sharp"`.
 
 **Técnico pero accesible. Sin hype.**
 
-- ✅ "364 KB de CSS, 129 componentes, 0 dependencias"
+- ✅ "243 KB de CSS, 119 componentes, 0 dependencias"
 - ❌ "El design system más revolucionario"
 
 **Aurora NO es:** Tailwind, Bootstrap, un framework JS, un theme de WordPress, un design system corporativo.
