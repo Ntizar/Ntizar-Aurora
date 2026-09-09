@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ntizar Aurora · Galería v6.1</title>
-  <meta name="description" content="Showcase oficial de Aurora: 12 packs, liquid glass, escenas Three.js y contrato público completo. Contenido estático — se ve sin JavaScript.">
+  <title>Ntizar Aurora · Galería v6.2</title>
+  <meta name="description" content="Showcase oficial de Aurora: 15 packs, liquid glass, escenas Three.js y contrato público completo. Contenido estático — se ve sin JavaScript.">
   <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
 
-  <!-- Aurora v6.1 — los 12 packs -->
+  <!-- Aurora v6.2 — los 15 packs -->
   <link rel="stylesheet" href="ntizar.css">
   <link rel="stylesheet" href="ntizar.themes.css">
   <link rel="stylesheet" href="ntizar.data.css">
@@ -37,9 +37,6 @@
     .gx-side__tag { font-size: .65rem; font-weight: 700; padding: .1rem .4rem; border-radius: var(--nz-radius-pill); background: var(--nz-surface-brand-soft); color: var(--nz-color-brand-strong); }
     .gx-side__controls { display: grid; gap: .5rem; padding-top: .75rem; border-top: 1px solid var(--nz-border-soft); }
     .gx-side__controls label { font-size: var(--nz-text-xs); color: var(--nz-text-muted); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .gx-skin-switch { display: flex; flex-wrap: wrap; gap: .25rem; padding: .25rem; background: var(--nz-surface-base); border: 1px solid var(--nz-border-soft); border-radius: var(--nz-radius-pill); }
-    .gx-skin-switch button { border: 0; background: transparent; cursor: pointer; padding: .35rem .55rem; border-radius: var(--nz-radius-pill); font-size: .62rem; line-height: 1; font-weight: 700; color: var(--nz-text-muted); text-transform: uppercase; letter-spacing: .04em; }
-    .gx-skin-switch button[aria-pressed="true"] { background: var(--nz-gradient-brand); color: var(--nz-text-on-brand); box-shadow: var(--nz-shadow-brand); }
     .gx-axis-select { width: 100%; padding: .45rem .65rem; border: 1px solid var(--nz-border-soft); border-radius: var(--nz-radius-md); background: var(--nz-surface-base); color: var(--nz-text-strong); font-family: var(--nz-font-sans); font-size: var(--nz-text-xs); font-weight: 600; cursor: pointer; }
     .gx-main { min-width: 0; }
     .gx-anchor { scroll-margin-top: 1.5rem; }
@@ -48,7 +45,7 @@
     .gx-showcase { padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem); border-bottom: 1px solid var(--nz-border-soft); }
     .gx-showcase__head { display: grid; gap: .35rem; margin-bottom: 1.5rem; max-width: 56rem; }
     .gx-showcase__kicker { display: inline-flex; align-items: center; gap: .5rem; color: var(--nz-text-muted); font-size: var(--nz-text-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-    .gx-showcase__kicker::before { content: ""; width: 2rem; height: 1px; background: linear-gradient(90deg, var(--nz-color-brand), var(--nz-color-accent)); }
+    .gx-showcase__kicker::before { content: ""; width: 2rem; height: 1px; background: var(--nz-color-brand); }
     .gx-showcase__title { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); }
     .gx-showcase__sub { color: var(--nz-text-muted); margin: 0; }
     .gx-showcase__live { display: grid; gap: var(--nz-space-4); }
@@ -74,7 +71,7 @@
     @media (max-width: 700px) { .gx-type-row { grid-template-columns: 1fr; } }
     .gx-space-row { display: grid; grid-template-columns: 9rem 1fr 3.5rem; gap: .75rem; align-items: center; }
     .gx-space-row__label { font-family: var(--nz-font-mono); font-size: .7rem; color: var(--nz-text-muted); }
-    .gx-space-row__bar { height: .8rem; border-radius: var(--nz-radius-pill); background: var(--nz-gradient-brand); }
+    .gx-space-row__bar { height: .8rem; border-radius: var(--nz-radius-pill); background: var(--nz-color-brand); }
     .gx-space-row__value { font-family: var(--nz-font-mono); font-size: .7rem; color: var(--nz-text-strong); }
     .gx-radius-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: .75rem; }
     .gx-radius__sample { height: 4rem; background: var(--nz-surface-glass-brand); border: 1px solid var(--nz-border-soft); }
@@ -106,7 +103,7 @@
 
   <!-- ═══════════ SIDEBAR ═══════════ -->
   <aside class="gx-side">
-    <a class="gx-side__brand" href="#top">Aurora<small>v6.1 · galería</small></a>
+    <a class="gx-side__brand" href="#top">Aurora<small>v6.2 · galería</small></a>
 
     <nav class="gx-side__group" aria-label="Secciones">
       <p class="gx-side__heading">Fundamentos</p>
@@ -138,6 +135,7 @@
       <a class="gx-side__link" href="#pack-next">Next <span class="gx-side__tag">v6</span></a>
       <a class="gx-side__link" href="#pack-three">Three <span class="gx-side__tag">v6</span></a>
       <a class="gx-side__link" href="#pack-ai">AI-native <span class="gx-side__tag">v6.2</span></a>
+      <a class="gx-side__link" href="#pack-app">App Kit <span class="gx-side__tag">v6.2</span></a>
     </nav>
 
     <nav class="gx-side__group" aria-label="API">
@@ -150,14 +148,6 @@
     <div class="gx-side__controls">
       <label for="gx-theme">Tema</label>
       <button id="gx-theme" class="nz-btn nz-btn--secondary nz-btn--sm" type="button">Modo: <span id="gx-theme-l">Light</span></button>
-      <label>Skin</label>
-      <div class="gx-skin-switch" role="group" aria-label="Skin">
-        <button type="button" data-skin="aurora" aria-pressed="true">Aurora</button>
-        <button type="button" data-skin="ocean" aria-pressed="false">Ocean</button>
-        <button type="button" data-skin="sunset" aria-pressed="false">Sunset</button>
-        <button type="button" data-skin="citrus" aria-pressed="false">Citrus</button>
-        <button type="button" data-skin="midnight" aria-pressed="false">Midnight</button>
-      </div>
       <label for="gx-density">Densidad</label>
       <select id="gx-density" class="gx-axis-select" data-axis="density">
         <option value="comfortable">Cómoda</option>
@@ -188,8 +178,8 @@
       <div class="nz-aurora-mesh nz-aurora-mesh--hero" aria-hidden="true"></div>
       <div class="gx-hero__inner">
         <div class="gx-hero__badges">
-          <span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">v6.1 · Constellation</span>
-          <span class="nz-badge nz-badge--glass nz-badge--no-dot">12 packs</span>
+          <span class="nz-badge nz-badge--glass-brand nz-badge--no-dot">v6.2 · Constellation</span>
+          <span class="nz-badge nz-badge--glass nz-badge--no-dot">15 packs</span>
           <span class="nz-badge nz-badge--glass nz-badge--no-dot">sin build</span>
           <span class="nz-badge nz-badge--glass nz-badge--no-dot">sin dependencias</span>
         </div>
@@ -219,8 +209,8 @@
             <article class="gx-token"><div class="gx-token__sample" style="background:#ffffff;border-bottom:1px solid var(--nz-border-soft)"></div><div class="gx-token__name">--nz-surface-base</div><div class="gx-token__value">#ffffff</div></article>
             <article class="gx-token"><div class="gx-token__sample" style="background:#f8fafc;border-bottom:1px solid var(--nz-border-soft)"></div><div class="gx-token__name">--nz-surface-soft</div><div class="gx-token__value">#f8fafc</div></article>
             <article class="gx-token"><div class="gx-token__sample" style="background:rgba(255,255,255,.6);backdrop-filter:blur(12px);border-bottom:1px solid var(--nz-border-soft)"></div><div class="gx-token__name">--nz-surface-glass</div><div class="gx-token__value">rgba + blur</div></article>
-            <article class="gx-token"><div class="gx-token__sample" style="background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%)"></div><div class="gx-token__name">--nz-gradient-brand</div><div class="gx-token__value">azul profundo</div></article>
-            <article class="gx-token"><div class="gx-token__sample" style="background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%)"></div><div class="gx-token__name">--nz-gradient-aurora</div><div class="gx-token__value">monocromo azul</div></article>
+            <article class="gx-token"><div class="gx-token__sample" style="background:var(--nz-color-brand)"></div><div class="gx-token__name">--nz-color-brand</div><div class="gx-token__value">#2563eb - unico tono</div></article>
+            <article class="gx-token"><div class="gx-token__sample" style="background:var(--nz-color-brand-soft)"></div><div class="gx-token__name">--nz-color-brand-soft</div><div class="gx-token__value">azul tenue - superficies</div></article>
             <article class="gx-token"><div class="gx-token__sample gx-token__sample--text" style="background:#f8fafc;color:#0f172a">Aa</div><div class="gx-token__name">--nz-text-strong</div><div class="gx-token__value">#0f172a</div></article>
             <article class="gx-token"><div class="gx-token__sample gx-token__sample--text" style="background:#fff;color:#334155">Aa</div><div class="gx-token__name">--nz-text-default</div><div class="gx-token__value">#334155</div></article>
             <article class="gx-token"><div class="gx-token__sample gx-token__sample--text" style="background:#fff;color:#64748b">Aa</div><div class="gx-token__name">--nz-text-muted</div><div class="gx-token__value">#64748b</div></article>
@@ -286,7 +276,6 @@
 :root {
   --nz-color-brand: #2563eb;
   --nz-color-accent: #f97316;
-  --nz-gradient-aurora: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 }
 .mi-panel {
   background: var(--nz-surface-glass);
@@ -544,7 +533,7 @@
         <details>
           <summary>Snippet — badges</summary>
           <div class="gx-snippet"><pre><code>&lt;span class="nz-badge nz-badge--success"&gt;Operativo&lt;/span&gt;
-&lt;span class="nz-badge nz-badge--glass-brand nz-badge--no-dot"&gt;v6.1&lt;/span&gt;</code></pre></div>
+&lt;span class="nz-badge nz-badge--glass-brand nz-badge--no-dot"&gt;v6.2&lt;/span&gt;</code></pre></div>
         </details>
       </div>
     </section>
@@ -596,7 +585,7 @@
           </div>
           <div class="nz-field">
             <label class="nz-label" for="gx-f2">Versión</label>
-            <select class="nz-select" id="gx-f2"><option>v6.1 (estable)</option><option>v6.0</option><option>v5.2</option></select>
+            <select class="nz-select" id="gx-f2"><option>v6.2 (estable)</option><option>v6.0</option><option>v5.2</option></select>
             <span class="nz-help nz-help--error">Este error se ve así.</span>
           </div>
         </div>
@@ -618,7 +607,7 @@
     <!-- ═══ PACK THEMES ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-themes" data-pack="themes" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 1/11 · ntizar.themes.css</span>
+        <span class="gx-showcase__kicker">Pack 1/14 · ntizar.themes.css</span>
         <h2 class="gx-showcase__title">Themes y skins</h2>
         <p class="gx-showcase__sub">El tema (light/dark) y la skin (aurora/ocean/sunset/citrus/midnight) son ejes independientes. Prueba los controles de la izquierda — todo lo que ves se recolorea.</p>
       </div>
@@ -645,7 +634,7 @@
     <!-- ═══ PACK DATA ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-data" data-pack="data" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 2/11 · ntizar.data.css</span>
+        <span class="gx-showcase__kicker">Pack 2/14 · ntizar.data.css</span>
         <h2 class="gx-showcase__title">Data: KPIs, stats, meters, progreso y timeline</h2>
         <p class="gx-showcase__sub">El lenguaje de los dashboards. Números que se leen de un vistazo y estado visible sin gráficas.</p>
       </div>
@@ -678,8 +667,8 @@
 
         <div class="nz-grid nz-grid--aside">
           <div class="nz-timeline">
-            <div class="nz-timeline__item"><div class="nz-timeline__title">v6.1 — pack Three.js + glass interactivo</div><div class="nz-timeline__meta">ago 2026</div></div>
-            <div class="nz-timeline__item nz-timeline__item--accent"><div class="nz-timeline__title">v6.0 — gradiente monocromo azul</div><div class="nz-timeline__meta">jun 2026</div></div>
+            <div class="nz-timeline__item"><div class="nz-timeline__title">v6.2 — pack Three.js + glass interactivo</div><div class="nz-timeline__meta">ago 2026</div></div>
+            <div class="nz-timeline__item nz-timeline__item--accent"><div class="nz-timeline__title">v6.0 — Constellation</div><div class="nz-timeline__meta">jun 2026</div></div>
             <div class="nz-timeline__item"><div class="nz-timeline__title">v5.0 — surfaces tonales</div><div class="nz-timeline__meta">mar 2026</div></div>
           </div>
           <aside class="nz-stack nz-stack--sm">
@@ -710,7 +699,7 @@
     <!-- ═══ PACK CHARTS ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-charts" data-pack="charts" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 3/11 · ntizar.charts.css</span>
+        <span class="gx-showcase__kicker">Pack 3/14 · ntizar.charts.css</span>
         <h2 class="gx-showcase__title">Charts: gráficas CSS-only</h2>
         <p class="gx-showcase__sub">Donuts, sparklines y ejes sin librerías. La librería de gráficas solo entra cuando necesites tooltips e interacción real.</p>
       </div>
@@ -752,7 +741,7 @@
     <!-- ═══ PACK MAPS ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-maps" data-pack="maps" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 4/11 · ntizar.maps.css</span>
+        <span class="gx-showcase__kicker">Pack 4/14 · ntizar.maps.css</span>
         <h2 class="gx-showcase__title">Maps: Leaflet envuelto en marco Aurora</h2>
         <p class="gx-showcase__sub">El pack no reimplementa mapas — viste Leaflet con superficies glass, pins con pulso, leyendas y controles coherentes con el sistema.</p>
       </div>
@@ -778,7 +767,7 @@
     <!-- ═══ PACK VIZ ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-viz" data-pack="viz" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 5/11 · ntizar.viz.css</span>
+        <span class="gx-showcase__kicker">Pack 5/14 · ntizar.viz.css</span>
         <h2 class="gx-showcase__title">Viz: fondos decorativos — orbes, mallas, ruido</h2>
         <p class="gx-showcase__sub">Las capas que hacen que un fondo blanco no se vea plano: orbes con blur, aurora backgrounds, grids de puntos, scanlines y grano sutil.</p>
       </div>
@@ -799,7 +788,7 @@
           </div>
         </div>
         <div class="nz-grid nz-grid--2">
-          <div class="nz-stage nz-stage--aspect-16x9" style="position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1220,#122040)">
+          <div class="nz-stage nz-stage--aspect-16x9" style="position:relative;overflow:hidden;background:#0b1220">
             <div class="nz-aurora-bg nz-aurora-bg--soft" style="position:absolute;inset:0"></div>
             <div class="nz-stage__caption" style="color:#fff">aurora-bg</div>
           </div>
@@ -814,7 +803,7 @@
     <!-- ═══ PACK MOTION ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-motion" data-pack="motion" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 6/11 · ntizar.motion.css</span>
+        <span class="gx-showcase__kicker">Pack 6/14 · ntizar.motion.css</span>
         <h2 class="gx-showcase__title">Motion: animaciones que respetan prefers-reduced-motion</h2>
         <p class="gx-showcase__sub">Entradas, flotados, glow pulsante y hover-lift. Nunca decoraciones que consuman CPU gratis.</p>
       </div>
@@ -845,7 +834,7 @@
     <!-- ═══ PACK FORMS ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-forms" data-pack="forms" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 7/11 · ntizar.forms.css</span>
+        <span class="gx-showcase__kicker">Pack 7/14 · ntizar.forms.css</span>
         <h2 class="gx-showcase__title">Forms: controles ricos sobre la base del core</h2>
         <p class="gx-showcase__sub">Switches, checkboxes con checkmark animado, OTP segmentado, steppers y validación inline. Todo accesible por defecto.</p>
       </div>
@@ -912,7 +901,7 @@
     <!-- ═══ PACK UI ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-ui" data-pack="ui" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 8/11 · ntizar.ui.css</span>
+        <span class="gx-showcase__kicker">Pack 8/14 · ntizar.ui.css</span>
         <h2 class="gx-showcase__title">UI: tabs, acordeones, dropdowns, modales, toasts</h2>
         <p class="gx-showcase__sub">Interactividad completa sin una línea de JavaScript — el pack usa CSS puro con detalles nativos y :has().</p>
       </div>
@@ -950,7 +939,7 @@
         </div>
 
         <div class="nz-grid nz-grid--3">
-          <div class="nz-toast nz-toast--success"><span class="nz-toast__icon">✓</span><div class="nz-toast__body"><strong>Publicado</strong><br>La release v6.1 está en el CDN.</div></div>
+          <div class="nz-toast nz-toast--success"><span class="nz-toast__icon">✓</span><div class="nz-toast__body"><strong>Publicado</strong><br>La release v6.2 está en el CDN.</div></div>
           <div class="nz-toast nz-toast--warning"><span class="nz-toast__icon">!</span><div class="nz-toast__body"><strong>Cuidado</strong><br>Quedan 2 tokens sin definir.</div></div>
           <div class="nz-toast nz-toast--danger"><span class="nz-toast__icon">×</span><div class="nz-toast__body"><strong>Falló</strong><br>El deploy devolvió 502.</div></div>
         </div>
@@ -972,7 +961,7 @@
     <!-- ═══ PACK PATTERNS ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-patterns" data-pack="patterns" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 9/11 · ntizar.patterns.css</span>
+        <span class="gx-showcase__kicker">Pack 9/14 · ntizar.patterns.css</span>
         <h2 class="gx-showcase__title">Patterns: hero, bento, pricing, testimonials, FAQ</h2>
         <p class="gx-showcase__sub">Composiciones completas listas para landing pages. Un patrón = una sección entera con su tipografía, espaciados y CTA resueltos.</p>
       </div>
@@ -996,7 +985,7 @@
 
         <div class="nz-grid nz-grid--3">
           <div class="nz-pricing-card nz-card nz-card--soft"><div class="nz-card__title">Free</div><div class="nz-stat-line"><span class="nz-stat-line__value">0 €</span><span class="nz-stat-line__label">/ mes</span></div><ul class="nz-list"><li>Core + themes</li><li>Galería de referencia</li></ul><button class="nz-btn nz-btn--secondary nz-btn--block" type="button">Empezar</button></div>
-          <div class="nz-pricing-card nz-pricing-card--featured nz-card nz-card--glass-brand"><div class="nz-card__title">Pro</div><div class="nz-stat-line"><span class="nz-stat-line__value">19 €</span><span class="nz-stat-line__label">/ mes</span></div><ul class="nz-list"><li>Los 12 packs</li><li>Liquid glass + Three.js</li><li>Soporte prioritario</li></ul><button class="nz-btn nz-btn--primary nz-btn--block" type="button">Elegir Pro</button></div>
+          <div class="nz-pricing-card nz-pricing-card--featured nz-card nz-card--glass-brand"><div class="nz-card__title">Pro</div><div class="nz-stat-line"><span class="nz-stat-line__value">19 €</span><span class="nz-stat-line__label">/ mes</span></div><ul class="nz-list"><li>Los 15 packs</li><li>Liquid glass + Three.js</li><li>Soporte prioritario</li></ul><button class="nz-btn nz-btn--primary nz-btn--block" type="button">Elegir Pro</button></div>
           <div class="nz-pricing-card nz-card nz-card--soft"><div class="nz-card__title">Equipo</div><div class="nz-stat-line"><span class="nz-stat-line__value">79 €</span><span class="nz-stat-line__label">/ mes</span></div><ul class="nz-list"><li>Todo lo de Pro</li><li>Skins a medida</li></ul><button class="nz-btn nz-btn--secondary nz-btn--block" type="button">Hablemos</button></div>
         </div>
 
@@ -1020,7 +1009,7 @@
     <!-- ═══ PACK NEXT ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-next" data-pack="next" data-status="beta">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 10/11 · ntizar.next.css · beta</span>
+        <span class="gx-showcase__kicker">Pack 10/14 · ntizar.next.css · beta</span>
         <h2 class="gx-showcase__title">Next: liquid glass real, OKLCH y ejes multi-axis</h2>
         <p class="gx-showcase__sub">La frontera experimental. Pasa el cursor sobre el panel — el reflejo especular sigue al puntero. Prueba los ejes de forma y densidad en la barra superior.</p>
       </div>
@@ -1036,7 +1025,7 @@
         </div>
         <div class="nz-callout nz-callout--info">
           <span class="nz-callout__title">Ejes multi-axis</span>
-          <span class="nz-callout__body"><code class="u-nz-text-mono">data-nz-shape</code> (suave/redondo/cuadrado), <code class="u-nz-text-mono">data-nz-density</code> (compacto/cómodo) y <code class="u-nz-text-mono">data-nz-motion</code> (reducido) se combinan entre sí y con las skins. Los controles de la cabecera aplican estos ejes a toda la página.</span>
+          <span class="nz-callout__body"><code class="u-nz-text-mono">data-nz-shape</code> (suave/redondo/cuadrado), <code class="u-nz-text-mono">data-nz-density</code> (compacto/cómodo) y <code class="u-nz-text-mono">data-nz-motion</code> (reducido) se combinan entre sí . Los controles de la cabecera aplican estos ejes a toda la página.</span>
         </div>
       </div>
     </section>
@@ -1044,14 +1033,14 @@
     <!-- ═══ PACK THREE ═══ -->
     <section class="gx-showcase gx-anchor" id="pack-three" data-pack="three" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 11/11 · ntizar.three.css + three-scenes.js</span>
+        <span class="gx-showcase__kicker">Pack 11/14 · ntizar.three.css + three-scenes.js + three-scenes.js</span>
         <h2 class="gx-showcase__title">Three.js: escenas 3D reutilizables</h2>
         <p class="gx-showcase__sub">Cuatro scenes importables — icosaedro, grafo, partículas y anillos — con fallback automático si WebGL no está disponible. Debajo, el icosaedro real corriendo con OrbitControls.</p>
       </div>
       <div class="gx-showcase__live">
         <div class="nz-three nz-three--hero nz-three--interactive" id="gx-three" data-nz-three="icosaedro" data-nz-three-fondo="#ffffff" style="min-height:20rem" role="img" aria-label="Escena Three.js: icosaedro wireframe azul en rotación">
           <canvas class="nz-three__canvas"></canvas>
-          <div class="nz-three__fallback">WebGL no disponible — esta escena degrada a gradiente estático.</div>
+          <div class="nz-three__fallback">WebGL no disponible — esta escena degrada a imagen estática.</div>
         </div>
         <div class="nz-grid nz-grid--4">
           <div class="nz-card nz-card--soft"><div class="nz-card__title">icosaedro</div><div class="nz-card__body">wireframe + núcleo orbitando</div></div>
@@ -1073,9 +1062,97 @@
     </section>
 
     <!-- ═══ PACK AI ═══ -->
+<section class="gx-showcase gx-anchor" id="pack-nucleo" data-pack="nucleo" data-status="stable">
+      <div class="gx-showcase__head">
+        <span class="gx-showcase__kicker">Pack 12/14 · ntizar.nucleo.css</span>
+        <h2 class="gx-showcase__title">Nucleo: color sólido, sin gradientes</h2>
+        <p class="gx-showcase__sub">El estilo "Aurora limpio": azul y naranja puros sobre blanco, sin glass decorativo. Bento sólido, barra de stats a todo ancho, charts CSS-only (barras y ring), nav sólida, lista de actividad y horarios de transporte.</p>
+      </div>
+      <div class="gx-showcase__live">
+
+        <div class="nz-stats-bar">
+          <div class="nz-stat nz-stat--azul">
+            <span class="nz-stat__value">48h</span>
+            <span class="nz-stat__label">ahorro semanal</span>
+          </div>
+          <div class="nz-stat">
+            <span class="nz-stat__value">12.4%</span>
+            <span class="nz-stat__label">vs semana anterior</span>
+          </div>
+          <div class="nz-stat nz-stat--naranja">
+            <span class="nz-stat__value">92</span>
+            <span class="nz-stat__label">racha (días)</span>
+          </div>
+        </div>
+
+        <div class="nz-bento">
+          <div class="nz-bento__cell nz-bento__cell--span-2 nz-bento__cell--azul">
+            <h3 style="color:#ffffff;margin:0 0 var(--nz-space-2);">Celda sólida azul</h3>
+            <p style="color:rgba(255,255,255,.85);margin:0;">Color pleno, sin glass ni sombra decorativa. Texto blanco encima con tokens de espaciado.</p>
+          </div>
+          <div class="nz-bento__cell nz-bento__cell--white">
+            <h3 style="margin:0 0 var(--nz-space-2);">Celda blanca</h3>
+            <p style="color:var(--nz-text-muted);margin:0;">Fondo blanco con borde, texto en tokens del sistema.</p>
+          </div>
+          <div class="nz-bento__cell nz-bento__cell--naranja">
+            <h3 style="color:#ffffff;margin:0 0 var(--nz-space-2);">Celda naranja</h3>
+            <p style="color:rgba(255,255,255,.85);margin:0;">Aurora limpio: color pleno, nunca mezclas azul→naranja.</p>
+          </div>
+        </div>
+
+        <div class="nz-grid nz-grid--3">
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Barras CSS-only</div>
+            <div class="nz-bars">
+              <div class="nz-bars__col nz-bars__col--azul" style="height:35%"></div>
+              <div class="nz-bars__col nz-bars__col--azul" style="height:55%"></div>
+              <div class="nz-bars__col nz-bars__col--active" style="height:80%"></div>
+              <div class="nz-bars__col nz-bars__col--naranja" style="height:45%"></div>
+              <div class="nz-bars__col nz-bars__col--azul" style="height:65%"></div>
+            </div>
+            <p class="nz-text-xs nz-text-muted">.nz-bars · sin librería, solo CSS</p>
+          </div>
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Ring CSS-only</div>
+            <div class="nz-ring" style="--nz-ring-pct:72"><div class="nz-ring__inner">72%</div></div>
+            <p class="nz-text-xs nz-text-muted">.nz-ring con --nz-ring-pct</p>
+          </div>
+          <div class="nz-card nz-card--soft">
+            <div class="nz-card__title">Actividad</div>
+            <div class="nz-activity">
+              <div class="nz-activity__item"><span class="nz-activity__dot nz-activity__dot--azul"></span>Registro de peso<span class="nz-activity__time">10:24</span></div>
+              <div class="nz-activity__item"><span class="nz-activity__dot nz-activity__dot--naranja"></span>Meta diaria cumplida<span class="nz-activity__time">12:02</span></div>
+              <div class="nz-activity__item"><span class="nz-activity__dot nz-activity__dot--azul"></span>Racha de 92 días<span class="nz-activity__time">ayer</span></div>
+            </div>
+            <p class="nz-text-xs nz-text-muted">.nz-activity con puntos azul/naranja</p>
+          </div>
+        </div>
+
+        <div class="nz-card nz-card--soft">
+          <div class="nz-card__title">Nav sólida + horarios</div>
+          <nav class="nz-solid-nav">
+            <span class="nz-solid-nav__brand">N<span class="nz-solid-nav__dot"></span></span>
+            <ul class="nz-solid-nav__links">
+              <li><a class="is-active" href="#pack-nucleo">Inicio</a></li>
+              <li><a href="#pack-nucleo">Informes</a></li>
+              <li><a href="#pack-nucleo">Equipo</a></li>
+            </ul>
+            <button class="nz-solid-nav__cta" type="button">Nuevo</button>
+          </nav>
+          <div class="nz-schedule">
+            <div class="nz-schedule__time">08:12 · Barrio Salamanca → Chamberí</div>
+            <div class="nz-schedule__time nz-schedule__time--next">08:40 · Atocha → Tres Olivos</div>
+            <div class="nz-schedule__time">09:05 · Príncipe Pío → Cuatro Caminos</div>
+          </div>
+          <p class="nz-text-xs nz-text-muted">.nz-solid-nav + .nz-schedule (patrón transporte)</p>
+        </div>
+
+      </div>
+    </section>
+
     <section class="gx-showcase gx-anchor" id="pack-ai" data-pack="ai" data-status="stable">
       <div class="gx-showcase__head">
-        <span class="gx-showcase__kicker">Pack 12/12 · ntizar.ai.css</span>
+        <span class="gx-showcase__kicker">Pack 13/14 · ntizar.ai.css</span>
         <h2 class="gx-showcase__title">AI-native primitives</h2>
         <p class="gx-showcase__sub">Primitivas para interfaces de agente y chat — thinking traces, streaming, approval (human-in-the-loop), tool chips, task rows, prompt bar, recommendation, context cards, diff y code blocks. Estilo Núcleo limpio, monocromo azul, light por defecto.</p>
       </div>
@@ -1171,7 +1248,7 @@
         </div>
         <div class="nz-cluster">
           <span class="u-nz-text-brand">.u-nz-text-brand</span>
-          <span class="u-nz-text-gradient-brand">.u-nz-text-gradient-brand</span>
+          <span class="u-nz-text-brand">.u-nz-text-brand</span>
           <span class="u-nz-glow" style="padding:.25rem .5rem">.u-nz-glow</span>
           <span class="u-nz-rounded-pill" style="background:var(--nz-surface-soft);padding:.25rem .75rem">.u-nz-rounded-pill</span>
           <span class="u-nz-num">1.234.567</span>
@@ -1192,6 +1269,74 @@
     </section>
 
     <!-- ═══ API DE REFERENCIA ═══ -->
+<section class="gx-showcase gx-anchor" id="pack-app" data-pack="app" data-status="stable">
+      <div class="gx-showcase__head">
+        <span class="gx-showcase__kicker">Pack 14/14 · ntizar.app.css</span>
+        <h2 class="gx-showcase__title">App Kit — patrones móvil-first</h2>
+        <p class="gx-showcase__sub">Shell con tab bar táctil (≥44px), hero compacto, KPI tiles scrolleables, chips scroll-snap, listas con acciones, bottom-sheet sin JS, toasts, empty states, skeletons, ajustes, footer de acciones, offline+retry y onboarding. Un solo tono azul, sólido, cero gradientes. Doc: <a href="app-kit.html">app-kit.html</a></p>
+      </div>
+      <div class="gx-cards">
+        <div class="gx-card">
+          <div class="gx-card__preview">
+            <div class="nz-list" style="max-width:300px;">
+              <div class="nz-list__item"><div class="nz-list__body"><p class="nz-list__title">Kit 72h familiar</p><p class="nz-list__meta">18 items · hoy</p></div><div class="nz-list__actions"><button class="nz-list__btn" aria-label="Editar">✎</button><button class="nz-list__btn nz-list__btn--danger" aria-label="Borrar">✕</button></div></div>
+              <div class="nz-list__item"><div class="nz-list__body"><p class="nz-list__title">Kit bebé</p><p class="nz-list__meta">9 items · ayer</p></div><div class="nz-list__actions"><button class="nz-list__btn" aria-label="Editar">✎</button><button class="nz-list__btn nz-list__btn--danger" aria-label="Borrar">✕</button></div></div>
+            </div>
+          </div>
+          <h3 class="gx-card__title">.nz-list · registro con acciones</h3>
+          <p class="gx-card__desc">Filas ≥44px, título+meta, acciones táctiles.</p>
+        </div>
+        <div class="gx-card">
+          <div class="gx-card__preview">
+            <div class="nz-chips" style="max-width:300px;">
+              <button class="nz-chips__chip is-active" type="button">Todos</button>
+              <button class="nz-chips__chip" type="button">Agua</button>
+              <button class="nz-chips__chip" type="button">Botiquín</button>
+            </div>
+            <div class="nz-kpirow" style="max-width:300px;margin-top:.5rem;">
+              <div class="nz-kpirow__tile"><span class="nz-kpirow__label">Kits</span><span class="nz-kpirow__value">3</span><span class="nz-kpirow__delta">+1 hoy</span></div>
+              <div class="nz-kpirow__tile"><span class="nz-kpirow__label">Caducan</span><span class="nz-kpirow__value">2</span><span class="nz-kpirow__delta">revisar</span></div>
+            </div>
+          </div>
+          <h3 class="gx-card__title">.nz-chips + .nz-kpirow</h3>
+          <p class="gx-card__desc">Filtros y KPIs con scroll-snap horizontal.</p>
+        </div>
+        <div class="gx-card">
+          <div class="gx-card__preview">
+            <div class="nz-empty" style="max-width:300px;">
+              <span class="nz-empty__icon">📦</span>
+              <p class="nz-empty__title">Todavía no hay kits</p>
+              <p class="nz-empty__body">Crea tu primer kit 72h con la guía esencial.</p>
+              <button class="nz-btn nz-btn--primary nz-btn--sm" type="button">Crear mi kit</button>
+            </div>
+          </div>
+          <h3 class="gx-card__title">.nz-empty · estado vacío</h3>
+          <p class="gx-card__desc">Icono + título + cuerpo + acción.</p>
+        </div>
+        <div class="gx-card">
+          <div class="gx-card__preview">
+            <div class="nz-settings" style="max-width:300px;">
+              <div class="nz-settings__group">
+                <label class="nz-settings__row"><span class="nz-settings__label"><span>Recordatorios</span><span class="nz-settings__hint">7 días antes</span></span><span class="nz-switch"><input type="checkbox"><span class="nz-switch__track"></span><span class="nz-switch__thumb"></span></span></label>
+                <label class="nz-settings__row"><span class="nz-settings__label"><span>Sonido</span><span class="nz-settings__hint">noche silenciosa</span></span><span class="nz-switch"><input type="checkbox" checked><span class="nz-switch__track"></span><span class="nz-switch__thumb"></span></span></label>
+              </div>
+            </div>
+          </div>
+          <h3 class="gx-card__title">.nz-settings + .nz-switch</h3>
+          <p class="gx-card__desc">Switch CSS puro, track azul al activar.</p>
+        </div>
+      </div>
+      <details class="gx-details">
+        <summary>Snippet — CDN + shell mínimo</summary>
+        <div class="gx-snippet"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Ntizar-Aurora@master/ntizar.app.css"&gt;
+&lt;body class="nz" data-nz-theme="light"&gt;
+  &lt;header class="nz-app__header"&gt;…&lt;/header&gt;
+  &lt;main class="nz-app__main"&gt;…&lt;/main&gt;
+  &lt;nav class="nz-app__tabbar"&gt;…&lt;/nav&gt;
+&lt;/body&gt;</code></pre></div>
+      </details>
+    </section>
+
     <section class="gx-showcase gx-anchor" id="reference" data-pack="api" data-status="stable">
       <div class="gx-showcase__head">
         <span class="gx-showcase__kicker">Contrato público</span>
@@ -1205,9 +1350,8 @@
             <thead><tr><th>Token / atributo</th><th>Qué define</th></tr></thead>
             <tbody>
               <tr><td><code class="u-nz-text-mono">.nz</code> + <code class="u-nz-text-mono">data-nz-theme</code></td><td>Root obligatorio y modo claro/oscuro.</td></tr>
-              <tr><td><code class="u-nz-text-mono">data-nz-skin</code></td><td>aurora · ocean · sunset · citrus · midnight · contrast.</td></tr>
+              <tr><td><code class="u-nz-text-mono">data-nz-skin</code></td><td><strong>aurora</strong> — único tono del sistema (azul monocromo).</td></tr>
               <tr><td><code class="u-nz-text-mono">--nz-color-brand</code> / <code class="u-nz-text-mono">--nz-color-accent</code></td><td>Marca azul (#2563eb) y acento naranja (#f97316), máximo 5 momentos saturados.</td></tr>
-              <tr><td><code class="u-nz-text-mono">--nz-gradient-aurora</code></td><td>Degradado <strong>monocromo azul</strong> — nunca azul→naranja (muerde a púrpura en sRGB).</td></tr>
               <tr><td><code class="u-nz-text-mono">--nz-space-1..8</code></td><td>Escala de separación que usan stacks, grids y cards.</td></tr>
               <tr><td><code class="u-nz-text-mono">--nz-radius-sm/md/lg/xl/pill</code></td><td>Cinco niveles de radio — sin inventos por pack.</td></tr>
               <tr><td><code class="u-nz-text-mono">@layer</code></td><td>tokens → base → objects → components → utilities.</td></tr>
@@ -1240,7 +1384,7 @@
           <table class="nz-table">
             <thead><tr><th>Clase</th><th>Qué hace</th></tr></thead>
             <tbody>
-              <tr><td><code class="u-nz-text-mono">.u-nz-text-muted / strong / brand / gradient-brand</code></td><td>Tipografía puntual sin componente.</td></tr>
+              <tr><td><code class="u-nz-text-mono">.u-nz-text-muted / strong / brand</code></td><td>Tipografía puntual sin componente.</td></tr>
               <tr><td><code class="u-nz-text-mono">.u-nz-bg-brand / accent / aurora</code></td><td>Fondo con color de marca y texto on-color resuelto.</td></tr>
               <tr><td><code class="u-nz-text-mono">.u-nz-glow / glow-accent / glow-aurora</code></td><td>Halo de profundidad o identidad.</td></tr>
               <tr><td><code class="u-nz-text-mono">.u-nz-rounded-sm/md/lg/xl/pill</code></td><td>Radio utilitario sobre la escala del sistema.</td></tr>
@@ -1260,7 +1404,7 @@
       </div>
       <div class="gx-showcase__live">
         <div class="nz-timeline">
-          <div class="nz-timeline__item nz-timeline__item--accent"><div class="nz-timeline__title">v6.1 — Galería reconstruida de cero, contenido estático sin dependencia de JS</div><div class="nz-timeline__meta">ago 2026 · branding constellation, pack three, glass interactivo</div></div>
+          <div class="nz-timeline__item nz-timeline__item--accent"><div class="nz-timeline__title">v6.2 — Galería reconstruida de cero, contenido estático sin dependencia de JS</div><div class="nz-timeline__meta">ago 2026 · branding constellation, pack three, glass interactivo</div></div>
           <div class="nz-timeline__item"><div class="nz-timeline__title">v6.0 — Gradiente monocromo azul, superficies tonales ampliadas</div><div class="nz-timeline__meta">jun 2026</div></div>
           <div class="nz-timeline__item"><div class="nz-timeline__title">v5.x — Packs next (OKLCH, multi-axis) y patterns completos</div><div class="nz-timeline__meta">2025–2026</div></div>
         </div>
@@ -1270,7 +1414,7 @@
 </div>
 
 <footer class="nz-footer" style="text-align:center;padding:2rem 1rem">
-  <span class="nz-text-sm nz-text-muted">Hecho con ❤️ por David Antizar · Ntizar Aurora v6.1</span>
+  <span class="nz-text-sm nz-text-muted">Hecho con ❤️ por David Antizar · Ntizar Aurora v6.2</span>
 </footer>
 
 <script type="importmap">
@@ -1303,16 +1447,7 @@ activarGlassLive(document);
     if (lblTema) lblTema.textContent = dark ? 'Light' : 'Dark';
   });
 
-  // Grupo de skins
-  var skins = document.querySelectorAll('[data-skin]');
-  skins.forEach(function (b) {
-    b.addEventListener('click', function () {
-      body.setAttribute('data-nz-skin', b.getAttribute('data-skin'));
-      skins.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
-    });
-  });
-
-  // Ejes multi-axis (density, shape, motion)
+    // Ejes multi-axis (density, shape, motion)
   document.querySelectorAll('[data-axis]').forEach(function (sel) {
     sel.addEventListener('change', function () {
       var v = sel.value;

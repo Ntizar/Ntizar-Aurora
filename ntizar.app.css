@@ -1,0 +1,278 @@
+/* ============================================================
+   NTIZAR APP KIT — v6.2 · "aplicaciones móviles-first"
+   Depende de: ntizar.css (+ ntizar.nucleo.css opcional)
+
+   Patrones de aplicación para web-apps móviles-first: app shell
+   (header + tab bar), tabs táctiles 44px, hero compacto, KPI tiles
+   scrolleables, registro rápido, listas con acciones, chips de
+   filtro scroll-snap, bottom-sheet de confirmación, toasts,
+   empty states, skeletons, ajustes (switches), acciones en footer,
+   estado offline + retry, onboarding de 3 pasos.
+
+   Estilo: "Núcleo limpio" — sólido, monocromo azul, cero gradientes.
+   Mobile-first real: base 1 col, breakpoints con min-width, touch
+   target >= 44px, safe-areas iOS respetadas, scroll-snap nativo.
+   Sin JS obligatorio: bottom-sheet vía checkbox accesible; toast
+   controlado por la app con la clase .is-on.
+
+   API pública:
+     .nz-app             -> shell de app (header + main + tabbar)
+     .nz-app__header     -> barra superior sticky
+     .nz-app__title      -> título + estado
+     .nz-app__main       -> zona de contenido scrolleable
+     .nz-app__tabbar     -> tab bar inferior fija (>=44px)
+     .nz-app__tab[.is-active]
+     .nz-app__fab        -> botón flotante (registro rápido)
+     .nz-heroapp         -> hero compacto (<=2 interactivos)
+     .nz-heroapp__title/__sub/__actions
+     .nz-kpirow          -> fila scroll-snap de KPI tiles
+     .nz-kpirow__tile    -> KPI individual
+     .nz-chips           -> chips de filtro scroll-snap
+     .nz-chips__chip[.is-active]
+     .nz-list            -> lista de registros
+     .nz-list__item      -> fila (título, meta, acciones)
+     .nz-list__title/__meta/__actions/__btn
+     .nz-sheet           -> bottom-sheet de confirmación
+     .nz-sheet__panel/__title/__body/__actions
+     .nz-toast[.is-on]   -> toast de feedback
+     .nz-empty           -> empty state con acción
+     .nz-skeleton        -> skeleton de carga (+ .nz-skeleton__line)
+     .nz-settings        -> grupos de ajustes
+     .nz-settings__group/__row/__label/__hint
+     .nz-footerbar       -> acciones secundarias en footer
+     .nz-offline         -> estado offline + retry
+     .nz-onboard         -> onboarding de 3 pasos
+     .nz-onboard__slide/__title/__body/__dots/__actions
+   ============================================================ */
+
+/* ---------- Tokens App Kit (scoped, theme-aware) ---------- */
+.nz :where(.nz-app, .nz-heroapp, .nz-kpirow, .nz-chips, .nz-list,
+           .nz-sheet, .nz-toast, .nz-empty, .nz-skeleton,
+           .nz-settings, .nz-footerbar, .nz-offline, .nz-onboard) {
+  --nz-app-brand: var(--nz-color-brand);
+  --nz-app-brand-strong: var(--nz-color-brand-strong);
+  --nz-app-brand-soft: var(--nz-color-brand-soft);
+  --nz-app-on-brand: var(--nz-text-on-brand);
+  --nz-app-surface: var(--nz-surface-base);
+  --nz-app-border: var(--nz-border-soft);
+  --nz-app-text: var(--nz-text-strong);
+  --nz-app-text-muted: var(--nz-text-muted);
+  --nz-app-radius: var(--nz-radius-md);
+  --nz-app-radius-lg: var(--nz-radius-lg);
+  --nz-app-touch: 44px;
+  --nz-app-header: 56px;
+  --nz-app-tabbar-h: calc(60px + env(safe-area-inset-bottom, 0px));
+}
+
+/* ---------- 1) App shell ---------- */
+.nz-app__header { position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: var(--nz-space-3);
+  min-height: var(--nz-app-header);
+  padding: 0 var(--nz-space-4);
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--nz-app-surface);
+  border-bottom: 1px solid var(--nz-app-border); }
+.nz-app__title { flex: 1; min-width: 0; font-weight: 700;
+  font-size: var(--nz-font-size-md); color: var(--nz-app-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nz-app__main { padding: var(--nz-space-4) var(--nz-space-4)
+  calc(var(--nz-app-tabbar-h) + var(--nz-space-6));
+  display: grid; gap: var(--nz-space-5); }
+.nz-app__main > * { margin: 0; }
+.nz-app__tabbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+  display: flex; justify-content: space-around; align-items: stretch;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--nz-app-surface);
+  border-top: 1px solid var(--nz-app-border); }
+.nz-app__tab { flex: 1; min-height: 60px; min-width: var(--nz-app-touch);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; padding: var(--nz-space-2) var(--nz-space-1);
+  border: 0; background: transparent; cursor: pointer;
+  font: inherit; font-size: var(--nz-font-size-xs); font-weight: 600;
+  color: var(--nz-app-text-muted); text-decoration: none; }
+.nz-app__tab.is-active { color: var(--nz-app-brand); }
+.nz-app__tab.is-active::before { content: ""; order: -1; width: 1.75rem; height: 3px;
+  border-radius: var(--nz-radius-pill); background: var(--nz-app-brand); }
+.nz-app__fab { position: fixed; right: var(--nz-space-4);
+  bottom: calc(var(--nz-app-tabbar-h) + var(--nz-space-4)); z-index: 41;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: var(--nz-radius-pill);
+  border: 0; background: var(--nz-app-brand); color: var(--nz-app-on-brand);
+  font-size: 1.5rem; line-height: 1; cursor: pointer;
+  box-shadow: var(--nz-shadow-md); }
+
+/* ---------- 2) Hero compacto ---------- */
+.nz-heroapp { display: grid; gap: var(--nz-space-2);
+  padding: var(--nz-space-4); border-radius: var(--nz-app-radius-lg);
+  background: var(--nz-app-brand); color: var(--nz-app-on-brand); }
+.nz-heroapp__title { margin: 0; font-size: var(--nz-font-size-lg); font-weight: 700; }
+.nz-heroapp__sub { margin: 0; font-size: var(--nz-font-size-sm); opacity: .9; }
+.nz-heroapp__actions { display: flex; flex-wrap: wrap; gap: var(--nz-space-2); margin-top: var(--nz-space-2); }
+.nz-heroapp__actions .nz-btn { background: var(--nz-app-on-brand); color: var(--nz-app-brand); border: 0; }
+
+/* ---------- 3) KPI tiles scrolleables ---------- */
+.nz-kpirow { display: flex; gap: var(--nz-space-3);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: var(--nz-space-2); scrollbar-width: none; }
+.nz-kpirow::-webkit-scrollbar { display: none; }
+.nz-kpirow__tile { flex: 0 0 46%; min-width: 0; scroll-snap-align: start;
+  display: grid; gap: 2px; padding: var(--nz-space-3);
+  border-radius: var(--nz-app-radius);
+  border: 1px solid var(--nz-app-border); background: var(--nz-app-surface); }
+.nz-kpirow__label { font-size: var(--nz-font-size-xs); font-weight: 600; color: var(--nz-app-text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.nz-kpirow__value { font-size: 1.5rem; font-weight: 700; color: var(--nz-app-text); }
+.nz-kpirow__delta { font-size: var(--nz-font-size-xs); font-weight: 600; color: var(--nz-app-brand); }
+
+/* ---------- 4) Chips de filtro ---------- */
+.nz-chips { display: flex; gap: var(--nz-space-2);
+  overflow-x: auto; scroll-snap-type: x proximity;
+  padding-bottom: var(--nz-space-1); scrollbar-width: none; }
+.nz-chips::-webkit-scrollbar { display: none; }
+.nz-chips__chip { flex: 0 0 auto; scroll-snap-align: start;
+  display: inline-flex; align-items: center; gap: var(--nz-space-1);
+  min-height: 36px; padding: 0 var(--nz-space-3);
+  border-radius: var(--nz-radius-pill);
+  border: 1px solid var(--nz-app-border); background: var(--nz-app-surface);
+  font: inherit; font-size: var(--nz-font-size-sm); font-weight: 600;
+  color: var(--nz-app-text-muted); cursor: pointer; }
+.nz-chips__chip.is-active { border-color: var(--nz-app-brand);
+  background: color-mix(in srgb, var(--nz-app-brand) 10%, transparent);
+  color: var(--nz-app-brand); }
+
+/* ---------- 5) Lista de registros ---------- */
+.nz-list { display: grid; gap: var(--nz-space-2); }
+.nz-list__item { display: flex; align-items: center; gap: var(--nz-space-3);
+  min-height: var(--nz-app-touch); padding: var(--nz-space-3);
+  border-radius: var(--nz-app-radius);
+  border: 1px solid var(--nz-app-border); background: var(--nz-app-surface); }
+.nz-list__body { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.nz-list__title { margin: 0; font-size: var(--nz-font-size-sm); font-weight: 600; color: var(--nz-app-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nz-list__meta { margin: 0; font-size: var(--nz-font-size-xs); color: var(--nz-app-text-muted); }
+.nz-list__actions { display: flex; gap: var(--nz-space-1); flex: 0 0 auto; }
+.nz-list__btn { display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: var(--nz-radius-pill);
+  border: 1px solid var(--nz-app-border); background: transparent;
+  font-size: var(--nz-font-size-sm); color: var(--nz-app-text-muted); cursor: pointer; }
+.nz-list__btn--danger:hover { border-color: var(--nz-color-red-500); color: var(--nz-color-red-500); }
+
+/* ---------- 6) Bottom-sheet ---------- */
+.nz-sheet { position: fixed; inset: 0; z-index: 50; display: grid; align-items: end; }
+.nz-sheet > input { position: absolute; opacity: 0; pointer-events: none; }
+.nz-sheet__panel { grid-area: 1 / 1;
+  padding: var(--nz-space-4) var(--nz-space-4) calc(var(--nz-space-4) + env(safe-area-inset-bottom, 0px));
+  border-radius: var(--nz-app-radius-lg) var(--nz-app-radius-lg) 0 0;
+  background: var(--nz-app-surface);
+  box-shadow: var(--nz-shadow-lg);
+  transform: translateY(105%); visibility: hidden;
+  transition: transform .25s ease, visibility .25s; }
+.nz-sheet__panel:has(+ .nz-sheet__scrim), .nz-sheet > input:checked ~ .nz-sheet__panel {
+  transform: translateY(0); visibility: visible; }
+.nz-sheet__scrim { grid-area: 1 / 1; background: rgba(15, 23, 42, .45);
+  opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; }
+.nz-sheet > input:checked ~ .nz-sheet__scrim { opacity: 1; visibility: visible; }
+.nz-sheet__title { margin: 0 0 var(--nz-space-2); font-size: var(--nz-font-size-md); font-weight: 700; color: var(--nz-app-text); }
+.nz-sheet__body { margin: 0 0 var(--nz-space-4); font-size: var(--nz-font-size-sm); color: var(--nz-app-text-muted); }
+.nz-sheet__actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--nz-space-2); }
+.nz-sheet__actions .nz-btn { min-height: var(--nz-app-touch); }
+
+/* ---------- 7) Toast ---------- */
+.nz-toast { position: fixed; left: 50%; bottom: calc(var(--nz-app-tabbar-h) + var(--nz-space-4)); z-index: 60;
+  transform: translate(-50%, 16px); opacity: 0; visibility: hidden;
+  display: inline-flex; align-items: center; gap: var(--nz-space-2);
+  max-width: min(92vw, 420px); padding: var(--nz-space-3) var(--nz-space-4);
+  border-radius: var(--nz-radius-pill);
+  background: var(--nz-color-slate-900); color: #fff;
+  font-size: var(--nz-font-size-sm); font-weight: 600;
+  transition: transform .25s ease, opacity .25s, visibility .25s; }
+.nz-toast.is-on { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
+.nz [data-nz-theme="dark"] .nz-toast { background: #fff; color: var(--nz-app-text); }
+
+/* ---------- 8) Empty state ---------- */
+.nz-empty { display: grid; justify-items: center; gap: var(--nz-space-2);
+  padding: var(--nz-space-6) var(--nz-space-4); text-align: center;
+  border-radius: var(--nz-app-radius-lg);
+  border: 1px dashed var(--nz-border-strong); }
+.nz-empty__icon { font-size: 2rem; line-height: 1; }
+.nz-empty__title { margin: 0; font-size: var(--nz-font-size-md); font-weight: 700; color: var(--nz-app-text); }
+.nz-empty__body { margin: 0; max-width: 34ch; font-size: var(--nz-font-size-sm); color: var(--nz-app-text-muted); }
+.nz-empty .nz-btn { margin-top: var(--nz-space-2); min-height: var(--nz-app-touch); }
+
+/* ---------- 9) Skeleton ---------- */
+.nz-skeleton { display: grid; gap: var(--nz-space-2); }
+.nz-skeleton__line { height: 14px; border-radius: var(--nz-radius-pill);
+  background: color-mix(in srgb, var(--nz-app-text-muted) 18%, transparent); }
+.nz-skeleton__line--title { height: 22px; width: 55%; }
+.nz-skeleton__line--wide { width: 90%; }
+.nz-skeleton__card { padding: var(--nz-space-3); border-radius: var(--nz-app-radius); border: 1px solid var(--nz-app-border); }
+.nz [data-nz-motion="none"] .nz-skeleton__line { animation: none; }
+@keyframes nz-skel { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+.nz-skeleton__line { animation: nz-skel 1.4s ease-in-out infinite; }
+
+/* ---------- 10) Ajustes ---------- */
+.nz-settings { display: grid; gap: var(--nz-space-4); }
+.nz-settings__group { overflow: hidden; border-radius: var(--nz-app-radius);
+  border: 1px solid var(--nz-app-border); background: var(--nz-app-surface); }
+.nz-settings__row { display: flex; align-items: center; gap: var(--nz-space-3);
+  min-height: var(--nz-app-touch); padding: var(--nz-space-3) var(--nz-space-4); }
+.nz-settings__row + .nz-settings__row { border-top: 1px solid var(--nz-app-border); }
+.nz-settings__label { flex: 1; min-width: 0; display: grid; gap: 1px; }
+.nz-settings__label span:first-child { font-size: var(--nz-font-size-sm); font-weight: 600; color: var(--nz-app-text); }
+.nz-settings__hint { font-size: var(--nz-font-size-xs); color: var(--nz-app-text-muted); }
+.nz-switch { position: relative; width: 48px; height: 28px; flex: 0 0 auto; cursor: pointer; }
+.nz-switch input { position: absolute; opacity: 0; }
+.nz-switch__track { position: absolute; inset: 0; border-radius: var(--nz-radius-pill);
+  background: color-mix(in srgb, var(--nz-app-text-muted) 35%, transparent); transition: background .2s; }
+.nz-switch__thumb { position: absolute; top: 2px; left: 2px; width: 24px; height: 24px;
+  border-radius: 50%; background: #fff; box-shadow: var(--nz-shadow-sm);
+  transition: transform .2s; }
+.nz-switch input:checked ~ .nz-switch__track { background: var(--nz-app-brand); }
+.nz-switch input:checked ~ .nz-switch__thumb { transform: translateX(20px); }
+
+/* ---------- 11) Footer de acciones ---------- */
+.nz-footerbar { display: grid; grid-template-columns: 1fr 1fr; gap: var(--nz-space-2);
+  padding: var(--nz-space-3) var(--nz-space-4) calc(var(--nz-space-3) + env(safe-area-inset-bottom, 0px));
+  background: var(--nz-app-surface); border-top: 1px solid var(--nz-app-border); }
+.nz-footerbar .nz-btn { min-height: var(--nz-app-touch); }
+.nz-footerbar__single { grid-template-columns: 1fr; }
+
+/* ---------- 12) Offline + retry ---------- */
+.nz-offline { display: grid; justify-items: center; gap: var(--nz-space-2);
+  padding: var(--nz-space-5) var(--nz-space-4); text-align: center;
+  border-radius: var(--nz-app-radius-lg);
+  background: color-mix(in srgb, var(--nz-app-brand) 6%, var(--nz-app-surface));
+  border: 1px solid var(--nz-app-border); }
+.nz-offline__icon { font-size: 1.75rem; line-height: 1; }
+.nz-offline__title { margin: 0; font-weight: 700; color: var(--nz-app-text); }
+.nz-offline__body { margin: 0; font-size: var(--nz-font-size-sm); color: var(--nz-app-text-muted); }
+.nz-offline .nz-btn { margin-top: var(--nz-space-2); min-height: var(--nz-app-touch); }
+
+/* ---------- 13) Onboarding ---------- */
+.nz-onboard { display: grid; gap: var(--nz-space-4); }
+.nz-onboard__slide { display: grid; gap: var(--nz-space-2); padding: var(--nz-space-5) var(--nz-space-4);
+  border-radius: var(--nz-app-radius-lg);
+  border: 1px solid var(--nz-app-border); background: var(--nz-app-surface); text-align: center; }
+.nz-onboard__icon { font-size: 2.25rem; line-height: 1; }
+.nz-onboard__title { margin: 0; font-size: var(--nz-font-size-md); font-weight: 700; color: var(--nz-app-text); }
+.nz-onboard__body { margin: 0; font-size: var(--nz-font-size-sm); color: var(--nz-app-text-muted); }
+.nz-onboard__dots { display: flex; justify-content: center; gap: var(--nz-space-2); }
+.nz-onboard__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--nz-app-border); }
+.nz-onboard__dot.is-active { background: var(--nz-app-brand); }
+.nz-onboard__actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--nz-space-2); }
+.nz-onboard__actions .nz-btn { min-height: var(--nz-app-touch); }
+
+/* ---------- Responsive (desktop: base min-width) ---------- */
+@media (min-width: 768px) {
+  .nz-app__main { max-width: 720px; margin-inline: auto; }
+  .nz-kpirow__tile { flex: 0 0 30%; }
+  .nz-sheet__panel { max-width: 480px; width: 100%; justify-self: center; border-radius: var(--nz-app-radius-lg); margin-bottom: var(--nz-space-6); }
+  .nz-toast { bottom: var(--nz-space-6); }
+  .nz-onboard__slide { padding: var(--nz-space-6); }
+}
+
+/* ---------- Movimiento reducido ---------- */
+.nz [data-nz-motion="none"] .nz-sheet__panel,
+.nz [data-nz-motion="none"] .nz-sheet__scrim,
+.nz [data-nz-motion="none"] .nz-toast,
+.nz [data-nz-motion="none"] .nz-switch__track,
+.nz [data-nz-motion="none"] .nz-switch__thumb { transition: none; }

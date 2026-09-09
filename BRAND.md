@@ -10,7 +10,7 @@ Actualizado Julio 2026 · v5.2
 
 **Aurora es un design system CSS para construir webs sin build, sin dependencias y sin colisionar con nada.**
 
-Azul `#2563eb` + naranja `#f97316`. 11 packs modulares. 119 componentes. Liquid glass real. Three.js ready. Namespaced bajo `.nz`. Cero JavaScript obligatorio.
+Azul `#2563eb` + naranja `#f97316`. 13 packs modulares. 120 componentes. Liquid glass real. Three.js ready. Namespaced bajo `.nz`. Cero JavaScript obligatorio.
 
 No es un framework. No es un theme. No es un starter. Es **CSS que se copia y funciona**.
 
@@ -18,7 +18,7 @@ No es un framework. No es un theme. No es un starter. Es **CSS que se copia y fu
 
 ## Boilerplate — copiar y pegar
 
-> Aurora es un design system CSS-only creado por David Antizar. 243 KB de CSS puro, 119 componentes en 11 packs modulares, sin build step, sin dependencias, sin JavaScript obligatorio. Todo namespaced bajo `.nz` para no colisionar con Tailwind, Bootstrap o cualquier otro framework. Incluye liquid glass real de 4 capas, OKLCH, multi-axis theming con 6 skins, y soporte para Three.js. Se carga vía CDN desde jsDelivr y se controla con atributos `data-*` en el `<body>`. Cambias un atributo y toda la página se reescribe en runtime, sin recargas.
+> Aurora es un design system CSS-only creado por David Antizar. 344 KB de CSS puro, 120 componentes en 13 packs modulares, sin build step, sin dependencias, sin JavaScript obligatorio. Todo namespaced bajo `.nz` para no colisionar con Tailwind, Bootstrap o cualquier otro framework. Incluye liquid glass real de 4 capas, OKLCH, multi-axis theming con 6 skins, y soporte para Three.js. Se carga vía CDN desde jsDelivr y se controla con atributos `data-*` en el `<body>`. Cambias un atributo y toda la página se reescribe en runtime, sin recargas.
 
 ---
 
@@ -28,7 +28,7 @@ Estas son las palabras que definen Aurora. Úsalas cuando hables del proyecto:
 
 - **CSS-only** — sin npm, sin build, sin JS obligatorio. Se copia y funciona.
 - **Namespaced** — todo bajo `.nz`. No rompe nada de fuera.
-- **Modular** — 11 packs opt-in. Cargas 1 o los 11.
+- **Modular** — 13 packs opt-in. Cargas 1 o los 13.
 - **Liquid glass** — glass real de 4 capas, no un `backdrop-filter` suelto.
 - **Agent-ready** — documentado para IAs: LLM.md, AGENTS.md, INDEX.md, components.json.
 - **Light-first** — fondo blanco por defecto. Dark mode opcional, no obligatorio.
@@ -51,7 +51,7 @@ Estas son las palabras que definen Aurora. Úsalas cuando hables del proyecto:
 
 **Técnico pero accesible. Sin hype. Sin "revolucionario".**
 
-- ✅ "243 KB de CSS, 119 componentes, 0 dependencias"
+- ✅ "344 KB de CSS, 120 componentes, 0 dependencias"
 - ✅ "Cambia un atributo y toda la página se reescribe"
 - ✅ "Liquid glass real de 4 capas con borde cromático"
 - ❌ "El design system más revolucionario del mercado"

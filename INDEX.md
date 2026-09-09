@@ -4,7 +4,7 @@
 >
 > **Agentes IA:** lee primero [`LLM.md`](LLM.md) (~2 KB, decisión rápida) y luego [`AGENTS.md`](AGENTS.md) (reglas detalladas). Este archivo es tu mapa de clases una vez sepas las reglas.
 >
-> ¿Buscas el spec canónico de tokens/componentes para un agente o herramienta de diseño? Lee [`components.json`](components.json) (machine-readable, 119 componentes) o [`DESIGN.md`](DESIGN.md) (Google design.md compatible).
+> ¿Buscas el spec canónico de tokens/componentes para un agente o herramienta de diseño? Lee [`components.json`](components.json) (machine-readable, 129 componentes) o [`DESIGN.md`](DESIGN.md) (Google design.md compatible).
 
 ---
 
@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="ntizar.patterns.css"><!-- app-shell, hero, pricing, faq, footer -->
 <link rel="stylesheet" href="ntizar.next.css">    <!-- v5: liquid glass real, OKLCH, multi-axis, mesh (modo glass) -->
 <link rel="stylesheet" href="ntizar.ai.css">      <!-- v6.2: primitivas AI-native (chat, thinking, tool chips, approval, streaming, task rows, ...) -->
+<link rel="stylesheet" href="ntizar.app.css">      <!-- v6.2: App Kit móvil-first (app shell, tabbar, KPI tiles, chips, listas, bottom-sheet, toast, empty, skeleton, ajustes, offline, onboarding) -->
 
 <body class="nz"
       data-nz-theme="light"
@@ -67,6 +68,7 @@ Reglas duras:
 || `ntizar.patterns.css` | patterns | App-shell con sidebar, hero (centered/split), feature-grid, pricing, FAQ, footer, auth-shell, empty-state, error-page, cta-banner, logo-cloud, stats-banner, **bento-grid** | Compongas páginas completas |
 || `ntizar.next.css` | **v5 next** | **Liquid Glass real** (`--glass-liquid` con specular highlight + chromatic edge + dual inset shadow + saturate backdrop), **Aurora Mesh** (`.nz-aurora-mesh[--animated\|--glass\|--hero]`), **OKLCH color system** paralelo (`--nz-oklch-*`, activable con `data-nz-color-system="oklch"`), **multi-axis theming** (`data-nz-shape`, `data-nz-density`, `data-nz-motion`), **skin contrast (WCAG AAA)**, **forced-colors mode** | Quieras la capa disruptiva 2026 sin tocar el core |
 || `ntizar.ai.css` | **v6.2 AI** | **Primitivas AI-native**: loaders (pixel/dots/orbit/surfer/sweep), thinking traces expandibles, streaming text con fuentes/acciones/follow-ups, approval card (human-in-the-loop), tool chips, task rows de agente, chat, prompt bar, recommendation con confidence meter, context cards, diff table, records table, filter table, sidebar nav, command search, flowchart, insight cards, code block con diff, fine-tune card, selection actions. **Estilo Núcleo limpio, monocromo azul, light por defecto (dark vía `data-nz-theme`)** | Construyas interfaces de agente, chat, dashboards de datos o cualquier UI con AI |
+|| `ntizar.app.css` | **v6.2 App Kit** | **Patrones de app móvil-first**: shell (header sticky + tab bar táctil ≥44px + FAB), hero compacto, KPI tiles scrolleables, chips de filtro scroll-snap, listas de registros con acciones, bottom-sheet de confirmación sin JS, toast, empty state, skeleton de carga, ajustes con switch CSS, footer de acciones, offline+retry, onboarding. Un solo tono azul, sólido, sin gradientes, touch ≥44px, safe-areas iOS | Construyas cualquier web-app móvil-first: registradores, trackers, visores con navegación de tabs, herramientas de campo |
 
 Cada pack es **stateless e idempotente**. Puedes cargar 1 o los 10 sin colisiones.
 
